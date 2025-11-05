@@ -2,7 +2,16 @@ class CustomNavbar extends HTMLElement {
     connectedCallback() {
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.innerHTML = `
-            <style>
+           <style>
+custom-navbar {
+  position: relative;
+  z-index: 9999 !important; /* Forces navbar above everything */
+}
+</style>
+ <style>
+            
+ 
+
                 :host {
                     display: block;
                     position: fixed;
@@ -102,13 +111,13 @@ class CustomNavbar extends HTMLElement {
             </style>
             
             <div class="navbar-container">
-                <a href="#" class="logo">TensileTango</a>
+                <a href="index.html" class="logo">Venkateshwar Corporation</a>
                 <div class="nav-links">
-                    <a href="#" class="nav-link">Home</a>
-                    <a href="#products" class="nav-link">Products</a>
-                    <a href="#" class="nav-link">Projects</a>
-                    <a href="#" class="nav-link">About</a>
-                    <a href="#" class="nav-link">Contact</a>
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="products.html" class="nav-link">Products</a>
+                    
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
                 </div>
                 <button class="mobile-menu-btn">
                     <i data-feather="menu"></i>

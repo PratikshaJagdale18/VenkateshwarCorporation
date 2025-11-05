@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Products – Venkateshwara Corporation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --navy: #0f172a;
+      --gold: #f59e0b;
+    }
+    body { font-family: 'Inter', sans-serif; background: #f8fafc; }
+    
+    .product-card {
+      transition: all 0.5s ease;
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+    .product-card:hover {
+      transform: translateY(-15px) scale(1.04);
+      box-shadow: 0 30px 60px rgba(15, 23, 42, 0.25) !important;
+      border-color: var(--gold);
+      z-index: 10;
+    }
+    .product-card .desc {
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.6s ease;
+      background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(245,158,11,0.05));
+      backdrop-filter: blur(10px);
+    }
+    .product-card:hover .desc {
+      opacity: 1;
+      max-height: 220px;
+      padding: 1.5rem;
+      margin-top: 1rem;
+      border-top: 3px solid var(--gold);
+    }
+    .gold-btn {
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 800;
+      box-shadow: 0 10px 30px rgba(245,158,11,0.4);
+    }
+    .gold-btn:hover {
+      background: #d97706;
+      transform: scale(1.08);
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-b from-slate-50 to-white">
+
+  <!-- CUSTOM NAVBAR – SAME AS HOMEPAGE -->
+  <custom-navbar></custom-navbar>
+
+  <!-- HERO – NAVY & GOLD -->
+  <section class="pt-32 pb-24 text-white text-center relative overflow-hidden" style="background: linear-gradient(135deg, var(--navy) 0%, #1e293b 100%)">
+    <div class="absolute inset-0 bg-black opacity-40"></div>
+    <div class="container mx-auto px-6 relative z-10">
+      <h2 class="text-5xl md:text-7xl font-black mb-6 animate__animated animate__fadeInDown">
+        Premium <span style="color: var(--gold); text-shadow: 0 0 30px rgba(245,158,11,0.6);">Tensile</span> Solutions
+      </h2>
+      <p class="text-xl md:text-3xl mb-12 max-w-5xl mx-auto animate__animated animate__fadeInUp">
+        Balcony • Industrial • Car Parking • Terrace • Retractable • Polycarbonate • Dome
+      </p>
+      <div class="flex justify-center gap-8 flex-wrap">
+        <a href="tel:+919876543210" class="gold-btn text-xl py-5 px-14 rounded-full transition transform hover:scale-110 shadow-2xl">
+          Call +91 98765 43210
+        </a>
+        <a href="#products" class="bg-white text-var(--navy) hover:bg-gray-100 font-bold text-xl py-5 px-14 rounded-full shadow-2xl transition">
+          Explore Products
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT CATEGORIES -->
+  <section id="products" class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+      <h2 class="text-6xl font-black text-center mb-4" style="color: var(--navy);">
+        Our <span style="color: var(--gold);">7 Signature</span> Solutions
+      </h2>
+      <p class="text-2xl text-center text-gray-600 mb-16">Engineered for Pune’s Climate</p>
+
+      <!-- Balcony Shed -->
+      <div class="mb-24">
+        <h3 class="text-4xl font-bold mb-10 border-l-8 pl-6" style="border-color: var(--gold); color: var(--navy);">
+          Balcony Shield <span class="text-var(--gold) font-black">(10+ Designs)</span>
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+          <div class="product-card bg-white rounded-2xl overflow-hidden shadow-2xl">
+            <img src="images/balcony-patra.jpg" alt="Balcony Patra" class="w-full h-64 object-cover">
+            <div class="p-6">
+              <h4 class="text-2xl font-bold" style="color: var(--navy);">Balcony Patra Shed</h4>
+              <p class="text-3xl font-black mt-2" style="color: var(--gold);">₹150/sq ft</p>
+              <div class="desc text-gray-700">
+                <p>GI Patra + Anti-rust coating. Monsoon-proof. 2-day install.</p>
+                <a href="tel:+919876543210" class="gold-btn inline-block mt-4 px-8 py-3 rounded-full text-lg font-bold">
+                  Call Now
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card bg-white rounded-2xl overflow-hidden shadow-2xl">
+            <img src="images/balcony-roof.jpg" alt="Polycarbonate" class="w-full h-64 object-cover">
+            <div class="p-6">
+              <h4 class="text-2xl font-bold" style="color: var(--navy);">Polycarbonate Roof</h4>
+              <p class="text-3xl font-black mt-2" style="color: var(--gold);">₹140/sq ft</p>
+              <div class="desc text-gray-700">
+                <p>UV Block | 10-Year Warranty | Crystal Clear View</p>
+                <a href="tel:+919876543210" class="gold-btn inline-block mt-4 px-8 py-3 rounded-full text-lg font-bold">
+                  Call Now
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Add 8 more balcony cards here -->
+        </div>
+      </div>
+
+      <!-- Industrial Titan -->
+      <div class="mb-24">
+        <h3 class="text-4xl font-bold mb-10 border-l-8 pl-6" style="border-color: var(--gold); color: var(--navy);">
+          Industrial Titan <span class="text-var(--gold) font-black">(8+ Projects)</span>
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+          <div class="product-card bg-white rounded-2xl overflow-hidden shadow-2xl">
+            <img src="images/factory-roof.jpg" alt="Factory" class="w-full h-64 object-cover">
+            <div class="p-6">
+              <h4 class="text-2xl font-bold" style="color: var(--navy);">Factory PEB Shed</h4>
+              <p class="text-3xl font-black mt-2" style="color: var(--gold);">₹180/sq ft</p>
+              <div class="desc text-gray-700">
+                <p>1 Lakh sq.ft covered | Fire-rated | 25-year life</p>
+                <a href="tel:+919876543210" class="gold-btn inline-block mt-4 px-8 py-3 rounded-full text-lg font-bold">
+                  Call Now
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- Add more -->
+        </div>
+      </div>
+
+      <!-- Car Haven -->
+      <div class="mb-24">
+        <h3 class="text-4xl font-bold mb-10 border-l-8 pl-6" style="border-color: var(--gold); color: var(--navy);">
+          Car Haven <span class="text-var(--gold) font-black">(6+ Models)</span>
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+          <div class="product-card bg-white rounded-2xl overflow-hidden shadow-2xl">
+            <img src="images/car-tensile-white.jpg" alt="Car Parking" class="w-full h-64 object-cover">
+            <div class="p-6">
+              <h4 class="text-2xl font-bold" style="color: var(--navy);">White Car Parking</h4>
+              <p class="text-3xl font-black mt-2" style="color: var(--gold);">₹180/sq ft</p>
+              <div class="desc text-gray-700">
+                <p>4 Cars | UV + Rain Proof | Free 3D Design</p>
+                <a href="tel:+919876543210" class="gold-btn inline-block mt-4 px-8 py-3 rounded-full text-lg font-bold">
+                  Call Now
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add remaining: Tensile Art, Smart Build, Steel Forge, Parking Pro -->
+      <!-- Just copy-paste above blocks and change names/images -->
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 text-center" style="background: linear-gradient(to right, var(--gold), #d97706);">
+    <div class="container mx-auto px-6">
+      <h3 class="text-5xl md:text-6xl font-black text-var(--navy) mb-6">
+        Ready to Shield Your Space?
+      </h3>
+      <p class="text-2xl text-var(--navy) mb-10 font-medium">
+        Free Quote • Site Visit • 3D Design in 24 hrs
+      </p>
+      <a href="tel:+919876543210" class="inline-block bg-var(--navy) text-white hover:bg-slate-800 font-black text-3xl py-6 px-20 rounded-full shadow-2xl transform hover:scale-110 transition">
+        CALL +91 98765 43210
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-var(--navy) text-white py-12 text-center">
+    <p class="text-lg font-medium">© 2025 Venkateshwara Corporation • GST: 27xxxxx • Pune</p>
+    <p class="mt-3 text-sm opacity-90">
+      Dehu Alandi Road, Pimpri Chinchwad, Pune-411062
+    </p>
+  </footer>
+
+  <!-- CUSTOM NAVBAR (Same as index.html) -->
+  <script>
+    class CustomNavbar extends HTMLElement {
+      connectedCallback() {
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.innerHTML = `
+          <style>
+            :host { display: block; position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
+                    padding: 1.5rem 0; background: linear-gradient(to bottom, rgba(15,23,42,0.9), transparent);
+                    backdrop-filter: blur(12px); transition: all 0.4s ease; font-family: 'Inter', sans-serif; }
+            :host(.scrolled) { padding: 0.75rem 0; background: rgba(15,23,42,0.98); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+            .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 1.5rem;
+                            display: flex; justify-content: space-between; align-items: center; }
+            .logo { display: flex; align-items: center; gap: 0.75rem; color: white; text-decoration: none;
+                    font-weight: 800; font-size: 1.5rem; }
+            .logo img { height: 48px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5)); }
+            .logo span { color: #f59e0b; }
+            .nav-links { display: flex; gap: 2.5rem; }
+            .nav-link { color: white; text-decoration: none; font-weight: 600; position: relative; transition: color 0.3s; }
+            .nav-link:hover { color: #f59e0b; }
+            .nav-link::after { content: ''; position: absolute; width: 0; height: 3px; bottom: -8px; left: 0;
+                              background: #f59e0b; transition: width 0.4s ease; }
+            .nav-link:hover::after { width: 100%; }
+            .tagline { font-style: italic; color: #fcd34d; font-size: 0.9rem; }
+            @media (max-width: 768px) { .nav-links, .tagline { display: none; } }
+          </style>
+          <div class="nav-container">
+            <a href="index.html" class="logo">
+              <img src="logo.jpg" alt="Logo">
+              <div>VENKATESHWARA<br><span>CORPORATION</span></div>
+            </a>
+            <div class="nav-links">
+              <a href="index.html" class="nav-link">Home</a>
+              <a href="about.html" class="nav-link">About</a>
+              <a href="products.html" class="nav-link">Products</a>
+              <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="tagline">Building Strength, Shaping Trust</div>
+          </div>
+        `;
+
+        window.addEventListener('scroll', () => {
+          this.shadowRoot.host.classList.toggle('scrolled', window.scrollY > 100);
+        });
+      }
+    }
+    customElements.define('custom-navbar', CustomNavbar);
+  </script>
+
+  <!-- Smooth Scroll -->
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelector(anchor.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+    feather.replace();
+  </script>
+</body>
+</html>

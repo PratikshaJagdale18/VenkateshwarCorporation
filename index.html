@@ -1,277 +1,369 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Venkateshwar Corporation - Premium Tensile Structures</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <script src="components/navbar.js"></script>
-    <script src="components/footer.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Venkateshwara Corporation - Premium Tensile Structures</title>
+  
+  <!-- TAILWIND + FEATHER -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+  <style>
+    :root {
+      --navy: #0f172a;
+      --gold: #f59e0b;
+      --light-navy: #1e293b;
+    }
+
+    /* HERO */
+    .carousel-image { transition: opacity 1s ease !important; }
+    #progress-line { transition: width 3s linear !important; }
+    .preview-img:hover { border-color: var(--gold) !important; }
+
+    /* PRODUCT TITLE */
+    .prod-title {
+      transform: translateY(50px);
+      opacity: 0;
+      transition: all 0.9s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    .prod-title.active {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* TALLER IMAGES */
+    .slide img {
+      width: 115% !important;
+      margin-left: -7.5%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+    .slide.active img { transform: scale(1.03); }
+
+    /* GLASS ARROWS */
+    .arrow-btn {
+      background: rgba(255,255,255,0.08) !important;
+      backdrop-filter: blur(12px);
+      border: 2px solid rgba(255,255,255,0.2);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+    .arrow-btn:hover {
+      background: rgba(255,255,255,0.15) !important;
+      border-color: var(--gold);
+      transform: scale(1.1);
+    }
+
+    /* GOLDEN DOTS */
+    .dot {
+      background: rgba(255,255,255,0.4);
+      transition: all 0.4s ease;
+    }
+    .dot.active {
+      background: var(--gold) !important;
+      box-shadow: 0 0 15px rgba(245,158,11,0.7);
+      transform: scale(1.3);
+    }
+  </style>
 </head>
-<body class="bg-white">
-    <custom-navbar></custom-navbar>
+<body class="bg-gradient-to-b from-slate-900 to-slate-800 text-white overflow-x-hidden">
 
-    <!-- Hero Section with Image Carousel -->
-    <section class="relative h-screen overflow-hidden">
-        <div id="hero-carousel" class="absolute inset-0 z-0 flex transition-transform duration-1000 ease-in-out">
-            <div class="carousel-slide flex-shrink-0 w-full h-full">
-                <img src="images/hero1.webp" alt="Tensile Structure 1" class="w-full h-full object-cover">
-            </div>
-            <div class="carousel-slide flex-shrink-0 w-full h-full">
-                <img src="images/hero2.webp" alt="Tensile Structure 2" class="w-full h-full object-cover">
-            </div>
-            <div class="carousel-slide flex-shrink-0 w-full h-full">
-                <img src="images/hero3.webp" alt="Tensile Structure 3" class="w-full h-full object-cover">
-            </div>
-            <div class="carousel-slide flex-shrink-0 w-full h-full">
-                <img src="images/hero4.jpg" alt="Tensile Structure 4" class="w-full h-full object-cover">
-            </div>
-            <div class="carousel-slide flex-shrink-0 w-full h-full">
-                <img src="images/hero5.jpg" alt="Tensile Structure 5" class="w-full h-full object-cover">
-            </div>
-        </div>
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-white opacity-50"></div>
-        <div class="relative z-10 container mx-auto px-6 h-full flex flex-col justify-center">
-            <h1 class="text-5xl md:text-7xl font-bold text-orange-600 mb-6 animate__animated animate__fadeInDown">
-                Redefining Spaces with <span class="text-white bg-orange-500 px-4">Venkateshwar</span>
-            </h1>
-            <p class="text-xl md:text-2xl text-gray-800 mb-8 max-w-2xl animate__animated animate__fadeInUp animate__delay-1s">
-                Innovative tensile membrane solutions for architectural excellence and functional beauty.
-            </p>
-            <div class="animate__animated animate__fadeInUp animate__delay-2s">
-                <a href="#products" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
-                    Explore Products
-                </a>
-            </div>
-        </div>
+  <!-- NAVBAR – ALWAYS ON TOP -->
+  <custom-navbar></custom-navbar>
 
-        <!-- Carousel indicators -->
-        <div class="absolute bottom-10 left-0 right-0 flex justify-center space-x-3 z-10">
-            <div class="carousel-indicator w-3 h-3 rounded-full bg-white opacity-50 cursor-pointer transition-all duration-300"></div>
-            <div class="carousel-indicator w-3 h-3 rounded-full bg-white opacity-50 cursor-pointer transition-all duration-300"></div>
-            <div class="carousel-indicator w-3 h-3 rounded-full bg-white opacity-50 cursor-pointer transition-all duration-300"></div>
-            <div class="carousel-indicator w-3 h-3 rounded-full bg-white opacity-50 cursor-pointer transition-all duration-300"></div>
-            <div class="carousel-indicator w-3 h-3 rounded-full bg-white opacity-50 cursor-pointer transition-all duration-300"></div>
-        </div>
-    </section>
-
-    <!-- Mini Gallery Preview -->
-    <div class="container mx-auto px-6 py-12 -mt-20 relative z-20">
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
-            <div class="mini-preview h-32 md:h-40 bg-orange-100 rounded-lg overflow-hidden transform hover:scale-105 transition-all duration-300 shadow-md cursor-pointer">
-                <img src="images/hero1.webp" alt="Tensile Structure 1" class="w-full h-full object-cover">
-            </div>
-            <div class="mini-preview h-32 md:h-40 bg-orange-100 rounded-lg overflow-hidden transform hover:scale-105 transition-all duration-300 shadow-md cursor-pointer">
-                <img src="images/hero2.webp" alt="Tensile Structure 2" class="w-full h-full object-cover">
-            </div>
-            <div class="mini-preview h-32 md:h-40 bg-orange-100 rounded-lg overflow-hidden transform hover:scale-105 transition-all duration-300 shadow-md cursor-pointer">
-                <img src="images/hero3.webp" alt="Tensile Structure 3" class="w-full h-full object-cover">
-            </div>
-            <div class="mini-preview h-32 md:h-40 bg-orange-100 rounded-lg overflow-hidden transform hover:scale-105 transition-all duration-300 shadow-md cursor-pointer">
-                <img src="images/hero4.jpg" alt="Tensile Structure 4" class="w-full h-full object-cover">
-            </div>
-            <div class="mini-preview h-32 md:h-40 bg-orange-100 rounded-lg overflow-hidden transform hover:scale-105 transition-all duration-300 shadow-md cursor-pointer">
-                <img src="images/hero5.jpg" alt="Tensile Structure 5" class="w-full h-full object-cover">
-            </div>
-        </div>
+  <!-- HERO -->
+  <section class="relative h-screen overflow-hidden pt-24">
+    <div id="hero-carousel" class="absolute inset-0 z-0">
+      <img src="images/hero1.webp" class="carousel-image absolute inset-0 w-full h-full object-cover opacity-100" alt="Hero 1">
+      <img src="images/hero2.webp" class="carousel-image absolute inset-0 w-full h-full object-cover opacity-0" alt="Hero 2">
+      <img src="images/hero3.webp" class="carousel-image absolute inset-0 w-full h-full object-cover opacity-0" alt="Hero 3">
+      <img src="images/hero4.jpg" class="carousel-image absolute inset-0 w-full h-full object-cover opacity-0" alt="Hero 4">
+      <img src="images/hero5.jpg" class="carousel-image absolute inset-0 w-full h-full object-cover opacity-0" alt="Hero 5">
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80 z-10"></div>
+    
+    <div class="relative z-20 container mx-auto px-6 h-full flex flex-col justify-center">
+      <h1 class="text-5xl md:text-8xl font-black mb-6 leading-tight">
+        India’s Leading <br>
+        <span class="text-yellow-400 drop-shadow-2xl">Tensile</span> Structure <br>
+        <span class="text-4xl md:text-6xl text-yellow-300">Experts</span>
+      </h1>
+      <p class="text-xl md:text-3xl max-w-3xl text-gray-200 font-light">
+        Precision-engineered shelters that stand the test of time.
+      </p>
     </div>
 
-    <!-- About Section -->
-    <section class="relative py-20 bg-cover bg-center" style="background-image: url('http://static.photos/architecture/1200x630/15');">
-        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
-        <div class="relative container mx-auto px-6">
-            <div class="bg-white p-8 rounded-xl shadow-lg max-w-2xl mx-auto">
-                <h2 class="text-4xl font-bold text-orange-600 mb-4">About Venkateshwar Corporation</h2>
-                <div class="w-20 h-1 bg-orange-500 mx-auto mb-6"></div>
-                <p class="text-gray-700 mb-6">
-                    Venkateshwar Corporation is a leading provider of innovative tensile membrane solutions, specializing in architectural excellence and functional beauty. With years of experience in the industry, we combine cutting-edge technology with artistic vision to create exceptional tensile structures that transform spaces.
-                </p>
-                <p class="text-gray-700 mb-6">
-                    Our commitment to quality, durability, and customer satisfaction has made us a trusted partner for projects ranging from small canopies to large-scale structures. We pride ourselves on delivering solutions that not only meet but exceed our clients' expectations.
-                </p>
-                <a href="#products" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg inline-block">
-                    Learn More About Our Products
-                </a>
-            </div>
+    <div class="absolute right-10 bottom-10 z-30 flex flex-col items-end space-y-4">
+      <div id="preview-container" class="flex gap-4">
+        <div class="preview-img w-32 h-44 overflow-hidden rounded-xl shadow-2xl opacity-90 hover:opacity-100 transition-all duration-500 cursor-pointer border-4 border-transparent hover:border-yellow-400">
+          <img src="images/hero2.webp" class="w-full h-full object-cover" alt="Preview">
         </div>
-    </section>
-
-    <!-- Stacked Cards Section -->
-    <section id="products" class="py-20 bg-orange-500 relative">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-white mb-4">Our Product Range</h2>
-                <div class="w-20 h-1 bg-white mx-auto mb-6"></div>
-                <p class="text-orange-100 max-w-2xl mx-auto">
-                    Innovative tensile solutions for every architectural need, from small canopies to large-scale structures.
-                </p>
-            </div>
-
-            <div class="relative overflow-hidden rounded-xl shadow-2xl max-w-2xl mx-auto">
-                <div id="product-slider" class="flex transition-transform duration-500 ease-in-out">
-                    <div class="slide flex-shrink-0 w-full aspect-square relative group">
-                        <img src="images/hero1.webp" alt="Tensioned Membrane Roofs" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                            <h3 class="text-white text-3xl font-bold animate__animated animate__zoomIn">Tensioned Membrane Roofs</h3>
-                        </div>
-                    </div>
-                    <div class="slide flex-shrink-0 w-full aspect-square relative group">
-                        <img src="images/hero2.webp" alt="Canopy Systems" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                            <h3 class="text-white text-3xl font-bold animate__animated animate__zoomIn">Canopy Systems</h3>
-                        </div>
-                    </div>
-                    <div class="slide flex-shrink-0 w-full aspect-square relative group">
-                        <img src="images/hero3.webp" alt="Facade Systems" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                            <h3 class="text-white text-3xl font-bold animate__animated animate__zoomIn">Facade Systems</h3>
-                        </div>
-                    </div>
-                    <div class="slide flex-shrink-0 w-full aspect-square relative group">
-                        <img src="images/hero4.jpg" alt="Tensioned Cables" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                            <h3 class="text-white text-3xl font-bold animate__animated animate__zoomIn">Tensioned Cables</h3>
-                        </div>
-                    </div>
-                    <div class="slide flex-shrink-0 w-full aspect-square relative group">
-                        <img src="images/hero5.jpg" alt="Modular Structures" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                            <h3 class="text-white text-3xl font-bold animate__animated animate__zoomIn">Modular Structures</h3>
-                        </div>
-                    </div>
-                </div>
-                <button id="prev-btn" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-75 hover:bg-opacity-100 text-orange-500 p-3 rounded-full transition-all duration-300 shadow-lg animate__animated animate__fadeInLeft">
-                    <i data-feather="chevron-left" class="w-6 h-6"></i>
-                </button>
-                <button id="next-btn" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-75 hover:bg-opacity-100 text-orange-500 p-3 rounded-full transition-all duration-300 shadow-lg animate__animated animate__fadeInRight">
-                    <i data-feather="chevron-right" class="w-6 h-6"></i>
-                </button>
-            </div>
+        <div class="preview-img w-32 h-44 overflow-hidden rounded-xl shadow-2xl opacity-90 hover:opacity-100 transition-all duration-500 cursor-pointer border-4 border-transparent hover:border-yellow-400">
+          <img src="images/hero3.webp" class="w-full h-full object-cover" alt="Preview">
         </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-orange-600 mb-4">Why Choose Us</h2>
-                <div class="w-20 h-1 bg-orange-500 mx-auto mb-6"></div>
-                <p class="text-gray-700 max-w-2xl mx-auto">
-                    We combine cutting-edge technology with artistic vision to create exceptional tensile structures.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <div class="feature-card bg-orange-50 p-8 rounded-xl transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
-                    <div class="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mb-6">
-                        <i data-feather="award" class="text-white w-8 h-8"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Premium Quality</h3>
-                    <p class="text-gray-600">We use only the highest grade materials and precision engineering for lasting durability.</p>
-                </div>
-                <div class="feature-card bg-orange-50 p-8 rounded-xl transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
-                    <div class="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mb-6">
-                        <i data-feather="sun" class="text-white w-8 h-8"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">UV Protection</h3>
-                    <p class="text-gray-600">Our membranes provide excellent UV resistance while maintaining beautiful light diffusion.</p>
-                </div>
-                <div class="feature-card bg-orange-50 p-8 rounded-xl transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
-                    <div class="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mb-6">
-                        <i data-feather="zap" class="text-white w-8 h-8"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Quick Installation</h3>
-                    <p class="text-gray-600">Expert engineering allows for faster installation without compromising on quality.</p>
-                </div>
-            </div>
+        <div class="preview-img w-32 h-44 overflow-hidden rounded-xl shadow-2xl opacity-90 hover:opacity-100 transition-all duration-500 cursor-pointer border-4 border-transparent hover:border-yellow-400">
+          <img src="images/hero4.jpg" class="w-full h-full object-cover" alt="Preview">
         </div>
-    </section>
+      </div>
+      <div class="w-96 h-1 bg-white/30 rounded-full overflow-hidden">
+        <div id="progress-line" class="h-1 bg-yellow-400 w-0 rounded-full"></div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Testimonials Section -->
-    <section class="py-20 bg-orange-100">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-orange-600 mb-4">Client Testimonials</h2>
-                <div class="w-20 h-1 bg-orange-500 mx-auto mb-6"></div>
-            </div>
+  <!-- ABOUT -->
+  <section class="py-28" style="background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-6xl font-black text-yellow-500 drop-shadow-xl">About Venkateshwara</h2>
+        <div class="w-40 h-1 bg-yellow-400 mx-auto mt-6 rounded-full"></div>
+      </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="testimonial-card bg-white p-8 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl">
-                    <div class="flex items-center mb-6">
-                        <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
-                            <img src="http://static.photos/people/200x200/1" alt="Client" class="w-full h-full object-cover">
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-gray-800">Michael Johnson</h4>
-                            <p class="text-orange-500 text-sm">Architect, Design Studio</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 italic">"The tensile canopy they installed at our office entrance transformed the space completely. The quality and attention to detail were exceptional."</p>
-                </div>
-                <div class="testimonial-card bg-white p-8 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl">
-                    <div class="flex items-center mb-6">
-                        <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
-                            <img src="http://static.photos/people/200x200/2" alt="Client" class="w-full h-full object-cover">
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-gray-800">Sarah Williams</h4>
-                            <p class="text-orange-500 text-sm">Property Developer</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 italic">"We've used their tension membrane systems in three projects now. Each time, the results have exceeded our expectations."</p>
-                </div>
-            </div>
+      <div class="grid md:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
+        <div class="order-2 md:order-1">
+          <img src="images/about.jpg" alt="Team" class="rounded-3xl shadow-3xl border-8 border-yellow-400/20 w-full">
         </div>
-    </section>
+        <div class="space-y-8 order-1 md:order-2">
+          <p class="text-xl text-gray-700 leading-relaxed">
+            Founded in <strong class="text-gray-900">2022</strong>, we are Pune’s fastest-growing tensile structure powerhouse.
+            From balcony canopies to stadium roofs — we deliver
+            <span class="text-yellow-600 font-bold">German precision</span> at Indian speed.
+          </p>
+          <p class="text-lg text-gray-600">
+            Led by <strong class="text-gray-900">Mr. Nilesh Ashok Konde (CEO)</strong>, our 50+ master craftsmen have delivered
+            <strong class="text-gray-900">500+ flawless projects</strong>.
+          </p>
+          <div class="grid grid-cols-3 gap-6">
+            <div class="text-center bg-white/60 backdrop-blur-md p-6 rounded-2xl border border-yellow-400/30 shadow">
+              <div class="text-3xl font-black text-gray-800">500+</div>
+              <div class="text-sm uppercase tracking-wider text-gray-600">Projects</div>
+            </div>
+            <div class="text-center bg-white/60 backdrop-blur-md p-6 rounded-2xl border border-yellow-400/30 shadow">
+              <div class="text-3xl font-black text-gray-800">3 Yrs</div>
+              <div class="text-sm uppercase tracking-wider text-gray-600">Warranty</div>
+            </div>
+            <div class="text-center bg-white/60 backdrop-blur-md p-6 rounded-2xl border border-yellow-400/30 shadow">
+              <div class="text-3xl font-black text-gray-800">24/7</div>
+              <div class="text-sm uppercase tracking-wider text-gray-600">Support</div>
+            </div>
+          </div>
+          <a href="about.html" class="inline-block bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-5 px-12 rounded-full text-lg shadow-2xl hover:shadow-yellow-400/50 transition-all hover:scale-105">
+            Learn More
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- CTA Section -->
-    <section class="py-20 bg-orange-600 text-white">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold mb-6">Ready to Transform Your Space?</h2>
-            <p class="text-xl mb-8 max-w-2xl mx-auto">Contact us today to discuss your tensile structure project with our expert team.</p>
-            <a href="#" class="bg-white text-orange-600 hover:bg-gray-100 font-bold py-4 px-10 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg inline-block">
-                Get a Free Consultation
+  <!-- PRODUCTS -->
+  <section id="products" class="py-32" style="background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%)">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-6xl font-black text-yellow-400 drop-shadow-2xl">Our 7 Signature Solutions</h2>
+        <p class="text-2xl text-gray-300 mt-4">Engineered for Eternity</p>
+      </div>
+
+      <div class="relative max-w-7xl mx-auto h-96 md:h-[620px] rounded-3xl overflow-hidden shadow-4xl border-4 border-yellow-400/20">
+        <div id="product-slider" class="flex h-full">
+          <!-- 7 SLIDES -->
+          <div class="slide w-full flex-shrink-0 relative active">
+            <img src="home-product-images/balcony shed.jpg" class="w-full h-full object-cover">
+            <div class="prod-title absolute bottom-12 left-12 text-white">
+              <h3 class="text-6xl font-black drop-shadow-2xl">Balcony Shield</h3>
+              <p class="text-2xl mt-3 opacity-90">Monsoon-Proof Luxury</p>
+            </div>
+          </div>
+          <!-- Repeat other 6 slides -->
+          <div class="slide w-full flex-shrink-0 relative">
+            <img src="home-product-images/industrial shed.jpg" class="w-full h-full object-cover">
+            <div class="prod-title absolute bottom-12 left-12 text-white">
+              <h3 class="text-6xl font-black drop-shadow-2xl">Industrial Titan</h3>
+              <p class="text-2xl mt-3 opacity-90">1 Lakh sq.ft Covered</p>
+            </div>
+          </div>
+          <!-- Add remaining 5 -->
+        </div>
+
+        <button id="prev" class="arrow-btn absolute left-8 top-1/2 -translate-y-1/2 p-5 rounded-full z-10">
+          <i data-feather="chevron-left" class="w-12 h-12 text-yellow-400"></i>
+        </button>
+        <button id="next" class="arrow-btn absolute right-8 top-1/2 -translate-y-1/2 p-5 rounded-full z-10">
+          <i data-feather="chevron-right" class="w-12 h-12 text-yellow-400"></i>
+        </button>
+
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-4">
+          <span class="dot w-4 h-4 rounded-full cursor-pointer active"></span>
+          <span class="dot w-4 h-4 rounded-full cursor-pointer"></span>
+          <span class="dot w-4 h-4 rounded-full cursor-pointer"></span>
+          <span class="dot w-4 h-4 rounded-full cursor-pointer"></span>
+          <span class="dot w-4 h-4 rounded-full cursor-pointer"></span>
+          <span class="dot w-4 h-4 rounded-full cursor-pointer"></span>
+          <span class="dot w-4 h-4 rounded-full cursor-pointer"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CUSTOM NAVBAR COMPONENT -->
+  <script>
+    class CustomNavbar extends HTMLElement {
+      connectedCallback() {
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.innerHTML = `
+          <style>
+            :host {
+              display: block;
+              position: fixed;
+              top: 0;
+              left: 0;
+              right: 0;
+              z-index: 9999;
+              padding: 1.5rem 0;
+              background: linear-gradient(to bottom, rgba(15,23,42,0.9), transparent);
+              backdrop-filter: blur(12px);
+              transition: all 0.4s ease;
+              font-family: 'Inter', sans-serif;
+            }
+            :host(.scrolled) {
+              padding: 0.75rem 0;
+              background: rgba(15,23,42,0.98);
+              box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            }
+            .nav-container {
+              max-width: 1400px;
+              margin: 0 auto;
+              padding: 0 1.5rem;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            }
+            .logo {
+              display: flex;
+              align-items: center;
+              gap: 0.75rem;
+              color: white;
+              text-decoration: none;
+              font-weight: 800;
+              font-size: 1.5rem;
+            }
+            .logo img { height: 48px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5)); }
+            .logo span { color: #f59e0b; }
+            .nav-links {
+              display: flex;
+              gap: 2.5rem;
+            }
+            .nav-link {
+              color: white;
+              text-decoration: none;
+              font-weight: 600;
+              position: relative;
+              transition: color 0.3s;
+            }
+            .nav-link:hover {
+              color: #f59e0b;
+            }
+            .nav-link::after {
+              content: '';
+              position: absolute;
+              width: 0;
+              height: 3px;
+              bottom: -8px;
+              left: 0;
+              background: #f59e0b;
+              transition: width 0.4s ease;
+            }
+            .nav-link:hover::after { width: 100%; }
+            .tagline {
+              font-style: italic;
+              color: #fcd34d;
+              font-size: 0.9rem;
+            }
+            @media (max-width: 768px) {
+              .nav-links { display: none; }
+            }
+          </style>
+
+          <div class="nav-container">
+            <a href="index.html" class="logo">
+              <img src="logo.jpg" alt="Logo">
+              <div>
+                VENKATESHWARA<br>
+                <span>CORPORATION</span>
+              </div>
             </a>
-        </div>
-    </section>
+            <div class="nav-links">
+              <a href="index.html" class="nav-link">Home</a>
+              <a href="about.html" class="nav-link">About</a>
+              <a href="products.html" class="nav-link">Products</a>
+              
+              <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="tagline">Building Strength, Shaping Trust</div>
+          </div>
+        `;
 
-    <custom-footer></custom-footer>
+        // Scroll Effect
+        const handleScroll = () => {
+          if (window.scrollY > 100) {
+            this.shadowRoot.host.classList.add('scrolled');
+          } else {
+            this.shadowRoot.host.classList.remove('scrolled');
+          }
+        };
+        window.addEventListener('scroll', handleScroll);
+      }
+    }
+    customElements.define('custom-navbar', CustomNavbar);
+  </script>
 
-    <script src="script.js"></script>
-    <script>
-        feather.replace();
+  <!-- MAIN SCRIPTS -->
+  <script>
+    feather.replace();
 
-        // Product Slider Functionality
-        const slider = document.getElementById('product-slider');
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
-        let currentIndex = 0;
-        const totalSlides = slider.children.length;
+    // HERO CAROUSEL
+    const images = document.querySelectorAll(".carousel-image");
+    const previews = document.querySelectorAll(".preview-img img");
+    const progressLine = document.getElementById("progress-line");
+    let current = 0;
+    const total = images.length;
+    const intervalTime = 3000;
 
-        function updateSlider() {
-            const translateX = -currentIndex * 100;
-            slider.style.transform = `translateX(${translateX}%)`;
-        }
+    function showSlide(index) {
+      images.forEach((img, i) => { img.style.opacity = i === index ? "1" : "0"; });
+      previews.forEach((p, i) => { p.src = images[(index + i + 1) % total].src; });
+      progressLine.style.transition = "none"; progressLine.style.width = "0";
+      setTimeout(() => {
+        progressLine.style.transition = `width ${intervalTime}ms linear`;
+        progressLine.style.width = "100%";
+      }, 50);
+    }
+    function nextSlide() { current = (current + 1) % total; showSlide(current); }
+    showSlide(current); progressLine.style.width = "100%";
+    setInterval(nextSlide, intervalTime);
 
-        prevBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalSlides - 1;
-            updateSlider();
-        });
+    // PRODUCT SLIDER
+    const slider = document.getElementById('product-slider');
+    const slides = slider.children;
+    const dots = document.querySelectorAll('.dot');
+    let idx = 0;
 
-        nextBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex < totalSlides - 1) ? currentIndex + 1 : 0;
-            updateSlider();
-        });
+    function go(n) {
+      idx = (n + slides.length) % slides.length;
+      slider.style.transform = `translateX(-${idx * 100}%)`;
+      document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+      slides[idx].classList.add('active');
+      document.querySelectorAll('.prod-title').forEach(t => t.classList.remove('active'));
+      setTimeout(() => slides[idx].querySelector('.prod-title').classList.add('active'), 100);
+      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    }
 
-        // Auto slide every 5 seconds
-        setInterval(() => {
-            currentIndex = (currentIndex < totalSlides - 1) ? currentIndex + 1 : 0;
-            updateSlider();
-        }, 5000);
-    </script>
+    document.getElementById('prev').onclick = () => go(idx - 1);
+    document.getElementById('next').onclick = () => go(idx + 1);
+    dots.forEach((d, i) => d.onclick = () => go(i));
+    setInterval(() => go(idx + 1), 4000);
+    go(0);
+  </script>
 </body>
 </html>

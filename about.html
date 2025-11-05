@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us – Venkateshwara Corporation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --navy: #0f172a;
+      --gold: #f59e0b;
+      --silver: #e2e8f0;
+    }
+    body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+    /* Auto Slider */
+    #imageSlider { 
+      position: relative; width: 100%; height: 420px; overflow: hidden; 
+      border-radius: 1rem; box-shadow: 0 15px 35px rgba(0,0,0,.1); 
+    }
+    .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.8s ease; }
+    .slide.active { opacity: 1; }
+    .slide img { width: 100%; height: 100%; object-fit: cover; }
+    .dots { position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); display: flex; gap: .75rem; }
+    .dot { width: 12px; height: 12px; background: rgba(255,255,255,.5); border-radius: 50%; cursor: pointer; transition: all .3s; }
+    .dot.active { background: var(--gold); transform: scale(1.3); box-shadow: 0 0 10px rgba(245,158,11,0.8); }
+
+    /* Fade Text */
+    .fade-text { transition: all 1s ease; }
+    .fade-text.visible h3, .fade-text.visible p { color: #1f2937 !important; }
+
+    /* Mission Vision */
+    .mv-section { padding: 4rem 0; }
+    .mv-card { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
+    .mv-card.visible { opacity: 1; transform: translateY(0); }
+    .circle { width: 170px; height: 170px; }
+    .orbit { 
+      @apply absolute border-2 rounded-full opacity-15; 
+      border-color: var(--gold); 
+      animation: spin 30s linear infinite; 
+    }
+    .orbit-dashed { border: 2px dashed var(--gold); opacity: 0.2; }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body class="bg-gradient-to-b from-gray-50 to-white">
+
+  <!-- CUSTOM NAVBAR – SAME AS HOMEPAGE -->
+  <custom-navbar></custom-navbar>
+
+    <!-- HERO – NOW PERFECTLY BELOW NAVBAR -->
+  <section class="pt-28 pb-20 text-center" style="background: linear-gradient(135deg, #1e293b 0%, var(--navy) 100%)">
+    <div class="container mx-auto px-6">
+      <h2 class="text-5xl md:text-6xl font-bold text-white mb-4">
+        About <span style="color: var(--gold); text-shadow: 0 0 20px rgba(245,158,11,0.5);">Venkateshwara</span> Corporation
+      </h2>
+      <div class="w-24 h-1 mx-auto" style="background: var(--gold); box-shadow: 0 0 15px rgba(245,158,11,0.7);"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT + SLIDER -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="space-y-8 fade-text">
+          <h3 class="text-3xl font-bold text-gray-500 transition-colors duration-700">
+            Established in 2022, <span style="color: var(--gold);">Venkateshwara Corporation</span>
+          </h3>
+          <p class="text-lg text-gray-500 leading-relaxed transition-colors duration-700">
+            Service Provider of Balcony Shed, Industrial Shed, Car Parking Awning, Terrace Shed, Tensile Structure & more.
+          </p>
+          <p class="text-lg text-gray-500 leading-relaxed transition-colors duration-700">
+            Guided by <strong style="color: var(--gold);">Mr. Nilesh Ashok Konde (CEO)</strong>, we deliver trust & quality across India.
+          </p>
+          <a href="contact.html" class="inline-block text-white font-bold py-4 px-10 rounded-full transition transform hover:scale-105 shadow-xl"
+             style="background: var(--gold); box-shadow: 0 10px 30px rgba(245,158,11,0.4);">
+            Contact us Today
+          </a>
+        </div>
+
+        <div id="imageSlider">
+          <div class="slide active"><img src="images/img1.jpg" alt="Team"></div>
+          <div class="slide"><img src="images/img2.jpg" alt="Factory"></div>
+          <div class="slide"><img src="images/img3.jpg" alt="Installation"></div>
+          <div class="slide"><img src="images/img4.jpg" alt="Design"></div>
+          <div class="slide"><img src="images/img2.jpg" alt="Testing"></div>
+          <div class="slide"><img src="images/img4.jpg" alt="Clients"></div>
+          <div class="dots">
+            <span class="dot active" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
+            <span class="dot" data-index="3"></span>
+            <span class="dot" data-index="4"></span>
+            <span class="dot" data-index="5"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION, VISION & VALUES -->
+  <section class="mv-section relative overflow-hidden" style="background: linear-gradient(135deg, var(--navy) 0%, #1e293b 100%)">
+    <div class="container mx-auto px-6">
+      <div class="relative bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden">
+        <div class="orbit absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96"></div>
+        <div class="orbit orbit-dashed absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px]"></div>
+
+        <div class="grid lg:grid-cols-3 gap-8 p-8 lg:p-12 relative z-10">
+          <div class="mv-card space-y-6">
+            <div class="bg-white/80 backdrop-blur p-6 rounded-2xl shadow-xl border border-[var(--gold)]/20">
+              <h3 class="text-2xl font-bold mb-3" style="color: #16a34a;">OUR VALUES</h3>
+              <p class="text-gray-700 text-sm leading-relaxed">
+                Integrity in every weld. Innovation in every design. Excellence in every delivery.
+              </p>
+            </div>
+            <h1 class="text-4xl lg:text-5xl font-black text-gray-800">
+              MISSION,<br><span style="color: var(--gold);">VISION</span> &<br>VALUES
+            </h1>
+          </div>
+
+          <div class="mv-card relative h-64 lg:h-80 flex items-center justify-center">
+            <div class="circle absolute top-4 left-1/2 -translate-x-1/2 bg-red-700 rounded-full shadow-2xl flex items-center justify-center text-white">
+              <span class="text-2xl lg:text-3xl font-black">MISSION</span>
+            </div>
+            <div class="circle absolute bottom-2 left-6 bg-green-600 rounded-full shadow-2xl flex items-center justify-center text-white">
+              <span class="text-2xl lg:text-3xl font-black">VALUES</span>
+            </div>
+            <div class="circle absolute bottom-2 right-6 rounded-full shadow-2xl flex items-center justify-center text-white"
+                 style="background: var(--gold); color: var(--navy);">
+              <span class="text-2xl lg:text-3xl font-black">VISION</span>
+            </div>
+          </div>
+
+          <div class="mv-card space-y-6">
+            <div class="bg-white/80 backdrop-blur p-6 rounded-2xl shadow-xl border border-[var(--gold)]/20">
+              <h3 class="text-2xl font-bold mb-3" style="color: #dc2626;">OUR MISSION</h3>
+              <p class="text-gray-700 text-sm leading-relaxed">
+                Deliver world-class tensile & shed solutions that protect spaces and enrich lives.
+              </p>
+            </div>
+            <div class="bg-white/80 backdrop-blur p-6 rounded-2xl shadow-xl border border-[var(--gold)]/20">
+              <h3 class="text-2xl font-bold mb-3" style="color: var(--gold);">OUR VISION</h3>
+              <p class="text-gray-700 text-sm leading-relaxed">
+                To be India’s #1 trusted fabric architecture brand — every balcony shielded by us.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 text-white text-center" style="background: linear-gradient(to right, var(--gold), #d97706);">
+    <div class="container mx-auto px-6">
+      <h3 class="text-4xl font-bold mb-4">Let’s Build Something Extraordinary</h3>
+      <a href="tel:+919876543210" class="bg-white hover:bg-gray-100 font-bold py-4 px-10 rounded-full transition transform hover:scale-105 shadow-lg inline-block"
+         style="color: var(--navy);">
+        Call +91 98765 43210
+      </a>
+    </div>
+  </section>
+
+  <!-- CUSTOM NAVBAR COMPONENT (SAME AS index.html) -->
+  <script>
+    class CustomNavbar extends HTMLElement {
+      connectedCallback() {
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.innerHTML = `
+          <style>
+            :host {
+              display: block;
+              position: fixed;
+              top: 0;
+              left: 0;
+              right: 0;
+              z-index: 9999;
+              padding: 1.5rem 0;
+              background: linear-gradient(to bottom, rgba(15,23,42,0.9), transparent);
+              backdrop-filter: blur(12px);
+              transition: all 0.4s ease;
+              font-family: 'Inter', sans-serif;
+            }
+            :host(.scrolled) {
+              padding: 0.75rem 0;
+              background: rgba(15,23,42,0.98);
+              box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            }
+            .nav-container {
+              max-width: 1400px;
+              margin: 0 auto;
+              padding: 0 1.5rem;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            }
+            .logo {
+              display: flex;
+              align-items: center;
+              gap: 0.75rem;
+              color: white;
+              text-decoration: none;
+              font-weight: 800;
+              font-size: 1.5rem;
+            }
+            .logo img { height: 48px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5)); }
+            .logo span { color: #f59e0b; }
+            .nav-links {
+              display: flex;
+              gap: 2.5rem;
+            }
+            .nav-link {
+              color: white;
+              text-decoration: none;
+              font-weight: 600;
+              position: relative;
+              transition: color 0.3s;
+            }
+            .nav-link:hover { color: #f59e0b; }
+            .nav-link::after {
+              content: '';
+              position: absolute;
+              width: 0;
+              height: 3px;
+              bottom: -8px;
+              left: 0;
+              background: #f59e0b;
+              transition: width 0.4s ease;
+            }
+            .nav-link:hover::after { width: 100%; }
+            .tagline {
+              font-style: italic;
+              color: #fcd34d;
+              font-size: 0.9rem;
+            }
+            @media (max-width: 768px) {
+              .nav-links, .tagline { display: none; }
+            }
+          </style>
+
+          <div class="nav-container">
+            <a href="index.html" class="logo">
+              <img src="logo.jpg" alt="Logo">
+              <div>
+                VENKATESHWARA<br>
+                <span>CORPORATION</span>
+              </div>
+            </a>
+            <div class="nav-links">
+              <a href="index.html" class="nav-link">Home</a>
+              <a href="about.html" class="nav-link">About</a>
+              <a href="products.html" class="nav-link">Products</a>
+              <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="tagline">Building Strength, Shaping Trust</div>
+          </div>
+        `;
+
+        // Scroll Effect
+        const handleScroll = () => {
+          if (window.scrollY > 100) {
+            this.shadowRoot.host.classList.add('scrolled');
+          } else {
+            this.shadowRoot.host.classList.remove('scrolled');
+          }
+        };
+        window.addEventListener('scroll', handleScroll);
+      }
+    }
+    customElements.define('custom-navbar', CustomNavbar);
+  </script>
+
+  <!-- PAGE SCRIPTS -->
+  <script>
+    feather.replace();
+
+    // Auto Slider
+    const slider = document.getElementById('imageSlider');
+    const slides = slider.querySelectorAll('.slide');
+    const dots = slider.querySelectorAll('.dot');
+    let current = 0, auto;
+    const showSlide = n => {
+      slides[current].classList.remove('active'); dots[current].classList.remove('active');
+      current = (n + slides.length) % slides.length;
+      slides[current].classList.add('active'); dots[current].classList.add('active');
+    };
+    auto = setInterval(() => showSlide(current + 1), 3000);
+    dots.forEach((d,i) => d.onclick = () => { clearInterval(auto); showSlide(i); auto = setInterval(() => showSlide(current + 1), 3000); });
+    slider.onmouseenter = () => clearInterval(auto);
+    slider.onmouseleave = () => auto = setInterval(() => showSlide(current + 1), 3000);
+
+    // Fade Text
+    const fadeText = document.querySelector('.fade-text');
+    window.addEventListener('scroll', () => {
+      fadeText.classList.toggle('visible', fadeText.getBoundingClientRect().top < window.innerHeight * 0.8);
+    });
+
+    // Mission/Vision Animation
+    const mvCards = document.querySelectorAll('.mv-card');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 300);
+        }
+      });
+    }, { threshold: 0.3 });
+    mvCards.forEach(card => observer.observe(card));
+  </script>
+</body>
+</html>
