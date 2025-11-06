@@ -5,76 +5,205 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Venkateshwara Corporation - Premium Tensile Structures</title>
   
-  <!-- TAILWIND + FEATHER -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/feather-icons"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
   <style>
-    :root {
-      --navy: #0f172a;
-      --gold: #f59e0b;
-      --light-navy: #1e293b;
-    }
+  :root {
+    --navy: #0f172a;
+    --gold: #f59e0b;
+  }
 
-    /* HERO */
-    .carousel-image { transition: opacity 1s ease !important; }
-    #progress-line { transition: width 3s linear !important; }
-    .preview-img:hover { border-color: var(--gold) !important; }
+  /* HERO (unchanged) */
+  .carousel-image { transition: opacity 1s ease !important; }
+  #progress-line { transition: width 3s linear !important; }
+  .preview-img:hover { border-color: var(--gold) !important; }
 
-    /* PRODUCT TITLE */
-    .prod-title {
-      transform: translateY(50px);
-      opacity: 0;
-      transition: all 0.9s cubic-bezier(0.25, 0.8, 0.25, 1);
-    }
-    .prod-title.active {
-      transform: translateY(0);
-      opacity: 1;
-    }
+  /* SQUARE PRODUCT SLIDER WITH NAVY OVERLAY */
+#product-slider { 
+  position: relative; 
+}
+#product-track { 
+  scroll-snap-type: x mandatory;
+  gap: 0;
+}
+.product-card {
+  scroll-snap-align: center;
+  transition: transform 0.4s ease;
+}
+.product-card img {
+  display: block;
+  transition: transform 0.6s ease;
+}
+.product-card:hover img {
+  transform: scale(1.08);
+}
 
-    /* TALLER IMAGES */
-    .slide img {
-      width: 115% !important;
-      margin-left: -7.5%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.8s ease;
-    }
-    .slide.active img { transform: scale(1.03); }
+/* NAVY OVERLAY */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.85); /* Navy with transparency */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(2px);
+}
+.product-card:hover .overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+.overlay-content {
+  padding: 1.5rem;
+  transform: translateY(20px);
+  transition: transform 0.6s ease;
+}
+.product-card:hover .overlay-content {
+  transform: translateY(0);
+}
+.overlay-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+}
+.overlay-desc {
+  font-size: 1rem;
+  line-height: 1.5;
+  opacity: 0.95;
+}
 
-    /* GLASS ARROWS */
-    .arrow-btn {
-      background: rgba(255,255,255,0.08) !important;
-      backdrop-filter: blur(12px);
-      border: 2px solid rgba(255,255,255,0.2);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-    }
-    .arrow-btn:hover {
-      background: rgba(255,255,255,0.15) !important;
-      border-color: var(--gold);
-      transform: scale(1.1);
-    }
+/* ARROWS - NOW FULLY VISIBLE & OUTSIDE */
+.arrow-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 30;
+  background: white;
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+  transition: all 0.35s ease;
+  color: var(--navy);
+  
+}
 
-    /* GOLDEN DOTS */
-    .dot {
-      background: rgba(255,255,255,0.4);
-      transition: all 0.4s ease;
-    }
-    .dot.active {
-      background: var(--gold) !important;
-      box-shadow: 0 0 15px rgba(245,158,11,0.7);
-      transform: scale(1.3);
-    }
-  </style>
+/* PUSH FAR OUTSIDE IMAGES */
+#prev-btn { left: -120px; }
+#next-btn { right: -120px; }
+
+.arrow-btn:hover {
+  background: var(--gold);
+  color: white;
+  transform: translateY(-50%) scale(1.15);
+  box-shadow: 0 20px 50px rgba(245,158,11,0.4);
+}
+
+/* Mobile: Bring closer */
+@media (max-width: 1024px) {
+  #prev-btn { left: -65px; }
+  #next-btn { right: -65px; }
+}
+@media (max-width: 768px) {
+  #prev-btn { left: -55px; }
+  #next-btn { right: -55px; }
+  .arrow-btn { width: 56px; height: 56px; }
+}
+
+/* DOTS */
+.dot {
+  width: 11px; height: 11px;
+  background: #cbd5e1;
+  border-radius: 50%;
+  transition: all 0.4s;
+}
+.dot.active {
+  background: #f59e0b;
+  transform: scale(1.4);
+  box-shadow: 0 0 15px rgba(245,158,11,0.6);
+}/* WHY CHOOSE – BLUE ICONS + WHITE CIRCLE + ICON HIDES ON HOVER */
+.why-card {
+  position: relative;
+  cursor: pointer;
+  perspective: 1000px;
+}
+
+.why-icon {
+  width: 110px; height: 110px;
+  margin: 0 auto;
+  background: white;
+  border: 6px solid #f59e0b;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1e40af; /* Deep Blue */
+  transition: all 0.5s ease;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+  position: relative;
+  z-index: 2;
+}
+
+.why-content {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 300px;
+  padding: 2rem;
+  background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+  border: 4px solid #f59e0b;
+  border-radius: 1.8rem;
+  text-align: center;
+  opacity: 0;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+  backdrop-filter: blur(12px);
+  z-index: 1;
+}
+
+.why-card:hover .why-icon {
+  opacity: 0;
+  transform: translateY(-30px) scale(0);
+}
+
+.why-card:hover .why-content {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+/* Mobile Tap */
+@media (max-width: 768px) {
+  .why-card:active .why-icon { opacity: 0; transform: translateY(-30px) scale(0); }
+  .why-card:active .why-content { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}/* SCROLL ANIMATIONS — SUPER SMOOTH */
+[data-aos] {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+[data-aos="fade-up"] { transform: translateY(60px); }
+[data-aos="zoom-in"] { transform: scale(0.8); }
+.aos-animate {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+}
+</style>
 </head>
 <body class="bg-gradient-to-b from-slate-900 to-slate-800 text-white overflow-x-hidden">
 
-  <!-- NAVBAR – ALWAYS ON TOP -->
+  <!-- WHITE NAVBAR -->
   <custom-navbar></custom-navbar>
 
   <!-- HERO -->
-  <section class="relative h-screen overflow-hidden pt-24">
+  <section class="relative h-screen overflow-hidden pt-24" data-aos="fade">
     <div id="hero-carousel" class="absolute inset-0 z-0">
       <img src="images/hero1.webp" class="carousel-image absolute inset-0 w-full h-full object-cover opacity-100" alt="Hero 1">
       <img src="images/hero2.webp" class="carousel-image absolute inset-0 w-full h-full object-cover opacity-0" alt="Hero 2">
@@ -84,18 +213,18 @@
     </div>
     <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80 z-10"></div>
     
-    <div class="relative z-20 container mx-auto px-6 h-full flex flex-col justify-center">
-      <h1 class="text-5xl md:text-8xl font-black mb-6 leading-tight">
+    <div class="relative z-20 container mx-auto px-6 h-full flex flex-col justify-center" data-aos="fade-up" data-aos-delay="300">
+      <h1 class="text-5xl md:text-8xl font-semibold mb-6 leading-tight">
         India’s Leading <br>
-        <span class="text-yellow-400 drop-shadow-2xl">Tensile</span> Structure <br>
-        <span class="text-4xl md:text-6xl text-yellow-300">Experts</span>
+        <span style="color: var(--gold);" class="drop-shadow-2xl">Tensile</span> Structure <br>
+        <span class="text-4xl md:text-6xl" style="color: var(--gold);">Experts</span>
       </h1>
       <p class="text-xl md:text-3xl max-w-3xl text-gray-200 font-light">
         Precision-engineered shelters that stand the test of time.
       </p>
     </div>
 
-    <div class="absolute right-10 bottom-10 z-30 flex flex-col items-end space-y-4">
+    <div class="absolute right-10 bottom-10 z-30 flex flex-col items-end space-y-4" data-aos="fade-left" data-aos-delay="600">
       <div id="preview-container" class="flex gap-4">
         <div class="preview-img w-32 h-44 overflow-hidden rounded-xl shadow-2xl opacity-90 hover:opacity-100 transition-all duration-500 cursor-pointer border-4 border-transparent hover:border-yellow-400">
           <img src="images/hero2.webp" class="w-full h-full object-cover" alt="Preview">
@@ -114,42 +243,45 @@
   </section>
 
   <!-- ABOUT -->
-  <section class="py-28" style="background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);">
+  <section class="py-28" data-aos="zoom-in" style="background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);">
     <div class="container mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-6xl font-black text-yellow-500 drop-shadow-xl">About Venkateshwara</h2>
-        <div class="w-40 h-1 bg-yellow-400 mx-auto mt-6 rounded-full"></div>
+      <div class="text-center mb-16" data-aos="fade-down">
+        <h2 class="text-6xl font-semibold drop-shadow-xl" style="color: var(--gold);">About Venkateshwara</h2>
+        <div class="w-40 h-1 mx-auto mt-6 rounded-full" style="background: var(--gold);"></div>
       </div>
 
       <div class="grid md:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
-        <div class="order-2 md:order-1">
-          <img src="images/about.jpg" alt="Team" class="rounded-3xl shadow-3xl border-8 border-yellow-400/20 w-full">
+        <div data-aos="fade-right" data-aos-delay="200">
+          <img src="images/about.jpg" alt="Venkateshwara Team" 
+               class="rounded-3xl shadow-3xl border-8 border-yellow-400/20 w-full transform hover:scale-105 transition-all duration-500">
         </div>
-        <div class="space-y-8 order-1 md:order-2">
+
+        <div class="space-y-8" data-aos="fade-left" data-aos-delay="400">
           <p class="text-xl text-gray-700 leading-relaxed">
-            Founded in <strong class="text-gray-900">2022</strong>, we are Pune’s fastest-growing tensile structure powerhouse.
-            From balcony canopies to stadium roofs — we deliver
-            <span class="text-yellow-600 font-bold">German precision</span> at Indian speed.
+            Established in <strong class="text-gray-900">2022</strong>, 
+            <strong class="text-gray-900">“Venkateshwara Corporation”</strong> is Pune’s leading 
+            <span style="color: var(--gold); font-weight: 700;">Service Provider</span> of 
+            <span class="italic">Balcony Shed, Industrial Shed, Car Parking Awning, Terrace Shed, Tensile Structure, Prefabricated Shed, Fabrication Service</span> and much more.
           </p>
+
+          <p class="text-lg text-gray-600 leading-relaxed">
+            Through the years, we’ve built a <strong class="text-gray-900">nationwide network</strong> of delighted clients by delivering 
+            <span style="color: var(--gold);">German-grade precision</span> at lightning-fast Indian speed.
+          </p>
+
           <p class="text-lg text-gray-600">
-            Led by <strong class="text-gray-900">Mr. Nilesh Ashok Konde (CEO)</strong>, our 50+ master craftsmen have delivered
-            <strong class="text-gray-900">500+ flawless projects</strong>.
+            Under the visionary guidance of our mentor, 
+            <strong class="text-gray-900">Mr. Nilesh Ashok Konde (CEO)</strong>, 
+            we continue to grow at record pace — backed by 
+            <strong class="text-gray-900">50+ master craftsmen</strong> and 
+            <strong class="text-gray-900">500+ flawless installations</strong>.
           </p>
-          <div class="grid grid-cols-3 gap-6">
-            <div class="text-center bg-white/60 backdrop-blur-md p-6 rounded-2xl border border-yellow-400/30 shadow">
-              <div class="text-3xl font-black text-gray-800">500+</div>
-              <div class="text-sm uppercase tracking-wider text-gray-600">Projects</div>
-            </div>
-            <div class="text-center bg-white/60 backdrop-blur-md p-6 rounded-2xl border border-yellow-400/30 shadow">
-              <div class="text-3xl font-black text-gray-800">3 Yrs</div>
-              <div class="text-sm uppercase tracking-wider text-gray-600">Warranty</div>
-            </div>
-            <div class="text-center bg-white/60 backdrop-blur-md p-6 rounded-2xl border border-yellow-400/30 shadow">
-              <div class="text-3xl font-black text-gray-800">24/7</div>
-              <div class="text-sm uppercase tracking-wider text-gray-600">Support</div>
-            </div>
-          </div>
-          <a href="about.html" class="inline-block bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-5 px-12 rounded-full text-lg shadow-2xl hover:shadow-yellow-400/50 transition-all hover:scale-105">
+
+          <a href="about.html" 
+             class="inline-block text-gray-900 font-bold py-5 px-14 rounded-full text-xl shadow-2xl 
+                    transform hover:scale-110 transition-all duration-300 
+                    bg-gradient-to-r from-yellow-400 to-yellow-500 
+                    hover:from-yellow-500 hover:to-amber-600" data-aos="flip-up" data-aos-delay="600">
             Learn More
           </a>
         </div>
@@ -157,56 +289,278 @@
     </div>
   </section>
 
-  <!-- PRODUCTS -->
-  <section id="products" class="py-32" style="background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%)">
+  <!-- WHY CHOOSE US -->
+  <section class="py-24" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);">
     <div class="container mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-6xl font-black text-yellow-400 drop-shadow-2xl">Our 7 Signature Solutions</h2>
-        <p class="text-2xl text-gray-300 mt-4">Engineered for Eternity</p>
+      <div class="text-center mb-16" data-aos="fade-up">
+        <h2 class="text-5xl md:text-6xl font-semibold text-white mb-4">
+          Why Choose <span class="text-yellow-400">Venkateshwara?</span>
+        </h2>
+        <p class="text-xl text-gray-300">Delivering quality, reliability, and precision in every tensile structure.</p>
       </div>
 
-      <div class="relative max-w-7xl mx-auto h-96 md:h-[620px] rounded-3xl overflow-hidden shadow-4xl border-4 border-yellow-400/20">
-        <div id="product-slider" class="flex h-full">
-          <!-- 7 SLIDES -->
-          <div class="slide w-full flex-shrink-0 relative active">
-            <img src="home-product-images/balcony shed.jpg" class="w-full h-full object-cover">
-            <div class="prod-title absolute bottom-12 left-12 text-white">
-              <h3 class="text-6xl font-black drop-shadow-2xl">Balcony Shield</h3>
-              <p class="text-2xl mt-3 opacity-90">Monsoon-Proof Luxury</p>
-            </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
+        <div class="why-card" data-aos="zoom-in" data-aos-delay="100">
+          <div class="why-icon">
+            <svg class="w-12 h-12 text-blue-800" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 18a8 8 0 110-16 8 8 0 010 16z"/>
+              <path d="M12 7v5l4.5 2.5"/>
+            </svg>
           </div>
-          <!-- Repeat other 6 slides -->
-          <div class="slide w-full flex-shrink-0 relative">
-            <img src="home-product-images/industrial shed.jpg" class="w-full h-full object-cover">
-            <div class="prod-title absolute bottom-12 left-12 text-white">
-              <h3 class="text-6xl font-black drop-shadow-2xl">Industrial Titan</h3>
-              <p class="text-2xl mt-3 opacity-90">1 Lakh sq.ft Covered</p>
-            </div>
+          <div class="why-content">
+            <h3 class="text-2xl font-bold text-yellow-600 mb-2">German Precision</h3>
+            <p class="text-gray-900 text-sm leading-relaxed">
+              Every tensile structure is engineered with millimeter accuracy using European standards.
+            </p>
           </div>
-          <!-- Add remaining 5 -->
         </div>
 
-        <button id="prev" class="arrow-btn absolute left-8 top-1/2 -translate-y-1/2 p-5 rounded-full z-10">
-          <i data-feather="chevron-left" class="w-12 h-12 text-yellow-400"></i>
-        </button>
-        <button id="next" class="arrow-btn absolute right-8 top-1/2 -translate-y-1/2 p-5 rounded-full z-10">
-          <i data-feather="chevron-right" class="w-12 h-12 text-yellow-400"></i>
-        </button>
+        <div class="why-card" data-aos="zoom-in" data-aos-delay="200">
+          <div class="why-icon">
+            <svg class="w-12 h-12 text-blue-800" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L2 12h3v8h14v-8h3L12 2zm0 2.8L19.2 12H16v6H8v-6H4.8L12 4.8z"/>
+            </svg>
+          </div>
+          <div class="why-content">
+            <h3 class="text-2xl font-bold text-yellow-600 mb-2">3-Year Warranty</h3>
+            <p class="text-gray-900 text-sm leading-relaxed">
+              Full replacement guarantee on fabric & structure — zero questions asked.
+            </p>
+          </div>
+        </div>
 
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-4">
-          <span class="dot w-4 h-4 rounded-full cursor-pointer active"></span>
-          <span class="dot w-4 h-4 rounded-full cursor-pointer"></span>
-          <span class="dot w-4 h-4 rounded-full cursor-pointer"></span>
-          <span class="dot w-4 h-4 rounded-full cursor-pointer"></span>
-          <span class="dot w-4 h-4 rounded-full cursor-pointer"></span>
-          <span class="dot w-4 h-4 rounded-full cursor-pointer"></span>
-          <span class="dot w-4 h-4 rounded-full cursor-pointer"></span>
+        <div class="why-card" data-aos="zoom-in" data-aos-delay="300">
+          <div class="why-icon">
+            <svg class="w-12 h-12 text-blue-800" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm-1 17h2v-6h-2v6zm1-8a1.5 1.5 0 110-3 1.5 1.5 0 010 3z"/>
+            </svg>
+          </div>
+          <div class="why-content">
+            <h3 class="text-2xl font-bold text-yellow-600 mb-2">24/7 Support</h3>
+            <p class="text-gray-900 text-sm leading-relaxed">
+              Our team is available round the clock for emergency repairs & queries.
+            </p>
+          </div>
+        </div>
+
+        <div class="why-card" data-aos="zoom-in" data-aos-delay="400">
+          <div class="why-icon">
+            <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+          </div>
+          <div class="why-content">
+            <h3 class="text-2xl font-bold text-yellow-600 mb-2">Happy Clients</h3>
+            <p class="text-gray-900 text-sm leading-relaxed">
+              Trusted by homeowners, industries, and stadium owners across Maharashtra.
+            </p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CUSTOM NAVBAR COMPONENT -->
+  <!-- PRODUCT SLIDER -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12" data-aos="fade-up">
+        <h2 class="text-5xl md:text-6xl font-semibold drop-shadow-2xl" style="color: #f59e0b;">
+          Our Categories
+        </h2>
+        <p class="text-xl text-gray-700 mt-3">Explore our range of premium tensile structure solutions.</p>
+      </div>
+
+      <div class="relative max-w-7xl mx-auto overflow-visible" id="product-slider" data-autoplay="true" data-aos="fade-up" data-aos-delay="200">
+        <div class="flex transition-transform duration-500 ease-out" id="product-track">
+          <!-- Cards unchanged — just wrapped in animation -->
+          <div class="product-card flex-shrink-0 w-80 mx-4" data-aos="flip-left" data-aos-delay="100">
+            <div class="relative overflow-hidden">
+              <img src="home-product-images/balcony shed.jpg" alt="Balcony" class="w-full aspect-square object-cover">
+              <div class="overlay">
+                <div class="overlay-content">
+                  <h3 class="overlay-title">Balcony Shed</h3>
+                  <p class="overlay-desc">Durable and stylish balcony shed designed to protect your space from sun, rain, and dust.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Repeat for all 7 cards with increasing delay -->
+          <div class="product-card flex-shrink-0 w-80 mx-4" data-aos="flip-left" data-aos-delay="200">...</div>
+          <div class="product-card flex-shrink-0 w-80 mx-4" data-aos="flip-left" data-aos-delay="300">...</div>
+          <div class="product-card flex-shrink-0 w-80 mx-4" data-aos="flip-left" data-aos-delay="400">...</div>
+          <div class="product-card flex-shrink-0 w-80 mx-4" data-aos="flip-left" data-aos-delay="500">...</div>
+          <div class="product-card flex-shrink-0 w-80 mx-4" data-aos="flip-left" data-aos-delay="600">...</div>
+          <div class="product-card flex-shrink-0 w-80 mx-4" data-aos="flip-left" data-aos-delay="700">...</div>
+        </div>
+
+        <button id="prev-btn" class="arrow-btn left-4" data-aos="fade-right" data-aos-delay="300">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7"/>
+          </svg>
+        </button>
+        <button id="next-btn" class="arrow-btn right-4" data-aos="fade-left" data-aos-delay="300">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="flex justify-center gap-3 mt-10" data-aos="fade-up" data-aos-delay="400">
+        <span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="relative py-32 text-center bg-cover bg-center" 
+           style="background-image: url('images/hero5.jpg');" data-aos="zoom-in">
+    <div class="absolute inset-0 bg-gray-900/80"></div>
+    <div class="relative z-10 container mx-auto px-6">
+      <h2 class="text-5xl md:text-6xl font-semibold text-white mb-6 drop-shadow-2xl" data-aos="fade-up" data-aos-delay="200">
+        Ready for Your <span class="text-yellow-400">Dream Shelter</span>?
+      </h2>
+      <p class="text-xl md:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="400">
+        Contact us today for quotes, designs, and expert guidance.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-6 justify-center items-center" data-aos="flip-up" data-aos-delay="600">
+        <a href="contact.html" 
+           class="inline-flex items-center gap-3 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-5 px-12 rounded-full text-lg shadow-2xl transform hover:scale-105 transition-all">
+          Contact Now
+        </a>
+      </div>
+    </div>
+    <div class="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-transparent via-yellow-400 to-transparent"></div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-white py-12" data-aos="fade-up">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div data-aos="fade-right" data-aos-delay="100">
+          <img src="logo.jpg" alt="Logo" class="h-12 mb-4">
+          <div class="flex space-x-4">
+            <a href="#" class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-gray-900 hover:text-yellow-400"><i data-feather="twitter"></i></a>
+            <a href="#" class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-gray-900 hover:text-yellow-400"><i data-feather="facebook"></i></a>
+            <a href="#" class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-gray-900 hover:text-yellow-400"><i data-feather="instagram"></i></a>
+            <a href="#" class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-gray-900 hover:text-yellow-400"><i data-feather="linkedin"></i></a>
+          </div>
+        </div>
+        <div data-aos="fade-up" data-aos-delay="200">
+          <h3 class="text-lg font-bold mb-4">About Us</h3>
+          <p class="text-sm opacity-90">
+            Founded in 2022, Venkateshwara Corporation is Pune’s leading tensile structure expert...
+          </p>
+        </div>
+        <div data-aos="fade-up" data-aos-delay="300">
+          <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="text-sm opacity-90 hover:text-yellow-400">Home</a></li>
+            <li><a href="about.html" class="text-sm opacity-90 hover:text-yellow-400">About</a></li>
+            <li><a href="products.html" class="text-sm opacity-90 hover:text-yellow-400">Products</a></li>
+            <li><a href="contact.html" class="text-sm opacity-90 hover:text-yellow-400">Contact</a></li>
+          </ul>
+        </div>
+        <div data-aos="fade-left" data-aos-delay="400">
+          <h3 class="text-lg font-bold mb-4">Contact Info</h3>
+          <p class="text-sm opacity-90">Phone: +91 80476 93560</p>
+          <p class="text-sm opacity-90">Address: Dehu Alandi Road, Pimpri Chinchwad, Pune-411062</p>
+        </div>
+      </div>
+      <div class="text-center mt-8 border-t border-gray-700 pt-4" data-aos="fade-up" data-aos-delay="500">
+        <p class="text-sm opacity-90">© 2025 Venkateshwara Corporation • GST: 27xxxxx • Pune</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS (unchanged + AOS engine) -->
+  <script>
+    feather.replace();
+
+    // HERO CAROUSEL
+    const images = document.querySelectorAll(".carousel-image");
+    const previews = document.querySelectorAll(".preview-img img");
+    const animationLine = document.getElementById("progress-line");
+    let current = 0;
+    const total = images.length;
+    const interval = 3000;
+
+    function showSlide(n) {
+      images.forEach((img, i) => img.style.opacity = i === n ? 1 : 0);
+      previews.forEach((p, i) => p.src = images[(n + i + 1) % total].src);
+      animationLine.style.width = "0%";
+      setTimeout(() => animationLine.style.width = "100%", 50);
+    }
+    setInterval(() => showSlide(current = (current + 1) % total), interval);
+    showSlide(0);
+
+    // PRODUCT SLIDER (unchanged)
+    const track = document.getElementById('product-track');
+    const cards = document.querySelectorAll('.product-card');
+    const dots = document.querySelectorAll('.dot');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const slider = document.getElementById('product-slider');
+    const visibleCards = 4;
+    const cardWidth = cards[0].offsetWidth + 32;
+    let currentIndex = 0;
+    const totalSlides = cards.length - visibleCards + 1;
+    let autoplayInterval;
+
+    function updateDots() {
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
+    }
+    function slideTo(index) {
+      if (index >= totalSlides) index = 0;
+      if (index < 0) index = totalSlides - 1;
+      track.style.transform = `translateX(-${index * cardWidth}px)`;
+      currentIndex = index;
+      updateDots();
+    }
+    function startAutoplay() {
+      autoplayInterval = setInterval(() => slideTo(currentIndex + 1), 2000);
+    }
+    function stopAutoplay() { clearInterval(autoplayInterval); }
+    nextBtn.addEventListener('click', () => { stopAutoplay(); slideTo(currentIndex + 1); startAutoplay(); });
+    prevBtn.addEventListener('click', () => { stopAutoplay(); slideTo(currentIndex - 1); startAutoplay(); });
+    slider.addEventListener('mouseenter', stopAutoplay);
+    slider.addEventListener('mouseleave', startAutoplay);
+    slideTo(0);
+    if (slider.dataset.autoplay === "true") startAutoplay();
+
+    // SCROLL ANIMATIONS — 8 LINES OF PURE MAGIC
+    const animateOnScroll = () => {
+      document.querySelectorAll('[data-aos]').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight * 0.85;
+        if (isVisible && !el.classList.contains('aos-animate')) {
+          el.classList.add('aos-animate');
+        }
+      });
+    };
+    window.addEventListener('scroll', animateOnScroll);
+    window.addEventListener('load', animateOnScroll);
+  </script>
+
+  <!-- AOS STYLES (PASTE IN <head> OR HERE) -->
+  <style>
+    [data-aos] {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    [data-aos="fade-up"] { transform: translateY(60px); }
+    [data-aos="fade-down"] { transform: translateY(-60px); }
+    [data-aos="fade-right"] { transform: translateX(-60px); }
+    [data-aos="fade-left"] { transform: translateX(60px); }
+    [data-aos="zoom-in"] { transform: scale(0.8); }
+    [data-aos="flip-up"], [data-aos="flip-left"] { 
+      transform: perspective(400px) rotateY(25deg); 
+    }
+    .aos-animate {
+      opacity: 1 !important;
+      transform: translateY(0) translateX(0) scale(1) rotateY(0) !important;
+    }
+  </style>  <!-- WHITE NAVBAR COMPONENT – NOW WORKS EVERYWHERE -->
   <script>
     class CustomNavbar extends HTMLElement {
       connectedCallback() {
@@ -216,20 +570,18 @@
             :host {
               display: block;
               position: fixed;
-              top: 0;
-              left: 0;
-              right: 0;
+              top: 0; left: 0; right: 0;
               z-index: 9999;
               padding: 1.5rem 0;
-              background: linear-gradient(to bottom, rgba(15,23,42,0.9), transparent);
+              background: rgba(255,255,255,0.8);
               backdrop-filter: blur(12px);
               transition: all 0.4s ease;
               font-family: 'Inter', sans-serif;
             }
             :host(.scrolled) {
               padding: 0.75rem 0;
-              background: rgba(15,23,42,0.98);
-              box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+              background: rgba(255,255,255,0.95);
+              box-shadow: 0 10px 30px rgba(0,0,0,0.12);
             }
             .nav-container {
               max-width: 1400px;
@@ -243,127 +595,70 @@
               display: flex;
               align-items: center;
               gap: 0.75rem;
-              color: white;
+              color: #111;
               text-decoration: none;
-              font-weight: 800;
+              font-weight: 600;
               font-size: 1.5rem;
             }
-            .logo img { height: 48px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5)); }
+            .logo img { height: 48px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2)); }
             .logo span { color: #f59e0b; }
-            .nav-links {
-              display: flex;
-              gap: 2.5rem;
-            }
+            .nav-links { display: flex; gap: 2.5rem; }
             .nav-link {
-              color: white;
+              color: #222;
               text-decoration: none;
               font-weight: 600;
               position: relative;
               transition: color 0.3s;
             }
-            .nav-link:hover {
-              color: #f59e0b;
-            }
+            .nav-link:hover { color: #f59e0b; }
             .nav-link::after {
               content: '';
               position: absolute;
-              width: 0;
-              height: 3px;
-              bottom: -8px;
-              left: 0;
+              width: 0; height: 3px;
+              bottom: -8px; left: 0;
               background: #f59e0b;
               transition: width 0.4s ease;
             }
             .nav-link:hover::after { width: 100%; }
-            .tagline {
-              font-style: italic;
-              color: #fcd34d;
-              font-size: 0.9rem;
+            .call-button {
+              background: #f59e0b;
+              color: #111;
+              padding: 0.75rem 1.5rem;
+              border-radius: 0.5rem;
+              text-decoration: none;
+              font-weight: 600;
+              transition: all 0.3s;
+            }
+            .call-button:hover {
+              background: #d97706;
+              transform: scale(1.05);
             }
             @media (max-width: 768px) {
-              .nav-links { display: none; }
+              .nav-links, .call-button { display: none; }
+              .logo { font-size: 1.3rem; }
             }
           </style>
 
           <div class="nav-container">
             <a href="index.html" class="logo">
               <img src="logo.jpg" alt="Logo">
-              <div>
-                VENKATESHWARA<br>
-                <span>CORPORATION</span>
-              </div>
+              <span>Venkateshwara</span>
             </a>
             <div class="nav-links">
               <a href="index.html" class="nav-link">Home</a>
               <a href="about.html" class="nav-link">About</a>
               <a href="products.html" class="nav-link">Products</a>
-              
               <a href="contact.html" class="nav-link">Contact</a>
             </div>
-            <div class="tagline">Building Strength, Shaping Trust</div>
+            <a href="tel:+918047693560" class="call-button">Call Now</a>
           </div>
         `;
 
-        // Scroll Effect
-        const handleScroll = () => {
-          if (window.scrollY > 100) {
-            this.shadowRoot.host.classList.add('scrolled');
-          } else {
-            this.shadowRoot.host.classList.remove('scrolled');
-          }
-        };
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', () => {
+          this.shadowRoot.host.classList.toggle('scrolled', window.scrollY > 100);
+        });
       }
     }
     customElements.define('custom-navbar', CustomNavbar);
   </script>
-
-  <!-- MAIN SCRIPTS -->
-  <script>
-    feather.replace();
-
-    // HERO CAROUSEL
-    const images = document.querySelectorAll(".carousel-image");
-    const previews = document.querySelectorAll(".preview-img img");
-    const progressLine = document.getElementById("progress-line");
-    let current = 0;
-    const total = images.length;
-    const intervalTime = 3000;
-
-    function showSlide(index) {
-      images.forEach((img, i) => { img.style.opacity = i === index ? "1" : "0"; });
-      previews.forEach((p, i) => { p.src = images[(index + i + 1) % total].src; });
-      progressLine.style.transition = "none"; progressLine.style.width = "0";
-      setTimeout(() => {
-        progressLine.style.transition = `width ${intervalTime}ms linear`;
-        progressLine.style.width = "100%";
-      }, 50);
-    }
-    function nextSlide() { current = (current + 1) % total; showSlide(current); }
-    showSlide(current); progressLine.style.width = "100%";
-    setInterval(nextSlide, intervalTime);
-
-    // PRODUCT SLIDER
-    const slider = document.getElementById('product-slider');
-    const slides = slider.children;
-    const dots = document.querySelectorAll('.dot');
-    let idx = 0;
-
-    function go(n) {
-      idx = (n + slides.length) % slides.length;
-      slider.style.transform = `translateX(-${idx * 100}%)`;
-      document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-      slides[idx].classList.add('active');
-      document.querySelectorAll('.prod-title').forEach(t => t.classList.remove('active'));
-      setTimeout(() => slides[idx].querySelector('.prod-title').classList.add('active'), 100);
-      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
-    }
-
-    document.getElementById('prev').onclick = () => go(idx - 1);
-    document.getElementById('next').onclick = () => go(idx + 1);
-    dots.forEach((d, i) => d.onclick = () => go(i));
-    setInterval(() => go(idx + 1), 4000);
-    go(0);
-  </script>
-</body>
-</html>
+</body></html>

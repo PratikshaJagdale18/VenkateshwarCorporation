@@ -6,14 +6,23 @@
   <title>Contact Us – Venkateshwara Corporation</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/feather-icons"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
     :root {
       --navy: #0f172a;
       --gold: #f59e0b;
     }
-    body { font-family: 'Inter', sans-serif; background: linear-gradient(to bottom, #f8fafc, #e2e8f0); overflow-x: hidden; }
+    body { 
+      font-family: 'Inter', sans-serif; 
+      background: linear-gradient(to bottom, #f8fafc, #e2e8f0); 
+      overflow-x: hidden;
+      font-weight: 500; /* Default semibold */
+    }
+
+    h1, h2, h3, h4, h5, h6, p, a, button, input, textarea {
+      font-weight: 600 !important; /* Uniform semibold everywhere */
+    }
 
     /* Floating WhatsApp */
     .whatsapp-float {
@@ -24,54 +33,70 @@
       animation: pulse 2s infinite;
     }
     @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
     }
 
     /* Contact Card */
     .contact-card {
       background: white;
       border-radius: 2rem;
-      box-shadow: 0 20px 50px rgba(15,23,42,0.15);
+      box-shadow: 0 20px 50px rgba(15,23,42,0.12);
       overflow: hidden;
       transition: all 0.4s ease;
     }
     .contact-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 30px 70px rgba(15,23,42,0.25);
+      transform: translateY(-8px);
+      box-shadow: 0 30px 70px rgba(15,23,42,0.18);
     }
 
     /* Map */
-    iframe { border-radius: 1.5rem; box-shadow: 0 15px 40px rgba(0,0,0,0.2); }
+    iframe { 
+      border-radius: 1.5rem; 
+      box-shadow: 0 15px 40px rgba(0,0,0,0.15); 
+    }
 
     /* Form */
     input, textarea {
       border: 2px solid #e2e8f0;
       transition: all 0.3s ease;
+      font-weight: 500;
     }
     input:focus, textarea:focus {
       outline: none;
       border-color: var(--gold);
       box-shadow: 0 0 0 4px rgba(245,158,11,0.2);
     }
+
+    .gold-btn {
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 600;
+      padding: 1rem 2.5rem;
+      border-radius: 9999px;
+      box-shadow: 0 10px 30px rgba(245,158,11,0.35);
+      transition: all 0.3s;
+    }
+    .gold-btn:hover {
+      background: #d97706;
+      transform: scale(1.06);
+    }
   </style>
 </head>
 <body>
 
-  <!-- CUSTOM NAVBAR -->
   <custom-navbar></custom-navbar>
 
   <!-- HERO -->
   <section class="pt-32 pb-20 text-center" style="background: linear-gradient(135deg, var(--navy) 0%, #1e293b 100%)">
     <div class="container mx-auto px-6">
-      <h1 class="text-5xl md:text-7xl font-black text-white mb-6">
+      <h1 class="text-5xl md:text-7xl font-semibold text-white mb-6 leading-tight">
         Let's Build <span style="color: var(--gold);">Together</span>
       </h1>
-      <p class="text-2xl text-yellow-200 max-w-3xl mx-auto">
+      <p class="text-xl md:text-2xl text-yellow-100 max-w-3xl mx-auto">
         Free Site Visit • 3D Design • Quote in 2 Hours
       </p>
-      <div class="w-32 h-1 bg-yellow-400 mx-auto mt-8 rounded-full shadow-lg"></div>
+      <div class="w-32 h-1 bg-yellow-400 mx-auto mt-8 rounded-full"></div>
     </div>
   </section>
 
@@ -83,30 +108,30 @@
         <!-- LEFT: Contact Cards -->
         <div class="space-y-10">
           <div class="contact-card">
-            <div class="bg-gradient-to-r from-var(--gold) to-yellow-500 p-8 text-var(--navy)">
-              <h3 class="text-3xl font-black flex items-center gap-3">
-                <i data-feather="phone" class="w-10 h-10"></i> Call Us
+            <div class="bg-gradient-to-r from-yellow-500 to-amber-500 p-8 text-white">
+              <h3 class="text-2xl font-semibold flex items-center gap-3">
+                Call Us
               </h3>
             </div>
-            <div class="p-8 space-y-4">
-              <p class="text-2xl font-bold">Mr. Nilesh Konde (CEO)</p>
-              <a href="tel:+919876543210" class="text-3xl font-black text-var(--gold) hover:underline">
+            <div class="p-8 space-y-3">
+              <p class="text-lg">Mr. Nilesh Konde (CEO)</p>
+              <a href="tel:+919876543210" class="text-3xl font-semibold text-var(--gold) hover:underline">
                 +91 98765 43210
               </a>
-              <p class="text-gray-600">Available 24×7 • Instant Quote</p>
+              <p class="text-gray-600">24×7 • Instant Quote</p>
             </div>
           </div>
 
           <div class="contact-card">
             <div class="bg-gradient-to-r from-green-500 to-emerald-600 p-8 text-white">
-              <h3 class="text-3xl font-black flex items-center gap-3">
-                <i data-feather="message-circle" class="w-10 h-10"></i> WhatsApp
+              <h3 class="text-2xl font-semibold flex items-center gap-3">
+                WhatsApp
               </h3>
             </div>
             <div class="p-8">
-              <p class="text-xl mb-4">Send Photos → Get Quote in 5 Min</p>
+              <p class="text-lg mb-4">Send Photos → Get Quote in 5 Min</p>
               <a href="https://wa.me/919876543210?text=Hi!%20Need%20Tensile%20Shed%20Quote" 
-                 class="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-10 rounded-full shadow-xl transition transform hover:scale-105">
+                 class="inline-block bg-green-500 hover:bg-green-600 text-white font-semibold py-4 px-10 rounded-full shadow-xl transition transform hover:scale-105">
                 Chat on WhatsApp
               </a>
             </div>
@@ -114,12 +139,12 @@
 
           <div class="contact-card">
             <div class="bg-gradient-to-r from-blue-600 to-indigo-700 p-8 text-white">
-              <h3 class="text-3xl font-black flex items-center gap-3">
-                <i data-feather="mail" class="w-10 h-10"></i> Email
+              <h3 class="text-2xl font-semibold flex items-center gap-3">
+                Email
               </h3>
             </div>
             <div class="p-8">
-              <a href="mailto:info@venkateshwara.com" class="text-2xl font-bold hover:underline">
+              <a href="mailto:info@venkateshwara.com" class="text-xl font-semibold hover:underline">
                 info@venkateshwara.com
               </a>
               <p class="text-gray-600 mt-2">Reply within 1 hour</p>
@@ -128,13 +153,13 @@
 
           <div class="contact-card">
             <div class="bg-gradient-to-r from-purple-600 to-pink-600 p-8 text-white">
-              <h3 class="text-3xl font-black flex items-center gap-3">
-                <i data-feather="map-pin" class="w-10 h-10"></i> Visit Us
+              <h3 class="text-2xl font-semibold flex items-center gap-3">
+                Visit Us
               </h3>
             </div>
             <div class="p-8">
-              <p class="font-bold text-lg">Pune Office</p>
-              <p class="text-gray-700">
+              <p class="font-semibold text-lg">Pune Office</p>
+              <p class="text-gray-700 text-base leading-relaxed">
                 Flat C-1401, Aishwaryam Courtyard,<br>
                 Dehu Alandi Road, Moshi,<br>
                 Pimpri Chinchwad, Pune - 411062
@@ -147,20 +172,20 @@
         <div class="space-y-10">
           <!-- Form -->
           <div class="bg-white p-10 rounded-3xl shadow-2xl">
-            <h3 class="text-4xl font-black mb-8" style="color: var(--navy);">
+            <h3 class="text-4xl font-semibold mb-8" style="color: var(--navy);">
               Get <span style="color: var(--gold);">Free Quote</span>
             </h3>
             <form action="https://formspree.io/f/your-form-id" method="POST" class="space-y-6">
               <input type="text" name="name" placeholder="Your Name" required
-                     class="w-full px-6 py-4 rounded-xl text-lg">
+                     class="w-full px-6 py-4 rounded-xl text-base">
               <input type="tel" name="phone" placeholder="Phone Number" required
-                     class="w-full px-6 py-4 rounded-xl text-lg">
+                     class="w-full px-6 py-4 rounded-xl text-base">
               <input type="email" name="email" placeholder="Email (Optional)"
-                     class="w-full px-6 py-4 rounded-xl text-lg">
+                     class="w-full px-6 py-4 rounded-xl text-base">
               <textarea name="message" rows="5" placeholder="Project Details (Balcony/Terrace/Factory?)"
-                        class="w-full px-6 py-4 rounded-xl text-lg resize-none"></textarea>
+                        class="w-full px-6 py-4 rounded-xl text-base resize-none"></textarea>
               <button type="submit"
-                      class="w-full bg-var(--gold) hover:bg-yellow-600 text-var(--navy) font-black text-xl py-5 rounded-xl shadow-xl transition transform hover:scale-105">
+                      class="w-full bg-var(--gold) hover:bg-yellow-600 text-var(--navy) font-semibold text-xl py-5 rounded-xl shadow-xl transition transform hover:scale-105">
                 SEND MESSAGE → GET QUOTE
               </button>
             </form>
@@ -170,27 +195,11 @@
           <div class="contact-card overflow-hidden">
             <iframe 
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.259048258131!2d73.885749615352!3d18.684704987326!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c7b6f7f7f7f7%3A0x1234567890abcdef!2sAishwaryam%20Courtyard!5e0!3m2!1sen!2sin!4v1234567890!5m2!1sen!2sin"
-              width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy">
+              width="100%" height="380" style="border:0;" allowfullscreen="" loading="lazy">
             </iframe>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="py-20 text-center" style="background: linear-gradient(to right, var(--gold), #d97706);">
-    <div class="container mx-auto px-6">
-      <h2 class="text-5xl md:text-6xl font-black mb-6" style="color: var(--navy);">
-        500+ Happy Clients in Pune
-      </h2>
-      <p class="text-3xl mb-10" style="color: var(--navy);">
-        Your Shed is Just One Call Away!
-      </p>
-      <a href="tel:+919876543210" 
-         class="inline-block bg-var(--navy) text-white hover:bg-slate-800 font-black text-4xl py-6 px-24 rounded-full shadow-2xl transform hover:scale-110 transition">
-        CALL NOW +91 98765 43210
-      </a>
     </div>
   </section>
 
@@ -200,61 +209,14 @@
   </a>
 
   <!-- FOOTER -->
-  <footer class="bg-var(--navy) text-white py-12 text-center">
-    <p class="text-xl font-bold">Venkateshwara Corporation</p>
+  <footer class="bg-slate-900 text-white py-12 text-center">
+    <img src="logo.jpg" alt="Logo" class="mx-auto mb-4 h-12">
+    <p class="text-xl font-semibold">Venkateshwara Corporation</p>
     <p class="mt-2 opacity-90">Building Strength, Shaping Trust Since 2022</p>
     <p class="mt-4 text-sm">© 2025 All Rights Reserved • GST: 27BIZPK7820G1ZO</p>
   </footer>
 
-  <!-- CUSTOM NAVBAR (Same as before) -->
-  <script>
-    class CustomNavbar extends HTMLElement {
-      connectedCallback() {
-        this.attachShadow({ mode: 'open' });
-        this.shadowRoot.innerHTML = `
-          <style>
-            :host { display: block; position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
-                    padding: 1.5rem 0; background: linear-gradient(to bottom, rgba(15,23,42,0.9), transparent);
-                    backdrop-filter: blur(12px); transition: all 0.4s ease; font-family: 'Inter', sans-serif; }
-            :host(.scrolled) { padding: 0.75rem 0; background: rgba(15,23,42,0.98); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-            .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 1.5rem;
-                            display: flex; justify-content: space-between; align-items: center; }
-            .logo { display: flex; align-items: center; gap: 0.75rem; color: white; text-decoration: none;
-                    font-weight: 800; font-size: 1.5rem; }
-            .logo img { height: 48px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5)); }
-            .logo span { color: #f59e0b; }
-            .nav-links { display: flex; gap: 2.5rem; }
-            .nav-link { color: white; text-decoration: none; font-weight: 600; position: relative; transition: color 0.3s; }
-            .nav-link:hover { color: #f59e0b; }
-            .nav-link::after { content: ''; position: absolute; width: 0; height: 3px; bottom: -8px; left: 0;
-                              background: #f59e0b; transition: width 0.4s ease; }
-            .nav-link:hover::after { width: 100%; }
-            .tagline { font-style: italic; color: #fcd34d; font-size: 0.9rem; }
-            @media (max-width: 768px) { .nav-links, .tagline { display: none; } }
-          </style>
-          <div class="nav-container">
-            <a href="index.html" class="logo">
-              <img src="logo.jpg" alt="Logo">
-              <div>VENKATESHWARA<br><span>CORPORATION</span></div>
-            </a>
-            <div class="nav-links">
-              <a href="index.html" class="nav-link">Home</a>
-              <a href="about.html" class="nav-link">About</a>
-              <a href="products.html" class="nav-link">Products</a>
-              <a href="contact.html" class="nav-link">Contact</a>
-            </div>
-            <div class="tagline">Building Strength, Shaping Trust</div>
-          </div>
-        `;
-
-        window.addEventListener('scroll', () => {
-          this.shadowRoot.host.classList.toggle('scrolled', window.scrollY > 100);
-        });
-      }
-    }
-    customElements.define('custom-navbar', CustomNavbar);
-  </script>
-
+  <script src="components/navbar.js"></script>
   <script>
     feather.replace();
   </script>

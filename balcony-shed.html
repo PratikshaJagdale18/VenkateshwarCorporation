@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Balcony Patra Shed – Venkateshwara Corporation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root { --navy: #0f172a; --gold: #f59e0b; }
+    body { font-family: 'Inter', sans-serif; background: #f8fafc; }
+    .gold-btn {
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 700;
+      padding: 1rem 2.5rem;
+      border-radius: 9999px;
+      box-shadow: 0 10px 30px rgba(245,158,11,0.4);
+      transition: all 0.3s;
+    }
+    .gold-btn:hover {
+      background: #d97706;
+      transform: scale(1.08);
+    }
+    .price {
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--gold);
+      text-shadow: 0 4px 15px rgba(245,158,11,0.4);
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-b from-slate-50 to-white">
+
+  <custom-navbar></custom-navbar>
+
+  <!-- HERO
+  <section class="py-24 text-center text-white relative overflow-hidden" style="background: linear-gradient(135deg, var(--navy) 0%, #1e293b 100%)">
+    <div class="container mx-auto px-6">
+      <h1 class="text-5xl md:text-7xl font-black mb-4">
+        Balcony <span style="color:var(--gold)">Patra Shed</span>
+      </h1>
+      <p class="text-2xl">Monsoon-Proof • Anti-Rust • 2-Day Install</p>
+    </div>
+  </section> -->
+
+  <!-- IMAGE LEFT + REAL DATA RIGHT -->
+  <section class="py-24">
+    <div class="container mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        
+        <!-- LEFT: IMAGE -->
+        <div class="order-2 lg:order-1">
+          <img src="images/patra.jpg" alt="Balcony Patra Shed" class="w-full rounded-2xl shadow-2xl">
+        </div>
+
+        <!-- RIGHT: YOUR EXACT INFO -->
+        <div class="order-1 lg:order-2 space-y-8">
+          <h2 class="text-4xl md:text-5xl font-bold" style="color:var(--navy)">
+            Balcony Patra Shed
+          </h2>
+
+          <!-- PRICE TAG -->
+          <div class="text-center py-6 bg-gradient-to-r from-gold/10 to-transparent rounded-2xl">
+            <p class="price">₹150 <span class="text-2xl">/sq ft</span></p>
+            <p class="text-lg text-gray-600">Minimum Order: <strong>100 sq ft</strong></p>
+          </div>
+
+          <!-- SPECS -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-lg">
+            <div class="flex items-center gap-3">
+              <i data-feather="box" class="w-6 h-6 text-gold"></i>
+              <span><strong>Material:</strong> GI Patra</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i data-feather="tool" class="w-6 h-6 text-gold"></i>
+              <span><strong>Type:</strong> Fabricated Truss</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i data-feather="home" class="w-6 h-6 text-gold"></i>
+              <span><strong>Use:</strong> Residential Balcony</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i data-feather="shield" class="w-6 h-6 text-gold"></i>
+              <span><strong>Coating:</strong> Anti-Rust</span>
+            </div>
+          </div>
+
+          <p class="text-lg text-gray-700 leading-relaxed">
+            Manufacturer of polycarbonate sheds, mild steel roofing, warehouse sheds, and <strong>100% waterproof balcony patra sheds</strong> with 2-day installation.
+          </p>
+
+          <!-- BROCHURE + VIDEO -->
+          <div class="flex flex-wrap gap-4">
+            <a href="brochure-balcony.pdf" class="gold-btn flex items-center gap-3">
+              <i data-feather="download" class="w-5 h-5"></i> Product Brochure
+            </a>
+            <a href="https://youtube.com/watch?v=yourvideo" target="_blank" class="bg-navy text-white px-8 py-4 rounded-full flex items-center gap-3 hover:bg-slate-800 transition">
+              <i data-feather="play-circle" class="w-6 h-6"></i> Watch Video
+            </a>
+          </div>
+
+          <!-- INTERESTED BUTTON -->
+          <a href="contact.html" class="gold-btn text-2xl inline-block mt-8 px-12">
+            I'm Interested
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GOLDEN CTA -->
+  <section class="relative py-32 text-center bg-cover bg-center" 
+           style="background-image: url('images/hero5.jpg');" data-aos="zoom-in">
+    <div class="absolute inset-0 bg-gray-900/80"></div>
+    <div class="relative z-10 container mx-auto px-6">
+      <h2 class="text-5xl md:text-6xl font-semibold text-white mb-6 drop-shadow-2xl" data-aos="fade-up" data-aos-delay="200">
+        Ready for Your <span class="text-yellow-400">Dream Shelter</span>?
+      </h2>
+      <p class="text-xl md:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="400">
+        Contact us today for quotes, designs, and expert guidance.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-6 justify-center items-center" data-aos="flip-up" data-aos-delay="600">
+        <a href="contact.html" 
+           class="inline-flex items-center gap-3 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-5 px-12 rounded-full text-lg shadow-2xl transform hover:scale-105 transition-all">
+          Contact Now
+        </a>
+      </div>
+    </div>
+    <div class="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-transparent via-yellow-400 to-transparent"></div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-white py-12 text-center">
+    <img src="logo.jpg" alt="Logo" class="mx-auto mb-4 h-12">
+    <p class="text-lg font-medium">© 2025 Venkateshwara Corporation • Pune</p>
+  </footer>
+
+  <script src="components/navbar.js"></script>
+  <script>
+    feather.replace();
+  </script>
+</body>
+</html>

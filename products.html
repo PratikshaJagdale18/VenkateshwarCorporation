@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,258 +7,417 @@
   <title>Our Products – Venkateshwara Corporation</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/feather-icons"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
     :root {
       --navy: #0f172a;
       --gold: #f59e0b;
     }
-    body { font-family: 'Inter', sans-serif; background: #f8fafc; }
-    
-    .product-card {
-      transition: all 0.5s ease;
-      cursor: pointer;
-      border: 2px solid transparent;
-    }
-    .product-card:hover {
-      transform: translateY(-15px) scale(1.04);
-      box-shadow: 0 30px 60px rgba(15, 23, 42, 0.25) !important;
-      border-color: var(--gold);
-      z-index: 10;
-    }
-    .product-card .desc {
-      opacity: 0;
-      max-height: 0;
+    body { font-family: 'Inter', sans-serif; background: #f8fafc; overflow-x: hidden; }
+
+    /* HERO = ABOUT PAGE STYLE */
+    .hero-about {
+      position: relative;
+      height: 100vh;
       overflow: hidden;
-      transition: all 0.6s ease;
-      background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(245,158,11,0.05));
-      backdrop-filter: blur(10px);
     }
-    .product-card:hover .desc {
+    .ken-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.7);
+      opacity: 0;
+      transition: opacity 1.5s ease;
+    }
+    .ken-bg.active {
       opacity: 1;
-      max-height: 220px;
-      padding: 1.5rem;
-      margin-top: 1rem;
-      border-top: 3px solid var(--gold);
+      animation: kenBurns 8s ease-in-out forwards;
     }
-    .gold-btn {
-      background: var(--gold);
-      color: var(--navy);
+    @keyframes kenBurns {
+      0%   { transform: scale(1)   translate(0, 0); }
+      100% { transform: scale(1.22) translate(-3%, -3%); }
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 30%, rgba(0,0,0,0.85) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .hero-title {
+      font-size: clamp(3.5rem, 10vw, 7rem);
       font-weight: 800;
-      box-shadow: 0 10px 30px rgba(245,158,11,0.4);
+      color: white;
+      line-height: 1;
+      margin-bottom: 1rem;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: riseUp 1.6s ease-out 0.6s forwards;
     }
-    .gold-btn:hover {
-      background: #d97706;
-      transform: scale(1.08);
+    .hero-title span {
+      color: var(--gold);
+      position: relative;
+      display: inline-block;
     }
+    .hero-title span::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 0;
+      width: 0;
+      height: 7px;
+      background: var(--gold);
+      border-radius: 4px;
+      animation: goldUnderline 2s ease-out 2.2s forwards;
+    }
+
+    @keyframes riseUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes goldUnderline {
+      to { width: 100%; }
+    }
+
+    .hero-subtitle {
+      font-size: 1.6rem;
+      color: #e2e8f0;
+      letter-spacing: 3px;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeIn 1.4s ease-out 3s forwards;
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .hero-btn {
+      opacity: 0;
+      transform: scale(0.85);
+      animation: popIn 0.9s ease-out 3.8s forwards;
+    }
+    @keyframes popIn {
+      0%   { opacity: 0; transform: scale(0.85) translateY(20px); }
+      70%  { transform: scale(1.12); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    /* GOLD SPARKLES */
+    .sparkle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    /* BAKI SAB PURANA */
+    .product-card { position: relative; overflow: hidden; border-radius: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.15); transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; }
+    .product-card:hover { transform: translateY(-16px) scale(1.04); box-shadow: 0 35px 70px rgba(15, 23, 42, 0.3); }
+    .product-img { width: 100%; height: 300px; object-fit: cover; transition: transform 0.8s ease; }
+    .product-card:hover .product-img { transform: scale(1.12); }
+    .overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(15,23,42,0.88), rgba(15,23,42,0.72), rgba(15,23,42,0.88)); backdrop-filter: blur(4px); transform: translateX(-100%); transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem; }
+    .product-card:hover .overlay { transform: translateX(0); }
+    .overlay h3 { color: white; font-size: 1.8rem; font-weight: 600; letter-spacing: 0.8px; margin-bottom: 1.2rem; text-shadow: 0 2px 8px rgba(0,0,0,0.4); }
+    .arrow { width: 50px; height: 2px; background: var(--gold); position: relative; overflow: hidden; border-radius: 1px; }
+    .arrow::before { content: ''; position: absolute; top: -8px; right: 0; width: 18px; height: 18px; border-top: 2px solid var(--gold); border-right: 2px solid var(--gold); transform: rotate(45deg); }
+    .arrow span { display: block; width: 100%; height: 100%; background: var(--gold); transform: translateX(-100%); transition: transform 0.8s ease; }
+    .product-card:hover .arrow span { transform: translateX(100%); }
+    .gold-btn { background: var(--gold); color: var(--navy); font-weight: 700; padding: 1.2rem 3rem; border-radius: 9999px; box-shadow: 0 12px 35px rgba(245,158,11,0.4); transition: all 0.3s; }
+    .gold-btn:hover { background: #d97706; transform: scale(1.1); }
   </style>
 </head>
 <body class="bg-gradient-to-b from-slate-50 to-white">
 
-  <!-- CUSTOM NAVBAR – SAME AS HOMEPAGE -->
   <custom-navbar></custom-navbar>
 
-  <!-- HERO – NAVY & GOLD -->
-  <section class="pt-32 pb-24 text-white text-center relative overflow-hidden" style="background: linear-gradient(135deg, var(--navy) 0%, #1e293b 100%)">
-    <div class="absolute inset-0 bg-black opacity-40"></div>
-    <div class="container mx-auto px-6 relative z-10">
-      <h2 class="text-5xl md:text-7xl font-black mb-6 animate__animated animate__fadeInDown">
-        Premium <span style="color: var(--gold); text-shadow: 0 0 30px rgba(245,158,11,0.6);">Tensile</span> Solutions
+  <!-- HERO = ABOUT PAGE STYLE -->
+  <section class="hero-about">
+    <!-- 3 ZOOM IMAGES -->
+    <img src="images/about hero.jpg"    class="ken-bg active" alt="Factory">
+    <img src="images/about hero4.jpg"   class="ken-bg" alt="Team">
+    <img src="images/about hero3.jpg"   class="ken-bg" alt="Installation">
+
+    <div class="hero-overlay"></div>
+
+    <!-- 25 GOLD SPARKLES -->
+    <div class="sparkle"></div><div class="sparkle"></div><div class="sparkle"></div>
+    <div class="sparkle"></div><div class="sparkle"></div><div class="sparkle"></div>
+    <div class="sparkle"></div><div class="sparkle"></div><div class="sparkle"></div>
+    <div class="sparkle"></div><div class="sparkle"></div><div class="sparkle"></div>
+    <div class="sparkle"></div><div class="sparkle"></div><div class="sparkle"></div>
+    <div class="sparkle"></div><div class="sparkle"></div><div class="sparkle"></div>
+    <div class="sparkle"></div><div class="sparkle"></div><div class="sparkle"></div>
+    <div class="sparkle"></div><div class="sparkle"></div><div class="sparkle"></div>
+    <div class="sparkle"></div>
+
+    <div class="hero-content container mx-auto px-6">
+      <h2 class="hero-title">
+        Premium <span>Tensile</span><br>
+        <span>Solutions</span>
       </h2>
-      <p class="text-xl md:text-3xl mb-12 max-w-5xl mx-auto animate__animated animate__fadeInUp">
-        Balcony • Industrial • Car Parking • Terrace • Retractable • Polycarbonate • Dome
+      <p class="hero-subtitle">
+        20+ CATEGORIES • 500+ PROJECTS • PUNE’S #1
       </p>
-      <div class="flex justify-center gap-8 flex-wrap">
-        <a href="tel:+919876543210" class="gold-btn text-xl py-5 px-14 rounded-full transition transform hover:scale-110 shadow-2xl">
-          Call +91 98765 43210
-        </a>
-        <a href="#products" class="bg-white text-var(--navy) hover:bg-gray-100 font-bold text-xl py-5 px-14 rounded-full shadow-2xl transition">
-          Explore Products
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRODUCT CATEGORIES -->
-  <section id="products" class="py-20 bg-white">
-    <div class="container mx-auto px-6">
-      <h2 class="text-6xl font-black text-center mb-4" style="color: var(--navy);">
-        Our <span style="color: var(--gold);">7 Signature</span> Solutions
-      </h2>
-      <p class="text-2xl text-center text-gray-600 mb-16">Engineered for Pune’s Climate</p>
-
-      <!-- Balcony Shed -->
-      <div class="mb-24">
-        <h3 class="text-4xl font-bold mb-10 border-l-8 pl-6" style="border-color: var(--gold); color: var(--navy);">
-          Balcony Shield <span class="text-var(--gold) font-black">(10+ Designs)</span>
-        </h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-          <div class="product-card bg-white rounded-2xl overflow-hidden shadow-2xl">
-            <img src="images/balcony-patra.jpg" alt="Balcony Patra" class="w-full h-64 object-cover">
-            <div class="p-6">
-              <h4 class="text-2xl font-bold" style="color: var(--navy);">Balcony Patra Shed</h4>
-              <p class="text-3xl font-black mt-2" style="color: var(--gold);">₹150/sq ft</p>
-              <div class="desc text-gray-700">
-                <p>GI Patra + Anti-rust coating. Monsoon-proof. 2-day install.</p>
-                <a href="tel:+919876543210" class="gold-btn inline-block mt-4 px-8 py-3 rounded-full text-lg font-bold">
-                  Call Now
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="product-card bg-white rounded-2xl overflow-hidden shadow-2xl">
-            <img src="images/balcony-roof.jpg" alt="Polycarbonate" class="w-full h-64 object-cover">
-            <div class="p-6">
-              <h4 class="text-2xl font-bold" style="color: var(--navy);">Polycarbonate Roof</h4>
-              <p class="text-3xl font-black mt-2" style="color: var(--gold);">₹140/sq ft</p>
-              <div class="desc text-gray-700">
-                <p>UV Block | 10-Year Warranty | Crystal Clear View</p>
-                <a href="tel:+919876543210" class="gold-btn inline-block mt-4 px-8 py-3 rounded-full text-lg font-bold">
-                  Call Now
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Add 8 more balcony cards here -->
-        </div>
-      </div>
-
-      <!-- Industrial Titan -->
-      <div class="mb-24">
-        <h3 class="text-4xl font-bold mb-10 border-l-8 pl-6" style="border-color: var(--gold); color: var(--navy);">
-          Industrial Titan <span class="text-var(--gold) font-black">(8+ Projects)</span>
-        </h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-          <div class="product-card bg-white rounded-2xl overflow-hidden shadow-2xl">
-            <img src="images/factory-roof.jpg" alt="Factory" class="w-full h-64 object-cover">
-            <div class="p-6">
-              <h4 class="text-2xl font-bold" style="color: var(--navy);">Factory PEB Shed</h4>
-              <p class="text-3xl font-black mt-2" style="color: var(--gold);">₹180/sq ft</p>
-              <div class="desc text-gray-700">
-                <p>1 Lakh sq.ft covered | Fire-rated | 25-year life</p>
-                <a href="tel:+919876543210" class="gold-btn inline-block mt-4 px-8 py-3 rounded-full text-lg font-bold">
-                  Call Now
-                </a>
-              </div>
-            </div>
-          </div>
-          <!-- Add more -->
-        </div>
-      </div>
-
-      <!-- Car Haven -->
-      <div class="mb-24">
-        <h3 class="text-4xl font-bold mb-10 border-l-8 pl-6" style="border-color: var(--gold); color: var(--navy);">
-          Car Haven <span class="text-var(--gold) font-black">(6+ Models)</span>
-        </h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-          <div class="product-card bg-white rounded-2xl overflow-hidden shadow-2xl">
-            <img src="images/car-tensile-white.jpg" alt="Car Parking" class="w-full h-64 object-cover">
-            <div class="p-6">
-              <h4 class="text-2xl font-bold" style="color: var(--navy);">White Car Parking</h4>
-              <p class="text-3xl font-black mt-2" style="color: var(--gold);">₹180/sq ft</p>
-              <div class="desc text-gray-700">
-                <p>4 Cars | UV + Rain Proof | Free 3D Design</p>
-                <a href="tel:+919876543210" class="gold-btn inline-block mt-4 px-8 py-3 rounded-full text-lg font-bold">
-                  Call Now
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Add remaining: Tensile Art, Smart Build, Steel Forge, Parking Pro -->
-      <!-- Just copy-paste above blocks and change names/images -->
-
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="py-20 text-center" style="background: linear-gradient(to right, var(--gold), #d97706);">
-    <div class="container mx-auto px-6">
-      <h3 class="text-5xl md:text-6xl font-black text-var(--navy) mb-6">
-        Ready to Shield Your Space?
-      </h3>
-      <p class="text-2xl text-var(--navy) mb-10 font-medium">
-        Free Quote • Site Visit • 3D Design in 24 hrs
-      </p>
-      <a href="tel:+919876543210" class="inline-block bg-var(--navy) text-white hover:bg-slate-800 font-black text-3xl py-6 px-20 rounded-full shadow-2xl transform hover:scale-110 transition">
-        CALL +91 98765 43210
+      <a href="#products" class="gold-btn text-xl hero-btn inline-block">
+        Explore All
       </a>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="bg-var(--navy) text-white py-12 text-center">
-    <p class="text-lg font-medium">© 2025 Venkateshwara Corporation • GST: 27xxxxx • Pune</p>
-    <p class="mt-3 text-sm opacity-90">
-      Dehu Alandi Road, Pimpri Chinchwad, Pune-411062
-    </p>
+  <!-- BAKI SAB 100% PURANA -->
+  <section id="products" class="py-20">
+    <div class="container mx-auto px-6">
+      <h2 class="text-5xl md:text-6xl font-semibold text-center mb-16" style="color: var(--navy);">
+        Pick Your <span style="color: var(--gold);">Perfect Shield</span>
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+        <!-- ALL 20 CARDS — EXACTLY SAME -->
+        <a href="balcony-shed.html" class="block">
+          <div class="product-card category-section" data-category="home">
+            <img src="images/balcony.jpg" alt="Balcony Shed" class="product-img">
+            <div class="overlay">
+              <h3>Balcony Shed</h3>
+              <div class="arrow"><span></span></div>
+            </div>
+          </div>
+        </a>
+        <!-- CARD 2 → tensile-structure.html -->
+        <a href="tensile-structure.html" class="block">
+          <div class="product-card category-section" data-category="home">
+            <img src="images/terrace-dome.jpg" alt="" class="product-img">
+            <div class="overlay">
+              <h3>Tensile Structure</h3>
+              <div class="arrow"><span></span></div>
+            </div>
+          </div>
+        </a>
+
+        <!-- CARD 3 → industrial-shed.html -->
+        <a href="industrial-shed.html" class="block">
+          <div class="product-card category-section" data-category="industry">
+            <img src="images/factory-roof.jpg" alt="" class="product-img">
+            <div class="overlay">
+              <h3>Industrial Shed</h3>
+              <div class="arrow"><span></span></div>
+            </div>
+          </div>
+        </a>
+
+        <!-- CARD 4 → prefabricated-shed.html -->
+        <a href="prefabricated-shed.html" class="block">
+          <div class="product-card category-section" data-category="car">
+            <img src="images/car-tensile-white.jpg" alt="" class="product-img">
+            <div class="overlay">
+              <h3>Prefabricated Shed</h3>
+              <div class="arrow"><span></span></div>
+            </div>
+          </div>
+        </a>
+
+        <!-- CARD 5 → tensile-car-parking.html -->
+        <a href="tensile-car-parking.html" class="block">
+          <div class="product-card category-section" data-category="home">
+            <img src="images/retractable-roof.jpg" alt="" class="product-img">
+            <div class="overlay"><h3>Tensile Car Parking</h3><div class="arrow"><span></span></div></div>
+          </div>
+        </a>
+
+        <!-- CARD 6 → car-parking-awning.html -->
+        <a href="car-parking-awning.html" class="block">
+          <div class="product-card category-section" data-category="industry">
+            <img src="images/warehouse.jpg" alt="" class="product-img">
+            <div class="overlay"><h3>Car Parking Awning</h3><div class="arrow"><span></span></div></div>
+          </div>
+        </a>
+
+        <!-- CARD 7 → fabrication-services.html -->
+        <a href="fabrication-services.html" class="block">
+          <div class="product-card category-section" data-category="home">
+            <img src="images/pool-cover.jpg" alt="" class="product-img">
+            <div class="overlay"><h3>Fabrication Services</h3><div class="arrow"><span></span></div></div>
+          </div>
+        </a>
+
+        <!-- CARD 8 → tile-flooring.html -->
+        <a href="tile-flooring.html" class="block">
+          <div class="product-card category-section" data-category="car">
+            <img src="images/bike-parking.jpg" alt="" class="product-img">
+            <div class="overlay"><h3>Tile Flooring</h3><div class="arrow"><span></span></div></div>
+          </div>
+        </a>
+
+        <!-- CARD 9 → terrace-shed.html -->
+        <a href="terrace-shed.html" class="block">
+          <div class="product-card category-section" data-category="home">
+            <img src="images/window-awning.jpg" alt="" class="product-img">
+            <div class="overlay"><h3>Terrace Shed</h3><div class="arrow"><span></span></div></div>
+          </div>
+        </a>
+
+        <!-- CARD 10 → civil-work.html -->
+        <a href="civil-work.html" class="block">
+          <div class="product-card category-section" data-category="industry">
+            <img src="images/loading-bay.jpg" alt="" class="product-img">
+            <div class="overlay"><h3>Civil Work</h3><div class="arrow"><span></span></div></div>
+          </div>
+        </a>
+
+        <!-- CARD 11 → retractable-awning.html -->
+        <a href="retractable-awning.html" class="block">
+          <div class="product-card category-section" data-category="home">
+            <img src="images/garden-gazebo.jpg" alt="" class="product-img">
+            <div class="overlay"><h3>Retractable Awning</h3><div class="arrow"><span></span></div></div>
+          </div>
+        </a>
+
+        <!-- CARD 12 → car-parking-shed.html -->
+        <a href="car-parking-shed.html" class="block">
+          <div class="product-card category-section" data-category="car">
+            <img src="images/multi-car.jpg" alt="" class="product-img">
+            <div class="overlay"><h3>Car Parking Shed</h3><div class="arrow"><span></span></div></div>
+          </div>
+        </a>
+
+        <!-- CARD 13 → fabrication-shed.html -->
+        <a href="fabrication-shed.html" class="block">
+          <div class="product-card category-section" data-category="home">
+            <img src="images/staircase-cover.jpg" alt="" class="product-img">
+            <div class="overlay"><h3>Fabrication Shed</h3><div class="arrow"><span></span></div></div>
+          </div>
+        </a>
+
+        <!-- CARD 14 → roofing-structure.html -->
+        <a href="roofing-structure.html" class="block">
+          <div class="product-card category-section" data-category="industry">
+            <img src="images/solar-roof.jpg" alt="" class="product-img">
+            <div class="overlay"><h3>Roofing Structure</h3><div class="arrow"><span></span></div></div>
+          </div>
+        </a>
+
+        <!-- CARD 15 → balcony-grill.html -->
+        <a href="balcony-grill.html" class="block">
+          <div class="product-card category-section" data-category="home">
+            <img src="images/play-area.jpg" alt="" class="product-img">
+            <div class="overlay"><h3>Balcony Grill</h3><div class="arrow"><span></span></div></div>
+          </div>
+        </a>
+
+        <!-- CARD 16 → terrace-awning.html -->
+        <a href="terrace-awning.html" class="block">
+          <div class="product-card category-section" data-category="car">
+            <img src="images/ev-charging.jpg" alt="" class="product-img">
+            <div class="overlay"><h3>Terrace Awning</h3><div class="arrow"><span></span></div></div>
+          </div>
+        </a>
+
+        <!-- CARD 17 → shade-awning.html -->
+        <a href="shade-awning.html" class="block">
+          <div class="product-card category-section" data-category="home">
+            <img src="images/rooftop-cafe.jpg" alt="" class="product-img">
+            <div class="overlay"><h3>Shade Awning</h3><div class="arrow"><span></span></div></div>
+          </div>
+        </a>
+
+        <!-- CARD 18 → cold-storage.html -->
+        <a href="cold-storage.html" class="block">
+          <div class="product-card category-section" data-category="industry">
+            <img src="images/cold-storage.jpg" alt="" class="product-img">
+            <div class="overlay"><h3>Cold Storage</h3><div class="arrow"><span></span></div></div>
+          </div>
+        </a>
+
+        <!-- CARD 19 → entrance-canopy.html -->
+        <a href="entrance-canopy.html" class="block">
+          <div class="product-card category-section" data-category="home">
+            <img src="images/entrance-canopy.jpg" alt="" class="product-img">
+            <div class="overlay"><h3>Entrance Canopy</h3><div class="arrow"><span></span></div></div>
+          </div>
+        </a>
+
+        <!-- CARD 20 → valet-parking.html -->
+        <a href="valet-parking.html" class="block">
+          <div class="product-card category-section" data-category="car">
+            <img src="images/valet-parking.jpg" alt="" class="product-img">
+            <div class="overlay"><h3>Valet Parking</h3><div class="arrow"><span></span></div></div>
+          </div>
+        </a>
+
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA & FOOTER — SAME -->
+  <section class="relative py-32 text-center bg-cover bg-center" style="background-image: url('images/hero5.jpg');">
+    <div class="absolute inset-0 bg-gray-900/80"></div>
+    <div class="relative z-10 container mx-auto px-6">
+      <h2 class="text-5xl md:text-6xl font-semibold text-white mb-6 drop-shadow-2xl">
+        Ready for Your <span class="text-yellow-400">Dream Shelter</span>?
+      </h2>
+      <p class="text-xl md:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto leading-relaxed">
+        Contact us today for quotes, designs, and expert guidance.
+      </p>
+      <a href="contact.html" class="inline-flex items-center gap-3 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-5 px-12 rounded-full text-lg shadow-2xl transform hover:scale-105 transition-all">
+        Contact Now
+      </a>
+    </div>
+  </section>
+
+  <footer class="bg-slate-900 text-white py-12 text-center">
+    <img src="logo.jpg" alt="Logo" class="mx-auto mb-4 h-12">
+    <p class="text-lg font-medium">© 2025 Venkateshwara Corporation • Pune</p>
   </footer>
 
-  <!-- CUSTOM NAVBAR (Same as index.html) -->
+  <script src="components/navbar.js"></script>
   <script>
-    class CustomNavbar extends HTMLElement {
-      connectedCallback() {
-        this.attachShadow({ mode: 'open' });
-        this.shadowRoot.innerHTML = `
-          <style>
-            :host { display: block; position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
-                    padding: 1.5rem 0; background: linear-gradient(to bottom, rgba(15,23,42,0.9), transparent);
-                    backdrop-filter: blur(12px); transition: all 0.4s ease; font-family: 'Inter', sans-serif; }
-            :host(.scrolled) { padding: 0.75rem 0; background: rgba(15,23,42,0.98); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-            .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 1.5rem;
-                            display: flex; justify-content: space-between; align-items: center; }
-            .logo { display: flex; align-items: center; gap: 0.75rem; color: white; text-decoration: none;
-                    font-weight: 800; font-size: 1.5rem; }
-            .logo img { height: 48px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5)); }
-            .logo span { color: #f59e0b; }
-            .nav-links { display: flex; gap: 2.5rem; }
-            .nav-link { color: white; text-decoration: none; font-weight: 600; position: relative; transition: color 0.3s; }
-            .nav-link:hover { color: #f59e0b; }
-            .nav-link::after { content: ''; position: absolute; width: 0; height: 3px; bottom: -8px; left: 0;
-                              background: #f59e0b; transition: width 0.4s ease; }
-            .nav-link:hover::after { width: 100%; }
-            .tagline { font-style: italic; color: #fcd34d; font-size: 0.9rem; }
-            @media (max-width: 768px) { .nav-links, .tagline { display: none; } }
-          </style>
-          <div class="nav-container">
-            <a href="index.html" class="logo">
-              <img src="logo.jpg" alt="Logo">
-              <div>VENKATESHWARA<br><span>CORPORATION</span></div>
-            </a>
-            <div class="nav-links">
-              <a href="index.html" class="nav-link">Home</a>
-              <a href="about.html" class="nav-link">About</a>
-              <a href="products.html" class="nav-link">Products</a>
-              <a href="contact.html" class="nav-link">Contact</a>
-            </div>
-            <div class="tagline">Building Strength, Shaping Trust</div>
-          </div>
-        `;
-
-        window.addEventListener('scroll', () => {
-          this.shadowRoot.host.classList.toggle('scrolled', window.scrollY > 100);
-        });
-      }
-    }
-    customElements.define('custom-navbar', CustomNavbar);
-  </script>
-
-  <!-- Smooth Scroll -->
-  <script>
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', e => {
-        e.preventDefault();
-        document.querySelector(anchor.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-      });
-    });
     feather.replace();
+
+    // KEN BURNS CYCLE
+    const imgs = document.querySelectorAll('.ken-bg');
+    let idx = 0;
+    setInterval(() => {
+      imgs[idx].classList.remove('active');
+      idx = (idx + 1) % imgs.length;
+      imgs[idx].classList.add('active');
+    }, 6000);
+
+    // 25 SPARKLES
+    const hero = document.querySelector('.hero-about');
+    for (let i = 0; i < 25; i++) {
+      const s = document.createElement('div');
+      s.className = 'sparkle';
+      s.style.left = Math.random() * 100 + '%';
+      s.style.top = Math.random() * 100 + '%';
+      s.style.animation = `float ${8 + Math.random() * 8}s infinite ${Math.random() * 5}s`;
+      hero.appendChild(s);
+    }
+
+    // ADD FLOAT KEYFRAMES
+    const style = document.createElement('style');
+    style.innerHTML = `
+      @keyframes float {
+        0%, 100% { opacity: 0; transform: translateY(0) rotate(0deg); }
+        50% { opacity: 0.9; transform: translateY(-40px) rotate(180deg); }
+      }
+    `;
+    document.head.appendChild(style);
   </script>
 </body>
 </html>
