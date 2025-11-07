@@ -3,210 +3,121 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us – Venkateshwara Corporation</title>
+  <title>Contact – Venkateshwara Corporation</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/feather-icons"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
+
   <style>
     :root {
       --navy: #0f172a;
       --gold: #f59e0b;
     }
-    body { 
-      font-family: 'Inter', sans-serif; 
-      background: linear-gradient(to bottom, #f8fafc, #e2e8f0); 
-      overflow-x: hidden;
-      font-weight: 500; /* Default semibold */
-    }
-
-    h1, h2, h3, h4, h5, h6, p, a, button, input, textarea {
-      font-weight: 600 !important; /* Uniform semibold everywhere */
-    }
-
-    /* Floating WhatsApp */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 9998;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.08); }
-    }
-
-    /* Contact Card */
-    .contact-card {
-      background: white;
-      border-radius: 2rem;
-      box-shadow: 0 20px 50px rgba(15,23,42,0.12);
-      overflow: hidden;
-      transition: all 0.4s ease;
-    }
-    .contact-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 30px 70px rgba(15,23,42,0.18);
-    }
-
-    /* Map */
-    iframe { 
-      border-radius: 1.5rem; 
-      box-shadow: 0 15px 40px rgba(0,0,0,0.15); 
-    }
-
-    /* Form */
-    input, textarea {
-      border: 2px solid #e2e8f0;
-      transition: all 0.3s ease;
-      font-weight: 500;
-    }
-    input:focus, textarea:focus {
-      outline: none;
-      border-color: var(--gold);
-      box-shadow: 0 0 0 4px rgba(245,158,11,0.2);
-    }
-
-    .gold-btn {
-      background: var(--gold);
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8fafc;
       color: var(--navy);
-      font-weight: 600;
-      padding: 1rem 2.5rem;
-      border-radius: 9999px;
-      box-shadow: 0 10px 30px rgba(245,158,11,0.35);
-      transition: all 0.3s;
     }
-    .gold-btn:hover {
-      background: #d97706;
-      transform: scale(1.06);
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 700;
     }
   </style>
 </head>
 <body>
 
+  <!-- NAVBAR -->
   <custom-navbar></custom-navbar>
 
   <!-- HERO -->
-  <section class="pt-32 pb-20 text-center" style="background: linear-gradient(135deg, var(--navy) 0%, #1e293b 100%)">
+  <section class="pt-32 pb-20 text-center text-white" style="background: linear-gradient(135deg, var(--navy), #1e293b);">
     <div class="container mx-auto px-6">
-      <h1 class="text-5xl md:text-7xl font-semibold text-white mb-6 leading-tight">
-        Let's Build <span style="color: var(--gold);">Together</span>
-      </h1>
-      <p class="text-xl md:text-2xl text-yellow-100 max-w-3xl mx-auto">
-        Free Site Visit • 3D Design • Quote in 2 Hours
-      </p>
-      <div class="w-32 h-1 bg-yellow-400 mx-auto mt-8 rounded-full"></div>
+      <h1 class="text-5xl md:text-6xl font-bold mb-4">Contact Venkateshwara Corporation</h1>
+      <p class="text-lg md:text-xl text-yellow-200">We’re here to assist you with any queries</p>
+      <div class="mt-6 text-yellow-300 font-semibold">
+        <a href="index.html" class="hover:underline">Home</a> › <span>Contact</span>
+      </div>
     </div>
   </section>
 
-  <!-- CONTACT INFO + FORM -->
+  <!-- CONTACT SECTION -->
   <section class="py-20">
-    <div class="container mx-auto px-6">
-      <div class="grid lg:grid-cols-2 gap-16 max-w-7xl mx-auto">
+    <div class="container mx-auto px-6 max-w-6xl">
+      <div class="grid md:grid-cols-2 gap-16 items-start">
 
-        <!-- LEFT: Contact Cards -->
-        <div class="space-y-10">
-          <div class="contact-card">
-            <div class="bg-gradient-to-r from-yellow-500 to-amber-500 p-8 text-white">
-              <h3 class="text-2xl font-semibold flex items-center gap-3">
-                Call Us
-              </h3>
-            </div>
-            <div class="p-8 space-y-3">
-              <p class="text-lg">Mr. Nilesh Konde (CEO)</p>
-              <a href="tel:+919876543210" class="text-3xl font-semibold text-var(--gold) hover:underline">
-                +91 98765 43210
-              </a>
-              <p class="text-gray-600">24×7 • Instant Quote</p>
-            </div>
-          </div>
+        <!-- LEFT SIDE: INFO -->
+        <div class="space-y-8">
+          <h2 class="text-4xl font-bold mb-4 text-[var(--navy)]">
+            We are always ready <span class="text-[var(--gold)]">to help you</span>
+          </h2>
+          <p class="text-gray-600 leading-relaxed text-lg">
+            Whether you have a question about our tensile sheds, industrial projects, or custom installations — our team is here to assist you promptly and professionally.
+          </p>
 
-          <div class="contact-card">
-            <div class="bg-gradient-to-r from-green-500 to-emerald-600 p-8 text-white">
-              <h3 class="text-2xl font-semibold flex items-center gap-3">
-                WhatsApp
-              </h3>
-            </div>
-            <div class="p-8">
-              <p class="text-lg mb-4">Send Photos → Get Quote in 5 Min</p>
-              <a href="https://wa.me/919876543210?text=Hi!%20Need%20Tensile%20Shed%20Quote" 
-                 class="inline-block bg-green-500 hover:bg-green-600 text-white font-semibold py-4 px-10 rounded-full shadow-xl transition transform hover:scale-105">
-                Chat on WhatsApp
-              </a>
-            </div>
-          </div>
+          <!-- Info Cards -->
+          <div class="space-y-6 pt-4">
 
-          <div class="contact-card">
-            <div class="bg-gradient-to-r from-blue-600 to-indigo-700 p-8 text-white">
-              <h3 class="text-2xl font-semibold flex items-center gap-3">
-                Email
-              </h3>
+            <div class="bg-white p-6 rounded-2xl shadow-md">
+              <h3 class="text-xl font-semibold text-[var(--navy)] mb-2">📞 Call Us</h3>
+              <p class="text-lg text-gray-700">+91 98765 43210</p>
+             
             </div>
-            <div class="p-8">
-              <a href="mailto:info@venkateshwara.com" class="text-xl font-semibold hover:underline">
-                info@venkateshwara.com
-              </a>
-              <p class="text-gray-600 mt-2">Reply within 1 hour</p>
-            </div>
-          </div>
 
-          <div class="contact-card">
-            <div class="bg-gradient-to-r from-purple-600 to-pink-600 p-8 text-white">
-              <h3 class="text-2xl font-semibold flex items-center gap-3">
-                Visit Us
-              </h3>
+            <div class="bg-white p-6 rounded-2xl shadow-md">
+              <h3 class="text-xl font-semibold text-[var(--navy)] mb-2">📧 Email</h3>
+              <p class="text-lg text-gray-700">info@venkateshwara.com</p>
+              
             </div>
-            <div class="p-8">
-              <p class="font-semibold text-lg">Pune Office</p>
-              <p class="text-gray-700 text-base leading-relaxed">
+
+            <div class="bg-white p-6 rounded-2xl shadow-md">
+              <h3 class="text-xl font-semibold text-[var(--navy)] mb-2">📍 Office Address</h3>
+              <p class="text-gray-700 leading-relaxed">
                 Flat C-1401, Aishwaryam Courtyard,<br>
                 Dehu Alandi Road, Moshi,<br>
                 Pimpri Chinchwad, Pune - 411062
               </p>
             </div>
+
+            <!-- <div class="bg-white p-6 rounded-2xl shadow-md">
+              <h3 class="text-xl font-semibold text-[var(--navy)] mb-3">🌐 Follow Us</h3>
+              <div class="flex gap-5">
+                <a href="#" class="text-[var(--gold)] hover:text-yellow-600 text-2xl"><i data-feather="facebook"></i></a>
+                <a href="#" class="text-[var(--gold)] hover:text-yellow-600 text-2xl"><i data-feather="instagram"></i></a>
+                <a href="#" class="text-[var(--gold)] hover:text-yellow-600 text-2xl"><i data-feather="linkedin"></i></a>
+              </div>
+            </div> -->
+
           </div>
         </div>
 
-        <!-- RIGHT: Form + Map -->
-        <div class="space-y-10">
-          <!-- Form -->
-          <div class="bg-white p-10 rounded-3xl shadow-2xl">
-            <h3 class="text-4xl font-semibold mb-8" style="color: var(--navy);">
-              Get <span style="color: var(--gold);">Free Quote</span>
-            </h3>
-            <form action="https://formspree.io/f/your-form-id" method="POST" class="space-y-6">
-              <input type="text" name="name" placeholder="Your Name" required
-                     class="w-full px-6 py-4 rounded-xl text-base">
-              <input type="tel" name="phone" placeholder="Phone Number" required
-                     class="w-full px-6 py-4 rounded-xl text-base">
-              <input type="email" name="email" placeholder="Email (Optional)"
-                     class="w-full px-6 py-4 rounded-xl text-base">
-              <textarea name="message" rows="5" placeholder="Project Details (Balcony/Terrace/Factory?)"
-                        class="w-full px-6 py-4 rounded-xl text-base resize-none"></textarea>
-              <button type="submit"
-                      class="w-full bg-var(--gold) hover:bg-yellow-600 text-var(--navy) font-semibold text-xl py-5 rounded-xl shadow-xl transition transform hover:scale-105">
-                SEND MESSAGE → GET QUOTE
-              </button>
-            </form>
-          </div>
+        <!-- RIGHT SIDE: FORM -->
+        <div class="bg-white p-10 rounded-3xl shadow-xl">
+          <h3 class="text-3xl font-bold mb-8 text-[var(--navy)]">Get in <span class="text-[var(--gold)]">Touch</span></h3>
+         <form action="https://formspree.io/f/your-form-id" method="POST" class="space-y-6">
+  <input type="text" name="name" placeholder="Your Name" required
+         class="w-full px-5 py-4 border border-gray-300 rounded-xl focus:ring-4 focus:ring-yellow-200 outline-none text-base">
+  <input type="email" name="email" placeholder="Your Email" required
+         class="w-full px-5 py-4 border border-gray-300 rounded-xl focus:ring-4 focus:ring-yellow-200 outline-none text-base">
+  <input type="text" name="subject" placeholder="Subject"
+         class="w-full px-5 py-4 border border-gray-300 rounded-xl focus:ring-4 focus:ring-yellow-200 outline-none text-base">
+  <textarea name="message" rows="5" placeholder="Your Message" required
+            class="w-full px-5 py-4 border border-gray-300 rounded-xl focus:ring-4 focus:ring-yellow-200 outline-none text-base resize-none"></textarea>
+  <button type="submit"
+          class="w-full py-4 text-lg font-semibold bg-[var(--gold)] text-[var(--navy)] rounded-xl shadow-md hover:bg-yellow-600 transition transform hover:scale-[1.02]">
+    Send Message
+  </button>
+</form>
 
-          <!-- Google Map -->
-          <div class="contact-card overflow-hidden">
-            <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.259048258131!2d73.885749615352!3d18.684704987326!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c7b6f7f7f7f7%3A0x1234567890abcdef!2sAishwaryam%20Courtyard!5e0!3m2!1sen!2sin!4v1234567890!5m2!1sen!2sin"
-              width="100%" height="380" style="border:0;" allowfullscreen="" loading="lazy">
-            </iframe>
-          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- WhatsApp Float -->
-  <a href="https://wa.me/919876543210?text=Hi!%20Need%20Tensile%20Quote" class="whatsapp-float">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="w-16 h-16 drop-shadow-2xl">
-  </a>
+  <!-- MAP -->
+  <section class="pb-20">
+    <div class="container mx-auto px-6 max-w-6xl">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3779.6771072250162!2d73.80292127519552!3d18.678480082445933!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTjCsDQwJzQyLjUiTiA3M8KwNDgnMTkuOCJF!5e0!3m2!1sen!2sin!4v1762491597112!5m2!1sen!2sin" width="100%" height="400" style="border:0;" allowfullscreen="" 
+      loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </section>
 
   <!-- FOOTER -->
   <footer class="bg-slate-900 text-white py-12 text-center">
@@ -216,9 +127,8 @@
     <p class="mt-4 text-sm">© 2025 All Rights Reserved • GST: 27BIZPK7820G1ZO</p>
   </footer>
 
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script>feather.replace();</script>
   <script src="components/navbar.js"></script>
-  <script>
-    feather.replace();
-  </script>
 </body>
 </html>
