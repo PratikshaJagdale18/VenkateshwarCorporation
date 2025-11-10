@@ -6,11 +6,13 @@
   <title>Contact – Venkateshwara Corporation</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 
   <style>
     :root {
       --navy: #0f172a;
       --gold: #f59e0b;
+      --blue: #1e40af;
     }
     body {
       font-family: 'Inter', sans-serif;
@@ -20,6 +22,48 @@
     h1, h2, h3, h4, h5, h6 {
       font-weight: 700;
     }
+    /* ZOOM-IN IMAGE */
+.zoom-in {
+  animation: zoomIn 20s ease-in-out infinite;
+}
+@keyframes zoomIn {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+/* TYPEWRITER EFFECT */
+.typewriter {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 4px solid #f59e0b;
+  width: 0;
+  animation: typing 3.5s steps(40, end) forwards, blink 0.8s infinite;
+}
+.typewriter:nth-of-type(2) { animation-delay: 4s; }
+.typewriter:nth-of-type(3) { animation-delay: 8s; }
+
+@keyframes typing {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+/* SHIMMER BUTTON */
+.shimmer {
+  position: absolute;
+  top: 0; left: -100%;
+  width: 50%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  transform: skewX(-25deg);
+  transition: 0.5s;
+}
+.group:hover .shimmer {
+  left: 100%;
+}
   </style>
 </head>
 <body>
@@ -27,16 +71,90 @@
   <!-- NAVBAR -->
   <custom-navbar></custom-navbar>
 
-  <!-- HERO -->
-  <section class="pt-32 pb-20 text-center text-white" style="background: linear-gradient(135deg, var(--navy), #1e293b);">
-    <div class="container mx-auto px-6">
-      <h1 class="text-5xl md:text-6xl font-bold mb-4">Contact Venkateshwara Corporation</h1>
-      <p class="text-lg md:text-xl text-yellow-200">We’re here to assist you with any queries</p>
-      <div class="mt-6 text-yellow-300 font-semibold">
-        <a href="index.html" class="hover:underline">Home</a> › <span>Contact</span>
-      </div>
+ <!-- CINEMATIC HERO WITH ZOOM-IN IMAGE + TYPEWRITER -->
+<section class="relative overflow-hidden h-[90vh]">
+
+  <!-- ZOOM-IN BACKGROUND IMAGE -->
+  <div class="absolute inset-0 -z-10">
+    <img src="images/contact hero.jpg" 
+         alt="Tensile Roof Installation" 
+         class="w-full h-full object-cover zoom-in">
+  </div>
+
+  <!-- DARK OVERLAY + GOLD GRADIENT -->
+  <div class="absolute inset-0 bg-black/60"></div>
+  <!-- <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div> -->
+
+  <!-- HERO CONTENT -->
+  <div class="container mx-auto px-6 h-full flex flex-col justify-center items-center text-center relative z-10">
+    
+    <!-- MAIN TITLE – GOLD STROKE + GLOW -->
+    <h1 class="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-6 leading-tight">
+      <span class="block relative">
+        CONTACT
+        <span class="absolute -inset-1 blur-2xl opacity-50 animate-pulse" style="background: var(--gold);"></span>
+      </span>
+      <span class="block text-white mt-2" 
+            style="text-shadow: 0 0 40px var(--gold);">
+        VENKATESHWARA
+      </span>
+    </h1>
+
+    <!-- TYPEWRITER SUBTITLE -->
+    <p class="text-2xl md:text-4xl text-gray-200 font-light mb-8 h-16">
+      <span class="typewriter" style="color: var(--gold);"></span>
+      <span class="blink" style="color: var(--gold);">|</span>
+    </p>
+
+    <!-- BREADCRUMB -->
+    <div class="flex items-center gap-4 font-medium text-lg" style="color: var(--gold);">
+      <a href="index.html" class="hover:underline">Home</a>
+      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"/>
+      </svg>
+      <span>Contact</span>
     </div>
-  </section>
+
+    <!-- GOLD CTA BUTTON -->
+    <!-- <a href="#contact-form" 
+       class="mt-12 inline-block px-12 py-5 text-black font-bold text-xl rounded-full 
+              shadow-2xl transform hover:scale-110 
+              transition-all duration-500 relative overflow-hidden group" style="background: var(--gold); box-shadow: 0 16px 40px rgba(245, 158, 11, 0.5);">
+      <span class="relative z-10">Get Your Free Quote</span>
+      <div class="shimmer"></div>
+    </a> -->
+  </div>
+
+  <!-- SCROLL DOWN ARROW -->
+ 
+</section>
+<script>
+  // TYPEWRITER PHRASES
+  const phrases = [
+    "One call. One roof. Zero leaks.",
+    "500+ shelters built. Yours next?",
+    "24/7 support. Rain or shine."
+  ];
+  let index = 0;
+  const element = document.querySelector('.typewriter');
+  const blink = document.querySelector('.blink');
+
+  function typeNext() {
+    element.textContent = '';
+    element.style.width = '0';
+    blink.style.display = 'inline';
+
+    setTimeout(() => {
+      element.textContent = phrases[index];
+      element.style.width = '100%';
+      index = (index + 1) % phrases.length;
+    }, 500);
+  }
+
+  // Start + loop
+  typeNext();
+  setInterval(typeNext, 4000);
+</script>
 
   <!-- CONTACT SECTION -->
   <section class="py-20">
@@ -120,15 +238,320 @@
   </section>
 
   <!-- FOOTER -->
-  <footer class="bg-slate-900 text-white py-12 text-center">
-    <img src="logo.jpg" alt="Logo" class="mx-auto mb-4 h-12">
-    <p class="text-xl font-semibold">Venkateshwara Corporation</p>
-    <p class="mt-2 opacity-90">Building Strength, Shaping Trust Since 2022</p>
-    <p class="mt-4 text-sm">© 2025 All Rights Reserved • GST: 27BIZPK7820G1ZO</p>
-  </footer>
+  <footer class="bg-slate-900 text-white relative overflow-hidden">
+  <!-- ANIMATED SILVER WAVE (kept exactly as you love it) -->
+  <div class="absolute inset-x-0 -top-1 h-24 md:h-28">
+    <svg viewBox="0 0 1440 320" class="w-full h-full" preserveAspectRatio="none">
+      <path fill="#e2e8f0" fill-opacity="0.15">
+        <animate attributeName="d" dur="18s" repeatCount="indefinite"
+          values="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,0L0,0Z;
+                  M0,80L48,96C96,112,192,144,288,144C384,144,480,112,576,96C672,80,768,80,864,96C960,112,1056,144,1152,144C1248,144,1344,112,1392,96L1440,80L1440,0L0,0Z;
+                  M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,0L0,0Z"/>
+      </path>
+      <path fill="#94a3b8" fill-opacity="0.12">
+        <animate attributeName="d" dur="22s" repeatCount="indefinite"
+          values="M0,192L48,181.3C96,170.7,192,149.3,288,149.3C384,149.3,480,170.7,576,181.3C672,192,768,192,864,181.3C960,170.7,1056,149.3,1152,149.3C1248,149.3,1344,170.7,1392,181.3L1440,192L1440,0L0,0Z;
+                  M0,170L48,160C96,150,192,130,288,130C384,130,480,150,576,160C672,170,768,170,864,160C960,150,1056,130,1152,130C1248,130,1344,150,1392,160L1440,170L1440,0L0,0Z;
+                  M0,192L48,181.3C96,170.7,192,149.3,288,149.3C384,149.3,480,170.7,576,181.3C672,192,768,192,864,181.3C960,170.7,1056,149.3,1152,149.3C1248,149.3,1344,170.7,1392,181.3L1440,192L1440,0L0,0Z"/>
+      </path>
+    </svg>
+  </div>
 
+  <!-- COMPACT CONTENT -->
+  <div class="container mx-auto px-4 pt-12 pb-8 relative z-10">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10
+                justify-items-start md:justify-items-center
+                max-w-7xl mx-auto">
+
+      <!-- 1. LOGO -->
+      <div data-aos="fade-up" class="w-full">
+        <img src="logo.jpg" alt="Logo" class="h-24 mb-3 rounded-lg shadow-xl"
+             data-aos="zoom-in" data-aos-delay="100">
+        <p class="text-lg opacity-90 leading-tight"
+           data-aos="fade-up" data-aos-delay="200">
+          Founded in 2022, <strong class="text-yellow-400">Venkateshwara</strong> – Pune’s tensile experts.
+        </p>
+        <div class="flex space-x-3 mt-4" data-aos="fade-up" data-aos-delay="300">
+          <a href="#" class="w-10 h-10 bg-slate-700 rounded-full flex-center hover:bg-yellow-400"><i data-feather="twitter" class="w-5 h-5"></i></a>
+          <a href="#" class="w-10 h-10 bg-slate-700 rounded-full flex-center hover:bg-yellow-400"><i data-feather="facebook" class="w-5 h-5"></i></a>
+          <a href="#" class="w-10 h-10 bg-slate-700 rounded-full flex-center hover:bg-yellow-400"><i data-feather="instagram" class="w-5 h-5"></i></a>
+          <a href="#" class="w-10 h-10 bg-slate-700 rounded-full flex-center hover:bg-yellow-400"><i data-feather="linkedin" class="w-5 h-5"></i></a>
+        </div>
+      </div>
+
+      <!-- 2. PRODUCTS -->
+      <div data-aos="fade-up" data-aos-delay="100">
+        <h3 class="text-xl font-bold mb-3 text-yellow-400">Products</h3>
+        <ul class="space-y-1.5 text-lg">
+          <li data-aos="fade-right" data-aos-delay="150"><a href="#" class="opacity-80 hover:text-yellow-400">Tensile Membranes</a></li>
+          <li data-aos="fade-right" data-aos-delay="200"><a href="#" class="opacity-80 hover:text-yellow-400">Car Parking Shades</a></li>
+          <li data-aos="fade-right" data-aos-delay="250"><a href="#" class="opacity-80 hover:text-yellow-400">Pool Covers</a></li>
+          <li data-aos="fade-right" data-aos-delay="300"><a href="#" class="opacity-80 hover:text-yellow-400">Awnings</a></li>
+          <li data-aos="fade-right" data-aos-delay="350"><a href="#" class="opacity-80 hover:text-yellow-400">Pagoda Tents</a></li>
+        </ul>
+      </div>
+
+      <!-- 3. LINKS -->
+      <div data-aos="fade-up" data-aos-delay="200">
+        <h3 class="text-xl font-bold mb-3 text-yellow-400">Quick Links</h3>
+        <ul class="space-y-1.5 text-lg">
+          <li data-aos="fade-left" data-aos-delay="100"><a href="index.html"   class="opacity-80 hover:text-yellow-400">Home</a></li>
+          <li data-aos="fade-left" data-aos-delay="150"><a href="about.html"   class="opacity-80 hover:text-yellow-400">About</a></li>
+          <li data-aos="fade-left" data-aos-delay="200"><a href="products.html" class="opacity-80 hover:text-yellow-400">Products</a></li>
+          <li data-aos="fade-left" data-aos-delay="250"><a href="contact.html" class="opacity-80 hover:text-yellow-400">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- 4. CONTACT -->
+      <div data-aos="fade-up" data-aos-delay="300">
+        <h3 class="text-xl font-bold mb-3 text-yellow-400">Visit Us</h3>
+        <div class="text-lg space-y-2">
+          <p class="opacity-80 flex items-center gap-2" data-aos="flip-up" data-aos-delay="100">
+            <i data-feather="phone" class="w-3.5 h-3.5 text-yellow-400"></i> +91 80476 93560
+          </p>
+          <p class="opacity-80 flex items-start gap-2" data-aos="flip-up" data-aos-delay="200">
+            <i data-feather="map-pin" class="w-3.5 h-3.5 text-yellow-400 mt-0.5"></i>
+            Dehu Alandi Rd,<br>Pune-411062
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- COPYRIGHT -->
+    <div class="text-center mt-8 pt-5 border-t border-slate-800 text-xs opacity-70"
+         data-aos="fade-up" data-aos-delay="400">
+      © 2025 Venkateshwara Corporation • Developed by DWInnovations Pvt. Ltd. • Pune
+    </div>
+  </div>
+</footer>
+
+  <script>
+    class CustomNavbar extends HTMLElement {
+      connectedCallback() {
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.innerHTML = `
+          <style>
+            :host {
+              display: block;
+              position: fixed;
+              top: 0; left: 0; right: 0;
+              z-index: 9999;
+              padding: 1.5rem 0;
+              background: rgba(255,255,255,0.95);
+              backdrop-filter: blur(12px);
+              transition: all 0.4s ease;
+              font-family: 'Inter', sans-serif;
+            }
+            :host(.scrolled) {
+              padding: 0.75rem 0;
+              background: rgba(255,255,255,0.95);
+              box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            }
+            .nav-container {
+              max-width: 1400px;
+              margin: 0 auto;
+              padding: 0 1.5rem;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            }
+            .logo {
+              display: flex;
+              align-items: center;
+              gap: 0.75rem;
+              color: #111;
+              text-decoration: none;
+              font-weight: 500;
+              font-size: 1.5rem;
+            }
+            .logo img { height: 64px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2)); }
+            .logo span { color: #f59e0b; }
+            .nav-links { display: flex; gap: 2.5rem; }
+            .nav-link {
+              color: #222;
+              text-decoration: none;
+              font-weight: 600;
+              position: relative;
+              transition: color 0.3s;
+              cursor: pointer;
+            }
+            .nav-link:hover { color: #f59e0b; }
+            .nav-link::after {
+              content: '';
+              position: absolute;
+              width: 0; height: 3px;
+              bottom: -8px; left: 0;
+              background: #f59e0b;
+              transition: width 0.4s ease;
+            }
+            .nav-link:hover::after { width: 100%; }
+
+            /* Dropdown Styles */
+            .dropdown {
+              position: relative;
+            }
+            .dropdown-content {
+              display: none;
+              position: absolute;
+              top: 100%;
+              left: 50%;
+              background: rgba(255,255,255,0.98);
+              backdrop-filter: blur(15px);
+              min-width: 800px;
+              box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+              border-radius: 0.75rem;
+              z-index: 10000;
+              padding: 1rem;
+              margin-top: 0.75rem;
+              border: 1px solid rgba(245, 158, 11, 0.1);
+              opacity: 0;
+              transform: translateX(-50%) translateY(-10px);
+              transition: all 0.3s ease;
+              display: flex;
+              flex-direction: row;
+              gap: 1.5rem;
+            }
+            .dropdown:hover .dropdown-content {
+              display: flex;
+              opacity: 1;
+              transform: translateX(-50%) translateY(0);
+            }
+            .dropdown-section {
+              display: flex;
+              flex-direction: column;
+              min-width: 180px;
+            }
+            .dropdown-item {
+              display: block;
+              padding: 0.5rem 1rem;
+              color: #222;
+              text-decoration: none;
+              font-weight: 500;
+              transition: all 0.3s ease;
+              border-left: 3px solid transparent;
+              font-size: 0.9rem;
+            }
+            .dropdown-item:hover {
+              background: rgba(245, 158, 11, 0.1);
+              color: #f59e0b;
+              border-left-color: #f59e0b;
+              padding-left: 1.25rem;
+            }
+            .dropdown-category {
+              padding: 0.5rem 1rem 0.25rem;
+              font-weight: 700;
+              color: #f59e0b;
+              font-size: 0.875rem;
+              text-transform: uppercase;
+              letter-spacing: 0.05em;
+              border-bottom: 1px solid rgba(245, 158, 11, 0.2);
+              margin-bottom: 0.5rem;
+            }
+            .call-button {
+              background: #f59e0b;
+              color: #111;
+              padding: 0.75rem 1.5rem;
+              border-radius: 0.5rem;
+              text-decoration: none;
+              font-weight: 500;
+              transition: all 0.3s;
+            }
+            .call-button:hover {
+              background: #d97706;
+              transform: scale(1.05);
+            }
+            @media (max-width: 768px) {
+              .nav-links, .call-button { display: none; }
+              .logo { font-size: 1.3rem; }
+              .dropdown-content {
+                position: static;
+                display: none;
+                box-shadow: none;
+                background: rgba(255,255,255,0.9);
+                margin-top: 0;
+                border-radius: 0;
+                padding: 0.5rem 0;
+                flex-direction: column;
+                min-width: auto;
+                gap: 0;
+              }
+              .dropdown:hover .dropdown-content {
+                display: flex;
+              }
+              .dropdown-section {
+                min-width: auto;
+              }
+              .dropdown-item {
+                padding: 0.5rem 1rem;
+              }
+              .dropdown-item:hover {
+                padding-left: 1.5rem;
+              }
+            }
+          </style>
+
+          <div class="nav-container">
+            <a href="index.html" class="logo">
+              <img src="logo.jpg" alt="Logo">
+
+            </a>
+            <div class="nav-links">
+              <a href="index.html" class="nav-link">Home</a>
+              <a href="about.html" class="nav-link">About</a>
+              <div class="dropdown">
+                <a href="products.html" class="nav-link">Products ▼</a>
+                <div class="dropdown-content">
+                  <div class="dropdown-section">
+                    <div class="dropdown-category">Residential</div>
+                    <a href="balcony-shed.html" class="dropdown-item">Balcony Shed</a>
+                    <a href="tensile-structure.html" class="dropdown-item">Tensile Structure</a>
+                    <a href="terrace-shed.html" class="dropdown-item">Terrace Shed</a>
+                    <a href="retractable-awning.html" class="dropdown-item">Retractable Awning</a>
+                    <a href="entrance-canopy.html" class="dropdown-item">Entrance Canopy</a>
+                  </div>
+
+                  <div class="dropdown-section">
+                    <div class="dropdown-category">Industrial</div>
+                    <a href="industrial-shed.html" class="dropdown-item">Industrial Shed</a>
+                    <a href="fabrication-services.html" class="dropdown-item">Fabrication Services</a>
+                    <a href="civil-work.html" class="dropdown-item">Civil Work</a>
+                    <a href="roofing-structure.html" class="dropdown-item">Roofing Structure</a>
+                    <a href="cold-storage.html" class="dropdown-item">Cold Storage</a>
+                  </div>
+
+                  <div class="dropdown-section">
+                    <div class="dropdown-category">Car Parking</div>
+                    <a href="tensile-car-parking.html" class="dropdown-item">Tensile Car Parking</a>
+                    <a href="car-parking-awning.html" class="dropdown-item">Car Parking Awning</a>
+                    <a href="prefabricated-shed.html" class="dropdown-item">Prefabricated Shed</a>
+                    <a href="car-parking-shed.html" class="dropdown-item">Car Parking Shed</a>
+                    <a href="valet-parking.html" class="dropdown-item">Valet Parking</a>
+                  </div>
+
+                  <div class="dropdown-section">
+                    <div class="dropdown-category">Commercial</div>
+                    <a href="fabrication-shed.html" class="dropdown-item">Fabrication Shed</a>
+                    <a href="balcony-grill.html" class="dropdown-item">Balcony Grill</a>
+                    <a href="terrace-awning.html" class="dropdown-item">Terrace Awning</a>
+                    <a href="shade-awning.html" class="dropdown-item">Shade Awning</a>
+                    <a href="tile-flooring.html" class="dropdown-item">Tile Flooring</a>
+                  </div>
+                </div>
+              </div>
+              <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <a href="tel:+918047693560" class="call-button">Call Now</a>
+          </div>
+        `;
+
+        window.addEventListener('scroll', () => {
+          this.shadowRoot.host.classList.toggle('scrolled', window.scrollY > 100);
+        });
+      }
+    }
+    customElements.define('custom-navbar', CustomNavbar);
+  </script>
   <script src="https://unpkg.com/feather-icons"></script>
   <script>feather.replace();</script>
-  <script src="components/navbar.js"></script>
 </body>
 </html>
