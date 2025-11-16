@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Balcony Patra Shed – Venkateshwara Corporation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root { --navy: #0f172a; --gold: #f59e0b; --blue: #1e40af; }
+    body { font-family: 'Inter', sans-serif; background: #f8fafc; }
+    .gold-btn {
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 700;
+      padding: 1rem 2.5rem;
+      border-radius: 9999px;
+      box-shadow: 0 10px 30px rgba(245,158,11,0.4);
+      transition: all 0.3s;
+    }
+    .gold-btn:hover {
+      background: rgba(245, 158, 11, 0.85);
+      transform: scale(1.08);
+    }
+    .text-gold {
+      color: var(--gold);
+    }
+    .price {
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--gold);
+      text-shadow: 0 4px 15px rgba(245,158,11,0.4);
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-b from-slate-900 to-slate-800 text-white overflow-x-hidden">
+
+    <!-- FLOATING LOGO + NAVBAR WRAPPER -->
+<div class="relative w-full flex justify-center z-[9999]">
+    <img src="logo1.png" class="absolute -top-1 w-60 drop-shadow-xl" alt="Logo">
+</div>
+
+<!-- WHITE CURVED NAVBAR -->
+<nav class="relative z-[999] mx-auto mt-36 w-[75%] bg-white bg-opacity-95 backdrop-blur-xl
+            rounded-full py-2 px-10 shadow-xl flex items-center justify-between">
+
+    <ul class="flex gap-20 ml-16  font-bold text-gray-700">
+
+ <li class="text-black border-b-4 border-yellow-400 pb-1 text-lg cursor-pointer">
+  <a href="index.html" class="block w-full h-full">Home</a>
+</li>
+         <li class="text-black border-b-4 border-yellow-400 pb-1 text-lg cursor-pointer">
+  <a href="about.html" class="block w-full h-full">About</a>
+
+</li> <li class="relative group text-black border-b-4 border-yellow-400 pb-1 text-lg cursor-pointer">
+
+  <a href="products.html" class="block w-full h-full">Product ▾</a>
+
+  <!-- DROPDOWN -->
+  <ul class="absolute left-0 top-full mt-2 w-52 bg-white shadow-xl rounded-xl 
+             opacity-0 invisible group-hover:opacity-100 group-hover:visible 
+             transition-all duration-300">
+
+    <li><a href="fabrication.html" class="block px-4 py-2 hover:bg-yellow-100">Fabrication</a></li>
+    <li><a href="civil-work.html" class="block px-4 py-2 hover:bg-yellow-100">Civil Work</a></li>
+    <li><a href="interior.html" class="block px-4 py-2 hover:bg-yellow-100">Interiors</a></li>
+    <li><a href="exterior.html" class="block px-4 py-2 hover:bg-yellow-100">Exteriors</a></li>
+    <li><a href="other-services.html" class="block px-4 py-2 hover:bg-yellow-100">Other Services</a></li>
+
+  </ul>
+
+</li>
+
+         <li class="text-black border-b-4 border-yellow-400 text-lg pb-1 cursor-pointer">
+  <a href="contact.html" class="block w-full h-full">Contact</a>
+
+
+
+    </ul>
+
+    <div class="relative flex items-center mr-12">
+  <input
+    type="text"
+    placeholder="Search..."
+    class="px-4 py-2 w-60 md:w-64  rounded-full border border-gray-300
+           focus:outline-none focus:ring-2 focus:ring-yellow-500 text-gray-700"
+  >
+
+  <button class="absolute right-2 text-yellow-500 hover:text-yellow-600">
+    <svg xmlns="http://www.w3.org/2000/svg"
+         class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1011 18.5a7.5 7.5 0 005.65-2.85z" />
+    </svg>
+  </button>
+</div>
+
+</nav>
+
+ <!-- ==================== FABRICATION SERVICES CATEGORY ==================== -->
+<section class="py-24 bg-white mt-10">
+  <div class="container mx-auto px-6">
+
+    <!-- TITLE -->
+    <h2 class="text-5xl font-bold text-center mb-16" style="color:var(--navy)">
+      Fabrication <span class="text-gold">Services</span>
+    </h2>
+
+   <section class="py-24 bg-white">
+  <div class="container mx-auto px-6">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+      <!-- LEFT IMAGE -->
+      <div>
+        <img src="images/awnings.jpg" alt="Awnings" class="w-full rounded-2xl shadow-2xl">
+      </div>
+
+      <!-- RIGHT CONTENT -->
+      <div class="space-y-8">
+        <h2 class="text-4xl md:text-5xl font-bold" style="color:var(--navy)">Awnings</h2>
+
+        <p class="text-lg text-gray-700 leading-relaxed">
+          High-quality <strong>retractable and fixed awnings</strong> designed for balconies, shops, cafés, and homes.
+          Provides UV protection, rain safety, and long-lasting durability.
+        </p>
+
+        <ul class="space-y-3 text-lg text-gray-700">
+          <li>• Retractable Awnings</li>
+          <li>• Fixed Frame Awnings</li>
+          <li>• Drop Awnings</li>
+        </ul>
+
+        <a href="contact.html" class="gold-btn text-xl inline-block mt-4 px-12">
+          I'm Interested
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+<section class="py-24 bg-gray-50">
+  <div class="container mx-auto px-6">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+      <!-- LEFT -->
+      <div>
+        <img src="images/carparking.jpg" alt="Car Parking Shades" class="w-full rounded-2xl shadow-2xl">
+      </div>
+
+      <!-- RIGHT -->
+      <div class="space-y-8">
+        <h2 class="text-4xl md:text-5xl font-bold" style="color:var(--navy)">
+          Car Parking Shades
+        </h2>
+
+        <p class="text-lg text-gray-700 leading-relaxed">
+          Premium <strong>tensile car parking structures</strong> for homes, societies, companies,
+          and commercial buildings. Waterproof and UV-resistant.
+        </p>
+
+        <ul class="space-y-3 text-lg text-gray-700">
+          <li>• Tensile Car Parking</li>
+          <li>• Car Parking Shed</li>
+          <li>• PVC-Coated Fabric Parking</li>
+          <li>• Tin Parking Shed</li>
+        </ul>
+
+        <a href="contact.html" class="gold-btn text-xl inline-block mt-4 px-12">
+          I'm Interested
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+<section class="py-24 bg-white">
+  <div class="container mx-auto px-6">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+      <div>
+        <img src="images/tensile.jpg" alt="Tensile Structures" class="w-full rounded-2xl shadow-2xl">
+      </div>
+
+      <div class="space-y-8">
+        <h2 class="text-4xl md:text-5xl font-bold" style="color:var(--navy)">Tensile Structures</h2>
+
+        <p class="text-lg text-gray-700 leading-relaxed">
+          Architectural-grade tensile structures built for durability, aesthetics, and long life.
+          Ideal for commercial, residential, and public spaces.
+        </p>
+
+        <ul class="space-y-3 text-lg text-gray-700">
+          <li>• Single Conical Tensile</li>
+          <li>• Double Conical Tensile</li>
+          <li>• Bending Tensile</li>
+          <li>• Gazebo / Tent / Dome</li>
+        </ul>
+
+        <a href="contact.html" class="gold-btn text-xl inline-block mt-4 px-12">
+          I'm Interested
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+<section class="py-24 bg-gray-50">
+  <div class="container mx-auto px-6">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+      <div>
+        <img src="images/shed.jpg" alt="Sheds" class="w-full rounded-2xl shadow-2xl">
+      </div>
+
+      <div class="space-y-8">
+        <h2 class="text-4xl md:text-5xl font-bold" style="color:var(--navy)">Sheds</h2>
+
+        <p class="text-lg text-gray-700 leading-relaxed">
+          Heavy-duty sheds for industrial, commercial, and residential use. Built using high-strength steel frames.
+        </p>
+
+        <ul class="space-y-3 text-lg text-gray-700">
+          <li>• Industrial Shed</li>
+          <li>• Godown Shed</li>
+          <li>• Shop Shed</li>
+          <li>• Commercial Shed</li>
+          <li>• Balcony / Terrace Shed</li>
+          <li>• Rooftop Shed</li>
+        </ul>
+
+        <a href="contact.html" class="gold-btn text-xl inline-block mt-4 px-12">
+          I'm Interested
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+<section class="py-24 bg-white">
+  <div class="container mx-auto px-6">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+      <div>
+        <img src="images/residential.jpg" alt="Residential Fabrication" class="w-full rounded-2xl shadow-2xl">
+      </div>
+
+      <div class="space-y-8">
+        <h2 class="text-4xl md:text-5xl font-bold" style="color:var(--navy)">
+          Residential Fabrication
+        </h2>
+
+        <p class="text-lg text-gray-700 leading-relaxed">
+          Strong, stylish and secure fabrication solutions for homes, balconies and extensions.
+        </p>
+
+        <ul class="space-y-3 text-lg text-gray-700">
+          <li>• Balcony Roofing</li>
+          <li>• Safety Grill</li>
+          <li>• Safety Door</li>
+          <li>• Gate & Zula</li>
+          <li>• Balcony Extension</li>
+          <li>• Mezzanine Floor</li>
+        </ul>
+
+        <a href="contact.html" class="gold-btn text-xl inline-block mt-4 px-12">
+          I'm Interested
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</div>
+
+</section>
+
+
+  <section class="w-full py-20 px-6 md:px-16">
+  <div class="max-w-7xl mx-auto rounded-3xl overflow-hidden"
+       style="background: linear-gradient(90deg, #f8e1b6 0%, #b57ba6 100%);">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 items-center px-10 md:px-20 py-16 gap-10">
+
+      <!-- LEFT TEXT -->
+      <div>
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">
+          Contact Us to<br>Learn More!
+        </h2>
+
+        <p class="text-gray-800 text-lg leading-relaxed mb-8">
+          Partner with Venkateshwara Corporation to bring premium tensile solutions
+          to your space. Let us help your organization thrive with modern designs,
+          durable materials, and expert engineering.
+        </p>
+
+        <a href="contact.html"
+           class="inline-flex items-center gap-2 bg-purple-700 hover:bg-purple-800
+                  text-white font-semibold text-lg px-8 py-4 rounded-full transition">
+          Contact Us
+          <span>➜</span>
+        </a>
+      </div>
+
+      <!-- RIGHT IMAGE SECTION -->
+      <div class="flex justify-center md:justify-end">
+        <img src="" class="h-80 md:h-96 object-contain -mr-6" alt="">
+        <img src="images/about hero4.jpg" class="h-80 md:h-96 object-contain" alt="">
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-white relative overflow-hidden">
+  <!-- ANIMATED SILVER WAVE (kept exactly as you love it) -->
+  <div class="absolute inset-x-0 -top-1 h-24 md:h-28">
+    <svg viewBox="0 0 1440 320" class="w-full h-full" preserveAspectRatio="none">
+      <path fill="#e2e8f0" fill-opacity="0.15">
+        <animate attributeName="d" dur="18s" repeatCount="indefinite"
+          values="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,0L0,0Z;
+                  M0,80L48,96C96,112,192,144,288,144C384,144,480,112,576,96C672,80,768,80,864,96C960,112,1056,144,1152,144C1248,144,1344,112,1392,96L1440,80L1440,0L0,0Z;
+                  M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,0L0,0Z"/>
+      </path>
+      <path fill="#94a3b8" fill-opacity="0.12">
+        <animate attributeName="d" dur="22s" repeatCount="indefinite"
+          values="M0,192L48,181.3C96,170.7,192,149.3,288,149.3C384,149.3,480,170.7,576,181.3C672,192,768,192,864,181.3C960,170.7,1056,149.3,1152,149.3C1248,149.3,1344,170.7,1392,181.3L1440,192L1440,0L0,0Z;
+                  M0,170L48,160C96,150,192,130,288,130C384,130,480,150,576,160C672,170,768,170,864,160C960,150,1056,130,1152,130C1248,130,1344,150,1392,160L1440,170L1440,0L0,0Z;
+                  M0,192L48,181.3C96,170.7,192,149.3,288,149.3C384,149.3,480,170.7,576,181.3C672,192,768,192,864,181.3C960,170.7,1056,149.3,1152,149.3C1248,149.3,1344,170.7,1392,181.3L1440,192L1440,0L0,0Z"/>
+      </path>
+    </svg>
+  </div>
+
+  <!-- COMPACT CONTENT -->
+  <div class="container mx-auto px-4 pt-12 pb-8 relative z-10">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10
+                justify-items-start md:justify-items-center
+                max-w-7xl mx-auto">
+
+      <!-- 1. LOGO -->
+      <div data-aos="fade-up" class="w-full">
+        <img src="logo.jpg" alt="Logo" class="h-24 mb-3 rounded-lg shadow-xl"
+             data-aos="zoom-in" data-aos-delay="100">
+        <p class="text-lg opacity-90 leading-tight"
+           data-aos="fade-up" data-aos-delay="200">
+          Founded in 2022, <strong class="text-yellow-400">Venkateshwara</strong> – Pune’s tensile experts.
+        </p>
+        <div class="flex space-x-3 mt-4" data-aos="fade-up" data-aos-delay="300">
+          <a href="#" class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center hover:bg-yellow-400"><i data-feather="twitter" class="w-5 h-5"></i></a>
+          <a href="#" class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center hover:bg-yellow-400"><i data-feather="facebook" class="w-5 h-5"></i></a>
+          <a href="#" class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center hover:bg-yellow-400"><i data-feather="instagram" class="w-5 h-5"></i></a>
+          <a href="#" class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center hover:bg-yellow-400"><i data-feather="linkedin" class="w-5 h-5"></i></a>
+        </div>
+      </div>
+
+      <!-- 2. PRODUCTS -->
+      <div data-aos="fade-up" data-aos-delay="100">
+        <h3 class="text-xl font-bold mb-3 text-yellow-400">Products</h3>
+        <ul class="space-y-1.5 text-lg">
+          <li data-aos="fade-right" data-aos-delay="150"><a href="fabrication.html" class="opacity-80 hover:text-yellow-400">Fabrication</a></li>
+          <li data-aos="fade-right" data-aos-delay="200"><a href="civil-work.html" class="opacity-80 hover:text-yellow-400">Civil Work</a></li>
+          <li data-aos="fade-right" data-aos-delay="250"><a href="interior.html" class="opacity-80 hover:text-yellow-400">Interiors</a></li>
+          <li data-aos="fade-right" data-aos-delay="300"><a href="exterior.html" class="opacity-80 hover:text-yellow-400">Exteriors</a></li>
+          <li data-aos="fade-right" data-aos-delay="350"><a href="other-services.html" class="opacity-80 hover:text-yellow-400">Other Services</a></li>
+        </ul>
+      </div>
+      <!-- 3. LINKS -->
+      <div data-aos="fade-up" data-aos-delay="200">
+        <h3 class="text-xl font-bold mb-3 text-yellow-400">Quick Links</h3>
+        <ul class="space-y-1.5 text-lg">
+          <li data-aos="fade-left" data-aos-delay="100"><a href="index.html"   class="opacity-80 hover:text-yellow-400">Home</a></li>
+          <li data-aos="fade-left" data-aos-delay="150"><a href="about.html"   class="opacity-80 hover:text-yellow-400">About</a></li>
+          <li data-aos="fade-left" data-aos-delay="200"><a href="products.html" class="opacity-80 hover:text-yellow-400">Products</a></li>
+          <li data-aos="fade-left" data-aos-delay="250"><a href="contact.html" class="opacity-80 hover:text-yellow-400">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- 4. CONTACT -->
+      <div data-aos="fade-up" data-aos-delay="300">
+        <h3 class="text-xl font-bold mb-3 text-yellow-400">Visit Us</h3>
+        <div class="text-lg space-y-2">
+          <p class="opacity-80 flex items-center gap-2" data-aos="flip-up" data-aos-delay="100">
+            <i data-feather="phone" class="w-3.5 h-3.5 text-yellow-400"></i> +91 80476 93560
+          </p>
+          <p class="opacity-80 flex items-start gap-2" data-aos="flip-up" data-aos-delay="200">
+            <i data-feather="map-pin" class="w-3.5 h-3.5 text-yellow-400 mt-0.5"></i>
+            Dehu Alandi Rd,<br>Pune-411062
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- COPYRIGHT -->
+    <div class="text-center mt-8 pt-5 border-t border-slate-800 text-xs opacity-70"
+         data-aos="fade-up" data-aos-delay="400">
+      © 2025 Venkateshwara Corporation • Developed by DWInnovations Pvt. Ltd. • Pune
+    </div>
+  </div>
+</footer>
+
+  <script src="components/navbar.js"></script>
+  <script>
+    feather.replace();
+  </script>
+</body>
+</html>

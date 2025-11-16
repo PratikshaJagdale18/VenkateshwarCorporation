@@ -16,7 +16,9 @@
       --silver: #e2e8f0;
     }
     body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
-
+.bg{
+  color: rgb(17, 17, 35);
+}
     /* ONLY THIS PART CHANGED — GOLDEN SWOOSH EFFECT */
     .story-box {
       perspective: 1000px;
@@ -50,6 +52,43 @@
       to { width: 100%; }
     }
 
+@keyframes flyLeft {
+  from { transform: translateX(-80px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes flyRight {
+  from { transform: translateX(80px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes flyUpCenter {
+  from { transform: translateY(80px) scale(0.95); opacity: 0; }
+  to { transform: translateY(0) scale(1.05); opacity: 1; }
+}
+
+.feature-card {
+  transition: 0.5s ease;
+}
+
+
+
+/* Mobile Tap */
+@media (max-width: 768px) {
+  .why-card:active .why-icon { opacity: 0; transform: translateY(-30px) scale(0); }
+  .why-card:active .why-content { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}/* SCROLL ANIMATIONS — SUPER SMOOTH */
+[data-aos] {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+[data-aos="fade-up"] { transform: translateY(60px); }
+[data-aos="zoom-in"] { transform: scale(0.8); }
+.aos-animate {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+}
     /* BAKI SAB PURANA HI HAI */
     #imageSlider { 
       position: relative; width: 100%; height: 420px; overflow: hidden; 
@@ -69,14 +108,198 @@
     [data-aos] { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.4,0,0.2,1); }
     .aos-animate { opacity: 1 !important; transform: translateY(0) !important; }
    
+/* Hide scrollbar for Chrome, Safari and Opera */
+#sliderContainer::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+#sliderContainer {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+.hh-container {
+  perspective: 1500px;
+  padding: 0 2rem;
+}
+.hh-slider {
+  display: flex;
+  width: 100%;
+}
+.hh-card {
+  flex: 0 0 33.333%;
+  padding: 0 1rem;
+  opacity: 0.65;
+  transform: scale(0.82) translateZ(-120px) rotateY(10deg);
+  filter: blur(1.5px);
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.hh-card.active {
+  opacity: 1;
+  transform: scale(1.12) translateZ(100px) rotateY(0);
+  filter: blur(0);
+  z-index: 20;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.25);
+}
+.hh-card:nth-child(even) {
+  transform: scale(0.82) translateZ(-120px) rotateY(-10deg);
+}
+.hh-inner {
+  background: white;
+  padding: 2rem 1.8rem;
+  border-radius: 16px;
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+  transition: box-shadow 0.4s ease;
+}
+.hh-inner:hover {
+  box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+}
+.quote {
+  font-size: 4.5rem;
+  line-height: 0.8;
+  font-weight: 900;
+  color: #1f2937;
+}
+.hh-inner p {
+  font-size: 0.925rem;
+  line-height: 1.7;
+  color: #4b5563;
+  margin: 1rem 0;
+  flex-grow: 1;
+}
+.hh-inner h4 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #111827;
+  margin-top: 0.5rem;
+}
+
+/* Navigation Arrows */
+.hh-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.65);
+  color: white;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 30;
+  backdrop-filter: blur(8px);
+  border: 2px solid rgba(255,255,255,0.2);
+}
+.hh-prev { left: 1rem; }
+.hh-next { right: 1rem; }
+.hh-container:hover .hh-nav {
+  opacity: 1 !important;
+}
+
+/* Dots */
+#hh-dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.5);
+  transition: all 0.4s ease;
+}
+#hh-dots span.active {
+  background: white;
+  width: 36px;
+  border-radius: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hh-container { padding: 0 1rem; }
+  .hh-card { flex: 0 0 80%; }
+  .hh-card.active { transform: scale(1.05) translateZ(50px); }
+  .hh-nav { width: 44px; height: 44px; font-size: 1.4rem; }
+  .quote { font-size: 3.5rem; }
+}footer [data-aos] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
   </style>
 </head>
-<body class="bg-gradient-to-b from-gray-50 to-white">
+<body class="bg-gradient-to-b from-slate-900 to-slate-800 text-white overflow-x-hidden">
 
-  <custom-navbar></custom-navbar>
+  <!-- FLOATING LOGO + NAVBAR WRAPPER -->
+<div class="relative w-full flex justify-center z-[9999]">
+    <img src="logo1.png" class="absolute -top-1 w-60 drop-shadow-xl" alt="Logo">
+</div>
+
+<!-- WHITE CURVED NAVBAR -->
+<nav class="relative z-[999] mx-auto mt-36 w-[75%] bg-white bg-opacity-95 backdrop-blur-xl
+            rounded-full py-2 px-10 shadow-xl flex items-center justify-between">
+
+    <ul class="flex gap-20 ml-16  font-bold text-gray-700">
+      
+ <li class="text-black border-b-4 border-yellow-400 pb-1 text-lg cursor-pointer">
+  <a href="index.html" class="block w-full h-full">Home</a>
+</li>
+         <li class="text-black border-b-4 border-yellow-400 pb-1 text-lg cursor-pointer">
+  <a href="about.html" class="block w-full h-full">About</a>
+
+</li> <li class="relative group text-black border-b-4 border-yellow-400 pb-1 text-lg cursor-pointer">
+
+  <a href="products.html" class="block w-full h-full">Product ▾</a>
+
+  <!-- DROPDOWN -->
+  <ul class="absolute left-0 top-full mt-2 w-52 bg-white shadow-xl rounded-xl 
+             opacity-0 invisible group-hover:opacity-100 group-hover:visible 
+             transition-all duration-300">
+
+    <li><a href="fabrication.html" class="block px-4 py-2 hover:bg-yellow-100">Fabrication</a></li>
+    <li><a href="civil-work.html" class="block px-4 py-2 hover:bg-yellow-100">Civil Work</a></li>
+    <li><a href="interior.html" class="block px-4 py-2 hover:bg-yellow-100">Interiors</a></li>
+    <li><a href="exterior.html" class="block px-4 py-2 hover:bg-yellow-100">Exteriors</a></li>
+    <li><a href="other-services.html" class="block px-4 py-2 hover:bg-yellow-100">Other Services</a></li>
+
+  </ul>
+
+</li>
+
+
+        
+         <li class="text-black border-b-4 border-yellow-400 text-lg pb-1 cursor-pointer">
+  <a href="contact.html" class="block w-full h-full">Contact</a>
+
+       
+    </ul>
+
+    <div class="relative flex items-center mr-12">
+  <input 
+    type="text"
+    placeholder="Search..."
+    class="px-4 py-2 w-60 md:w-64  rounded-full border border-gray-300 
+           focus:outline-none focus:ring-2 focus:ring-yellow-500 text-gray-700"
+  >
+  
+  <button class="absolute right-2 text-yellow-500 hover:text-yellow-600">
+    <svg xmlns="http://www.w3.org/2000/svg" 
+         class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+            d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1011 18.5a7.5 7.5 0 005.65-2.85z" />
+    </svg>
+  </button>
+</div>
+
+</nav>
 
   <!-- HERO (UNCHANGED) -->
-  <section class="relative h-screen overflow-hidden">
+  <section class="relative h-screen mt-10 overflow-hidden">
     <div id="ken-carousel" class="absolute inset-0 -z-10">
       <img src="images/about hero.jpg" class="ken-img active" alt="Factory">
       <img src="images/about hero4.jpg" class="ken-img" alt="Team">
@@ -84,11 +307,11 @@
     </div>
     <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/90"></div>
     <div class="container mx-auto px-6 h-full flex flex-col justify-center items-center text-center relative z-10">
-      <h2 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight" data-aos="fade-down">
+      <h2 class="text-5xl md:text-8xl font-medium text-white mb-6 leading-tight" data-aos="fade-down">
         About <span style="color: var(--gold);">Venkateshwara</span><br>
-        <span class="text-4xl md:text-6xl block mt-2">Corporation</span>
+        <span class="text-5xl md:text-8xl block mt-2">Corporation</span>
       </h2>
-      <p class="text-xl md:text-2xl text-gray-200 max-w-3xl font-light" data-aos="fade-up" data-aos-delay="300">
+      <p class="text-xl md:text-3xl text-gray-200 max-w-3xl font-light" data-aos="fade-up" data-aos-delay="300">
         500+ shelters. 3-year warranty. 24/7 support.
       </p>
       <div class="w-32 h-1 mt-8 rounded-full" style="background: var(--gold); box-shadow: 0 0 20px rgba(245,158,11,0.8);" data-aos="zoom-in" data-aos-delay="500"></div>
@@ -98,39 +321,85 @@
   <!-- ONLY ABOUT SECTION CHANGED -->
   <section class="py-16 bg-white">
     <div class="container mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-10">
+      About Venkateshwara Corporation
+    </h2>
+
       <div class="grid lg:grid-cols-2 gap-12 items-center">
 
         <!-- LEFT: NEW SWOOSH EFFECT -->
-        <div class="space-y-10">
-          <div class="story-box text-xl md:text-2xl leading-relaxed text-gray-700">
-            <div class="story-line">
-              From a single monsoon-night rescue in 2022,<br>
-              <span class="gold">Venkateshwara Corporation</span> has erected
-            </div>
-            <div class="story-line">
-              <span class="gold">500+ tensile masterpieces</span> across Maharashtra —
-            </div>
-            <div class="story-line">
-              shielding factories from 50°C heat, balconies from 200 km/h storms,and stadiums from million-litre downpours.<br>
-            </div>
-            <div class="story-line">
-              
-              <span class="gold">German precision. Indian speed. Zero excuses.</span>
-            </div>
-          </div>
+       <!-- LEFT: TYPEWRITER EFFECT -->
+<div class="space-y-10">
 
-          <a href="contact.html" 
-             class="group inline-flex items-center gap-4 px-12 py-5 
-                    font-bold text-xl rounded-full 
-                    shadow-2xl overflow-hidden transform hover:scale-110 
-                    transition-all duration-500" style="background: var(--gold); color: var(--navy);">
-            <span class="relative z-10">Contact Us Today</span>
-            <svg class="w-7 h-7 group-hover:translate-x-2 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-            </svg>
-            <span class="absolute inset-0 rounded-full animate-ping opacity-75" style="background: rgba(245, 158, 11, 0.8);"></span>
-          </a>
-        </div>
+  <div class="text-lg md:text-xl leading-relaxed text-gray-700 opacity-0 transition-opacity duration-700"
+       id="aboutContainer">
+    <p id="typewriterText" class="whitespace-pre-line"></p>
+  </div>
+
+  <a href="contact.html" 
+     class="group inline-flex items-center gap-4 px-12 py-5 
+            font-bold text-xl rounded-full 
+            shadow-2xl overflow-hidden transform hover:scale-110 
+            transition-all duration-500" style="background: var(--gold); color: var(--navy);">
+    <span class="relative z-10">Contact Us Today</span>
+    <svg class="w-7 h-7 group-hover:translate-x-2 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+    </svg>
+    <span class="absolute inset-0 rounded-full animate-ping opacity-75" style="background: rgba(245, 158, 11, 0.8);"></span>
+  </a>
+
+</div>
+<script>
+// Final About Section Text
+const aboutText = `Established in 2022, Venkateshwara Corporation is a trusted service provider 
+specializing in Balcony Sheds, Industrial Sheds, Car Parking Awnings, 
+Terrace Sheds, Tensile Structures, Prefabricated Sheds, Fabrication Services, and more.
+
+Over the years, we have built a strong customer base through our service 
+network across India and our commitment to complete customer satisfaction.
+
+Under the guidance of our CEO, Mr. Nilesh Ashok Konde, the company continues to grow with a solid presence in the market, backed by deep industry  experience and reliable project delivery.`;
+
+// Select Elements
+const aboutContainer = document.getElementById("aboutContainer");
+const typewriterElement = document.getElementById("typewriterText");
+
+let index = 0;
+let started = false; // ensure animation runs only once
+const typingSpeed = 40; // speed of typewriter
+
+// Typewriter Function
+function typeWriter() {
+  if (index < aboutText.length) {
+    typewriterElement.textContent += aboutText.charAt(index);
+    index++;
+    setTimeout(typeWriter, typingSpeed);
+  }
+}
+
+// Scroll Trigger using IntersectionObserver
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && !started) {
+        started = true;
+
+        // Start fade-in
+        aboutContainer.classList.remove("opacity-0");
+        aboutContainer.classList.add("opacity-100");
+
+        // Start typewriter after fade begins
+        setTimeout(typeWriter, 300);
+      }
+    });
+  },
+  { threshold: 0.3 } // triggers when 30% is visible
+);
+
+// Observe About Section container
+observer.observe(aboutContainer);
+</script>
+
 
         <!-- RIGHT: SLIDER (UNCHANGED) -->
         <div id="imageSlider" class="relative" data-aos="fade-left" data-aos-delay="400">
@@ -153,128 +422,415 @@
       </div>
     </div>
   </section>
-<!-- MISSION VISION VALUES – NOW WITH SAME SLIDER AS ABOUT PAGE -->
-<section class="py-16 relative overflow-hidden bg-slate-50">
+
+<section class="py-24 bg-white">
   <div class="container mx-auto px-6">
-    <div class="text-center mb-16" data-aos="fade-up">
-      <h2 class="text-5xl md:text-6xl font-semibold text-gray-900 mb-4">
-        Our <span style="color: var(--gold);">Mission</span>, Vision & Values
+
+    <!-- SECTION TITLE -->
+    <div class="text-center mb-16">
+      <h5 class="tracking-widest text-gray-500 mb-2">ABOUT US</h5>
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        WHAT SETS US APART?
       </h2>
-      <div class="w-48 h-1 mx-auto mt-6 rounded-full shadow-2xl" style="background: var(--gold);"></div>
+      <p class="text-gray-500 max-w-2xl mx-auto">
+        At Venkateshwara Corporation, we take pride in offering more than just tensile structures — we deliver trust, precision, and long-lasting durability.
+      </p>
     </div>
 
-    <div class="grid md:grid-cols-12 gap-6 max-w-7xl mx-auto">
+    <!-- CARDS -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
 
-      <!-- LEFT CARDS -->
-      <div class="md:col-span-3 space-y-6">
-        <div class="bg-gradient-to-br from-slate-900 to-black p-8 rounded-2xl shadow-2xl border-2" style="border-color: rgba(245, 158, 11, 0.4);" data-aos="fade-right" data-aos-delay="100">
-          <div class="rounded-full flex items-center justify-center mb-5 shadow-xl" style="width: 4rem; height: 4rem; background: var(--gold);">
-            <svg class="w-10 h-10 text-slate-900" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
-          </div>
-          <h3 class="text-2xl font-bold mb-3" style="color: var(--gold);">Integrity First</h3>
-          <p class="text-gray-300 text-sm leading-relaxed">Every weld, every promise — delivered with honesty and German precision.</p>
-        </div>
-        <div class="bg-gradient-to-br from-slate-900 to-black p-8 rounded-2xl shadow-2xl border-2" style="border-color: rgba(245, 158, 11, 0.4);" data-aos="fade-right" data-aos-delay="300">
-          <div class="rounded-full flex items-center justify-center mb-5 shadow-xl" style="width: 4rem; height: 4rem; background: var(--gold);">
-            <svg class="w-10 h-10 text-slate-900" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 12h3v8h14v-8h3L12 2zm0 2.8L19.2 12H16v6H8v-6H4.8L12 4.8z"/></svg>
-          </div>
-          <h3 class="text-2xl font-bold mb-3" style="color: var(--gold);">Quality Shelter</h3>
-          <p class="text-gray-300 text-sm leading-relaxed">3-Year warranty on every tensile structure — rain, sun, or storm.</p>
-        </div>
+      <!-- CARD 1 -->
+      <div class="feature-card p-10 bg-white rounded-2xl shadow-lg text-center opacity-0"
+           data-fly="left">
+        <div class="text-4xl font-bold text-blue-900 mb-6">01</div>
+        <h3 class="text-xl font-semibold text-gray-900 mb-3">
+          Quality Assurance
+        </h3>
+        <p class="text-gray-500 leading-relaxed">
+          Every project is executed using high-grade materials and precise engineering to ensure long-term durability.
+        </p>
+        
       </div>
 
-      <!-- CENTER: SAME SLIDER AS ABOUT PAGE -->
-      <!-- CENTER: SLIDER THAT AUTO-MATCHES CARD HEIGHT -->
-<div class="md:col-span-6" data-aos="zoom-in" data-aos-delay="500">
-  <div id="valuesSlider" class="relative overflow-hidden rounded-3xl shadow-3xl h-full" style="border: 8px solid rgba(245, 158, 11, 0.4);">
-    <div class="slide active"><img src="images/about hero4.jpg" alt="Team" class="w-full h-full object-cover"></div>
-    <div class="slide"><img src="images/about hero.jpg" alt="Factory" class="w-full h-full object-cover"></div>
-    <div class="slide"><img src="images/about hero3.jpg" alt="Installation" class="w-full h-full object-cover"></div>
-    <div class="slide"><img src="images/img1.jpg" alt="Clients" class="w-full h-full object-cover"></div>
-    <div class="slide"><img src="images/img3.jpg" alt="Design" class="w-full h-full object-cover"></div>
-
-    <!-- GOLD DOTS -->
-    <div class="dots absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-      <span class="dot active w-3 h-3 rounded-full cursor-pointer" data-index="0" style="background: var(--gold);"></span>
-      <span class="dot w-3 h-3 bg-gray-400 rounded-full cursor-pointer" data-index="1"></span>
-      <span class="dot w-3 h-3 bg-gray-400 rounded-full cursor-pointer" data-index="2"></span>
-      <span class="dot w-3 h-3 bg-gray-400 rounded-full cursor-pointer" data-index="3"></span>
-      <span class="dot w-3 h-3 bg-gray-400 rounded-full cursor-pointer" data-index="4"></span>
-    </div>
-
-    <!-- TEXT OVERLAY -->
-    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent rounded-3xl pointer-events-none"></div>
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-center">
-      <p class="text-white text-2xl font-bold drop-shadow-2xl">500+ Happy Clients</p>
-      <p class="text-sm mt-2 drop-shadow-xl" style="color: var(--gold);">Trusted Across Maharashtra</p>
-    </div>
-  </div>
-</div>
-
-      <!-- RIGHT CARDS -->
-      <div class="md:col-span-3 space-y-6">
-        <div class="bg-gradient-to-br from-slate-900 to-black p-8 rounded-2xl shadow-2xl border-2" style="border-color: rgba(245, 158, 11, 0.4);" data-aos="fade-left" data-aos-delay="100">
-          <div class="rounded-full flex items-center justify-center mb-5 shadow-xl" style="width: 4rem; height: 4rem; background: var(--gold);">
-            <svg class="w-10 h-10 text-slate-900" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          </div>
-          <h3 class="text-2xl font-bold mb-3" style="color: var(--gold);">Innovation</h3>
-          <p class="text-gray-300 text-sm leading-relaxed">Cutting-edge tensile designs that redefine Indian architecture.</p>
-        </div>
-        <div class="bg-gradient-to-br from-slate-900 to-black p-8 rounded-2xl shadow-2xl border-2" style="border-color: rgba(245, 158, 11, 0.4);" data-aos="fade-left" data-aos-delay="300">
-          <div class="rounded-full flex items-center justify-center mb-5 shadow-xl" style="width: 4rem; height: 4rem; background: var(--gold);">
-            <svg class="w-10 h-10 text-slate-900" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-          </div>
-          <h3 class="text-2xl font-bold mb-3" style="color: var(--gold);">Excellence</h3>
-          <p class="text-gray-300 text-sm leading-relaxed">Zero-compromise craftsmanship in every balcony, factory & stadium.</p>
-        </div>
+      <!-- CARD 2 (CENTER) -->
+      <div class="feature-card p-10 bg-white rounded-2xl shadow-lg text-center opacity-0 scale-105"
+           data-fly="center">
+        <div class="text-4xl font-bold text-blue-900 mb-6">02</div>
+        <h3 class="text-xl font-semibold text-gray-900 mb-3">
+          Exclusive Designs
+        </h3>
+        <p class="text-gray-500 leading-relaxed">
+          We deliver uniquely engineered tensile designs tailored to residential, commercial, and industrial needs.
+        </p>
+       
       </div>
+
+      <!-- CARD 3 -->
+      <div class="feature-card p-10 bg-white rounded-2xl shadow-lg text-center opacity-0"
+           data-fly="right">
+        <div class="text-4xl font-bold text-blue-900 mb-6">03</div>
+        <h3 class="text-xl font-semibold text-gray-900 mb-3">
+          Ease of Maintenance
+        </h3>
+        <p class="text-gray-500 leading-relaxed">
+          Our structures are designed to be weather-resistant and low-maintenance, making them easy to clean and long lasting.
+        </p>
+        
+      </div>
+
     </div>
   </div>
 </section>
-  <script>
-  // VALUES SLIDER – EXACT SAME AS ABOUT PAGE
-  const valuesSlides = document.querySelectorAll('#valuesSlider .slide');
-  const valuesDots = document.querySelectorAll('#valuesSlider .dot');
-  let valuesIndex = 0;
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const cards = document.querySelectorAll(".feature-card");
 
-  const showValueSlide = (n) => {
-    valuesSlides[valuesIndex].classList.remove('active');
-    valuesDots[valuesIndex].classList.remove('active', 'bg-yellow-400');
-    valuesDots[valuesIndex].classList.add('bg-gray-400');
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const card = entry.target;
+          const type = card.getAttribute("data-fly");
 
-    valuesIndex = (n + valuesSlides.length) % valuesSlides.length;
+          if (type === "left") card.style.animation = "flyLeft 0.8s ease forwards";
+          if (type === "right") card.style.animation = "flyRight 0.8s ease forwards";
+          if (type === "center") card.style.animation = "flyUpCenter 0.8s ease forwards";
 
-    valuesSlides[valuesIndex].classList.add('active');
-    valuesDots[valuesIndex].classList.add('active', 'bg-yellow-400');
-    valuesDots[valuesIndex].classList.remove('bg-gray-400');
-  };
+          observer.unobserve(card);
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
 
-  setInterval(() => showValueSlide(valuesIndex + 1), 3000);
-
-  valuesDots.forEach((dot, i) => {
-    dot.addEventListener('click', () => showValueSlide(i));
-  });
+  cards.forEach((card) => observer.observe(card));
+});
 </script>
 
-  <!-- CTA (UNCHANGED) -->
-  <section class="relative py-32 text-center bg-cover bg-center" style="background-image: url('images/hero5.jpg');">
-    <div class="absolute inset-0 bg-gray-900/80"></div>
-    <div class="relative z-10 container mx-auto px-6">
-      <h2 class="text-5xl md:text-6xl font-semibold text-white mb-6 drop-shadow-2xl" data-aos="fade-up">
-        Ready for Your <span style="color: var(--gold);">Dream Shelter</span>?
-      </h2>
-      <p class="text-xl md:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto leading-relaxed">
-        Contact us today for quotes, designs, and expert guidance.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-6 justify-center items-center" data-aos="zoom-in">
-        <a href="contact.html" class="inline-flex items-center gap-3 text-gray-900 font-bold py-5 px-12 rounded-full text-lg shadow-2xl transform hover:scale-105 transition-all" style="background: var(--gold);">
-          Contact Now
+<!-- TESTIMONIALS SECTION - CINEMATIC 3-CARD CAROUSEL -->
+<section class="py-20 bg-gradient-to-b from-[#f7e7b3] to-[#f1d388] overflow-hidden"
+>
+  <h2 class="text-center text-3xl md:text-4xl font-bold text-gray-900 mb-16 tracking-widest drop-shadow-lg">
+   What Our Customers Say
+  </h2>
+
+  <div class="hh-container relative mx-auto max-w-7xl px-4 md:px-8">
+    <div id="hh-slider" class="hh-slider flex transition-transform duration-700 ease-out">
+
+      <!-- CARD 1 -->
+      <div class="hh-card">
+        <div class="hh-inner">
+          <div class="quote text-6xl text-gray-800 mb-3 leading-none">“</div>
+          <p class="text-sm md:text-base leading-relaxed text-gray-700">
+            It just arrived and I love my new throw SO MUCH!!!!! Freaking out over how perfect it looks - thank you for being so kind about me changing my mind about the one I originally ordered. This is definitely the right one!!!
+          </p>
+          <h4 class="font-bold text-gray-900 mt-4 text-lg">Christina</h4>
+          <div class="flex justify-center gap-1 mt-2">
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-yellow-500 text-lg">★</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="hh-card">
+        <div class="hh-inner">
+          <div class="quote text-6xl text-gray-800 mb-3 leading-none">“</div>
+          <p class="text-sm md:text-base leading-relaxed text-gray-700">
+            Gorgeousness arrived in the mail yesterday! We love, love, love this throw. Just the design and punch of color we needed. Just lovely. Happy habitats! Thank you so much for your kind and thoughtful service and such a beauty to dwell on.
+          </p>
+          <h4 class="font-bold text-gray-900 mt-4 text-lg">Cheryl</h4>
+          <div class="flex justify-center gap-1 mt-2">
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-gray-400 text-lg">★</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="hh-card">
+        <div class="hh-inner">
+          <div class="quote text-6xl text-gray-800 mb-3 leading-none">“</div>
+          <p class="text-sm md:text-base leading-relaxed text-gray-700">
+            This ain’t no skanky Amazon blanket.
+          </p>
+          <h4 class="font-bold text-gray-900 mt-4 text-lg">Antonia</h4>
+          <div class="flex justify-center gap-1 mt-2">
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-yellow-500 text-lg">★</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 4 -->
+      <div class="hh-card">
+        <div class="hh-inner">
+          <div class="quote text-6xl text-gray-800 mb-3 leading-none">“</div>
+          <p class="text-sm md:text-base leading-relaxed text-gray-700">
+            Super comfy and perfect for my living room!
+          </p>
+          <h4 class="font-bold text-gray-900 mt-4 text-lg">Aarav</h4>
+          <div class="flex justify-center gap-1 mt-2">
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-yellow-500 text-lg">★</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 5 -->
+      <div class="hh-card">
+        <div class="hh-inner">
+          <div class="quote text-6xl text-gray-800 mb-3 leading-none">“</div>
+          <p class="text-sm md:text-base leading-relaxed text-gray-700">
+            Excellent quality and fast delivery. Highly recommend!
+          </p>
+          <h4 class="font-bold text-gray-900 mt-4 text-lg">Rajesh</h4>
+          <div class="flex justify-center gap-1 mt-2">
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-yellow-500 text-lg">★</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 6 -->
+      <div class="hh-card">
+        <div class="hh-inner">
+          <div class="quote text-6xl text-gray-800 mb-3 leading-none">“</div>
+          <p class="text-sm md:text-base leading-relaxed text-gray-700">
+            The tensile structure transformed our space beautifully.
+          </p>
+          <h4 class="font-bold text-gray-900 mt-4 text-lg">Priya</h4>
+          <div class="flex justify-center gap-1 mt-2">
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-gray-400 text-lg">★</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 7 -->
+      <div class="hh-card">
+        <div class="hh-inner">
+          <div class="quote text-6xl text-gray-800 mb-3 leading-none">“</div>
+          <p class="text-sm md:text-base leading-relaxed text-gray-700">
+            Professional team and durable products. Worth every penny.
+          </p>
+          <h4 class="font-bold text-gray-900 mt-4 text-lg">Amit</h4>
+          <div class="flex justify-center gap-1 mt-2">
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-yellow-500 text-lg">★</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 8 -->
+      <div class="hh-card">
+        <div class="hh-inner">
+          <div class="quote text-6xl text-gray-800 mb-3 leading-none">“</div>
+          <p class="text-sm md:text-base leading-relaxed text-gray-700">
+            Impressed with the design and installation process.
+          </p>
+          <h4 class="font-bold text-gray-900 mt-4 text-lg">Neha</h4>
+          <div class="flex justify-center gap-1 mt-2">
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-yellow-500 text-lg">★</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 9 -->
+      <div class="hh-card">
+        <div class="hh-inner">
+          <div class="quote text-6xl text-gray-800 mb-3 leading-none">“</div>
+          <p class="text-sm md:text-base leading-relaxed text-gray-700">
+            Top-notch service from start to finish!
+          </p>
+          <h4 class="font-bold text-gray-900 mt-4 text-lg">Vikram</h4>
+          <div class="flex justify-center gap-1 mt-2">
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-yellow-500 text-lg">★</span>
+            <span class="text-yellow-500 text-lg">★</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- NAVIGATION ARROWS -->
+    <div class="hh-nav hh-prev opacity-0 transition-opacity duration-300 hidden"></div>
+    <div class="hh-nav hh-next opacity-0 transition-opacity duration-300 hidden"></div>
+
+    <!-- DOTS -->
+    <div id="hh-dots" class="flex justify-center gap-3 mt-12"></div>
+  </div>
+</section>
+<script>
+(function () {
+
+  const slider = document.getElementById("hh-slider");
+  const container = document.querySelector(".hh-container");
+  const cards = [...document.querySelectorAll(".hh-card:not(.clone)")];
+  const dotsContainer = document.getElementById("hh-dots");
+  const prevBtn = document.querySelector(".hh-prev");
+  const nextBtn = document.querySelector(".hh-next");
+
+  let index = 1; 
+  let isTransitioning = false;
+
+  // Clone First + Last for infinite loop
+  const firstClone = cards[0].cloneNode(true);
+  const lastClone = cards[cards.length - 1].cloneNode(true);
+
+  firstClone.classList.add("clone");
+  lastClone.classList.add("clone");
+
+  slider.insertBefore(lastClone, slider.firstChild);
+  slider.appendChild(firstClone);
+
+  const allCards = document.querySelectorAll(".hh-card");
+
+  // Set starting position  
+  slider.style.transform = `translateX(-33.333%)`;
+
+  // Create dots
+  cards.forEach((_, i) => {
+    const dot = document.createElement("span");
+    dot.className = "h-3 w-3 bg-gray-400 rounded-full cursor-pointer transition-all";
+    dot.addEventListener("click", () => goTo(i + 1));
+    dotsContainer.appendChild(dot);
+  });
+
+  const dots = dotsContainer.querySelectorAll("span");
+
+  function updateUI() {
+    allCards.forEach((card, i) => {
+      card.classList.toggle("active", i === index);
+    });
+    dots.forEach((dot, i) => {
+      dot.classList.toggle("bg-gray-800", i + 1 === index);
+      dot.classList.toggle("bg-gray-400", i + 1 !== index);
+    });
+  }
+
+  function goTo(i) {
+    index = i;
+    slide();
+  }
+
+  function slide() {
+    if (isTransitioning) return;
+    isTransitioning = true;
+
+    slider.style.transition = "transform 0.7s ease";
+    slider.style.transform = `translateX(-${index * 33.333}%)`;
+  }
+
+  // Infinite Loop Handling
+  slider.addEventListener("transitionend", () => {
+    isTransitioning = false;
+
+    if (allCards[index].classList.contains("clone")) {
+      slider.style.transition = "none";
+      index = index === 0 ? cards.length : 1;
+      slider.style.transform = `translateX(-${index * 33.333}%)`;
+    }
+
+    updateUI();
+  });
+
+  // Next / Prev buttons
+  function next() {
+    if (isTransitioning) return;
+    index++;
+    slide();
+  }
+
+  function prev() {
+    if (isTransitioning) return;
+    index--;
+    slide();
+  }
+
+  prevBtn.addEventListener("click", prev);
+  nextBtn.addEventListener("click", next);
+
+  // Auto Play Infinite
+  let auto = setInterval(next, 2000);
+
+  container.addEventListener("mouseenter", () => clearInterval(auto));
+  container.addEventListener("mouseleave", () => auto = setInterval(next, 2000));
+
+  updateUI();
+
+})();
+</script>
+
+
+   <!-- CTA -->
+  <section class="w-full py-20 px-6 md:px-16">
+  <div class="max-w-7xl mx-auto rounded-3xl overflow-hidden"
+       style="background: linear-gradient(90deg, #f8e1b6 0%, #b57ba6 100%);">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 items-center px-10 md:px-20 py-16 gap-10">
+
+      <!-- LEFT TEXT -->
+      <div>
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">
+          Contact Us to<br>Learn More!
+        </h2>
+
+        <p class="text-gray-800 text-lg leading-relaxed mb-8">
+          Partner with Venkateshwara Corporation to bring premium tensile solutions
+          to your space. Let us help your organization thrive with modern designs,
+          durable materials, and expert engineering.
+        </p>
+
+        <a href="contact.html"
+           class="inline-flex items-center gap-2 bg-purple-700 hover:bg-purple-800
+                  text-white font-semibold text-lg px-8 py-4 rounded-full transition">
+          Contact Us
+          <span>➜</span>
         </a>
       </div>
-    </div>
-    <div class="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-transparent via-yellow-400 to-transparent"></div>
-  </section>
 
+      <!-- RIGHT IMAGE SECTION -->
+      <div class="flex justify-center md:justify-end">
+        <img src="" class="h-80 md:h-96 object-contain -mr-6" alt="">
+        <img src="images/about hero4.jpg" class="h-80 md:h-96 object-contain" alt="">
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+  <!-- FOOTER -->
   <!-- FOOTER -->
   <footer class="bg-slate-900 text-white relative overflow-hidden">
   <!-- ANIMATED SILVER WAVE (kept exactly as you love it) -->
@@ -310,10 +866,10 @@
           Founded in 2022, <strong class="text-yellow-400">Venkateshwara</strong> – Pune’s tensile experts.
         </p>
         <div class="flex space-x-3 mt-4" data-aos="fade-up" data-aos-delay="300">
-          <a href="#" class="w-10 h-10 bg-slate-700 rounded-full flex-center hover:bg-yellow-400"><i data-feather="twitter" class="w-5 h-5"></i></a>
-          <a href="#" class="w-10 h-10 bg-slate-700 rounded-full flex-center hover:bg-yellow-400"><i data-feather="facebook" class="w-5 h-5"></i></a>
-          <a href="#" class="w-10 h-10 bg-slate-700 rounded-full flex-center hover:bg-yellow-400"><i data-feather="instagram" class="w-5 h-5"></i></a>
-          <a href="#" class="w-10 h-10 bg-slate-700 rounded-full flex-center hover:bg-yellow-400"><i data-feather="linkedin" class="w-5 h-5"></i></a>
+          <a href="#" class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center hover:bg-yellow-400"><i data-feather="twitter" class="w-5 h-5"></i></a>
+          <a href="#" class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center hover:bg-yellow-400"><i data-feather="facebook" class="w-5 h-5"></i></a>
+          <a href="#" class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center hover:bg-yellow-400"><i data-feather="instagram" class="w-5 h-5"></i></a>
+          <a href="#" class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center hover:bg-yellow-400"><i data-feather="linkedin" class="w-5 h-5"></i></a>
         </div>
       </div>
 
@@ -321,11 +877,11 @@
       <div data-aos="fade-up" data-aos-delay="100">
         <h3 class="text-xl font-bold mb-3 text-yellow-400">Products</h3>
         <ul class="space-y-1.5 text-lg">
-          <li data-aos="fade-right" data-aos-delay="150"><a href="#" class="opacity-80 hover:text-yellow-400">Tensile Membranes</a></li>
-          <li data-aos="fade-right" data-aos-delay="200"><a href="#" class="opacity-80 hover:text-yellow-400">Car Parking Shades</a></li>
-          <li data-aos="fade-right" data-aos-delay="250"><a href="#" class="opacity-80 hover:text-yellow-400">Pool Covers</a></li>
-          <li data-aos="fade-right" data-aos-delay="300"><a href="#" class="opacity-80 hover:text-yellow-400">Awnings</a></li>
-          <li data-aos="fade-right" data-aos-delay="350"><a href="#" class="opacity-80 hover:text-yellow-400">Pagoda Tents</a></li>
+          <li data-aos="fade-right" data-aos-delay="150"><a href="fabrication.html" class="opacity-80 hover:text-yellow-400">Fabrication</a></li>
+          <li data-aos="fade-right" data-aos-delay="200"><a href="civil-work.html" class="opacity-80 hover:text-yellow-400">Civil Work</a></li>
+          <li data-aos="fade-right" data-aos-delay="250"><a href="interior.html" class="opacity-80 hover:text-yellow-400">Interiors</a></li>
+          <li data-aos="fade-right" data-aos-delay="300"><a href="exterior.html" class="opacity-80 hover:text-yellow-400">Exteriors</a></li>
+          <li data-aos="fade-right" data-aos-delay="350"><a href="other-services.html" class="opacity-80 hover:text-yellow-400">Other Services</a></li>
         </ul>
       </div>
 
@@ -358,237 +914,12 @@
     <!-- COPYRIGHT -->
     <div class="text-center mt-8 pt-5 border-t border-slate-800 text-xs opacity-70"
          data-aos="fade-up" data-aos-delay="400">
-      © 2025 Venkateshwara Corporation • Developed by DWInnovations Pvt. Ltd. • Pune
+      © 2025 Venkateshwara Corporation • Developed by DWInnovations Pvt. Ltd.• Pune
     </div>
   </div>
 </footer>
 
-  <script>
-    class CustomNavbar extends HTMLElement {
-      connectedCallback() {
-        this.attachShadow({ mode: 'open' });
-        this.shadowRoot.innerHTML = `
-          <style>
-            :host {
-              display: block;
-              position: fixed;
-              top: 0; left: 0; right: 0;
-              z-index: 9999;
-              padding: 1.5rem 0;
-              background: rgba(255,255,255,0.95);
-              backdrop-filter: blur(12px);
-              transition: all 0.4s ease;
-              font-family: 'Inter', sans-serif;
-            }
-            :host(.scrolled) {
-              padding: 0.75rem 0;
-              background: rgba(255,255,255,0.95);
-              box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-            }
-            .nav-container {
-              max-width: 1400px;
-              margin: 0 auto;
-              padding: 0 1.5rem;
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-            }
-            .logo {
-              display: flex;
-              align-items: center;
-              gap: 0.75rem;
-              color: #111;
-              text-decoration: none;
-              font-weight: 500;
-              font-size: 1.5rem;
-            }
-            .logo img { height: 64px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2)); }
-            .logo span { color: #f59e0b; }
-            .nav-links { display: flex; gap: 2.5rem; }
-            .nav-link {
-              color: #222;
-              text-decoration: none;
-              font-weight: 600;
-              position: relative;
-              transition: color 0.3s;
-              cursor: pointer;
-            }
-            .nav-link:hover { color: #f59e0b; }
-            .nav-link::after {
-              content: '';
-              position: absolute;
-              width: 0; height: 3px;
-              bottom: -8px; left: 0;
-              background: #f59e0b;
-              transition: width 0.4s ease;
-            }
-            .nav-link:hover::after { width: 100%; }
 
-            /* Dropdown Styles */
-            .dropdown {
-              position: relative;
-            }
-            .dropdown-content {
-              display: none;
-              position: absolute;
-              top: 100%;
-              left: 50%;
-              background: rgba(255,255,255,0.98);
-              backdrop-filter: blur(15px);
-              min-width: 800px;
-              box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-              border-radius: 0.75rem;
-              z-index: 10000;
-              padding: 1rem;
-              margin-top: 0.75rem;
-              border: 1px solid rgba(245, 158, 11, 0.1);
-              opacity: 0;
-              transform: translateX(-50%) translateY(-10px);
-              transition: all 0.3s ease;
-              display: flex;
-              flex-direction: row;
-              gap: 1.5rem;
-            }
-            .dropdown:hover .dropdown-content {
-              display: flex;
-              opacity: 1;
-              transform: translateX(-50%) translateY(0);
-            }
-            .dropdown-section {
-              display: flex;
-              flex-direction: column;
-              min-width: 180px;
-            }
-            .dropdown-item {
-              display: block;
-              padding: 0.5rem 1rem;
-              color: #222;
-              text-decoration: none;
-              font-weight: 500;
-              transition: all 0.3s ease;
-              border-left: 3px solid transparent;
-              font-size: 0.9rem;
-            }
-            .dropdown-item:hover {
-              background: rgba(245, 158, 11, 0.1);
-              color: #f59e0b;
-              border-left-color: #f59e0b;
-              padding-left: 1.25rem;
-            }
-            .dropdown-category {
-              padding: 0.5rem 1rem 0.25rem;
-              font-weight: 700;
-              color: #f59e0b;
-              font-size: 0.875rem;
-              text-transform: uppercase;
-              letter-spacing: 0.05em;
-              border-bottom: 1px solid rgba(245, 158, 11, 0.2);
-              margin-bottom: 0.5rem;
-            }
-            .call-button {
-              background: #f59e0b;
-              color: #111;
-              padding: 0.75rem 1.5rem;
-              border-radius: 0.5rem;
-              text-decoration: none;
-              font-weight: 500;
-              transition: all 0.3s;
-            }
-            .call-button:hover {
-              background: #d97706;
-              transform: scale(1.05);
-            }
-            @media (max-width: 768px) {
-              .nav-links, .call-button { display: none; }
-              .logo { font-size: 1.3rem; }
-              .dropdown-content {
-                position: static;
-                display: none;
-                box-shadow: none;
-                background: rgba(255,255,255,0.9);
-                margin-top: 0;
-                border-radius: 0;
-                padding: 0.5rem 0;
-                flex-direction: column;
-                min-width: auto;
-                gap: 0;
-              }
-              .dropdown:hover .dropdown-content {
-                display: flex;
-              }
-              .dropdown-section {
-                min-width: auto;
-              }
-              .dropdown-item {
-                padding: 0.5rem 1rem;
-              }
-              .dropdown-item:hover {
-                padding-left: 1.5rem;
-              }
-            }
-          </style>
-
-          <div class="nav-container">
-            <a href="index.html" class="logo">
-              <img src="logo.jpg" alt="Logo">
-
-            </a>
-            <div class="nav-links">
-              <a href="index.html" class="nav-link">Home</a>
-              <a href="about.html" class="nav-link">About</a>
-              <div class="dropdown">
-                <a href="products.html" class="nav-link">Products ▼</a>
-                <div class="dropdown-content">
-                  <div class="dropdown-section">
-                    <div class="dropdown-category">Residential</div>
-                    <a href="balcony-shed.html" class="dropdown-item">Balcony Shed</a>
-                    <a href="tensile-structure.html" class="dropdown-item">Tensile Structure</a>
-                    <a href="terrace-shed.html" class="dropdown-item">Terrace Shed</a>
-                    <a href="retractable-awning.html" class="dropdown-item">Retractable Awning</a>
-                    <a href="entrance-canopy.html" class="dropdown-item">Entrance Canopy</a>
-                  </div>
-
-                  <div class="dropdown-section">
-                    <div class="dropdown-category">Industrial</div>
-                    <a href="industrial-shed.html" class="dropdown-item">Industrial Shed</a>
-                    <a href="fabrication-services.html" class="dropdown-item">Fabrication Services</a>
-                    <a href="civil-work.html" class="dropdown-item">Civil Work</a>
-                    <a href="roofing-structure.html" class="dropdown-item">Roofing Structure</a>
-                    <a href="cold-storage.html" class="dropdown-item">Cold Storage</a>
-                  </div>
-
-                  <div class="dropdown-section">
-                    <div class="dropdown-category">Car Parking</div>
-                    <a href="tensile-car-parking.html" class="dropdown-item">Tensile Car Parking</a>
-                    <a href="car-parking-awning.html" class="dropdown-item">Car Parking Awning</a>
-                    <a href="prefabricated-shed.html" class="dropdown-item">Prefabricated Shed</a>
-                    <a href="car-parking-shed.html" class="dropdown-item">Car Parking Shed</a>
-                    <a href="valet-parking.html" class="dropdown-item">Valet Parking</a>
-                  </div>
-
-                  <div class="dropdown-section">
-                    <div class="dropdown-category">Commercial</div>
-                    <a href="fabrication-shed.html" class="dropdown-item">Fabrication Shed</a>
-                    <a href="balcony-grill.html" class="dropdown-item">Balcony Grill</a>
-                    <a href="terrace-awning.html" class="dropdown-item">Terrace Awning</a>
-                    <a href="shade-awning.html" class="dropdown-item">Shade Awning</a>
-                    <a href="tile-flooring.html" class="dropdown-item">Tile Flooring</a>
-                  </div>
-                </div>
-              </div>
-              <a href="contact.html" class="nav-link">Contact</a>
-            </div>
-            <a href="tel:+918047693560" class="call-button">Call Now</a>
-          </div>
-        `;
-
-        window.addEventListener('scroll', () => {
-          this.shadowRoot.host.classList.toggle('scrolled', window.scrollY > 100);
-        });
-      }
-    }
-    customElements.define('custom-navbar', CustomNavbar);
-  </script>
   <script>
     feather.replace();
 

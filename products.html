@@ -62,8 +62,9 @@
     }
 
     .hero-title {
-      font-size: clamp(3.5rem, 10vw, 7rem);
-      font-weight: 500;
+     font-size: clamp(3rem, 8vw, 6rem);
+font-weight: 500;
+
       color: white;
       line-height: 1;
       margin-bottom: 1rem;
@@ -145,12 +146,72 @@
     .gold-btn:hover { background: #d97706; transform: scale(1.1); }
   </style>
 </head>
-<body class="bg-gradient-to-b from-slate-50 to-white">
+<body class="bg-gradient-to-b from-slate-900 to-slate-800 text-white overflow-x-hidden">
 
-  <custom-navbar></custom-navbar>
+  <!-- FLOATING LOGO + NAVBAR WRAPPER -->
+<div class="relative w-full flex justify-center z-[9999]">
+    <img src="logo1.png" class="absolute -top-1 w-60 drop-shadow-xl" alt="Logo">
+</div>
+
+<!-- WHITE CURVED NAVBAR -->
+<nav class="relative z-[999] mx-auto mt-36 w-[75%] bg-white bg-opacity-95 backdrop-blur-xl
+            rounded-full py-2 px-10 shadow-xl flex items-center justify-between">
+
+    <ul class="flex gap-20 ml-16  font-bold text-gray-700">
+      
+ <li class="text-black border-b-4 border-yellow-400 pb-1 text-lg cursor-pointer">
+  <a href="index.html" class="block w-full h-full">Home</a>
+</li>
+         <li class="text-black border-b-4 border-yellow-400 pb-1 text-lg cursor-pointer">
+  <a href="about.html" class="block w-full h-full">About</a>
+
+</li> <li class="relative group text-black border-b-4 border-yellow-400 pb-1 text-lg cursor-pointer">
+
+  <a href="products.html" class="block w-full h-full">Product ▾</a>
+
+  <!-- DROPDOWN -->
+  <ul class="absolute left-0 top-full mt-2 w-52 bg-white shadow-xl rounded-xl 
+             opacity-0 invisible group-hover:opacity-100 group-hover:visible 
+             transition-all duration-300">
+
+    <li><a href="fabrication.html" class="block px-4 py-2 hover:bg-yellow-100">Fabrication</a></li>
+    <li><a href="civil-work.html" class="block px-4 py-2 hover:bg-yellow-100">Civil Work</a></li>
+    <li><a href="interior.html" class="block px-4 py-2 hover:bg-yellow-100">Interiors</a></li>
+    <li><a href="exterior.html" class="block px-4 py-2 hover:bg-yellow-100">Exteriors</a></li>
+    <li><a href="other-services.html" class="block px-4 py-2 hover:bg-yellow-100">Other Services</a></li>
+
+  </ul>
+
+</li>
+
+        
+         <li class="text-black border-b-4 border-yellow-400 text-lg pb-1 cursor-pointer">
+  <a href="contact.html" class="block w-full h-full">Contact</a>
+
+       
+    </ul>
+
+    <div class="relative flex items-center mr-12">
+  <input 
+    type="text"
+    placeholder="Search..."
+    class="px-4 py-2 w-60 md:w-64  rounded-full border border-gray-300 
+           focus:outline-none focus:ring-2 focus:ring-yellow-500 text-gray-700"
+  >
+  
+  <button class="absolute right-2 text-yellow-500 hover:text-yellow-600">
+    <svg xmlns="http://www.w3.org/2000/svg" 
+         class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+            d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1011 18.5a7.5 7.5 0 005.65-2.85z" />
+    </svg>
+  </button>
+</div>
+
+</nav>
 
   <!-- HERO = ABOUT PAGE STYLE -->
-  <section class="hero-about">
+  <section class="hero-about mt-10">
     <!-- 3 ZOOM IMAGES -->
     <img src="images/about hero.jpg"    class="ken-bg active" alt="Factory">
     <img src="images/about hero4.jpg"   class="ken-bg" alt="Team">
@@ -184,203 +245,105 @@
   </section>
 
   <!-- BAKI SAB 100% PURANA -->
-  <section id="products" class="py-20">
+  <section id="products" class="py-20 bg-white">
     <div class="container mx-auto px-6">
       <h2 class="text-5xl md:text-6xl font-semibold text-center mb-16" style="color: var(--navy);">
         Pick Your <span style="color: var(--gold);">Perfect Shield</span>
       </h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
         <!-- ALL 20 CARDS — EXACTLY SAME -->
-        <a href="balcony-shed.html" class="block">
+        <a href="fabrication.html" class="block">
           <div class="product-card category-section" data-category="home">
             <img src="images/balcony.jpg" alt="Balcony Shed" class="product-img">
             <div class="overlay">
-              <h3>Balcony Shed</h3>
+              <h3>Fabrication</h3>
               <div class="arrow"><span></span></div>
             </div>
           </div>
         </a>
         <!-- CARD 2 → tensile-structure.html -->
-        <a href="tensile-structure.html" class="block">
+        <a href="civil-work.html" class="block">
           <div class="product-card category-section" data-category="home">
             <img src="images/terrace-dome.jpg" alt="" class="product-img">
             <div class="overlay">
-              <h3>Tensile Structure</h3>
+              <h3>Civil Work</h3>
               <div class="arrow"><span></span></div>
             </div>
           </div>
         </a>
 
         <!-- CARD 3 → industrial-shed.html -->
-        <a href="industrial-shed.html" class="block">
+        <a href="interior.html" class="block">
           <div class="product-card category-section" data-category="industry">
             <img src="images/factory-roof.jpg" alt="" class="product-img">
             <div class="overlay">
-              <h3>Industrial Shed</h3>
+              <h3>Interiors</h3>
               <div class="arrow"><span></span></div>
             </div>
           </div>
         </a>
 
         <!-- CARD 4 → prefabricated-shed.html -->
-        <a href="prefabricated-shed.html" class="block">
+        <a href="exterior.html" class="block">
           <div class="product-card category-section" data-category="car">
             <img src="images/car-tensile-white.jpg" alt="" class="product-img">
             <div class="overlay">
-              <h3>Prefabricated Shed</h3>
+              <h3>Exteriors</h3>
               <div class="arrow"><span></span></div>
             </div>
           </div>
         </a>
 
         <!-- CARD 5 → tensile-car-parking.html -->
-        <a href="tensile-car-parking.html" class="block">
+        <a href="other-services.html" class="block">
           <div class="product-card category-section" data-category="home">
             <img src="images/retractable-roof.jpg" alt="" class="product-img">
-            <div class="overlay"><h3>Tensile Car Parking</h3><div class="arrow"><span></span></div></div>
+            <div class="overlay"><h3>Other Services</h3><div class="arrow"><span></span></div></div>
           </div>
         </a>
 
-        <!-- CARD 6 → car-parking-awning.html -->
-        <a href="car-parking-awning.html" class="block">
-          <div class="product-card category-section" data-category="industry">
-            <img src="images/warehouse.jpg" alt="" class="product-img">
-            <div class="overlay"><h3>Car Parking Awning</h3><div class="arrow"><span></span></div></div>
-          </div>
-        </a>
-
-        <!-- CARD 7 → fabrication-services.html -->
-        <a href="fabrication-services.html" class="block">
-          <div class="product-card category-section" data-category="home">
-            <img src="images/pool-cover.jpg" alt="" class="product-img">
-            <div class="overlay"><h3>Fabrication Services</h3><div class="arrow"><span></span></div></div>
-          </div>
-        </a>
-
-        <!-- CARD 8 → tile-flooring.html -->
-        <a href="tile-flooring.html" class="block">
-          <div class="product-card category-section" data-category="car">
-            <img src="images/bike-parking.jpg" alt="" class="product-img">
-            <div class="overlay"><h3>Tile Flooring</h3><div class="arrow"><span></span></div></div>
-          </div>
-        </a>
-
-        <!-- CARD 9 → terrace-shed.html -->
-        <a href="terrace-shed.html" class="block">
-          <div class="product-card category-section" data-category="home">
-            <img src="images/window-awning.jpg" alt="" class="product-img">
-            <div class="overlay"><h3>Terrace Shed</h3><div class="arrow"><span></span></div></div>
-          </div>
-        </a>
-
-        <!-- CARD 10 → civil-work.html -->
-        <a href="civil-work.html" class="block">
-          <div class="product-card category-section" data-category="industry">
-            <img src="images/loading-bay.jpg" alt="" class="product-img">
-            <div class="overlay"><h3>Civil Work</h3><div class="arrow"><span></span></div></div>
-          </div>
-        </a>
-
-        <!-- CARD 11 → retractable-awning.html -->
-        <a href="retractable-awning.html" class="block">
-          <div class="product-card category-section" data-category="home">
-            <img src="images/garden-gazebo.jpg" alt="" class="product-img">
-            <div class="overlay"><h3>Retractable Awning</h3><div class="arrow"><span></span></div></div>
-          </div>
-        </a>
-
-        <!-- CARD 12 → car-parking-shed.html -->
-        <a href="car-parking-shed.html" class="block">
-          <div class="product-card category-section" data-category="car">
-            <img src="images/multi-car.jpg" alt="" class="product-img">
-            <div class="overlay"><h3>Car Parking Shed</h3><div class="arrow"><span></span></div></div>
-          </div>
-        </a>
-
-        <!-- CARD 13 → fabrication-shed.html -->
-        <a href="fabrication-shed.html" class="block">
-          <div class="product-card category-section" data-category="home">
-            <img src="images/staircase-cover.jpg" alt="" class="product-img">
-            <div class="overlay"><h3>Fabrication Shed</h3><div class="arrow"><span></span></div></div>
-          </div>
-        </a>
-
-        <!-- CARD 14 → roofing-structure.html -->
-        <a href="roofing-structure.html" class="block">
-          <div class="product-card category-section" data-category="industry">
-            <img src="images/solar-roof.jpg" alt="" class="product-img">
-            <div class="overlay"><h3>Roofing Structure</h3><div class="arrow"><span></span></div></div>
-          </div>
-        </a>
-
-        <!-- CARD 15 → balcony-grill.html -->
-        <a href="balcony-grill.html" class="block">
-          <div class="product-card category-section" data-category="home">
-            <img src="images/play-area.jpg" alt="" class="product-img">
-            <div class="overlay"><h3>Balcony Grill</h3><div class="arrow"><span></span></div></div>
-          </div>
-        </a>
-
-        <!-- CARD 16 → terrace-awning.html -->
-        <a href="terrace-awning.html" class="block">
-          <div class="product-card category-section" data-category="car">
-            <img src="images/ev-charging.jpg" alt="" class="product-img">
-            <div class="overlay"><h3>Terrace Awning</h3><div class="arrow"><span></span></div></div>
-          </div>
-        </a>
-
-        <!-- CARD 17 → shade-awning.html -->
-        <a href="shade-awning.html" class="block">
-          <div class="product-card category-section" data-category="home">
-            <img src="images/rooftop-cafe.jpg" alt="" class="product-img">
-            <div class="overlay"><h3>Shade Awning</h3><div class="arrow"><span></span></div></div>
-          </div>
-        </a>
-
-        <!-- CARD 18 → cold-storage.html -->
-        <a href="cold-storage.html" class="block">
-          <div class="product-card category-section" data-category="industry">
-            <img src="images/cold-storage.jpg" alt="" class="product-img">
-            <div class="overlay"><h3>Cold Storage</h3><div class="arrow"><span></span></div></div>
-          </div>
-        </a>
-
-        <!-- CARD 19 → entrance-canopy.html -->
-        <a href="entrance-canopy.html" class="block">
-          <div class="product-card category-section" data-category="home">
-            <img src="images/entrance-canopy.jpg" alt="" class="product-img">
-            <div class="overlay"><h3>Entrance Canopy</h3><div class="arrow"><span></span></div></div>
-          </div>
-        </a>
-
-        <!-- CARD 20 → valet-parking.html -->
-        <a href="valet-parking.html" class="block">
-          <div class="product-card category-section" data-category="car">
-            <img src="images/valet-parking.jpg" alt="" class="product-img">
-            <div class="overlay"><h3>Valet Parking</h3><div class="arrow"><span></span></div></div>
-          </div>
-        </a>
-
-
+       
       </div>
     </div>
   </section>
 
-  <!-- CTA & FOOTER — SAME -->
-  <section class="relative py-32 text-center bg-cover bg-center" style="background-image: url('images/hero5.jpg');">
-    <div class="absolute inset-0 bg-gray-900/80"></div>
-    <div class="relative z-10 container mx-auto px-6">
-      <h2 class="text-5xl md:text-6xl font-semibold text-white mb-6 drop-shadow-2xl">
-        Ready for Your <span class="text-yellow-400">Dream Shelter</span>?
-      </h2>
-      <p class="text-xl md:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto leading-relaxed">
-        Contact us today for quotes, designs, and expert guidance.
-      </p>
-      <a href="contact.html" class="inline-flex items-center gap-3 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-5 px-12 rounded-full text-lg shadow-2xl transform hover:scale-105 transition-all">
-        Contact Now
-      </a>
+    <!-- CTA -->
+  <section class="w-full py-20 px-6 md:px-16">
+  <div class="max-w-7xl mx-auto rounded-3xl overflow-hidden"
+       style="background: linear-gradient(90deg, #f8e1b6 0%, #b57ba6 100%);">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 items-center px-10 md:px-20 py-16 gap-10">
+
+      <!-- LEFT TEXT -->
+      <div>
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">
+          Contact Us to<br>Learn More!
+        </h2>
+
+        <p class="text-gray-800 text-lg leading-relaxed mb-8">
+          Partner with Venkateshwara Corporation to bring premium tensile solutions
+          to your space. Let us help your organization thrive with modern designs,
+          durable materials, and expert engineering.
+        </p>
+
+        <a href="contact.html"
+           class="inline-flex items-center gap-2 bg-purple-700 hover:bg-purple-800
+                  text-white font-semibold text-lg px-8 py-4 rounded-full transition">
+          Contact Us
+          <span>➜</span>
+        </a>
+      </div>
+
+      <!-- RIGHT IMAGE SECTION -->
+      <div class="flex justify-center md:justify-end">
+        <img src="" class="h-80 md:h-96 object-contain -mr-6" alt="">
+        <img src="images/about hero4.jpg" class="h-80 md:h-96 object-contain" alt="">
+      </div>
+
     </div>
-  </section>
+
+  </div>
+</section>
 
   <!-- FOOTER -->
   <footer class="bg-slate-900 text-white relative overflow-hidden">
@@ -428,11 +391,11 @@
       <div data-aos="fade-up" data-aos-delay="100">
         <h3 class="text-xl font-bold mb-3 text-yellow-400">Products</h3>
         <ul class="space-y-1.5 text-lg">
-          <li data-aos="fade-right" data-aos-delay="150"><a href="#" class="opacity-80 hover:text-yellow-400">Tensile Membranes</a></li>
-          <li data-aos="fade-right" data-aos-delay="200"><a href="#" class="opacity-80 hover:text-yellow-400">Car Parking Shades</a></li>
-          <li data-aos="fade-right" data-aos-delay="250"><a href="#" class="opacity-80 hover:text-yellow-400">Pool Covers</a></li>
-          <li data-aos="fade-right" data-aos-delay="300"><a href="#" class="opacity-80 hover:text-yellow-400">Awnings</a></li>
-          <li data-aos="fade-right" data-aos-delay="350"><a href="#" class="opacity-80 hover:text-yellow-400">Pagoda Tents</a></li>
+          <li data-aos="fade-right" data-aos-delay="150"><a href="fabrication.html" class="opacity-80 hover:text-yellow-400">Fabrication</a></li>
+          <li data-aos="fade-right" data-aos-delay="200"><a href="civil-work.html" class="opacity-80 hover:text-yellow-400">Civil Work</a></li>
+          <li data-aos="fade-right" data-aos-delay="250"><a href="interior.html" class="opacity-80 hover:text-yellow-400">Interiors</a></li>
+          <li data-aos="fade-right" data-aos-delay="300"><a href="exterior.html" class="opacity-80 hover:text-yellow-400">Exteriors</a></li>
+          <li data-aos="fade-right" data-aos-delay="350"><a href="other-services.html" class="opacity-80 hover:text-yellow-400">Other Services</a></li>
         </ul>
       </div>
 
@@ -465,237 +428,12 @@
     <!-- COPYRIGHT -->
     <div class="text-center mt-8 pt-5 border-t border-slate-800 text-xs opacity-70"
          data-aos="fade-up" data-aos-delay="400">
-      © 2025 Venkateshwara Corporation • GST: 27AAXXXXXXXX • Pune
+      © 2025 Venkateshwara Corporation • Developed by DWInnovations Pvt. Ltd.• Pune
     </div>
   </div>
 </footer>
 
-  <script>
-    class CustomNavbar extends HTMLElement {
-      connectedCallback() {
-        this.attachShadow({ mode: 'open' });
-        this.shadowRoot.innerHTML = `
-          <style>
-            :host {
-              display: block;
-              position: fixed;
-              top: 0; left: 0; right: 0;
-              z-index: 9999;
-              padding: 1.5rem 0;
-              background: rgba(255,255,255,0.95);
-              backdrop-filter: blur(12px);
-              transition: all 0.4s ease;
-              font-family: 'Inter', sans-serif;
-            }
-            :host(.scrolled) {
-              padding: 0.75rem 0;
-              background: rgba(255,255,255,0.95);
-              box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-            }
-            .nav-container {
-              max-width: 1400px;
-              margin: 0 auto;
-              padding: 0 1.5rem;
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-            }
-            .logo {
-              display: flex;
-              align-items: center;
-              gap: 0.75rem;
-              color: #111;
-              text-decoration: none;
-              font-weight: 500;
-              font-size: 1.5rem;
-            }
-            .logo img { height: 64px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2)); }
-            .logo span { color: #f59e0b; }
-            .nav-links { display: flex; gap: 2.5rem; }
-            .nav-link {
-              color: #222;
-              text-decoration: none;
-              font-weight: 600;
-              position: relative;
-              transition: color 0.3s;
-              cursor: pointer;
-            }
-            .nav-link:hover { color: #f59e0b; }
-            .nav-link::after {
-              content: '';
-              position: absolute;
-              width: 0; height: 3px;
-              bottom: -8px; left: 0;
-              background: #f59e0b;
-              transition: width 0.4s ease;
-            }
-            .nav-link:hover::after { width: 100%; }
 
-            /* Dropdown Styles */
-            .dropdown {
-              position: relative;
-            }
-            .dropdown-content {
-              display: none;
-              position: absolute;
-              top: 100%;
-              left: 50%;
-              background: rgba(255,255,255,0.98);
-              backdrop-filter: blur(15px);
-              min-width: 800px;
-              box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-              border-radius: 0.75rem;
-              z-index: 10000;
-              padding: 1rem;
-              margin-top: 0.75rem;
-              border: 1px solid rgba(245, 158, 11, 0.1);
-              opacity: 0;
-              transform: translateX(-50%) translateY(-10px);
-              transition: all 0.3s ease;
-              display: flex;
-              flex-direction: row;
-              gap: 1.5rem;
-            }
-            .dropdown:hover .dropdown-content {
-              display: flex;
-              opacity: 1;
-              transform: translateX(-50%) translateY(0);
-            }
-            .dropdown-section {
-              display: flex;
-              flex-direction: column;
-              min-width: 180px;
-            }
-            .dropdown-item {
-              display: block;
-              padding: 0.5rem 1rem;
-              color: #222;
-              text-decoration: none;
-              font-weight: 500;
-              transition: all 0.3s ease;
-              border-left: 3px solid transparent;
-              font-size: 0.9rem;
-            }
-            .dropdown-item:hover {
-              background: rgba(245, 158, 11, 0.1);
-              color: #f59e0b;
-              border-left-color: #f59e0b;
-              padding-left: 1.25rem;
-            }
-            .dropdown-category {
-              padding: 0.5rem 1rem 0.25rem;
-              font-weight: 700;
-              color: #f59e0b;
-              font-size: 0.875rem;
-              text-transform: uppercase;
-              letter-spacing: 0.05em;
-              border-bottom: 1px solid rgba(245, 158, 11, 0.2);
-              margin-bottom: 0.5rem;
-            }
-            .call-button {
-              background: #f59e0b;
-              color: #111;
-              padding: 0.75rem 1.5rem;
-              border-radius: 0.5rem;
-              text-decoration: none;
-              font-weight: 500;
-              transition: all 0.3s;
-            }
-            .call-button:hover {
-              background: #d97706;
-              transform: scale(1.05);
-            }
-            @media (max-width: 768px) {
-              .nav-links, .call-button { display: none; }
-              .logo { font-size: 1.3rem; }
-              .dropdown-content {
-                position: static;
-                display: none;
-                box-shadow: none;
-                background: rgba(255,255,255,0.9);
-                margin-top: 0;
-                border-radius: 0;
-                padding: 0.5rem 0;
-                flex-direction: column;
-                min-width: auto;
-                gap: 0;
-              }
-              .dropdown:hover .dropdown-content {
-                display: flex;
-              }
-              .dropdown-section {
-                min-width: auto;
-              }
-              .dropdown-item {
-                padding: 0.5rem 1rem;
-              }
-              .dropdown-item:hover {
-                padding-left: 1.5rem;
-              }
-            }
-          </style>
-
-          <div class="nav-container">
-            <a href="index.html" class="logo">
-              <img src="logo.jpg" alt="Logo">
-
-            </a>
-            <div class="nav-links">
-              <a href="index.html" class="nav-link">Home</a>
-              <a href="about.html" class="nav-link">About</a>
-              <div class="dropdown">
-                <a href="products.html" class="nav-link">Products ▼</a>
-                <div class="dropdown-content">
-                  <div class="dropdown-section">
-                    <div class="dropdown-category">Residential</div>
-                    <a href="balcony-shed.html" class="dropdown-item">Balcony Shed</a>
-                    <a href="tensile-structure.html" class="dropdown-item">Tensile Structure</a>
-                    <a href="terrace-shed.html" class="dropdown-item">Terrace Shed</a>
-                    <a href="retractable-awning.html" class="dropdown-item">Retractable Awning</a>
-                    <a href="entrance-canopy.html" class="dropdown-item">Entrance Canopy</a>
-                  </div>
-
-                  <div class="dropdown-section">
-                    <div class="dropdown-category">Industrial</div>
-                    <a href="industrial-shed.html" class="dropdown-item">Industrial Shed</a>
-                    <a href="fabrication-services.html" class="dropdown-item">Fabrication Services</a>
-                    <a href="civil-work.html" class="dropdown-item">Civil Work</a>
-                    <a href="roofing-structure.html" class="dropdown-item">Roofing Structure</a>
-                    <a href="cold-storage.html" class="dropdown-item">Cold Storage</a>
-                  </div>
-
-                  <div class="dropdown-section">
-                    <div class="dropdown-category">Car Parking</div>
-                    <a href="tensile-car-parking.html" class="dropdown-item">Tensile Car Parking</a>
-                    <a href="car-parking-awning.html" class="dropdown-item">Car Parking Awning</a>
-                    <a href="prefabricated-shed.html" class="dropdown-item">Prefabricated Shed</a>
-                    <a href="car-parking-shed.html" class="dropdown-item">Car Parking Shed</a>
-                    <a href="valet-parking.html" class="dropdown-item">Valet Parking</a>
-                  </div>
-
-                  <div class="dropdown-section">
-                    <div class="dropdown-category">Commercial</div>
-                    <a href="fabrication-shed.html" class="dropdown-item">Fabrication Shed</a>
-                    <a href="balcony-grill.html" class="dropdown-item">Balcony Grill</a>
-                    <a href="terrace-awning.html" class="dropdown-item">Terrace Awning</a>
-                    <a href="shade-awning.html" class="dropdown-item">Shade Awning</a>
-                    <a href="tile-flooring.html" class="dropdown-item">Tile Flooring</a>
-                  </div>
-                </div>
-              </div>
-              <a href="contact.html" class="nav-link">Contact</a>
-            </div>
-            <a href="tel:+918047693560" class="call-button">Call Now</a>
-          </div>
-        `;
-
-        window.addEventListener('scroll', () => {
-          this.shadowRoot.host.classList.toggle('scrolled', window.scrollY > 100);
-        });
-      }
-    }
-    customElements.define('custom-navbar', CustomNavbar);
-  </script>
 
 
 

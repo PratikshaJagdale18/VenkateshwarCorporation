@@ -7,6 +7,8 @@
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/feather-icons"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
 
   <style>
   :root {
@@ -15,68 +17,149 @@
     --blue: #1e40af;
   }
 
-  /* HERO (unchanged) */
-  .carousel-image { transition: opacity 1s ease !important; }
-  #progress-line { transition: width 3s linear !important; }
-  .preview-img:hover { border-color: var(--gold) !important; }
+ .hero-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transform: translateY(0) scale(1.1);
+    transition: opacity 1.6s ease, transform 3s ease;
+}
+
+.hero-slide.active {
+    opacity: 1;
+    animation: slowZoom 7s ease-out forwards;
+}
+/* Sticky Background Wrapper */
+.about-sticky-wrapper {
+    position: sticky;
+    top: 0;
+}
+/* Sticky Fullscreen Background */
+.sticky-bg {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    background-image: url('images/about.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    filter: brightness(0.85);
+    z-index: -1;
+}
+
+/* Background Image
+.about-sticky-image {
+    position: absolute;
+    inset: 0;
+    background-image: url('about1.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    transform: scale(1.1);
+    filter: brightness(0.85);
+} */
+
+/* Fade Up Animation */
+@keyframes fadeUp {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -30%);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+.animate-fade-up {
+    animation: fadeUp 1.2s ease-out forwards;
+}
+
+/* Ken Burns Zoom */
+@keyframes slowZoom {
+    0% { transform: translateY(0) scale(1.12); }
+    100% { transform: translateY(0) scale(1); }
+}
+
+/* Parallax effect */
+.parallax-active {
+    will-change: transform;
+    transition: transform 0.1s linear;
+}
 
   /* SQUARE PRODUCT SLIDER WITH NAVY OVERLAY */
-#product-slider { 
-  position: relative; 
-}
-#product-track { 
-  scroll-snap-type: x mandatory;
-  gap: 0;
-}
+/* TRUE VIDEO STYLE HOVER EFFECT */
 .product-card {
-  scroll-snap-align: center;
-  transition: transform 0.4s ease;
-}
-.product-card img {
-  display: block;
-  transition: transform 0.6s ease;
-}
-.product-card:hover img {
-  transform: scale(1.08);
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.2rem;
+  transition: transform .4s ease, box-shadow .4s ease;
+  cursor: pointer;
+  transform-style: preserve-3d;
 }
 
-/* NAVY OVERLAY */
-.overlay {
+.product-card:hover {
+  transform: translateY(-14px) scale(1.04) rotateX(4deg);
+  box-shadow: 0 25px 45px rgba(0,0,0,0.35);
+}
+
+/* IMAGE */
+.product-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .8s ease;
+}
+
+.product-card:hover img {
+  transform: scale(1.15);
+}
+
+/* DARK BLUR OVERLAY */
+.product-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(15, 23, 42, 0.85); /* Navy with transparency */
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  background: rgba(15, 23, 42, 0.65); /* navy black glass */
+  backdrop-filter: blur(3px);
   opacity: 0;
-  transform: translateY(100%);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(2px);
+  transform: translateY(40px);
+  transition: all 0.5s ease;
 }
-.product-card:hover .overlay {
+
+.product-card:hover .product-overlay {
   opacity: 1;
   transform: translateY(0);
 }
-.overlay-content {
-  padding: 1.5rem;
-  transform: translateY(20px);
-  transition: transform 0.6s ease;
+
+/* TEXT INSIDE OVERLAY */
+.product-overlay-content {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  color: white;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: all 0.45s ease;
 }
-.product-card:hover .overlay-content {
+
+.product-card:hover .product-overlay-content {
+  opacity: 1;
   transform: translateY(0);
 }
-.overlay-title {
-  font-size: 1.75rem;
+
+.product-title {
+  font-size: 1.55rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+  margin-bottom: .25rem;
 }
-.overlay-desc {
-  font-size: 1rem;
-  line-height: 1.5;
+
+.product-desc {
+  font-size: .95rem;
   opacity: 0.95;
+  line-height: 1.35rem;
 }
 
 /* ARROWS - NOW FULLY VISIBLE & OUTSIDE */
@@ -130,60 +213,6 @@
   background: #f59e0b;
   transform: scale(1.4);
   box-shadow: 0 0 15px rgba(245,158,11,0.6);
-}/* WHY CHOOSE – BLUE ICONS + WHITE CIRCLE + ICON HIDES ON HOVER */
-.why-card {
-  position: relative;
-  cursor: pointer;
-  perspective: 1000px;
-}
-
-.why-icon {
-  width: 110px; height: 110px;
-  margin: 0 auto;
-  background: white;
-  border: 6px solid var(--gold);
-  border-radius: 0.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--blue);
-  transition: all 0.5s ease;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.3);
-  position: relative;
-  z-index: 2;
-}
-
-.why-content {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  width: 300px;
-  padding: 2rem;
-  background: rgba(255, 255, 255, 0.9);
-  border: 4px solid #f59e0b;
-  border-radius: 1.8rem;
-  text-align: center;
-  opacity: 0;
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 25px 60px rgba(0,0,0,0.5);
-  backdrop-filter: blur(12px);
-  z-index: 1;
-}
-
-.why-card:hover .why-icon {
-  opacity: 0;
-  transform: translateY(-30px) scale(0);
-}
-
-.why-card:hover .why-content {
-  transform: translate(-50%, -50%) scale(1);
-  opacity: 1;
-}
-
-/* Mobile Tap */
-@media (max-width: 768px) {
-  .why-card:active .why-icon { opacity: 0; transform: translateY(-30px) scale(0); }
-  .why-card:active .why-content { transform: translate(-50%, -50%) scale(1); opacity: 1; }
 }/* SCROLL ANIMATIONS — SUPER SMOOTH */
 [data-aos] {
   opacity: 0;
@@ -213,305 +242,562 @@
     .slide img { width: 100%; height: 100%; object-fit: cover; }
     .dots { position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); display: flex; gap: .75rem; }
     .dot { width: 12px; height: 12px; background: rgba(255,255,255,.5); border-radius: 50%; cursor: pointer; transition: all .3s; }
-    .dot.active { background: var(--gold); transform: scale(1.3); box-shadow: 0 0 10px rgba(245,158,11,0.8); }
+    .dot.active { background: var(--gold); transform: scale(1.3); box-shadow: 0 0 10px rgba(245,158,11,0.8); }/* KEN BURNS EFFECT */
+.kenburns {
+  animation: kenburns 12s ease-out infinite;
+}
+
+@keyframes kenburns {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.15) translate(10px, 10px);
+  }
+  100% {
+    transform: scale(1) translate(0, 0);
+  }
+}
+.typewriter {
+  overflow: hidden;
+  white-space: wrap;
+  display: block;
+  animation: typing 3.5s steps(40, end);
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+footer [data-aos] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
 </style>
 </head>
 <body class="bg-gradient-to-b from-slate-900 to-slate-800 text-white overflow-x-hidden">
 
-  <!-- WHITE NAVBAR -->
-  <custom-navbar></custom-navbar>
+  
 
-  <!-- HERO -->
-  <section class="relative h-screen overflow-hidden pt-24" data-aos="fade">
-    <div id="hero-carousel" class="absolute inset-0 z-0">
-      <img src="images/hero1.webp" class="carousel-image absolute inset-0 w-full h-full object-cover opacity-100" alt="Hero 1">
-      <img src="images/hero2.webp" class="carousel-image absolute inset-0 w-full h-full object-cover opacity-0" alt="Hero 2">
-      <img src="images/hero3.webp" class="carousel-image absolute inset-0 w-full h-full object-cover opacity-0" alt="Hero 3">
-      <img src="images/hero4.jpg" class="carousel-image absolute inset-0 w-full h-full object-cover opacity-0" alt="Hero 4">
-      <img src="images/hero5.jpg" class="carousel-image absolute inset-0 w-full h-full object-cover opacity-0" alt="Hero 5">
+  <!-- FLOATING LOGO + NAVBAR WRAPPER -->
+<div class="relative w-full flex justify-center z-[9999]">
+    <img src="logo1.png" class="absolute -top-1 w-60 drop-shadow-xl" alt="Logo">
+</div>
+
+<!-- WHITE CURVED NAVBAR -->
+<nav class="relative z-[999] mx-auto mt-36 w-[75%] bg-white bg-opacity-95 backdrop-blur-xl
+            rounded-full py-2 px-10 shadow-xl flex items-center justify-between">
+
+    <ul class="flex gap-20 ml-16  font-bold text-gray-700">
+      
+ <li class="text-black border-b-4 border-yellow-400 pb-1 text-lg cursor-pointer">
+  <a href="index.html" class="block w-full h-full">Home</a>
+</li>
+         <li class="text-black border-b-4 border-yellow-400 pb-1 text-lg cursor-pointer">
+  <a href="about.html" class="block w-full h-full">About</a>
+
+</li> <li class="relative group text-black border-b-4 border-yellow-400 pb-1 text-lg cursor-pointer">
+
+  <a href="products.html" class="block w-full h-full">Product ▾</a>
+
+  <!-- DROPDOWN -->
+  <ul class="absolute left-0 top-full mt-2 w-52 bg-white shadow-xl rounded-xl 
+             opacity-0 invisible group-hover:opacity-100 group-hover:visible 
+             transition-all duration-300">
+
+    <li><a href="fabrication.html" class="block px-4 py-2 hover:bg-yellow-100">Fabrication</a></li>
+    <li><a href="civil-work.html" class="block px-4 py-2 hover:bg-yellow-100">Civil Work</a></li>
+    <li><a href="interior.html" class="block px-4 py-2 hover:bg-yellow-100">Interiors</a></li>
+    <li><a href="exterior.html" class="block px-4 py-2 hover:bg-yellow-100">Exteriors</a></li>
+    <li><a href="other-services.html" class="block px-4 py-2 hover:bg-yellow-100">Other Services</a></li>
+
+  </ul>
+
+</li>
+
+
+        
+         <li class="text-black border-b-4 border-yellow-400 text-lg pb-1 cursor-pointer">
+  <a href="contact.html" class="block w-full h-full">Contact</a>
+
+       
+    </ul>
+
+    <div class="relative flex items-center mr-12">
+  <input 
+    type="text"
+    placeholder="Search..."
+    class="px-4 py-2 w-60 md:w-64  rounded-full border border-gray-300 
+           focus:outline-none focus:ring-2 focus:ring-yellow-500 text-gray-700"
+  >
+  
+  <button class="absolute right-2 text-yellow-500 hover:text-yellow-600">
+    <svg xmlns="http://www.w3.org/2000/svg" 
+         class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+            d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1011 18.5a7.5 7.5 0 005.65-2.85z" />
+    </svg>
+  </button>
+</div>
+
+</nav>
+
+<!-- NEW HERO SECTION -->
+<section class="relative mt-10 h-[75vh] md:h-[90vh] overflow-hidden rounded-3xl">
+
+    <!-- SLIDES -->
+    <div class="hero-slide parallax-active active" style="background-image:url('images/hero1.webp')"></div>
+<div class="hero-slide parallax-active" style="background-image:url('images/hero2.webp')"></div>
+<div class="hero-slide parallax-active" style="background-image:url('images/hero3.webp')"></div>
+<div class="hero-slide parallax-active" style="background-image:url('images/hero4.jpg')"></div>
+
+    <!-- GOLDEN BLACK OVERLAY -->
+    <div class="absolute inset-0 bg-gradient-to-b 
+        from-black/10 via-black/40 to-yellow-900/70">
     </div>
-    <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80 z-10"></div>
-    
-    <div class="relative z-20 container mx-auto px-6 h-full flex flex-col justify-center" data-aos="fade-up" data-aos-delay="300">
-      <h1 class="text-5xl md:text-8xl font-medium mb-6 leading-tight">
-        India’s Leading <br>
-        <span style="color: var(--gold);" class="drop-shadow-2xl">Tensile</span> Structure <br>
-        <span class="text-4xl md:text-6xl" style="color: var(--gold);">Experts</span>
-      </h1>
-      <p class="text-xl md:text-3xl max-w-3xl text-gray-200 font-light">
-        Precision-engineered shelters that stand the test of time.
-      </p>
-    </div>
 
-    <div class="absolute right-10 bottom-10 z-30 flex flex-col items-end space-y-4" data-aos="fade-left" data-aos-delay="300">
-      <div id="preview-container" class="flex gap-4">
-        <div class="preview-img w-32 h-44 overflow-hidden rounded-xl shadow-2xl opacity-90 hover:opacity-100 transition-all duration-500 cursor-pointer border-4 border-transparent hover:border-yellow-400">
-          <img src="images/hero2.webp" class="w-full h-full object-cover" alt="Preview">
-        </div>
-        <div class="preview-img w-32 h-44 overflow-hidden rounded-xl shadow-2xl opacity-90 hover:opacity-100 transition-all duration-500 cursor-pointer border-4 border-transparent hover:border-yellow-400">
-          <img src="images/hero3.webp" class="w-full h-full object-cover" alt="Preview">
-        </div>
-        <div class="preview-img w-32 h-44 overflow-hidden rounded-xl shadow-2xl opacity-90 hover:opacity-100 transition-all duration-500 cursor-pointer border-4 border-transparent hover:border-yellow-400">
-          <img src="images/hero4.jpg" class="w-full h-full object-cover" alt="Preview">
-        </div>
-      </div>
-      <div class="w-96 h-1 bg-white/30 rounded-full overflow-hidden">
-        <div id="progress-line" class="h-1 bg-yellow-400 w-0 rounded-full"></div>
-      </div>
-    </div>
-  </section>
+    <!-- CENTERED TEXT -->
+   <div class="absolute bottom-28 left-1/2 -translate-x-1/2 text-center z-20 hero-text">
+    <p class="text-white text-2xl md:text-3xl mb-4 opacity-90 drop-shadow-xl">
+        Delivering Excellence in Tensile Engineering
+    </p>
 
-  <!-- ABOUT -->
-  <section class="py-28" data-aos="zoom-in" style="background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);">
-    <div class="container mx-auto px-6">
-      <div class="text-center mb-16" data-aos="fade-down">
-        <h2 class="text-6xl font-medium drop-shadow-xl" style="color: var(--gold);">About Venkateshwara</h2>
-        <div class="w-40 h-1 mx-auto mt-6 rounded-full" style="background: var(--gold);"></div>
-      </div>
+    <h1 class="text-white text-5xl md:text-7xl font-semibold leading-tight drop-shadow-2xl">
+        Tensile & Fabrication <br>
+        <span class="text-yellow-400 text-4xl md:text-5xl">Since 2022</span>
+    </h1>
+</div>
 
-      <div class="grid md:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
-        <div data-aos="fade-right" data-aos-delay="200">
-          <img src="images/about.jpg" alt="Venkateshwara Team" 
-               class="rounded-3xl shadow-3xl w-full transform hover:scale-105 transition-all duration-500" style="border: 8px solid rgba(245, 158, 11, 0.2);">
-        </div>
+</section>
 
-        <div class="space-y-8" data-aos="fade-left" data-aos-delay="400">
-          <p class="text-xl text-gray-700 leading-relaxed">
-            Established in <strong class="text-gray-900">2022</strong>, 
-            <strong class="text-gray-900">“Venkateshwara Corporation”</strong> is Pune’s leading 
-            <span style="color: var(--gold); font-weight: 700;">Service Provider</span> of 
-            <span class="italic">Balcony Shed, Industrial Shed, Car Parking Awning, Terrace Shed, Tensile Structure, Prefabricated Shed, Fabrication Service</span> and much more.
-          </p>
+<script>
+gsap.registerPlugin(ScrollTrigger);
 
-          <p class="text-lg text-gray-600 leading-relaxed">
-            Through the years, we’ve built a <strong class="text-gray-900">nationwide network</strong> of delighted clients by delivering 
-            <span style="color: var(--gold);">German-grade precision</span> at lightning-fast Indian speed.
-          </p>
+let heroSlides = document.querySelectorAll(".hero-slide");
+let heroText = document.querySelector(".hero-text");
+let currentHero = 0;
 
-          <p class="text-lg text-gray-600">
-            Under the visionary guidance of our mentor, 
-            <strong class="text-gray-900">Mr. Nilesh Ashok Konde (CEO)</strong>, 
-            we continue to grow at record pace — backed by 
-            <strong class="text-gray-900">50+ master craftsmen</strong> and 
-            <strong class="text-gray-900">500+ flawless installations</strong>.
-          </p>
+// FUNCTION: Animate slide
+function animateHeroSlide(index) {
+    let slide = heroSlides[index];
 
-          <a href="about.html" 
-             class="inline-block text-gray-900 font-semibold py-5 px-14 rounded-full text-xl shadow-2xl 
-                    transform hover:scale-110 transition-all duration-300" 
-             style="background: var(--gold); color: var(--navy);" data-aos="flip-up" data-aos-delay="300">
-            Learn More
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+    // Reset slide style
+    slide.style.opacity = "1";
+    slide.style.transform = "scale(1.18) translateY(60px)";
 
-  <!-- WHY CHOOSE US -->
-  <section class="py-24" style="background: linear-gradient(135deg, rgba(15,23,42,0.7) 0%, rgba(30,41,59,0.7) 100%), url('images/hero1.webp'); background-attachment: fixed; background-size: cover; background-position: center;">
-    <div class="container mx-auto px-6">
-      <div class="text-center mb-16" data-aos="fade-up">
-        <h2 class="text-5xl md:text-6xl font-medium text-white mb-4">
-          Why Choose <span style="color: var(--gold);">Venkateshwara?</span>
+    // IMAGE FADE + ZOOM-IN
+    gsap.fromTo(slide,
+        { opacity: 0, scale: 1.18, y: 60 },
+        {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            duration: 1.8,
+            ease: "power3.out"
+        }
+    );
+
+    // PARALLAX FLOAT
+    gsap.to(slide, {
+        scale: 1.08,
+        y: -120,
+        ease: "none",
+        scrollTrigger: {
+            trigger: "section",
+            start: "top top",
+            end: "bottom top",
+            scrub: 1.6
+        }
+    });
+}
+
+// FIRST TIME LOAD
+animateHeroSlide(0);
+
+// HERO SLIDER AUTO CHANGE
+function changeHeroSlide() {
+    heroSlides[currentHero].classList.remove("active");
+
+    currentHero = (currentHero + 1) % heroSlides.length;
+
+    heroSlides[currentHero].classList.add("active");
+
+    animateHeroSlide(currentHero);
+}
+
+setInterval(changeHeroSlide, 4000);
+
+// HERO TEXT ENTRY
+gsap.from(".hero-text", {
+    opacity: 0,
+    y: 80,
+    duration: 1.4,
+    delay: 0.3,
+    ease: "power3.out"
+});
+
+// HERO TEXT FLOAT
+gsap.to(".hero-text", {
+    y: -60,
+    ease: "none",
+    scrollTrigger: {
+        trigger: "section",
+        start: "top top",
+        end: "bottom top",
+        scrub: 1.2
+    }
+});
+</script>
+
+
+
+<!-- STICKY BACKGROUND IMAGE SECTION -->
+<section class="relative h-screen w-full overflow-hidden z-0">
+    <div class="sticky-bg"></div><div class="absolute top-1/2 left-1/2 -translate-x-1/2 
+                -translate-y-1/2 w-[90%] md:w-[70%] lg:w-[55%] 
+                bg-white rounded-3xl shadow-2xl p-10 md:p-14 animate-fade-up z-[50]">
+        
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900 text-center">
+            About <span class="text-yellow-500">Venkateshwara</span>
         </h2>
-        <p class="text-xl text-gray-300">Delivering quality, reliability, and precision in every tensile structure.</p>
+
+        <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-5 text-center">
+            Established in <strong>2022</strong>, Venkateshwara Corporation is Pune’s leading 
+            <span class="text-yellow-500 font-semibold">Service Provider</span> of 
+            Balcony Shed, Industrial Shed, Tensile Structures and more.
+        </p>
+
+        <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-5 text-center">
+            We deliver <span class="font-semibold text-yellow-500">German-grade precision</span> 
+            with lightning-fast execution across Maharashtra.
+        </p>
+
+        <p class="text-lg md:text-xl text-gray-700 leading-relaxed text-center">
+            Led by <strong>Mr. Nilesh Ashok Konde (CEO)</strong>, our company has successfully 
+            completed <strong>500+ installations</strong> with a strong team of 50+ craftsmen.
+        </p>
+    </div>
+ 
+</section>
+
+<!-- MISSION VISION VALUES – NOW WITH SAME SLIDER AS ABOUT PAGE -->
+<section class="py-16 relative overflow-hidden bg-slate-50">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-16" data-aos="fade-up">
+      <h2 class="text-5xl md:text-6xl font-semibold text-gray-900 mb-4">
+        Our <span style="color: var(--gold);">Mission</span>, Vision & Values
+      </h2>
+      <div class="w-48 h-1 mx-auto mt-6 rounded-full shadow-2xl" style="background: var(--gold);"></div>
+    </div>
+
+    <div class="grid md:grid-cols-12 gap-6 max-w-7xl mx-auto">
+
+      <!-- LEFT CARDS -->
+      <div class="md:col-span-3 space-y-6">
+        <div class="bg-gradient-to-br from-slate-900 to-black p-8 rounded-2xl shadow-2xl border-2" style="border-color: rgba(245, 158, 11, 0.4);" data-aos="fade-right" data-aos-delay="100">
+          <div class="rounded-full flex items-center justify-center mb-5 shadow-xl" style="width: 4rem; height: 4rem; background: var(--gold);">
+            <svg class="w-10 h-10 text-slate-900" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+          </div>
+          <h3 class="text-2xl font-bold mb-3" style="color: var(--gold);">Integrity First</h3>
+          <p class="text-gray-300 text-sm leading-relaxed">Every weld, every promise — delivered with honesty and German precision.</p>
+        </div>
+        <div class="bg-gradient-to-br from-slate-900 to-black p-8 rounded-2xl shadow-2xl border-2" style="border-color: rgba(245, 158, 11, 0.4);" data-aos="fade-right" data-aos-delay="300">
+          <div class="rounded-full flex items-center justify-center mb-5 shadow-xl" style="width: 4rem; height: 4rem; background: var(--gold);">
+            <svg class="w-10 h-10 text-slate-900" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 12h3v8h14v-8h3L12 2zm0 2.8L19.2 12H16v6H8v-6H4.8L12 4.8z"/></svg>
+          </div>
+          <h3 class="text-2xl font-bold mb-3" style="color: var(--gold);">Quality Shelter</h3>
+          <p class="text-gray-300 text-sm leading-relaxed">3-Year warranty on every tensile structure — rain, sun, or storm.</p>
+        </div>
       </div>
 
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
-        <div class="why-card" data-aos="zoom-in" data-aos-delay="100">
-          <div class="why-icon">
-            <svg class="w-12 h-12" style="color: var(--blue);" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 18a8 8 0 110-16 8 8 0 010 16z"/>
-              <path d="M12 7v5l4.5 2.5"/>
-            </svg>
-          </div>
-          <div class="why-content">
-            <h3 class="text-2xl font-semibold mb-2" style="color: var(--gold);">German Precision</h3>
-            <p class="text-gray-900 text-sm leading-relaxed">
-              Every tensile structure is engineered with millimeter accuracy using European standards.
-            </p>
-          </div>
-        </div>
+      <!-- CENTER: SAME SLIDER AS ABOUT PAGE -->
+      <!-- CENTER: SLIDER THAT AUTO-MATCHES CARD HEIGHT -->
+<div class="md:col-span-6" data-aos="zoom-in" data-aos-delay="500">
+  <div id="valuesSlider" class="relative overflow-hidden rounded-3xl shadow-3xl h-full" style="border: 8px solid rgba(245, 158, 11, 0.4);">
+    <div class="slide active"><img src="images/about hero4.jpg" alt="Team" class="w-full h-full object-cover"></div>
+    <div class="slide"><img src="images/about hero.jpg" alt="Factory" class="w-full h-full object-cover"></div>
+    <div class="slide"><img src="images/about hero3.jpg" alt="Installation" class="w-full h-full object-cover"></div>
+    <div class="slide"><img src="images/img1.jpg" alt="Clients" class="w-full h-full object-cover"></div>
+    <div class="slide"><img src="images/img3.jpg" alt="Design" class="w-full h-full object-cover"></div>
 
-        <div class="why-card" data-aos="zoom-in" data-aos-delay="200">
-          <div class="why-icon">
-            <svg class="w-12 h-12" style="color: var(--blue);" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2L2 12h3v8h14v-8h3L12 2zm0 2.8L19.2 12H16v6H8v-6H4.8L12 4.8z"/>
-            </svg>
-          </div>
-          <div class="why-content">
-            <h3 class="text-2xl font-semibold text-yellow-600 mb-2">3-Year Warranty</h3>
-            <p class="text-gray-900 text-sm leading-relaxed">
-              Full replacement guarantee on fabric & structure — zero questions asked.
-            </p>
-          </div>
-        </div>
+    <!-- GOLD DOTS -->
+    <div class="dots absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+      <span class="dot active w-3 h-3 rounded-full cursor-pointer" data-index="0" style="background: var(--gold);"></span>
+      <span class="dot w-3 h-3 bg-gray-400 rounded-full cursor-pointer" data-index="1"></span>
+      <span class="dot w-3 h-3 bg-gray-400 rounded-full cursor-pointer" data-index="2"></span>
+      <span class="dot w-3 h-3 bg-gray-400 rounded-full cursor-pointer" data-index="3"></span>
+      <span class="dot w-3 h-3 bg-gray-400 rounded-full cursor-pointer" data-index="4"></span>
+    </div>
 
-        <div class="why-card" data-aos="zoom-in" data-aos-delay="300">
-          <div class="why-icon">
-            <svg class="w-12 h-12" style="color: var(--blue);" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm-1 17h2v-6h-2v6zm1-8a1.5 1.5 0 110-3 1.5 1.5 0 010 3z"/>
-            </svg>
-          </div>
-          <div class="why-content">
-            <h3 class="text-2xl font-semibold text-yellow-600 mb-2">24/7 Support</h3>
-            <p class="text-gray-900 text-sm leading-relaxed">
-              Our team is available round the clock for emergency repairs & queries.
-            </p>
-          </div>
-        </div>
+    <!-- TEXT OVERLAY -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent rounded-3xl pointer-events-none"></div>
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-center">
+      <p class="text-white text-2xl font-bold drop-shadow-2xl">500+ Happy Clients</p>
+      <p class="text-sm mt-2 drop-shadow-xl" style="color: var(--gold);">Trusted Across Maharashtra</p>
+    </div>
+  </div>
+</div>
 
-        <div class="why-card" data-aos="zoom-in" data-aos-delay="400">
-          <div class="why-icon">
-            <svg class="w-10 h-10" style="color: var(--blue);" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-            </svg>
+      <!-- RIGHT CARDS -->
+      <div class="md:col-span-3 space-y-6">
+        <div class="bg-gradient-to-br from-slate-900 to-black p-8 rounded-2xl shadow-2xl border-2" style="border-color: rgba(245, 158, 11, 0.4);" data-aos="fade-left" data-aos-delay="100">
+          <div class="rounded-full flex items-center justify-center mb-5 shadow-xl" style="width: 4rem; height: 4rem; background: var(--gold);">
+            <svg class="w-10 h-10 text-slate-900" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           </div>
-          <div class="why-content">
-            <h3 class="text-2xl font-semibold text-yellow-600 mb-2">Happy Clients</h3>
-            <p class="text-gray-900 text-sm leading-relaxed">
-              Trusted by homeowners, industries, and stadium owners across Maharashtra.
-            </p>
+          <h3 class="text-2xl font-bold mb-3" style="color: var(--gold);">Innovation</h3>
+          <p class="text-gray-300 text-sm leading-relaxed">Cutting-edge tensile designs that redefine Indian architecture.</p>
+        </div>
+        <div class="bg-gradient-to-br from-slate-900 to-black p-8 rounded-2xl shadow-2xl border-2" style="border-color: rgba(245, 158, 11, 0.4);" data-aos="fade-left" data-aos-delay="300">
+          <div class="rounded-full flex items-center justify-center mb-5 shadow-xl" style="width: 4rem; height: 4rem; background: var(--gold);">
+            <svg class="w-10 h-10 text-slate-900" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
           </div>
+          <h3 class="text-2xl font-bold mb-3" style="color: var(--gold);">Excellence</h3>
+          <p class="text-gray-300 text-sm leading-relaxed">Zero-compromise craftsmanship in every balcony, factory & stadium.</p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+  <script>
+  // VALUES SLIDER – EXACT SAME AS ABOUT PAGE
+  const valuesSlides = document.querySelectorAll('#valuesSlider .slide');
+  const valuesDots = document.querySelectorAll('#valuesSlider .dot');
+  let valuesIndex = 0;
 
+  const showValueSlide = (n) => {
+    valuesSlides[valuesIndex].classList.remove('active');
+    valuesDots[valuesIndex].classList.remove('active', 'bg-yellow-400');
+    valuesDots[valuesIndex].classList.add('bg-gray-400');
 
+    valuesIndex = (n + valuesSlides.length) % valuesSlides.length;
+
+    valuesSlides[valuesIndex].classList.add('active');
+    valuesDots[valuesIndex].classList.add('active', 'bg-yellow-400');
+    valuesDots[valuesIndex].classList.remove('bg-gray-400');
+  };
+
+  setInterval(() => showValueSlide(valuesIndex + 1), 3000);
+
+  valuesDots.forEach((dot, i) => {
+    dot.addEventListener('click', () => showValueSlide(i));
+  });
+</script>
   <!-- PRODUCT SLIDER -->
-  <section class="py-20 bg-white">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-12" data-aos="fade-up">
-        <h2 class="text-5xl md:text-6xl font-medium drop-shadow-2xl" style="color: #f59e0b;">
-          Our Categories
-        </h2>
-        <p class="text-xl text-gray-700 mt-3">Explore our range of premium tensile structure solutions.</p>
-      </div>
-
-      <div class="relative max-w-7xl mx-auto overflow-visible" id="product-slider" data-autoplay="true" data-aos="fade-up" data-aos-delay="200">
-        <div class="flex transition-transform duration-500 ease-out" id="product-track">
-          <!-- Cards unchanged — just wrapped in animation -->
-          <div class="product-card flex-shrink-0 w-80 mx-4" data-aos="flip-left" data-aos-delay="50">
-            <div class="relative overflow-hidden">
-              <img src="home-product-images/balcony shed.jpg" alt="Balcony" class="w-full aspect-square object-cover">
-              <div class="overlay">
-                <div class="overlay-content">
-                  <h3 class="overlay-title">Balcony Shed</h3>
-                  <p class="overlay-desc">Durable and stylish balcony shed designed to protect your space from sun, rain, and dust.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Repeat for all 7 cards with increasing delay -->
-          <div class="product-card flex-shrink-0 w-80 mx-4" data-aos="flip-left" data-aos-delay="100">
-          <div class="relative overflow-hidden">
-            <img src="home-product-images/industrial shed.jpg" alt="Industrial" class="w-full aspect-square object-cover">
-            <div class="overlay">
-              <div class="overlay-content">
-                <h3 class="overlay-title">Industrial Shed</h3>
-                <p class="overlay-desc">Heavy-duty tensile fabric sheds<br>for factories & warehouses</p>
-              </div>
-            </div>
-          </div>
-        </div>
-          <div class="product-card flex-shrink-0 w-80 mx-4" data-aos="flip-left" data-aos-delay="150"><div class="relative overflow-hidden">
-            <img src="home-product-images/car parking.jpg" alt="Car Parking" class="w-full aspect-square object-cover">
-            <div class="overlay">
-              <div class="overlay-content">
-                <h3 class="overlay-title">Car Parking Shed </h3>
-                <p class="overlay-desc">Durable and UV-resistant car parking sheds designed to protect vehicles from sun, rain, and dust.</p>
-
-              </div>
-            </div>
-          </div>
-</div>
-          <div class="product-card flex-shrink-0 w-80 mx-4" data-aos="flip-left" data-aos-delay="200"><div class="relative overflow-hidden">
-            <img src="home-product-images/tensile structure.jpg" alt="Terrace" class="w-full aspect-square object-cover">
-            <div class="overlay">
-              <div class="overlay-content">
-                <h3 class="overlay-title">Tensile Structure</h3>
-<p class="overlay-desc">Versatile and durable tensile roofing solutions designed for all-weather protection and modern aesthetics.</p>
-
-              </div>
-            </div>
-          </div>
-</div>
-          <div class="product-card flex-shrink-0 w-80 mx-4" data-aos="flip-left" data-aos-delay="250"> <div class="relative overflow-hidden">
-            <img src="home-product-images/fabrication.jpg" alt="Stadium" class="w-full aspect-square object-cover">
-            <div class="overlay">
-              <div class="overlay-content">
-                <h3 class="overlay-title">Fabrication</h3>
-<p class="overlay-desc">Expert tensile membrane fabrication built for wide-span stadium and arena coverage.</p>
-
-              </div>
-            </div>
-          </div>
-</div>
-          <div class="product-card flex-shrink-0 w-80 mx-4" data-aos="flip-left" data-aos-delay="300"> <div class="relative overflow-hidden">
-            <img src="home-product-images/prefabricated.jpg" alt="Pool" class="w-full aspect-square object-cover">
-            <div class="overlay">
-              <div class="overlay-content">
-               <h3 class="overlay-title">Prefabricated</h3>
-<p class="overlay-desc">High-quality prefabricated tensile enclosures designed for pools, outdoor lounges, and premium spaces.</p>
-
-              </div>
-            </div>
-          </div>
-</div>
-          <div class="product-card flex-shrink-0 w-80 mx-4" data-aos="flip-left" data-aos-delay="350"><div class="relative overflow-hidden">
-            <img src="home-product-images/car parking awning.jpg" alt="Walkway" class="w-full aspect-square object-cover">
-            <div class="overlay">
-              <div class="overlay-content">
-                <h3 class="overlay-title">Car Parking Awning</h3>
-<p class="overlay-desc">Durable tensile awnings designed to protect vehicles from sun, rain, and harsh weather.</p>
-
-              </div>
-            </div>
-          </div>
-        </div></div>
-        </div>
-
-        <button id="prev-btn" class="arrow-btn left-4" data-aos="fade-right" data-aos-delay="300">
-          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7"/>
-          </svg>
-        </button>
-        <button id="next-btn" class="arrow-btn right-4" data-aos="fade-left" data-aos-delay="300">
-          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/>
-          </svg>
-        </button>
-      </div>
-
-      <div class="flex justify-center gap-3 mt-10" data-aos="fade-up" data-aos-delay="400">
-        <span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
-      </div>
+  <!-- PRODUCT SLIDER -->
+<section class="py-20 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12" data-aos="fade-up">
+      <h2 class="text-5xl md:text-6xl font-medium drop-shadow-2xl" style="color: #f59e0b;">
+        Our Categories
+      </h2>
+      <p class="text-xl text-gray-700 mt-3">Explore our range of premium tensile structure solutions.</p>
     </div>
-  </section>
+
+    <div class="relative max-w-7xl mx-auto overflow-visible" id="product-slider" data-autoplay="true" data-aos="fade-up" data-aos-delay="200">
+      <div class="flex transition-transform duration-500 ease-out" id="product-track">
+
+        <!-- 1 — BALCONY SHED -->
+        <div class="product-card flex-shrink-0 w-80 mx-4">
+          <img src="home-product-images/balcony shed.jpg">
+          <div class="product-overlay"></div>
+          <div class="product-overlay-content">
+            <h3 class="product-title">Balcony Shed</h3>
+            <p class="product-desc">Durable and stylish balcony shed designed to protect your space from sun, rain, and dust.</p>
+          </div>
+        </div>
+
+        <!-- 2 — INDUSTRIAL SHED -->
+        <div class="product-card flex-shrink-0 w-80 mx-4">
+          <img src="home-product-images/industrial shed.jpg">
+          <div class="product-overlay"></div>
+          <div class="product-overlay-content">
+            <h3 class="product-title">Industrial Shed</h3>
+            <p class="product-desc">Heavy-duty tensile fabric sheds for factories & warehouses.</p>
+          </div>
+        </div>
+
+        <!-- 3 — CAR PARKING SHED -->
+        <div class="product-card flex-shrink-0 w-80 mx-4">
+          <img src="home-product-images/car parking.jpg">
+          <div class="product-overlay"></div>
+          <div class="product-overlay-content">
+            <h3 class="product-title">Car Parking Shed</h3>
+            <p class="product-desc">UV-resistant car parking solutions crafted for long-term protection.</p>
+          </div>
+        </div>
+
+        <!-- 4 — TENSILE STRUCTURE -->
+        <div class="product-card flex-shrink-0 w-80 mx-4">
+          <img src="home-product-images/tensile structure.jpg">
+          <div class="product-overlay"></div>
+          <div class="product-overlay-content">
+            <h3 class="product-title">Tensile Structure</h3>
+            <p class="product-desc">All-weather tensile roofing with modern aesthetics.</p>
+          </div>
+        </div>
+
+        <!-- 5 — FABRICATION -->
+        <div class="product-card flex-shrink-0 w-80 mx-4">
+          <img src="home-product-images/fabrication.jpg">
+          <div class="product-overlay"></div>
+          <div class="product-overlay-content">
+            <h3 class="product-title">Fabrication</h3>
+            <p class="product-desc">Expert tensile membrane fabrication for wide-span structures.</p>
+          </div>
+        </div>
+
+        <!-- 6 — PREFABRICATED -->
+        <div class="product-card flex-shrink-0 w-80 mx-4">
+          <img src="home-product-images/prefabricated.jpg">
+          <div class="product-overlay"></div>
+          <div class="product-overlay-content">
+            <h3 class="product-title">Prefabricated</h3>
+            <p class="product-desc">High-quality prefabricated tensile enclosures for premium spaces.</p>
+          </div>
+        </div>
+
+        <!-- 7 — CAR PARKING AWNING -->
+        <div class="product-card flex-shrink-0 w-80 mx-4">
+          <img src="home-product-images/car parking awning.jpg">
+          <div class="product-overlay"></div>
+          <div class="product-overlay-content">
+            <h3 class="product-title">Car Parking Awning</h3>
+            <p class="product-desc">Durable awnings built to handle heavy sun, rain & harsh weather.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- NAV BUTTONS (same as before) -->
+      <button id="prev-btn" class="arrow-btn left-4">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7"/></svg>
+      </button>
+
+      <button id="next-btn" class="arrow-btn right-4">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg>
+      </button>
+
+    </div>
+
+    <div class="flex justify-center gap-3 mt-10">
+      <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    </div>
+
+  </div>
+</section>
+<script>
+/* ---------------- PRODUCT AUTO SLIDER ---------------- */
+
+const track = document.getElementById("product-track");
+const cards = document.querySelectorAll(".product-card");
+const prevBtn = document.getElementById("prev-btn");
+const nextBtn = document.getElementById("next-btn");
+const dots = document.querySelectorAll(".dot");
+
+let index = 0;
+const cardWidth = cards[0].offsetWidth + 32; // card + margin
+const visibleCards = 3; 
+const totalSlides = cards.length - visibleCards + 1;
+
+let autoPlayInterval;
+
+/* Move slider */
+function goToSlide(num) {
+  if (num >= totalSlides) num = 0;
+  if (num < 0) num = totalSlides - 1;
+
+  index = num;
+  track.style.transform = `translateX(-${index * cardWidth}px)`;
+
+  dots.forEach((d, i) => d.classList.toggle("active", i === index));
+}
+
+/* Auto-play */
+function startAuto() {
+  autoPlayInterval = setInterval(() => {
+    goToSlide(index + 1);
+  }, 3000);
+}
+
+function stopAuto() {
+  clearInterval(autoPlayInterval);
+}
+
+/* Buttons */
+nextBtn.addEventListener("click", () => {
+  stopAuto();
+  goToSlide(index + 1);
+  startAuto();
+});
+
+prevBtn.addEventListener("click", () => {
+  stopAuto();
+  goToSlide(index - 1);
+  startAuto();
+});
+
+/* Dots */
+dots.forEach((dot, i) => {
+  dot.addEventListener("click", () => {
+    stopAuto();
+    goToSlide(i);
+    startAuto();
+  });
+});
+
+/* Pause on hover */
+const sliderArea = document.getElementById("product-slider");
+sliderArea.addEventListener("mouseenter", stopAuto);
+sliderArea.addEventListener("mouseleave", startAuto);
+
+/* Initialize */
+goToSlide(0);
+startAuto();
+</script>
+
 
   <!-- CTA -->
-  <section class="relative py-32 text-center bg-cover bg-center" 
-           style="background-image: url('images/hero5.jpg');" data-aos="zoom-in">
-    <div class="absolute inset-0 bg-gray-900/80"></div>
-    <div class="relative z-10 container mx-auto px-6">
-      <h2 class="text-5xl md:text-6xl font-medium text-white mb-6 drop-shadow-2xl" data-aos="fade-up" data-aos-delay="200">
-        Ready for Your <span class="text-yellow-400">Dream Shelter</span>?
-      </h2>
-      <p class="text-xl md:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="400">
-        Contact us today for quotes, designs, and expert guidance.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-6 justify-center items-center" data-aos="flip-up" data-aos-delay="300">
-        <a href="contact.html" 
-           class="inline-flex items-center gap-3 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-5 px-12 rounded-full text-lg shadow-2xl transform hover:scale-105 transition-all">
-          Contact Now
+  <section class="w-full py-20 px-6 md:px-16">
+  <div class="max-w-7xl mx-auto rounded-3xl overflow-hidden"
+       style="background: linear-gradient(90deg, #f8e1b6 0%, #b57ba6 100%);">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 items-center px-10 md:px-20 py-16 gap-10">
+
+      <!-- LEFT TEXT -->
+      <div>
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">
+          Contact Us to<br>Learn More!
+        </h2>
+
+        <p class="text-gray-800 text-lg leading-relaxed mb-8">
+          Partner with Venkateshwara Corporation to bring premium tensile solutions
+          to your space. Let us help your organization thrive with modern designs,
+          durable materials, and expert engineering.
+        </p>
+
+        <a href="contact.html"
+           class="inline-flex items-center gap-2 bg-purple-700 hover:bg-purple-800
+                  text-white font-semibold text-lg px-8 py-4 rounded-full transition">
+          Contact Us
+          <span>➜</span>
         </a>
       </div>
-    </div>
-    <div class="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-transparent via-yellow-400 to-transparent"></div>
-  </section>
 
-   <!-- FOOTER -->
+      <!-- RIGHT IMAGE SECTION -->
+      <div class="flex justify-center md:justify-end">
+        <img src="" class="h-80 md:h-96 object-contain -mr-6" alt="">
+        <img src="images/about hero4.jpg" class="h-80 md:h-96 object-contain" alt="">
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+  <!-- FOOTER -->
   <footer class="bg-slate-900 text-white relative overflow-hidden">
   <!-- ANIMATED SILVER WAVE (kept exactly as you love it) -->
   <div class="absolute inset-x-0 -top-1 h-24 md:h-28">
@@ -532,7 +818,7 @@
   </div>
 
   <!-- COMPACT CONTENT -->
-  <div class="container mx-auto px-4 pt-12 pb-20 relative z-10">
+  <div class="container mx-auto px-4 pt-12 pb-8 relative z-10">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10
                 justify-items-start md:justify-items-center
                 max-w-7xl mx-auto">
@@ -554,14 +840,15 @@
       </div>
 
       <!-- 2. PRODUCTS -->
+      <!-- 2. PRODUCTS -->
       <div data-aos="fade-up" data-aos-delay="100">
         <h3 class="text-xl font-bold mb-3 text-yellow-400">Products</h3>
         <ul class="space-y-1.5 text-lg">
-          <li data-aos="fade-right" data-aos-delay="150"><a href="#" class="opacity-80 hover:text-yellow-400">Tensile Membranes</a></li>
-          <li data-aos="fade-right" data-aos-delay="200"><a href="#" class="opacity-80 hover:text-yellow-400">Car Parking Shades</a></li>
-          <li data-aos="fade-right" data-aos-delay="250"><a href="#" class="opacity-80 hover:text-yellow-400">Pool Covers</a></li>
-          <li data-aos="fade-right" data-aos-delay="300"><a href="#" class="opacity-80 hover:text-yellow-400">Awnings</a></li>
-          <li data-aos="fade-right" data-aos-delay="350"><a href="#" class="opacity-80 hover:text-yellow-400">Pagoda Tents</a></li>
+          <li data-aos="fade-right" data-aos-delay="150"><a href="fabrication.html" class="opacity-80 hover:text-yellow-400">Fabrication</a></li>
+          <li data-aos="fade-right" data-aos-delay="200"><a href="civil-work.html" class="opacity-80 hover:text-yellow-400">Civil Work</a></li>
+          <li data-aos="fade-right" data-aos-delay="250"><a href="interior.html" class="opacity-80 hover:text-yellow-400">Interiors</a></li>
+          <li data-aos="fade-right" data-aos-delay="300"><a href="exterior.html" class="opacity-80 hover:text-yellow-400">Exteriors</a></li>
+          <li data-aos="fade-right" data-aos-delay="350"><a href="other-services.html" class="opacity-80 hover:text-yellow-400">Other Services</a></li>
         </ul>
       </div>
 
@@ -592,19 +879,21 @@
     </div>
 
     <!-- COPYRIGHT -->
-    <div class="text-center mt-12 pt-5 border-t border-slate-800 text-xs opacity-70"
+    <div class="text-center mt-8 pt-5 border-t border-slate-800 text-xs opacity-70"
          data-aos="fade-up" data-aos-delay="400">
-      © 2025 Venkateshwara Corporation • GST: 27AAXXXXXXXX • Pune
+      © 2025 Venkateshwara Corporation • Developed by DWInnovations Pvt. Ltd. • Pune
     </div>
   </div>
 </footer>
+
 
 <!-- AOS + FEATHER (once in <head>) -->
 <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script src="https://unpkg.com/feather-icons"></script>
 <script>
-  AOS.init({ once:true, duration:400 });
+  AOS.init({ once: true, duration: 250, easing: "ease-out" });
+
   feather.replace();
   // tiny helper
   const style = document.createElement('style');
@@ -615,6 +904,7 @@
   <!-- SCRIPTS (unchanged + AOS engine) -->
   <script>
     feather.replace();
+
 
     // HERO CAROUSEL
     const images = document.querySelectorAll(".carousel-image");
@@ -633,53 +923,7 @@
     setInterval(() => showSlide(current = (current + 1) % total), interval);
     showSlide(0);
 
-    // PRODUCT SLIDER (unchanged)
-    const track = document.getElementById('product-track');
-    const cards = document.querySelectorAll('.product-card');
-    const dots = document.querySelectorAll('.dot');
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
-    const slider = document.getElementById('product-slider');
-    const visibleCards = 4;
-    const cardWidth = cards[0].offsetWidth + 32;
-    let currentIndex = 0;
-    const totalSlides = cards.length - visibleCards + 1;
-    let autoplayInterval;
-
-    function updateDots() {
-      dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
-    }
-    function slideTo(index) {
-      if (index >= totalSlides) index = 0;
-      if (index < 0) index = totalSlides - 1;
-      track.style.transform = `translateX(-${index * cardWidth}px)`;
-      currentIndex = index;
-      updateDots();
-    }
-    function startAutoplay() {
-      autoplayInterval = setInterval(() => slideTo(currentIndex + 1), 2000);
-    }
-    function stopAutoplay() { clearInterval(autoplayInterval); }
-    nextBtn.addEventListener('click', () => { stopAutoplay(); slideTo(currentIndex + 1); startAutoplay(); });
-    prevBtn.addEventListener('click', () => { stopAutoplay(); slideTo(currentIndex - 1); startAutoplay(); });
-    slider.addEventListener('mouseenter', stopAutoplay);
-    slider.addEventListener('mouseleave', startAutoplay);
-    slideTo(0);
-    if (slider.dataset.autoplay === "true") startAutoplay();
-
-    // SCROLL ANIMATIONS — 8 LINES OF PURE MAGIC
-    const animateOnScroll = () => {
-      document.querySelectorAll('[data-aos]').forEach(el => {
-        const rect = el.getBoundingClientRect();
-        const isVisible = rect.top < window.innerHeight * 0.85;
-        if (isVisible && !el.classList.contains('aos-animate')) {
-          el.classList.add('aos-animate');
-        }
-      });
-    };
-    window.addEventListener('scroll', animateOnScroll);
-    window.addEventListener('load', animateOnScroll);
-  </script>
+    </script>
 
   <!-- AOS STYLES (PASTE IN <head> OR HERE) -->
   <style>
@@ -701,230 +945,5 @@
       transform: translateY(0) translateX(0) scale(1) rotateY(0) !important;
     }
   </style>  <!-- WHITE NAVBAR COMPONENT – NOW WORKS EVERYWHERE -->
-  <script>
-    class CustomNavbar extends HTMLElement {
-      connectedCallback() {
-        this.attachShadow({ mode: 'open' });
-        this.shadowRoot.innerHTML = `
-          <style>
-            :host {
-              display: block;
-              position: fixed;
-              top: 0; left: 0; right: 0;
-              z-index: 9999;
-              padding: 1.5rem 0;
-              background: rgba(255,255,255,0.95);
-              backdrop-filter: blur(12px);
-              transition: all 0.4s ease;
-              font-family: 'Inter', sans-serif;
-            }
-            :host(.scrolled) {
-              padding: 0.75rem 0;
-              background: rgba(255,255,255,0.95);
-              box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-            }
-            .nav-container {
-              max-width: 1400px;
-              margin: 0 auto;
-              padding: 0 1.5rem;
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-            }
-            .logo {
-              display: flex;
-              align-items: center;
-              gap: 0.75rem;
-              color: #111;
-              text-decoration: none;
-              font-weight: 500;
-              font-size: 1.5rem;
-            }
-            .logo img { height: 64px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2)); }
-            .logo span { color: #f59e0b; }
-            .nav-links { display: flex; gap: 2.5rem; }
-            .nav-link {
-              color: #222;
-              text-decoration: none;
-              font-weight: 600;
-              position: relative;
-              transition: color 0.3s;
-              cursor: pointer;
-            }
-            .nav-link:hover { color: #f59e0b; }
-            .nav-link::after {
-              content: '';
-              position: absolute;
-              width: 0; height: 3px;
-              bottom: -8px; left: 0;
-              background: #f59e0b;
-              transition: width 0.4s ease;
-            }
-            .nav-link:hover::after { width: 100%; }
-
-            /* Dropdown Styles */
-            .dropdown {
-              position: relative;
-            }
-            .dropdown-content {
-              display: none;
-              position: absolute;
-              top: 100%;
-              left: 50%;
-              background: rgba(255,255,255,0.98);
-              backdrop-filter: blur(15px);
-              min-width: 800px;
-              box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-              border-radius: 0.75rem;
-              z-index: 10000;
-              padding: 1rem;
-              margin-top: 0.75rem;
-              border: 1px solid rgba(245, 158, 11, 0.1);
-              opacity: 0;
-              transform: translateX(-50%) translateY(-10px);
-              transition: all 0.3s ease;
-              display: flex;
-              flex-direction: row;
-              gap: 1.5rem;
-            }
-            .dropdown:hover .dropdown-content {
-              display: flex;
-              opacity: 1;
-              transform: translateX(-50%) translateY(0);
-            }
-            .dropdown-section {
-              display: flex;
-              flex-direction: column;
-              min-width: 180px;
-            }
-            .dropdown-item {
-              display: block;
-              padding: 0.5rem 1rem;
-              color: #222;
-              text-decoration: none;
-              font-weight: 500;
-              transition: all 0.3s ease;
-              border-left: 3px solid transparent;
-              font-size: 0.9rem;
-            }
-            .dropdown-item:hover {
-              background: rgba(245, 158, 11, 0.1);
-              color: #f59e0b;
-              border-left-color: #f59e0b;
-              padding-left: 1.25rem;
-            }
-            .dropdown-category {
-              padding: 0.5rem 1rem 0.25rem;
-              font-weight: 700;
-              color: #f59e0b;
-              font-size: 0.875rem;
-              text-transform: uppercase;
-              letter-spacing: 0.05em;
-              border-bottom: 1px solid rgba(245, 158, 11, 0.2);
-              margin-bottom: 0.5rem;
-            }
-            .call-button {
-              background: #f59e0b;
-              color: #111;
-              padding: 0.75rem 1.5rem;
-              border-radius: 0.5rem;
-              text-decoration: none;
-              font-weight: 500;
-              transition: all 0.3s;
-            }
-            .call-button:hover {
-              background: #d97706;
-              transform: scale(1.05);
-            }
-            @media (max-width: 768px) {
-              .nav-links, .call-button { display: none; }
-              .logo { font-size: 1.3rem; }
-              .dropdown-content {
-                position: static;
-                display: none;
-                box-shadow: none;
-                background: rgba(255,255,255,0.9);
-                margin-top: 0;
-                border-radius: 0;
-                padding: 0.5rem 0;
-                flex-direction: column;
-                min-width: auto;
-                gap: 0;
-              }
-              .dropdown:hover .dropdown-content {
-                display: flex;
-              }
-              .dropdown-section {
-                min-width: auto;
-              }
-              .dropdown-item {
-                padding: 0.5rem 1rem;
-              }
-              .dropdown-item:hover {
-                padding-left: 1.5rem;
-              }
-            }
-          </style>
-
-          <div class="nav-container">
-            <a href="index.html" class="logo">
-              <img src="logo.jpg" alt="Logo">
-
-            </a>
-            <div class="nav-links">
-              <a href="index.html" class="nav-link">Home</a>
-              <a href="about.html" class="nav-link">About</a>
-              <div class="dropdown">
-                <a href="products.html" class="nav-link">Products ▼</a>
-                <div class="dropdown-content">
-                  <div class="dropdown-section">
-                    <div class="dropdown-category">Residential</div>
-                    <a href="balcony-shed.html" class="dropdown-item">Balcony Shed</a>
-                    <a href="tensile-structure.html" class="dropdown-item">Tensile Structure</a>
-                    <a href="terrace-shed.html" class="dropdown-item">Terrace Shed</a>
-                    <a href="retractable-awning.html" class="dropdown-item">Retractable Awning</a>
-                    <a href="entrance-canopy.html" class="dropdown-item">Entrance Canopy</a>
-                  </div>
-
-                  <div class="dropdown-section">
-                    <div class="dropdown-category">Industrial</div>
-                    <a href="industrial-shed.html" class="dropdown-item">Industrial Shed</a>
-                    <a href="fabrication-services.html" class="dropdown-item">Fabrication Services</a>
-                    <a href="civil-work.html" class="dropdown-item">Civil Work</a>
-                    <a href="roofing-structure.html" class="dropdown-item">Roofing Structure</a>
-                    <a href="cold-storage.html" class="dropdown-item">Cold Storage</a>
-                  </div>
-
-                  <div class="dropdown-section">
-                    <div class="dropdown-category">Car Parking</div>
-                    <a href="tensile-car-parking.html" class="dropdown-item">Tensile Car Parking</a>
-                    <a href="car-parking-awning.html" class="dropdown-item">Car Parking Awning</a>
-                    <a href="prefabricated-shed.html" class="dropdown-item">Prefabricated Shed</a>
-                    <a href="car-parking-shed.html" class="dropdown-item">Car Parking Shed</a>
-                    <a href="valet-parking.html" class="dropdown-item">Valet Parking</a>
-                  </div>
-
-                  <div class="dropdown-section">
-                    <div class="dropdown-category">Commercial</div>
-                    <a href="fabrication-shed.html" class="dropdown-item">Fabrication Shed</a>
-                    <a href="balcony-grill.html" class="dropdown-item">Balcony Grill</a>
-                    <a href="terrace-awning.html" class="dropdown-item">Terrace Awning</a>
-                    <a href="shade-awning.html" class="dropdown-item">Shade Awning</a>
-                    <a href="tile-flooring.html" class="dropdown-item">Tile Flooring</a>
-                  </div>
-                </div>
-              </div>
-              <a href="contact.html" class="nav-link">Contact</a>
-            </div>
-            <a href="tel:+918047693560" class="call-button">Call Now</a>
-          </div>
-        `;
-
-        window.addEventListener('scroll', () => {
-          this.shadowRoot.host.classList.toggle('scrolled', window.scrollY > 100);
-        });
-      }
-    }
-    customElements.define('custom-navbar', CustomNavbar);
-  </script>
+  
 </body></html>

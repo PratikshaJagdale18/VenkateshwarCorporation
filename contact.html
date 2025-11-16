@@ -66,13 +66,72 @@
 }
   </style>
 </head>
-<body>
+<body class="bg-gradient-to-b from-slate-900 to-slate-800 text-white overflow-x-hidden">
 
   <!-- NAVBAR -->
-  <custom-navbar></custom-navbar>
+  <!-- FLOATING LOGO + NAVBAR WRAPPER -->
+<div class="relative w-full flex justify-center z-[9999]">
+    <img src="logo1.png" class="absolute -top-1 w-60 drop-shadow-xl" alt="Logo">
+</div>
+
+<!-- WHITE CURVED NAVBAR -->
+<nav class="relative z-[999] mx-auto mt-36 w-[75%] bg-white bg-opacity-95 backdrop-blur-xl
+            rounded-full py-2 px-10 shadow-xl flex items-center justify-between">
+
+    <ul class="flex gap-20 ml-16  font-bold text-gray-700">
+      
+ <li class="text-black border-b-4 border-yellow-400 pb-1 text-lg cursor-pointer">
+  <a href="index.html" class="block w-full h-full">Home</a>
+</li>
+         <li class="text-black border-b-4 border-yellow-400 pb-1 text-lg cursor-pointer">
+  <a href="about.html" class="block w-full h-full">About</a>
+
+</li> <li class="relative group text-black border-b-4 border-yellow-400 pb-1 text-lg cursor-pointer">
+
+  <a href="products.html" class="block w-full h-full">Product ▾</a>
+
+  <!-- DROPDOWN -->
+  <ul class="absolute left-0 top-full mt-2 w-52 bg-white shadow-xl rounded-xl 
+             opacity-0 invisible group-hover:opacity-100 group-hover:visible 
+             transition-all duration-300">
+
+    <li><a href="fabrication.html" class="block px-4 py-2 hover:bg-yellow-100">Fabrication</a></li>
+    <li><a href="civil-work.html" class="block px-4 py-2 hover:bg-yellow-100">Civil Work</a></li>
+    <li><a href="interior.html" class="block px-4 py-2 hover:bg-yellow-100">Interiors</a></li>
+    <li><a href="exterior.html" class="block px-4 py-2 hover:bg-yellow-100">Exteriors</a></li>
+    <li><a href="other-services.html" class="block px-4 py-2 hover:bg-yellow-100">Other Services</a></li>
+
+  </ul>
+
+</li>
+        
+         <li class="text-black border-b-4 border-yellow-400 text-lg pb-1 cursor-pointer">
+  <a href="contact.html" class="block w-full h-full">Contact</a>
+
+       
+    </ul>
+
+    <div class="relative flex items-center mr-12">
+  <input 
+    type="text"
+    placeholder="Search..."
+    class="px-4 py-2 w-60 md:w-64  rounded-full border border-gray-300 
+           focus:outline-none focus:ring-2 focus:ring-yellow-500 text-gray-700"
+  >
+  
+  <button class="absolute right-2 text-yellow-500 hover:text-yellow-600">
+    <svg xmlns="http://www.w3.org/2000/svg" 
+         class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+            d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1011 18.5a7.5 7.5 0 005.65-2.85z" />
+    </svg>
+  </button>
+</div>
+
+</nav>
 
  <!-- CINEMATIC HERO WITH ZOOM-IN IMAGE + TYPEWRITER -->
-<section class="relative overflow-hidden h-[90vh]">
+<section class="relative overflow-hidden mt-10 [90vh]">
 
   <!-- ZOOM-IN BACKGROUND IMAGE -->
   <div class="absolute inset-0 -z-10">
@@ -89,19 +148,20 @@
   <div class="container mx-auto px-6 h-full flex flex-col justify-center items-center text-center relative z-10">
     
     <!-- MAIN TITLE – GOLD STROKE + GLOW -->
-    <h1 class="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-6 leading-tight">
+    <h1 class="text-5xl md:text-8xl font-medium text-white mb-6 leading-tight">
       <span class="block relative">
-        CONTACT
+        Contact
         <span class="absolute -inset-1 blur-2xl opacity-50 animate-pulse" style="background: var(--gold);"></span>
       </span>
       <span class="block text-white mt-2" 
             style="text-shadow: 0 0 40px var(--gold);">
-        VENKATESHWARA
+        Venkateshwara
+
       </span>
     </h1>
 
     <!-- TYPEWRITER SUBTITLE -->
-    <p class="text-2xl md:text-4xl text-gray-200 font-light mb-8 h-16">
+    <p class="text-3xl md:text-3xl text-gray-200 font-light mb-8 h-16">
       <span class="typewriter" style="color: var(--gold);"></span>
       <span class="blink" style="color: var(--gold);">|</span>
     </p>
@@ -157,7 +217,7 @@
 </script>
 
   <!-- CONTACT SECTION -->
-  <section class="py-20">
+  <section class="py-20 bg-white">
     <div class="container mx-auto px-6 max-w-6xl">
       <div class="grid md:grid-cols-2 gap-16 items-start">
 
@@ -231,7 +291,7 @@
 
   <!-- MAP -->
   <section class="pb-20">
-    <div class="container mx-auto px-6 max-w-6xl">
+    <div class="container mx-auto px-6 max-w-6xl mt-10">
       <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3779.6771072250162!2d73.80292127519552!3d18.678480082445933!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTjCsDQwJzQyLjUiTiA3M8KwNDgnMTkuOCJF!5e0!3m2!1sen!2sin!4v1762491597112!5m2!1sen!2sin" width="100%" height="400" style="border:0;" allowfullscreen="" 
       loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
@@ -280,14 +340,15 @@
       </div>
 
       <!-- 2. PRODUCTS -->
+      <!-- 2. PRODUCTS -->
       <div data-aos="fade-up" data-aos-delay="100">
         <h3 class="text-xl font-bold mb-3 text-yellow-400">Products</h3>
         <ul class="space-y-1.5 text-lg">
-          <li data-aos="fade-right" data-aos-delay="150"><a href="#" class="opacity-80 hover:text-yellow-400">Tensile Membranes</a></li>
-          <li data-aos="fade-right" data-aos-delay="200"><a href="#" class="opacity-80 hover:text-yellow-400">Car Parking Shades</a></li>
-          <li data-aos="fade-right" data-aos-delay="250"><a href="#" class="opacity-80 hover:text-yellow-400">Pool Covers</a></li>
-          <li data-aos="fade-right" data-aos-delay="300"><a href="#" class="opacity-80 hover:text-yellow-400">Awnings</a></li>
-          <li data-aos="fade-right" data-aos-delay="350"><a href="#" class="opacity-80 hover:text-yellow-400">Pagoda Tents</a></li>
+          <li data-aos="fade-right" data-aos-delay="150"><a href="fabrication.html" class="opacity-80 hover:text-yellow-400">Fabrication</a></li>
+          <li data-aos="fade-right" data-aos-delay="200"><a href="civil-work.html" class="opacity-80 hover:text-yellow-400">Civil Work</a></li>
+          <li data-aos="fade-right" data-aos-delay="250"><a href="interior.html" class="opacity-80 hover:text-yellow-400">Interiors</a></li>
+          <li data-aos="fade-right" data-aos-delay="300"><a href="exterior.html" class="opacity-80 hover:text-yellow-400">Exteriors</a></li>
+          <li data-aos="fade-right" data-aos-delay="350"><a href="other-services.html" class="opacity-80 hover:text-yellow-400">Other Services</a></li>
         </ul>
       </div>
 
