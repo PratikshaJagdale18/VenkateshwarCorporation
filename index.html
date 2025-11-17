@@ -274,6 +274,51 @@ footer [data-aos] {
   transform: none !important;
 }
 
+.product {
+  position:absolute;
+  width:260px; height:420px;
+  text-align:center;
+  transition:all .6s ease;
+  opacity:.8;
+  transform:scale(.7);
+  cursor:pointer; color:#444;
+}
+.product img {
+  width:100%; height:350px; object-fit:cover;
+  border-radius:18px;
+  box-shadow:0 8px 20px rgba(0,0,0,.4);
+}
+
+.name { margin-top:8px; font-size:18px; font-weight:600; color:#333; }
+.price { font-size:14px; color:#666; }
+
+/* Center active */
+.product.active {
+  transform:scale(1);
+  opacity:1;
+  z-index:5;
+}
+
+/* Left items */
+.product.left1 { transform:translateX(-300px) scale(.9); opacity:.9; }
+.product.left2 { transform:translateX(-600px) scale(.8); opacity:.8; }
+
+/* Right items */
+.product.right1 { transform:translateX(300px) scale(.9); opacity:.9; }
+.product.right2 { transform:translateX(600px) scale(.8); opacity:.8; }
+
+@media(max-width:768px){
+  .product{ width:200px; height:340px; }
+  .product img{ height:270px; }
+}
+@media(max-width:480px){
+  .product{ width:160px; height:280px; }
+  .product img{ height:220px; }
+}
+</style>
+
+
+
 </style>
 </head>
 <body class="bg-gradient-to-b from-slate-900 to-slate-800 text-white overflow-x-hidden">
@@ -282,11 +327,22 @@ footer [data-aos] {
 
   <!-- FLOATING LOGO + NAVBAR WRAPPER -->
 <div class="relative w-full flex justify-center z-[9999]">
-    <img src="logo1.png" class="absolute -top-1 w-60 drop-shadow-xl" alt="Logo">
+    <img id="logo" src="logo1.png" class="absolute -top-1 w-60 drop-shadow-xl" alt="Logo">
 </div>
+<!-- GSAP CDN -->
+
+
+<script>
+  gsap.from("#logo", {
+    y: -100,          // start 100px above
+    opacity: 0,       // fade in effect
+    duration: 1.2,    // animation time
+    ease: "power3.out" // smooth easing
+  });
+</script>
 
 <!-- WHITE CURVED NAVBAR -->
-<nav class="relative z-[999] mx-auto mt-36 w-[75%] bg-white bg-opacity-95 backdrop-blur-xl
+<nav id="navbar" class="relative z-[999] mx-auto mt-36 w-[75%] bg-white bg-opacity-95 backdrop-blur-xl
             rounded-full py-2 px-10 shadow-xl flex items-center justify-between">
 
     <ul class="flex gap-20 ml-16  font-bold text-gray-700">
@@ -342,6 +398,14 @@ footer [data-aos] {
 </div>
 
 </nav>
+<script>
+  gsap.from("#navbar", {
+    x: -200,          // slides in from left
+    opacity: 0,       // fade effect
+    duration: 1.2,    // animation speed
+    ease: "power3.out"
+  });
+</script>
 
 <!-- NEW HERO SECTION -->
 <section class="relative mt-10 h-[75vh] md:h-[90vh] overflow-hidden rounded-3xl">
@@ -453,320 +517,284 @@ gsap.to(".hero-text", {
 
 
 <!-- STICKY BACKGROUND IMAGE SECTION -->
-<section class="relative h-screen w-full overflow-hidden z-0">
-    <div class="sticky-bg"></div><div class="absolute top-1/2 left-1/2 -translate-x-1/2 
+<section class="relative h-screen w-full overflow-hidden z-0 about-section">
+
+    <div class="sticky-bg"></div>
+
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 
                 -translate-y-1/2 w-[90%] md:w-[70%] lg:w-[55%] 
-                bg-white rounded-3xl shadow-2xl p-10 md:p-14 animate-fade-up z-[50]">
-        
-        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900 text-center">
+                bg-white rounded-3xl shadow-2xl p-10 md:p-14 
+                animate-fade-up z-[50] about-card">
+
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900 text-center about-heading">
             About <span class="text-yellow-500">Venkateshwara</span>
         </h2>
 
-        <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-5 text-center">
+        <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-5 text-center about-para">
             Established in <strong>2022</strong>, Venkateshwara Corporation is Pune’s leading 
             <span class="text-yellow-500 font-semibold">Service Provider</span> of 
             Balcony Shed, Industrial Shed, Tensile Structures and more.
         </p>
 
-        <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-5 text-center">
+        <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-5 text-center about-para">
             We deliver <span class="font-semibold text-yellow-500">German-grade precision</span> 
             with lightning-fast execution across Maharashtra.
         </p>
 
-        <p class="text-lg md:text-xl text-gray-700 leading-relaxed text-center">
+        <p class="text-lg md:text-xl text-gray-700 leading-relaxed text-center about-para">
             Led by <strong>Mr. Nilesh Ashok Konde (CEO)</strong>, our company has successfully 
             completed <strong>500+ installations</strong> with a strong team of 50+ craftsmen.
         </p>
+
     </div>
- 
+
 </section>
 
-<!-- MISSION VISION VALUES – NOW WITH SAME SLIDER AS ABOUT PAGE -->
-<section class="py-16 relative overflow-hidden bg-slate-50">
-  <div class="container mx-auto px-6">
-    <div class="text-center mb-16" data-aos="fade-up">
-      <h2 class="text-5xl md:text-6xl font-semibold text-gray-900 mb-4">
-        Our <span style="color: var(--gold);">Mission</span>, Vision & Values
-      </h2>
-      <div class="w-48 h-1 mx-auto mt-6 rounded-full shadow-2xl" style="background: var(--gold);"></div>
-    </div>
+<script>
+gsap.registerPlugin(ScrollTrigger);
 
-    <div class="grid md:grid-cols-12 gap-6 max-w-7xl mx-auto">
+/* Main Card Animation (fade + lift + scale) */
+gsap.from(".about-card", {
+  scrollTrigger: {
+    trigger: ".about-section",
+    start: "top 85%",
+    toggleActions: "play none none reverse"
+  },
+  opacity: 0,
+  y: 60,
+  scale: 0.95,
+  duration: 1.3,
+  ease: "power3.out"
+});
 
-      <!-- LEFT CARDS -->
-      <div class="md:col-span-3 space-y-6">
-        <div class="bg-gradient-to-br from-slate-900 to-black p-8 rounded-2xl shadow-2xl border-2" style="border-color: rgba(245, 158, 11, 0.4);" data-aos="fade-right" data-aos-delay="100">
-          <div class="rounded-full flex items-center justify-center mb-5 shadow-xl" style="width: 4rem; height: 4rem; background: var(--gold);">
-            <svg class="w-10 h-10 text-slate-900" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
-          </div>
-          <h3 class="text-2xl font-bold mb-3" style="color: var(--gold);">Integrity First</h3>
-          <p class="text-gray-300 text-sm leading-relaxed">Every weld, every promise — delivered with honesty and German precision.</p>
-        </div>
-        <div class="bg-gradient-to-br from-slate-900 to-black p-8 rounded-2xl shadow-2xl border-2" style="border-color: rgba(245, 158, 11, 0.4);" data-aos="fade-right" data-aos-delay="300">
-          <div class="rounded-full flex items-center justify-center mb-5 shadow-xl" style="width: 4rem; height: 4rem; background: var(--gold);">
-            <svg class="w-10 h-10 text-slate-900" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 12h3v8h14v-8h3L12 2zm0 2.8L19.2 12H16v6H8v-6H4.8L12 4.8z"/></svg>
-          </div>
-          <h3 class="text-2xl font-bold mb-3" style="color: var(--gold);">Quality Shelter</h3>
-          <p class="text-gray-300 text-sm leading-relaxed">3-Year warranty on every tensile structure — rain, sun, or storm.</p>
-        </div>
-      </div>
+/* Heading Animation */
+gsap.from(".about-heading", {
+  scrollTrigger: {
+    trigger: ".about-section",
+    start: "top 80%",
+    toggleActions: "play none none reverse"
+  },
+  opacity: 0,
+  y: -40,
+  duration: 1.2,
+  ease: "power3.out",
+  delay: 0.2
+});
 
-      <!-- CENTER: SAME SLIDER AS ABOUT PAGE -->
-      <!-- CENTER: SLIDER THAT AUTO-MATCHES CARD HEIGHT -->
-<div class="md:col-span-6" data-aos="zoom-in" data-aos-delay="500">
-  <div id="valuesSlider" class="relative overflow-hidden rounded-3xl shadow-3xl h-full" style="border: 8px solid rgba(245, 158, 11, 0.4);">
-    <div class="slide active"><img src="images/about hero4.jpg" alt="Team" class="w-full h-full object-cover"></div>
-    <div class="slide"><img src="images/about hero.jpg" alt="Factory" class="w-full h-full object-cover"></div>
-    <div class="slide"><img src="images/about hero3.jpg" alt="Installation" class="w-full h-full object-cover"></div>
-    <div class="slide"><img src="images/img1.jpg" alt="Clients" class="w-full h-full object-cover"></div>
-    <div class="slide"><img src="images/img3.jpg" alt="Design" class="w-full h-full object-cover"></div>
-
-    <!-- GOLD DOTS -->
-    <div class="dots absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-      <span class="dot active w-3 h-3 rounded-full cursor-pointer" data-index="0" style="background: var(--gold);"></span>
-      <span class="dot w-3 h-3 bg-gray-400 rounded-full cursor-pointer" data-index="1"></span>
-      <span class="dot w-3 h-3 bg-gray-400 rounded-full cursor-pointer" data-index="2"></span>
-      <span class="dot w-3 h-3 bg-gray-400 rounded-full cursor-pointer" data-index="3"></span>
-      <span class="dot w-3 h-3 bg-gray-400 rounded-full cursor-pointer" data-index="4"></span>
-    </div>
-
-    <!-- TEXT OVERLAY -->
-    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent rounded-3xl pointer-events-none"></div>
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-center">
-      <p class="text-white text-2xl font-bold drop-shadow-2xl">500+ Happy Clients</p>
-      <p class="text-sm mt-2 drop-shadow-xl" style="color: var(--gold);">Trusted Across Maharashtra</p>
-    </div>
-  </div>
-</div>
-
-      <!-- RIGHT CARDS -->
-      <div class="md:col-span-3 space-y-6">
-        <div class="bg-gradient-to-br from-slate-900 to-black p-8 rounded-2xl shadow-2xl border-2" style="border-color: rgba(245, 158, 11, 0.4);" data-aos="fade-left" data-aos-delay="100">
-          <div class="rounded-full flex items-center justify-center mb-5 shadow-xl" style="width: 4rem; height: 4rem; background: var(--gold);">
-            <svg class="w-10 h-10 text-slate-900" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          </div>
-          <h3 class="text-2xl font-bold mb-3" style="color: var(--gold);">Innovation</h3>
-          <p class="text-gray-300 text-sm leading-relaxed">Cutting-edge tensile designs that redefine Indian architecture.</p>
-        </div>
-        <div class="bg-gradient-to-br from-slate-900 to-black p-8 rounded-2xl shadow-2xl border-2" style="border-color: rgba(245, 158, 11, 0.4);" data-aos="fade-left" data-aos-delay="300">
-          <div class="rounded-full flex items-center justify-center mb-5 shadow-xl" style="width: 4rem; height: 4rem; background: var(--gold);">
-            <svg class="w-10 h-10 text-slate-900" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-          </div>
-          <h3 class="text-2xl font-bold mb-3" style="color: var(--gold);">Excellence</h3>
-          <p class="text-gray-300 text-sm leading-relaxed">Zero-compromise craftsmanship in every balcony, factory & stadium.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-  <script>
-  // VALUES SLIDER – EXACT SAME AS ABOUT PAGE
-  const valuesSlides = document.querySelectorAll('#valuesSlider .slide');
-  const valuesDots = document.querySelectorAll('#valuesSlider .dot');
-  let valuesIndex = 0;
-
-  const showValueSlide = (n) => {
-    valuesSlides[valuesIndex].classList.remove('active');
-    valuesDots[valuesIndex].classList.remove('active', 'bg-yellow-400');
-    valuesDots[valuesIndex].classList.add('bg-gray-400');
-
-    valuesIndex = (n + valuesSlides.length) % valuesSlides.length;
-
-    valuesSlides[valuesIndex].classList.add('active');
-    valuesDots[valuesIndex].classList.add('active', 'bg-yellow-400');
-    valuesDots[valuesIndex].classList.remove('bg-gray-400');
-  };
-
-  setInterval(() => showValueSlide(valuesIndex + 1), 3000);
-
-  valuesDots.forEach((dot, i) => {
-    dot.addEventListener('click', () => showValueSlide(i));
-  });
+/* Paragraphs — staggered fade-in */
+gsap.from(".about-para", {
+  scrollTrigger: {
+    trigger: ".about-section",
+    start: "top 78%",
+    toggleActions: "play none none reverse"
+  },
+  opacity: 0,
+  y: 30,
+  duration: 1.1,
+  ease: "power2.out",
+  stagger: 0.2
+});
 </script>
-  <!-- PRODUCT SLIDER -->
-  <!-- PRODUCT SLIDER -->
-<section class="py-20 bg-white">
+
+ <section class="py-20 bg-white">
   <div class="container mx-auto px-4">
-    <div class="text-center mb-12" data-aos="fade-up">
-      <h2 class="text-5xl md:text-6xl font-medium drop-shadow-2xl" style="color: #f59e0b;">
+
+    <!-- Heading -->
+    <div class="text-center mb-12">
+      <h2 class="text-5xl md:text-6xl font-medium drop-shadow-2xl" style="color:#f59e0b;">
         Our Categories
       </h2>
-      <p class="text-xl text-gray-700 mt-3">Explore our range of premium tensile structure solutions.</p>
+      <p class="text-xl text-gray-700 mt-3">
+        Explore our range of premium tensile structure solutions.
+      </p>
     </div>
 
-    <div class="relative max-w-7xl mx-auto overflow-visible" id="product-slider" data-autoplay="true" data-aos="fade-up" data-aos-delay="200">
-      <div class="flex transition-transform duration-500 ease-out" id="product-track">
+    <!-- ========== CURVED PRODUCT SLIDER START ========== -->
+    <div class="slider-zone relative mx-auto max-w-[950px] h-[500px]">
 
-        <!-- 1 — BALCONY SHED -->
-        <div class="product-card flex-shrink-0 w-80 mx-4">
+      <!-- Hover Areas -->
+      <div class="hover-left absolute top-0 left-0 w-[40%] h-full z-10"></div>
+      <div class="hover-right absolute top-0 right-0 w-[40%] h-full z-10"></div>
+
+      <div class="slider relative w-full h-[480px] flex justify-center items-center">
+
+        <!-- Products (replace your images here) -->
+        <div class="product">
           <img src="home-product-images/balcony shed.jpg">
-          <div class="product-overlay"></div>
-          <div class="product-overlay-content">
-            <h3 class="product-title">Balcony Shed</h3>
-            <p class="product-desc">Durable and stylish balcony shed designed to protect your space from sun, rain, and dust.</p>
-          </div>
+          <div class="name">Balcony Shed</div>
+          <div class="price">Premium Tensile</div>
         </div>
 
-        <!-- 2 — INDUSTRIAL SHED -->
-        <div class="product-card flex-shrink-0 w-80 mx-4">
+        <div class="product">
           <img src="home-product-images/industrial shed.jpg">
-          <div class="product-overlay"></div>
-          <div class="product-overlay-content">
-            <h3 class="product-title">Industrial Shed</h3>
-            <p class="product-desc">Heavy-duty tensile fabric sheds for factories & warehouses.</p>
-          </div>
+          <div class="name">Industrial Shed</div>
+          <div class="price">Heavy Duty</div>
         </div>
 
-        <!-- 3 — CAR PARKING SHED -->
-        <div class="product-card flex-shrink-0 w-80 mx-4">
+        <div class="product">
           <img src="home-product-images/car parking.jpg">
-          <div class="product-overlay"></div>
-          <div class="product-overlay-content">
-            <h3 class="product-title">Car Parking Shed</h3>
-            <p class="product-desc">UV-resistant car parking solutions crafted for long-term protection.</p>
-          </div>
+          <div class="name">Car Parking Shed</div>
+          <div class="price">UV Resistant</div>
         </div>
 
-        <!-- 4 — TENSILE STRUCTURE -->
-        <div class="product-card flex-shrink-0 w-80 mx-4">
+        <div class="product">
           <img src="home-product-images/tensile structure.jpg">
-          <div class="product-overlay"></div>
-          <div class="product-overlay-content">
-            <h3 class="product-title">Tensile Structure</h3>
-            <p class="product-desc">All-weather tensile roofing with modern aesthetics.</p>
-          </div>
+          <div class="name">Tensile Structure</div>
+          <div class="price">All Weather</div>
         </div>
 
-        <!-- 5 — FABRICATION -->
-        <div class="product-card flex-shrink-0 w-80 mx-4">
+        <div class="product">
           <img src="home-product-images/fabrication.jpg">
-          <div class="product-overlay"></div>
-          <div class="product-overlay-content">
-            <h3 class="product-title">Fabrication</h3>
-            <p class="product-desc">Expert tensile membrane fabrication for wide-span structures.</p>
-          </div>
+          <div class="name">Fabrication</div>
+          <div class="price">Custom Design</div>
         </div>
 
-        <!-- 6 — PREFABRICATED -->
-        <div class="product-card flex-shrink-0 w-80 mx-4">
+        <div class="product">
           <img src="home-product-images/prefabricated.jpg">
-          <div class="product-overlay"></div>
-          <div class="product-overlay-content">
-            <h3 class="product-title">Prefabricated</h3>
-            <p class="product-desc">High-quality prefabricated tensile enclosures for premium spaces.</p>
-          </div>
+          <div class="name">Prefabricated Units</div>
+          <div class="price">Prebuilt</div>
         </div>
 
-        <!-- 7 — CAR PARKING AWNING -->
-        <div class="product-card flex-shrink-0 w-80 mx-4">
+        <div class="product">
           <img src="home-product-images/car parking awning.jpg">
-          <div class="product-overlay"></div>
-          <div class="product-overlay-content">
-            <h3 class="product-title">Car Parking Awning</h3>
-            <p class="product-desc">Durable awnings built to handle heavy sun, rain & harsh weather.</p>
-          </div>
+          <div class="name">Car Parking Awning</div>
+          <div class="price">Durable</div>
         </div>
 
+      </div> <!-- slider end -->
+    </div>
+    <!-- ========== CURVED PRODUCT SLIDER END ========== -->
+
+  </div><script>
+let index = 2;
+const items = document.querySelectorAll(".product");
+
+function updateSlider() {
+  items.forEach(item => item.className = "product");
+
+  items[index].classList.add("active");
+
+  if (items[index - 1]) items[index - 1].classList.add("left1");
+  if (items[index - 2]) items[index - 2].classList.add("left2");
+
+  if (items[index + 1]) items[index + 1].classList.add("right1");
+  if (items[index + 2]) items[index + 2].classList.add("right2");
+}
+
+updateSlider();
+
+/* Hover-based Auto Scroll */
+let scrollInterval;
+
+document.querySelector(".hover-right").addEventListener("mouseenter", () => {
+  scrollInterval = setInterval(() => {
+    index = (index + 1) % items.length;
+    updateSlider();
+  }, 700);
+});
+
+document.querySelector(".hover-left").addEventListener("mouseenter", () => {
+  scrollInterval = setInterval(() => {
+    index = (index - 1 + items.length) % items.length;
+    updateSlider();
+  }, 700);
+});
+
+document.querySelector(".hover-left").addEventListener("mouseleave", () => clearInterval(scrollInterval));
+document.querySelector(".hover-right").addEventListener("mouseleave", () => clearInterval(scrollInterval));
+</script>
+
+</section>
+<section id="mission-vision" class="py-24 px-6">
+  <div class="max-w-6xl mx-auto rounded-3xl overflow-hidden relative min-h-[500px]">
+
+
+    <!-- Background Image -->
+    <div class="absolute inset-0 ">
+      <img src="images/hero4.jpg" class="absolute inset-0 w-full h-full object-cover scale-150 opacity-90" />
+
+    </div>
+
+    <!-- Dark Overlay -->
+    <div class="absolute inset-0 bg-black/40"></div>
+
+    <!-- CONTENT -->
+    <div class="relative grid grid-cols-1 md:grid-cols-2 gap-20 text-white px-10 md:px-16 py-20">
+
+      <!-- LEFT — MISSION -->
+      <div id="mission-box" class="space-y-4">
+        <h2 class="text-4xl font-bold tracking-wide">MISSION</h2>
+        <p class="text-lg leading-relaxed text-gray-200">
+          Ensure the right selection of solutions and ensure the right procedure  
+          of application as part of a customer-focused approach and quest  
+          for impeccable quality.
+        </p>
+
+        <!-- Orange dot line -->
+        <div class="flex items-center gap-3 mt-6">
+          <div class="w-4 h-4 bg-orange-500 rounded-full"></div>
+          <div class="h-[2px] w-32 bg-orange-500"></div>
+        </div>
       </div>
 
-      <!-- NAV BUTTONS (same as before) -->
-      <button id="prev-btn" class="arrow-btn left-4">
-        <svg class="w-8 h-8" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7"/></svg>
-      </button>
+      <!-- RIGHT — VISION -->
+      <div id="vision-box" class="space-y-4 text-right md:text-left">
+        <h2 class="text-4xl font-bold tracking-wide">VISION</h2>
+        <p class="text-lg leading-relaxed text-gray-200">
+          Be a leading brand in the construction industry and a one-stop solution  
+          in the usage and application of marbles and stones.
+        </p>
 
-      <button id="next-btn" class="arrow-btn right-4">
-        <svg class="w-8 h-8" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg>
-      </button>
+        <!-- Orange dot line -->
+        <div class="flex items-center justify-end gap-3 mt-6 md:justify-start">
+          <div class="w-4 h-4 bg-orange-500 rounded-full"></div>
+          <div class="h-[2px] w-32 bg-orange-500"></div>
+        </div>
+      </div>
 
     </div>
-
-    <div class="flex justify-center gap-3 mt-10">
-      <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
-      <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
-    </div>
-
   </div>
 </section>
 <script>
-/* ---------------- PRODUCT AUTO SLIDER ---------------- */
+gsap.registerPlugin(ScrollTrigger);
 
-const track = document.getElementById("product-track");
-const cards = document.querySelectorAll(".product-card");
-const prevBtn = document.getElementById("prev-btn");
-const nextBtn = document.getElementById("next-btn");
-const dots = document.querySelectorAll(".dot");
-
-let index = 0;
-const cardWidth = cards[0].offsetWidth + 32; // card + margin
-const visibleCards = 3; 
-const totalSlides = cards.length - visibleCards + 1;
-
-let autoPlayInterval;
-
-/* Move slider */
-function goToSlide(num) {
-  if (num >= totalSlides) num = 0;
-  if (num < 0) num = totalSlides - 1;
-
-  index = num;
-  track.style.transform = `translateX(-${index * cardWidth}px)`;
-
-  dots.forEach((d, i) => d.classList.toggle("active", i === index));
-}
-
-/* Auto-play */
-function startAuto() {
-  autoPlayInterval = setInterval(() => {
-    goToSlide(index + 1);
-  }, 3000);
-}
-
-function stopAuto() {
-  clearInterval(autoPlayInterval);
-}
-
-/* Buttons */
-nextBtn.addEventListener("click", () => {
-  stopAuto();
-  goToSlide(index + 1);
-  startAuto();
+/* MISSION – slide from left */
+gsap.from("#mission-box", {
+  scrollTrigger: {
+    trigger: "#mission-vision",
+    start: "top 80%",
+  },
+  x: -100,
+  opacity: 0,
+  filter: "blur(10px)",
+  duration: 1.4,
+  ease: "power3.out"
 });
 
-prevBtn.addEventListener("click", () => {
-  stopAuto();
-  goToSlide(index - 1);
-  startAuto();
+/* VISION – slide from right */
+gsap.from("#vision-box", {
+  scrollTrigger: {
+    trigger: "#mission-vision",
+    start: "top 80%",
+  },
+  x: 100,
+  opacity: 0,
+  filter: "blur(10px)",
+  duration: 1.4,
+  ease: "power3.out",
+  delay: 0.2
 });
-
-/* Dots */
-dots.forEach((dot, i) => {
-  dot.addEventListener("click", () => {
-    stopAuto();
-    goToSlide(i);
-    startAuto();
-  });
-});
-
-/* Pause on hover */
-const sliderArea = document.getElementById("product-slider");
-sliderArea.addEventListener("mouseenter", stopAuto);
-sliderArea.addEventListener("mouseleave", startAuto);
-
-/* Initialize */
-goToSlide(0);
-startAuto();
 </script>
 
+  <section class="w-full py-28 px-6 md:px-16 bg-white" id="cta-section">
 
-  <!-- CTA -->
-  <section class="w-full py-20 px-6 md:px-16">
   <div class="max-w-7xl mx-auto rounded-3xl overflow-hidden"
        style="background: linear-gradient(90deg, #f8e1b6 0%, #b57ba6 100%);">
 
-    <div class="grid grid-cols-1 md:grid-cols-2 items-center px-10 md:px-20 py-16 gap-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 items-center px-10 md:px-20 py-20 gap-10">
 
-      <!-- LEFT TEXT -->
-      <div>
+      <div id="cta-text" class="relative z-20 pb-10">
+
         <h2 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">
           Contact Us to<br>Learn More!
         </h2>
@@ -777,24 +805,78 @@ startAuto();
           durable materials, and expert engineering.
         </p>
 
-        <a href="contact.html"
+      <div id ="cta-button">
+          <a href="contact.html"
            class="inline-flex items-center gap-2 bg-purple-700 hover:bg-purple-800
                   text-white font-semibold text-lg px-8 py-4 rounded-full transition">
           Contact Us
           <span>➜</span>
         </a>
       </div>
+      </div>
 
-      <!-- RIGHT IMAGE SECTION -->
-      <div class="flex justify-center md:justify-end">
-        <img src="" class="h-80 md:h-96 object-contain -mr-6" alt="">
-        <img src="images/about hero4.jpg" class="h-80 md:h-96 object-contain" alt="">
+      <div id="cta-images" class="flex justify-center md:justify-end">
+        <img src="images/about hero4.jpg" class="h-72 md:h-80 object-contain" alt="">
       </div>
 
     </div>
 
   </div>
 </section>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+/* =============================
+   TEXT (fade + blur + lift)
+============================= */
+gsap.from("#cta-text > *", {
+  scrollTrigger: {
+    trigger: "#cta-section",
+    start: "top 75%",   // better timing
+    toggleActions: "play none none reverse"
+  },
+  y: 40,
+  opacity: 0,
+  filter: "blur(10px)",
+  duration: 1.2,
+  ease: "power3.out",
+  stagger: 0.2
+});
+
+/* =============================
+   BUTTON (pop-in)
+============================= */
+gsap.from("#cta-text a", {     /* ← FIXED SELECTOR */
+  scrollTrigger: {
+    trigger: "#cta-section",
+    start: "top 75%",
+    toggleActions: "play none none reverse"
+  },
+  scale: 0.6,
+  opacity: 0,
+  duration: 0.9,
+  ease: "back.out(1.8)",
+  delay: 0.3
+});
+
+/* =============================
+   IMAGE (slide + 3D tilt + fade)
+============================= */
+gsap.from("#cta-images img", {
+  scrollTrigger: {
+    trigger: "#cta-section",
+    start: "top 80%",  // slightly later
+    toggleActions: "play none none reverse"
+  },
+  x: 120,
+  opacity: 0,
+  rotateY: -12,
+  scale: 0.9,
+  duration: 1.4,
+  ease: "power4.out"
+});
+</script>
+
 
 
   <!-- FOOTER -->
