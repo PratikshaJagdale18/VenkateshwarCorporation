@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact – Venkateshwara Corporation</title>
   <script src="https://cdn.tailwindcss.com"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 
@@ -63,75 +67,96 @@
 }
 .group:hover .shimmer {
   left: 100%;
+}#navbar {
+  transform: translateY(-150%);
 }
   </style>
 </head>
 <body class="bg-gradient-to-b from-slate-900 to-slate-800 text-white overflow-x-hidden">
 
-  <!-- NAVBAR -->
-  <!-- FLOATING LOGO + NAVBAR WRAPPER -->
-<div class="relative w-full flex justify-center z-[9999]">
-    <img src="logo1.png" class="absolute -top-1 w-60 drop-shadow-xl" alt="Logo">
-</div>
-
-<!-- WHITE CURVED NAVBAR -->
-<nav class="relative z-[999] mx-auto mt-36 w-[75%] bg-white bg-opacity-95 backdrop-blur-xl
-            rounded-full py-2 px-10 shadow-xl flex items-center justify-between">
-
-    <ul class="flex gap-20 ml-16  font-bold text-gray-700">
-      
- <li class="text-black border-b-4 border-yellow-400 pb-1 text-lg cursor-pointer">
-  <a href="index.html" class="block w-full h-full">Home</a>
-</li>
-         <li class="text-black border-b-4 border-yellow-400 pb-1 text-lg cursor-pointer">
-  <a href="about.html" class="block w-full h-full">About</a>
-
-</li> <li class="relative group text-black border-b-4 border-yellow-400 pb-1 text-lg cursor-pointer">
-
-  <a href="products.html" class="block w-full h-full">Product ▾</a>
-
-  <!-- DROPDOWN -->
-  <ul class="absolute left-0 top-full mt-2 w-52 bg-white shadow-xl rounded-xl 
-             opacity-0 invisible group-hover:opacity-100 group-hover:visible 
-             transition-all duration-300">
-
-    <li><a href="fabrication.html" class="block px-4 py-2 hover:bg-yellow-100">Fabrication</a></li>
-    <li><a href="civil-work.html" class="block px-4 py-2 hover:bg-yellow-100">Civil Work</a></li>
-    <li><a href="interior.html" class="block px-4 py-2 hover:bg-yellow-100">Interiors</a></li>
-    <li><a href="exterior.html" class="block px-4 py-2 hover:bg-yellow-100">Exteriors</a></li>
-    <li><a href="other-services.html" class="block px-4 py-2 hover:bg-yellow-100">Other Services</a></li>
-
-  </ul>
-
-</li>
-        
-         <li class="text-black border-b-4 border-yellow-400 text-lg pb-1 cursor-pointer">
-  <a href="contact.html" class="block w-full h-full">Contact</a>
-
-       
-    </ul>
-
-    <div class="relative flex items-center mr-12">
-  <input 
-    type="text"
-    placeholder="Search..."
-    class="px-4 py-2 w-60 md:w-64  rounded-full border border-gray-300 
-           focus:outline-none focus:ring-2 focus:ring-yellow-500 text-gray-700"
-  >
-  
-  <button class="absolute right-2 text-yellow-500 hover:text-yellow-600">
-    <svg xmlns="http://www.w3.org/2000/svg" 
-         class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-            d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1011 18.5a7.5 7.5 0 005.65-2.85z" />
-    </svg>
+  <!-- TOP-CENTER TRIGGER BUTTON -->
+<nav class="fixed top-4 left-1/2 -translate-x-1/2 z-[200]">
+  <button id="nav-open"
+    class="w-12 h-12 flex items-center justify-center rounded-full 
+           bg-white text-black text-2xl shadow-md">
+    ☰
   </button>
-</div>
-
 </nav>
 
+<!-- OVERLAY -->
+<div id="nav-overlay"
+     class="fixed inset-0 bg-black/40 backdrop-blur-sm 
+            z-[150] opacity-0 pointer-events-none">
+</div>
+
+<!-- SLIDING NAVBAR (NOW WHITE + CENTERED) -->
+<div id="navbar"
+     class="fixed top-0 left-[20%] -translate-x-1/2 
+            w-[90%] md:w-[70%] lg:w-[60%]
+            bg-white text-black shadow-2xl rounded-2xl z-[300]
+            py-4 px-6 flex items-center justify-between
+            translate-y-[-150%]">
+
+  <!-- LOGO -->
+  <img src="logo.jpg" 
+     alt="VC Designs Logo" 
+     class="h-10 md:h-12 object-contain">
+
+
+  <!-- MENU ITEMS -->
+  <ul class="hidden md:flex space-x-8 text-lg">
+    <li><a href="index.html" class="hover:text-black">Home</a></li>
+    <li><a href="about.html" class="hover:text-black">About</a></li>
+    <li><a href="products.html" class="hover:text-black">Products</a></li>
+    <li><a href="contact.html" class="hover:text-black">Contact</a></li>
+  </ul>
+
+  <!-- CLOSE BUTTON -->
+  <button id="nav-close" class="text-4xl leading-none text-black">&times;</button>
+</div>
+
+<script>
+const openBtn = document.getElementById("nav-open");
+const closeBtn = document.getElementById("nav-close");
+const navbar = document.getElementById("navbar");
+const overlay = document.getElementById("nav-overlay");
+
+// OPEN NAVBAR
+openBtn.addEventListener("click", () => {
+  gsap.to(navbar, {
+    y: 0,
+    duration: 0.9,
+    ease: "bounce.out"
+  });
+
+  gsap.to(overlay, {
+    opacity: 1,
+    pointerEvents: "all",
+    duration: 0.3
+  });
+});
+
+// CLOSE NAVBAR
+function closeNavbar() {
+  gsap.to(navbar, {
+    y: "-150%",
+    duration: 0.5,
+    ease: "power3.inOut"
+  });
+
+  gsap.to(overlay, {
+    opacity: 0,
+    pointerEvents: "none",
+    duration: 0.3
+  });
+}
+
+closeBtn.addEventListener("click", closeNavbar);
+overlay.addEventListener("click", closeNavbar);
+</script>
+
  <!-- CINEMATIC HERO WITH ZOOM-IN IMAGE + TYPEWRITER -->
-<section class="relative overflow-hidden mt-10 [90vh]">
+<section class="relative overflow-hidden h-screen ">
 
   <!-- ZOOM-IN BACKGROUND IMAGE -->
   <div class="absolute inset-0 -z-10">
@@ -222,7 +247,9 @@
       <div class="grid md:grid-cols-2 gap-16 items-start">
 
         <!-- LEFT SIDE: INFO -->
-        <div class="space-y-8">
+        <!-- LEFT SIDE -->
+<div id="contact-left" class="space-y-8">
+
           <h2 class="text-4xl font-bold mb-4 text-[var(--navy)]">
             We are always ready <span class="text-[var(--gold)]">to help you</span>
           </h2>
@@ -267,7 +294,9 @@
         </div>
 
         <!-- RIGHT SIDE: FORM -->
-        <div class="bg-white p-10 rounded-3xl shadow-xl">
+       <!-- RIGHT SIDE -->
+<div id="contact-right" class="bg-white p-10 rounded-3xl shadow-xl">
+
           <h3 class="text-3xl font-bold mb-8 text-[var(--navy)]">Get in <span class="text-[var(--gold)]">Touch</span></h3>
          <form action="https://formspree.io/f/your-form-id" method="POST" class="space-y-6">
   <input type="text" name="name" placeholder="Your Name" required
@@ -288,10 +317,37 @@
       </div>
     </div>
   </section>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// LEFT SIDE → Fade from Left
+gsap.from("#contact-left", {
+  x: -80,
+  opacity: 0,
+  duration: 1.2,
+  ease: "power3.out",
+  scrollTrigger: {
+    trigger: "#contact-left",
+    start: "top 85%",
+  }
+});
+
+// RIGHT SIDE → Fade from Right
+gsap.from("#contact-right", {
+  x: 80,
+  opacity: 0,
+  duration: 1.2,
+  ease: "power3.out",
+  scrollTrigger: {
+    trigger: "#contact-right",
+    start: "top 85%",
+  }
+});
+</script>
 
   <!-- MAP -->
-  <section class="pb-20">
-    <div class="container mx-auto px-6 max-w-6xl mt-10">
+  <section class="pb-20 bg-white">
+    <div class="container mx-auto px-6 max-w-6xl ">
       <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3779.6771072250162!2d73.80292127519552!3d18.678480082445933!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTjCsDQwJzQyLjUiTiA3M8KwNDgnMTkuOCJF!5e0!3m2!1sen!2sin!4v1762491597112!5m2!1sen!2sin" width="100%" height="400" style="border:0;" allowfullscreen="" 
       loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>

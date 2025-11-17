@@ -6,6 +6,10 @@
   <title>About Us – Venkateshwara Corporation</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/feather-icons"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
   <style>
@@ -235,71 +239,89 @@
 </head>
 <body class="bg-gradient-to-b from-slate-900 to-slate-800 text-white overflow-x-hidden">
 
-  <!-- FLOATING LOGO + NAVBAR WRAPPER -->
-<div class="relative w-full flex justify-center z-[9999]">
-    <img src="logo1.png" class="absolute -top-1 w-60 drop-shadow-xl" alt="Logo">
-</div>
-
-<!-- WHITE CURVED NAVBAR -->
-<nav class="relative z-[999] mx-auto mt-36 w-[75%] bg-white bg-opacity-95 backdrop-blur-xl
-            rounded-full py-2 px-10 shadow-xl flex items-center justify-between">
-
-    <ul class="flex gap-20 ml-16  font-bold text-gray-700">
-      
- <li class="text-black border-b-4 border-yellow-400 pb-1 text-lg cursor-pointer">
-  <a href="index.html" class="block w-full h-full">Home</a>
-</li>
-         <li class="text-black border-b-4 border-yellow-400 pb-1 text-lg cursor-pointer">
-  <a href="about.html" class="block w-full h-full">About</a>
-
-</li> <li class="relative group text-black border-b-4 border-yellow-400 pb-1 text-lg cursor-pointer">
-
-  <a href="products.html" class="block w-full h-full">Product ▾</a>
-
-  <!-- DROPDOWN -->
-  <ul class="absolute left-0 top-full mt-2 w-52 bg-white shadow-xl rounded-xl 
-             opacity-0 invisible group-hover:opacity-100 group-hover:visible 
-             transition-all duration-300">
-
-    <li><a href="fabrication.html" class="block px-4 py-2 hover:bg-yellow-100">Fabrication</a></li>
-    <li><a href="civil-work.html" class="block px-4 py-2 hover:bg-yellow-100">Civil Work</a></li>
-    <li><a href="interior.html" class="block px-4 py-2 hover:bg-yellow-100">Interiors</a></li>
-    <li><a href="exterior.html" class="block px-4 py-2 hover:bg-yellow-100">Exteriors</a></li>
-    <li><a href="other-services.html" class="block px-4 py-2 hover:bg-yellow-100">Other Services</a></li>
-
-  </ul>
-
-</li>
-
-
-        
-         <li class="text-black border-b-4 border-yellow-400 text-lg pb-1 cursor-pointer">
-  <a href="contact.html" class="block w-full h-full">Contact</a>
-
-       
-    </ul>
-
-    <div class="relative flex items-center mr-12">
-  <input 
-    type="text"
-    placeholder="Search..."
-    class="px-4 py-2 w-60 md:w-64  rounded-full border border-gray-300 
-           focus:outline-none focus:ring-2 focus:ring-yellow-500 text-gray-700"
-  >
-  
-  <button class="absolute right-2 text-yellow-500 hover:text-yellow-600">
-    <svg xmlns="http://www.w3.org/2000/svg" 
-         class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-            d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1011 18.5a7.5 7.5 0 005.65-2.85z" />
-    </svg>
+<!-- TOP-CENTER TRIGGER BUTTON -->
+<nav class="fixed top-4 left-1/2 -translate-x-1/2 z-[200]">
+  <button id="nav-open"
+    class="w-12 h-12 flex items-center justify-center rounded-full 
+           bg-white text-black text-2xl shadow-md">
+    ☰
   </button>
-</div>
-
 </nav>
 
+<!-- OVERLAY -->
+<div id="nav-overlay"
+     class="fixed inset-0 bg-black/40 backdrop-blur-sm 
+            z-[150] opacity-0 pointer-events-none">
+</div>
+
+<!-- SLIDING NAVBAR (NOW WHITE + CENTERED) -->
+<div id="navbar"
+     class="fixed top-0 left-[50%] -translate-x-1/2 
+            w-[90%] md:w-[70%] lg:w-[60%]
+            bg-white text-black shadow-2xl rounded-2xl z-[300]
+            py-4 px-6 flex items-center justify-between
+            translate-y-[-150%]">
+
+  <!-- LOGO -->
+  <img src="logo.jpg" 
+     alt="VC Designs Logo" 
+     class="h-10 md:h-12 object-contain">
+
+
+  <!-- MENU ITEMS -->
+  <ul class="hidden md:flex space-x-8 text-lg">
+    <li><a href="index.html" class="hover:text-black">Home</a></li>
+    <li><a href="about.html" class="hover:text-black">About</a></li>
+    <li><a href="products.html" class="hover:text-black">Products</a></li>
+    <li><a href="contact.html" class="hover:text-black">Contact</a></li>
+  </ul>
+
+  <!-- CLOSE BUTTON -->
+  <button id="nav-close" class="text-4xl leading-none text-black">&times;</button>
+</div>
+
+<script>
+const openBtn = document.getElementById("nav-open");
+const closeBtn = document.getElementById("nav-close");
+const navbar = document.getElementById("navbar");
+const overlay = document.getElementById("nav-overlay");
+
+// OPEN NAVBAR
+openBtn.addEventListener("click", () => {
+  gsap.to(navbar, {
+    y: 0,
+    duration: 0.9,
+    ease: "bounce.out"
+  });
+
+  gsap.to(overlay, {
+    opacity: 1,
+    pointerEvents: "all",
+    duration: 0.3
+  });
+});
+
+// CLOSE NAVBAR
+function closeNavbar() {
+  gsap.to(navbar, {
+    y: "-150%",
+    duration: 0.5,
+    ease: "power3.inOut"
+  });
+
+  gsap.to(overlay, {
+    opacity: 0,
+    pointerEvents: "none",
+    duration: 0.3
+  });
+}
+
+closeBtn.addEventListener("click", closeNavbar);
+overlay.addEventListener("click", closeNavbar);
+</script>
+
   <!-- HERO (UNCHANGED) -->
-  <section class="relative h-screen mt-10 overflow-hidden">
+  <section class="relative h-screen mt-auto overflow-hidden">
     <div id="ken-carousel" class="absolute inset-0 -z-10">
       <img src="images/about hero.jpg" class="ken-img active" alt="Factory">
       <img src="images/about hero4.jpg" class="ken-img" alt="Team">
@@ -318,87 +340,50 @@
     </div>
   </section>
 
-  <!-- ONLY ABOUT SECTION CHANGED -->
   <section class="py-16 bg-white">
-    <div class="container mx-auto px-6">
-      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-10">
+  <div class="container mx-auto  ml-[10px] px-6">
+    
+    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-10">
       About Venkateshwara Corporation
     </h2>
 
-      <div class="grid lg:grid-cols-2 gap-12 items-center">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
 
-        <!-- LEFT: NEW SWOOSH EFFECT -->
-       <!-- LEFT: TYPEWRITER EFFECT -->
-<div class="space-y-10">
+      <!-- LEFT CONTENT -->
+      <div id="aboutTextWrapper" class="space-y-6 opacity-0">
 
-  <div class="text-lg md:text-xl leading-relaxed text-gray-700 opacity-0 transition-opacity duration-700"
-       id="aboutContainer">
-    <p id="typewriterText" class="whitespace-pre-line"></p>
-  </div>
+        <p class="about-line text-lg md:text-xl leading-relaxed text-gray-700">
+          Established in 2022, Venkateshwara Corporation is a trusted service provider
+          specializing in Balcony Sheds, Industrial Sheds, Car Parking Awnings, 
+          Terrace Sheds, Tensile Structures, Prefabricated Sheds, Fabrication Services, and more.
+        </p>
 
-  <a href="contact.html" 
-     class="group inline-flex items-center gap-4 px-12 py-5 
-            font-bold text-xl rounded-full 
-            shadow-2xl overflow-hidden transform hover:scale-110 
-            transition-all duration-500" style="background: var(--gold); color: var(--navy);">
-    <span class="relative z-10">Contact Us Today</span>
-    <svg class="w-7 h-7 group-hover:translate-x-2 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-    </svg>
-    <span class="absolute inset-0 rounded-full animate-ping opacity-75" style="background: rgba(245, 158, 11, 0.8);"></span>
-  </a>
+        <p class="about-line text-lg md:text-xl leading-relaxed text-gray-700">
+          Over the years, we have built a strong customer base through our service 
+          network across India and our commitment to complete customer satisfaction.
+        </p>
 
-</div>
-<script>
-// Final About Section Text
-const aboutText = `Established in 2022, Venkateshwara Corporation is a trusted service provider 
-specializing in Balcony Sheds, Industrial Sheds, Car Parking Awnings, 
-Terrace Sheds, Tensile Structures, Prefabricated Sheds, Fabrication Services, and more.
+        <p class="about-line text-lg md:text-xl leading-relaxed text-gray-700">
+          Under the guidance of our CEO, Mr. Nilesh Ashok Konde, the company continues 
+          to grow with a solid presence in the market, backed by deep industry experience 
+          and reliable project delivery.
+        </p>
 
-Over the years, we have built a strong customer base through our service 
-network across India and our commitment to complete customer satisfaction.
+        <a href="contact.html" 
+          class="group inline-flex items-center gap-4 px-12 py-5 
+                 font-bold text-xl rounded-full 
+                 shadow-2xl overflow-hidden transform hover:scale-110 
+                 transition-all duration-500" 
+          style="background: var(--gold); color: var(--navy);">
+          <span class="relative z-10">Contact Us Today</span>
+          <svg class="w-7 h-7 group-hover:translate-x-2 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+          </svg>
+        </a>
 
-Under the guidance of our CEO, Mr. Nilesh Ashok Konde, the company continues to grow with a solid presence in the market, backed by deep industry  experience and reliable project delivery.`;
+      </div>
 
-// Select Elements
-const aboutContainer = document.getElementById("aboutContainer");
-const typewriterElement = document.getElementById("typewriterText");
-
-let index = 0;
-let started = false; // ensure animation runs only once
-const typingSpeed = 40; // speed of typewriter
-
-// Typewriter Function
-function typeWriter() {
-  if (index < aboutText.length) {
-    typewriterElement.textContent += aboutText.charAt(index);
-    index++;
-    setTimeout(typeWriter, typingSpeed);
-  }
-}
-
-// Scroll Trigger using IntersectionObserver
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting && !started) {
-        started = true;
-
-        // Start fade-in
-        aboutContainer.classList.remove("opacity-0");
-        aboutContainer.classList.add("opacity-100");
-
-        // Start typewriter after fade begins
-        setTimeout(typeWriter, 300);
-      }
-    });
-  },
-  { threshold: 0.3 } // triggers when 30% is visible
-);
-
-// Observe About Section container
-observer.observe(aboutContainer);
-</script>
+    
 
 
         <!-- RIGHT: SLIDER (UNCHANGED) -->
@@ -509,8 +494,9 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 
 <!-- TESTIMONIALS SECTION - CINEMATIC 3-CARD CAROUSEL -->
-<section class="py-20 bg-gradient-to-b from-[#f7e7b3] to-[#f1d388] overflow-hidden"
->
+<section class="py-20 bg-gradient-to-b from-blue-900 to-blue-1100 overflow-hidden">
+
+
   <h2 class="text-center text-3xl md:text-4xl font-bold text-gray-900 mb-16 tracking-widest drop-shadow-lg">
    What Our Customers Say
   </h2>
@@ -793,7 +779,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
    <!-- CTA -->
-  <section class="w-full py-20 px-6 md:px-16">
+  <section class="w-full py-20 px-6 md:px-16 bg-white">
   <div class="max-w-7xl mx-auto rounded-3xl overflow-hidden"
        style="background: linear-gradient(90deg, #f8e1b6 0%, #b57ba6 100%);">
 
@@ -968,6 +954,31 @@ document.addEventListener("DOMContentLoaded", () => {
     };
     window.addEventListener('scroll', animateOnScroll);
     window.addEventListener('load', animateOnScroll);
-  </script>
+  </script><script>
+gsap.registerPlugin(ScrollTrigger);
+
+// Fade entire block once
+gsap.to("#aboutTextWrapper", {
+  opacity: 1,
+  duration: 0.4,
+  scrollTrigger: {
+    trigger: "#aboutTextWrapper",
+    start: "top 80%",
+  }
+});
+
+// Animate each line with stagger
+gsap.from(".about-line", {
+  opacity: 0,
+  y: 30,
+  duration: 0.8,
+  ease: "power3.out",
+  stagger: 0.25,
+  scrollTrigger: {
+    trigger: "#aboutTextWrapper",
+    start: "top 85%",
+  }
+});
+</script>
 </body>
 </html>

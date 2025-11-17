@@ -17,20 +17,7 @@
     --blue: #1e40af;
   }
 
- .hero-slide {
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center;
-    opacity: 0;
-    transform: translateY(0) scale(1.1);
-    transition: opacity 1.6s ease, transform 3s ease;
-}
 
-.hero-slide.active {
-    opacity: 1;
-    animation: slowZoom 7s ease-out forwards;
-}
 /* Sticky Background Wrapper */
 .about-sticky-wrapper {
     position: sticky;
@@ -274,247 +261,357 @@ footer [data-aos] {
   transform: none !important;
 }
 
-.product {
-  position:absolute;
-  width:260px; height:420px;
-  text-align:center;
-  transition:all .6s ease;
-  opacity:.8;
-  transform:scale(.7);
-  cursor:pointer; color:#444;
-}
-.product img {
-  width:100%; height:350px; object-fit:cover;
-  border-radius:18px;
-  box-shadow:0 8px 20px rgba(0,0,0,.4);
+/* Styles for new hero slider */
+.slide img {
+  filter: brightness(65%);
+  transition: all 0.5s ease;
 }
 
-.name { margin-top:8px; font-size:18px; font-weight:600; color:#333; }
-.price { font-size:14px; color:#666; }
-
-/* Center active */
-.product.active {
-  transform:scale(1);
-  opacity:1;
-  z-index:5;
+.slide {
+  transform: scale(0.3) translateY(200px);
+  opacity: 0;
+  border-radius: 20px;
 }
 
-/* Left items */
-.product.left1 { transform:translateX(-300px) scale(.9); opacity:.9; }
-.product.left2 { transform:translateX(-600px) scale(.8); opacity:.8; }
-
-/* Right items */
-.product.right1 { transform:translateX(300px) scale(.9); opacity:.9; }
-.product.right2 { transform:translateX(600px) scale(.8); opacity:.8; }
-
-@media(max-width:768px){
-  .product{ width:200px; height:340px; }
-  .product img{ height:270px; }
+.thumb img {
+  border-radius: 10px;
+  transition: 0.3s ease;
 }
-@media(max-width:480px){
-  .product{ width:160px; height:280px; }
-  .product img{ height:220px; }
+.thumb img:hover {
+  transform: scale(1.05);
 }
-</style>
+
+#navbar {
+  transform: translateY(-150%);
+}
+
+.video-card {
+  position: relative;
+  overflow: hidden;
+  height: 350px;
+ width:  240px;
+  cursor: pointer;
+  transition: transform .4s ease, box-shadow .4s ease;
+}
+
+.video-card:hover {
+  transform: translateY(-12px) scale(1.05);
+  box-shadow: 0 20px 50px rgba(0,0,0,.35);
+}
+
+/* IMAGE */
+.card-img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  transition: transform .6s ease;
+}
+
+.video-card:hover .card-img {
+  transform: scale(1.18);
+}
+
+/* OPAQUE NAVY BLUE GRADIENT */
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #0f1a36 0%, #0a1127 100%); /* navy gradient */
+  opacity: 0;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: all .35s ease;
+}
+
+.video-card:hover .card-overlay {
+  opacity: 1;
+}
+
+/* TEXT INSIDE OVERLAY */
+.card-overlay h3 {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.card-overlay p {
+  color: #dce2f0;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+/* EXPAND BUTTON */
+.expand-btn {
+  background: #f59e0b;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  border: none;
+  width: fit-content;
+  transition: .3s;
+}
+
+.expand-btn:hover {
+  background: #d48809;
+}
+
+.video-card {
+  transform-style: preserve-3d;
+  transition: transform .25s ease, box-shadow .25s ease;
+  will-change: transform;
+}
+.video-card:hover {
+  box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+}
+
 
 
 
 </style>
 </head>
-<body class="bg-gradient-to-b from-slate-900 to-slate-800 text-white overflow-x-hidden">
+<body class="bg-black text-white">
 
   
 
-  <!-- FLOATING LOGO + NAVBAR WRAPPER -->
-<div class="relative w-full flex justify-center z-[9999]">
-    <img id="logo" src="logo1.png" class="absolute -top-1 w-60 drop-shadow-xl" alt="Logo">
+  
+
+<!-- TOP-CENTER TRIGGER BUTTON -->
+<nav class="fixed top-4 left-1/2 -translate-x-1/2 z-[200]">
+  <button id="nav-open"
+    class="w-12 h-12 flex items-center justify-center rounded-full 
+           bg-white text-black text-2xl shadow-md">
+    ☰
+  </button>
+</nav>
+
+<!-- OVERLAY -->
+<div id="nav-overlay"
+     class="fixed inset-0 bg-black/40 backdrop-blur-sm 
+            z-[150] opacity-0 pointer-events-none">
 </div>
-<!-- GSAP CDN -->
+
+<!-- SLIDING NAVBAR (NOW WHITE + CENTERED) -->
+<div id="navbar"
+     class="fixed top-0 left-[20%] -translate-x-1/2 
+            w-[90%] md:w-[70%] lg:w-[60%]
+            bg-white text-black shadow-2xl rounded-2xl z-[300]
+            py-4 px-6 flex items-center justify-between
+            translate-y-[-150%]">
+
+  <!-- LOGO -->
+  <img src="logo.jpg" 
+     alt="VC Designs Logo" 
+     class="h-10 md:h-12 object-contain">
 
 
-<script>
-  gsap.from("#logo", {
-    y: -100,          // start 100px above
-    opacity: 0,       // fade in effect
-    duration: 1.2,    // animation time
-    ease: "power3.out" // smooth easing
-  });
-</script>
-
-<!-- WHITE CURVED NAVBAR -->
-<nav id="navbar" class="relative z-[999] mx-auto mt-36 w-[75%] bg-white bg-opacity-95 backdrop-blur-xl
-            rounded-full py-2 px-10 shadow-xl flex items-center justify-between">
-
-    <ul class="flex gap-20 ml-16  font-bold text-gray-700">
-      
- <li class="text-black border-b-4 border-yellow-400 pb-1 text-lg cursor-pointer">
-  <a href="index.html" class="block w-full h-full">Home</a>
-</li>
-         <li class="text-black border-b-4 border-yellow-400 pb-1 text-lg cursor-pointer">
-  <a href="about.html" class="block w-full h-full">About</a>
-
-</li> <li class="relative group text-black border-b-4 border-yellow-400 pb-1 text-lg cursor-pointer">
-
-  <a href="products.html" class="block w-full h-full">Product ▾</a>
-
-  <!-- DROPDOWN -->
-  <ul class="absolute left-0 top-full mt-2 w-52 bg-white shadow-xl rounded-xl 
-             opacity-0 invisible group-hover:opacity-100 group-hover:visible 
-             transition-all duration-300">
-
-    <li><a href="fabrication.html" class="block px-4 py-2 hover:bg-yellow-100">Fabrication</a></li>
-    <li><a href="civil-work.html" class="block px-4 py-2 hover:bg-yellow-100">Civil Work</a></li>
-    <li><a href="interior.html" class="block px-4 py-2 hover:bg-yellow-100">Interiors</a></li>
-    <li><a href="exterior.html" class="block px-4 py-2 hover:bg-yellow-100">Exteriors</a></li>
-    <li><a href="other-services.html" class="block px-4 py-2 hover:bg-yellow-100">Other Services</a></li>
-
+  <!-- MENU ITEMS -->
+  <ul class="hidden md:flex space-x-8 text-lg">
+    <li><a href="index.html" class="hover:text-black">Home</a></li>
+    <li><a href="about.html" class="hover:text-black">About</a></li>
+    <li><a href="products.html" class="hover:text-black">Products</a></li>
+    <li><a href="contact.html" class="hover:text-black">Contact</a></li>
   </ul>
 
-</li>
-
-
-        
-         <li class="text-black border-b-4 border-yellow-400 text-lg pb-1 cursor-pointer">
-  <a href="contact.html" class="block w-full h-full">Contact</a>
-
-       
-    </ul>
-
-    <div class="relative flex items-center mr-12">
-  <input 
-    type="text"
-    placeholder="Search..."
-    class="px-4 py-2 w-60 md:w-64  rounded-full border border-gray-300 
-           focus:outline-none focus:ring-2 focus:ring-yellow-500 text-gray-700"
-  >
-  
-  <button class="absolute right-2 text-yellow-500 hover:text-yellow-600">
-    <svg xmlns="http://www.w3.org/2000/svg" 
-         class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-            d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1011 18.5a7.5 7.5 0 005.65-2.85z" />
-    </svg>
-  </button>
+  <!-- CLOSE BUTTON -->
+  <button id="nav-close" class="text-4xl leading-none text-black">&times;</button>
 </div>
 
-</nav>
 <script>
-  gsap.from("#navbar", {
-    x: -200,          // slides in from left
-    opacity: 0,       // fade effect
-    duration: 1.2,    // animation speed
-    ease: "power3.out"
+const openBtn = document.getElementById("nav-open");
+const closeBtn = document.getElementById("nav-close");
+const navbar = document.getElementById("navbar");
+const overlay = document.getElementById("nav-overlay");
+
+// OPEN NAVBAR
+openBtn.addEventListener("click", () => {
+  gsap.to(navbar, {
+    y: 0,
+    duration: 0.9,
+    ease: "bounce.out"
   });
+
+  gsap.to(overlay, {
+    opacity: 1,
+    pointerEvents: "all",
+    duration: 0.3
+  });
+});
+
+// CLOSE NAVBAR
+function closeNavbar() {
+  gsap.to(navbar, {
+    y: "-150%",
+    duration: 0.5,
+    ease: "power3.inOut"
+  });
+
+  gsap.to(overlay, {
+    opacity: 0,
+    pointerEvents: "none",
+    duration: 0.3
+  });
+}
+
+closeBtn.addEventListener("click", closeNavbar);
+overlay.addEventListener("click", closeNavbar);
 </script>
 
-<!-- NEW HERO SECTION -->
-<section class="relative mt-10 h-[75vh] md:h-[90vh] overflow-hidden rounded-3xl">
 
-    <!-- SLIDES -->
-    <div class="hero-slide parallax-active active" style="background-image:url('images/hero1.webp')"></div>
-<div class="hero-slide parallax-active" style="background-image:url('images/hero2.webp')"></div>
-<div class="hero-slide parallax-active" style="background-image:url('images/hero3.webp')"></div>
-<div class="hero-slide parallax-active" style="background-image:url('images/hero4.jpg')"></div>
+<!-- ================= HERO SECTION ================= -->
+<section class="relative h-screen w-full overflow-hidden">
 
-    <!-- GOLDEN BLACK OVERLAY -->
-    <div class="absolute inset-0 bg-gradient-to-b 
-        from-black/10 via-black/40 to-yellow-900/70">
+  <!-- SLIDES -->
+  <div id="hero-slides" class="absolute inset-0 w-full h-full z-[1]">
+
+    <div class="slide absolute inset-0">
+      <img src="images/about hero2.jpg" class="w-full h-full object-cover" />
     </div>
 
-    <!-- CENTERED TEXT -->
-   <div class="absolute bottom-28 left-1/2 -translate-x-1/2 text-center z-20 hero-text">
-    <p class="text-white text-2xl md:text-3xl mb-4 opacity-90 drop-shadow-xl">
-        Delivering Excellence in Tensile Engineering
-    </p>
+    <div class="slide absolute inset-0">
+      <img src="images/about hero.jpg class="w-full h-full object-cover" />
+    </div>
 
-    <h1 class="text-white text-5xl md:text-7xl font-semibold leading-tight drop-shadow-2xl">
-        Tensile & Fabrication <br>
-        <span class="text-yellow-400 text-4xl md:text-5xl">Since 2022</span>
-    </h1>
-</div>
+    <div class="slide absolute inset-0">
+      <img src="images/about hero4.jpg" class="w-full h-full object-cover" />
+    </div>
+
+    <div class="slide absolute inset-0">
+      <img src="images/hero4.jpg" class="w-full h-full object-cover" />
+    </div>
+
+  </div>
+
+  <!-- TEXT CONTENT -->
+  <div class="absolute inset-0 flex items-center justify-center text-center px-6 z-[20]">
+    <div>
+      <h1 id="hero-title" class="text-5xl md:text-7xl font-bold mb-4"></h1>
+      <p id="hero-sub" class="text-lg md:text-2xl opacity-90"></p>
+    </div>
+  </div>
+
+  <!-- THUMBNAILS + PROGRESS -->
+  <div class="absolute bottom-6 right-6 flex flex-col items-end space-y-4 z-[50]">
+
+    <!-- Thumbnails -->
+    <div id="thumbs" class="flex space-x-3">
+      <!-- dynamically inserted -->
+    </div>
+
+    <!-- Progress bar -->
+    <div class="w-40 h-1 bg-white/20 rounded-full overflow-hidden">
+      <div id="progress-bar" class="h-full bg-white w-0"></div>
+    </div>
+
+  </div>
 
 </section>
 
 <script>
-gsap.registerPlugin(ScrollTrigger);
+/* =============== SLIDE DATA =============== */
+const titles = [
+  "Premium Tensile Structures",
+  "Architectural Fabric Solutions",
+  "Modern Interior Transformations",
+  "Elegant Outdoor Shading Systems"
+];
 
-let heroSlides = document.querySelectorAll(".hero-slide");
-let heroText = document.querySelector(".hero-text");
-let currentHero = 0;
+const subtitles = [
+  "Engineered for strength, designed for elegance.",
+  "High-performance designs for commercial & residential spaces.",
+  "A perfect blend of creativity, precision, and comfort.",
+  "Durable, weather-resistant & aesthetically crafted."
+];
 
-// FUNCTION: Animate slide
-function animateHeroSlide(index) {
-    let slide = heroSlides[index];
+const thumbnails = [
+  "images/hero1.webp",
+  "images/hero2.webp",
+  "images/hero3.webp",
+  "images/hero4.jpg"
+];
 
-    // Reset slide style
-    slide.style.opacity = "1";
-    slide.style.transform = "scale(1.18) translateY(60px)";
+/* =============== ELEMENTS =============== */
+const slides = document.querySelectorAll(".slide");
+const titleEl = document.getElementById("hero-title");
+const subEl = document.getElementById("hero-sub");
+const progress = document.getElementById("progress-bar");
+const thumbContainer = document.getElementById("thumbs");
 
-    // IMAGE FADE + ZOOM-IN
-    gsap.fromTo(slide,
-        { opacity: 0, scale: 1.18, y: 60 },
-        {
-            opacity: 1,
-            scale: 1,
-            y: 0,
-            duration: 1.8,
-            ease: "power3.out"
-        }
+let index = 0;
+const slideDuration = 4000;
+
+/* =============== BUILD THUMBNAILS =============== */
+function updateThumbnails(activeIndex) {
+  thumbContainer.innerHTML = "";
+
+  for (let i = 1; i <= 3; i++) {
+    const tIndex = (activeIndex + i) % slides.length;
+
+    const thumb = document.createElement("div");
+    thumb.className = "thumb w-20 h-14 md:w-28 md:h-20 overflow-hidden";
+
+    thumb.innerHTML = `
+      <img src="${thumbnails[tIndex]}" class="w-full h-full object-cover" />
+    `;
+
+    gsap.fromTo(
+      thumb,
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
     );
 
-    // PARALLAX FLOAT
-    gsap.to(slide, {
-        scale: 1.08,
-        y: -120,
-        ease: "none",
-        scrollTrigger: {
-            trigger: "section",
-            start: "top top",
-            end: "bottom top",
-            scrub: 1.6
-        }
-    });
+    thumbContainer.appendChild(thumb);
+  }
 }
 
-// FIRST TIME LOAD
-animateHeroSlide(0);
+/* =============== MAIN SLIDE ANIMATION =============== */
+function showSlide(i) {
+  slides.forEach((slide, idx) => {
+    slide.style.zIndex = idx === i ? 10 : 0;
+  });
 
-// HERO SLIDER AUTO CHANGE
-function changeHeroSlide() {
-    heroSlides[currentHero].classList.remove("active");
+  slides.forEach((s, j) => {
+    if (j !== i) gsap.set(s, { opacity: 0 });
+  });
 
-    currentHero = (currentHero + 1) % heroSlides.length;
+  gsap.fromTo(
+    slides[i],
+    { scale: 0.3, y: 200, opacity: 0, borderRadius: "20px" },
+    { scale: 1, y: 0, opacity: 1, borderRadius: "0px", duration: 1.4, ease: "power3.out" }
+  );
 
-    heroSlides[currentHero].classList.add("active");
+  // text animation
+  titleEl.textContent = titles[i];
+  subEl.textContent = subtitles[i];
 
-    animateHeroSlide(currentHero);
+  gsap.fromTo(titleEl, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1 });
+  gsap.fromTo(subEl, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 1, delay: 0.1 });
+
+  // progress bar animation
+  gsap.fromTo(
+    progress,
+    { width: "0%" },
+    { width: "100%", duration: slideDuration / 1000, ease: "linear" }
+  );
+
+  // update next thumbnails
+  updateThumbnails(i);
 }
 
-setInterval(changeHeroSlide, 4000);
+/* =============== SLIDER LOOP =============== */
+function startSlider() {
+  showSlide(index);
 
-// HERO TEXT ENTRY
-gsap.from(".hero-text", {
-    opacity: 0,
-    y: 80,
-    duration: 1.4,
-    delay: 0.3,
-    ease: "power3.out"
-});
+  setInterval(() => {
+    index = (index + 1) % slides.length;
+    showSlide(index);
+  }, slideDuration);
+}
 
-// HERO TEXT FLOAT
-gsap.to(".hero-text", {
-    y: -60,
-    ease: "none",
-    scrollTrigger: {
-        trigger: "section",
-        start: "top top",
-        end: "bottom top",
-        scrub: 1.2
-    }
-});
+startSlider();
 </script>
-
-
 
 <!-- STICKY BACKGROUND IMAGE SECTION -->
 <section class="relative h-screen w-full overflow-hidden z-0 about-section">
@@ -596,115 +693,102 @@ gsap.from(".about-para", {
 });
 </script>
 
- <section class="py-20 bg-white">
-  <div class="container mx-auto px-4">
+ <section class="py-24 bg-white
+">
+  <div class="text-center mb-12">
+    <h2 class="text-5xl font-bold text-yellow-500">Our Products</h2>
+    <p class="text-xl text-gray-600">Explore our premium tensile solutions</p>
+  </div>
 
-    <!-- Heading -->
-    <div class="text-center mb-12">
-      <h2 class="text-5xl md:text-6xl font-medium drop-shadow-2xl" style="color:#f59e0b;">
-        Our Categories
-      </h2>
-      <p class="text-xl text-gray-700 mt-3">
-        Explore our range of premium tensile structure solutions.
-      </p>
+  <!-- 5 Cards Layout -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 max-w-7xl mx-auto px-6">
+
+    <!-- FABRICATION -->
+    <div class="video-card" data-url="fabrication.html">
+      <img src="category-images/fabrication.jpg" class="card-img">
+      <div class="card-overlay">
+        <h3>Fabrication</h3>
+        <p>High-precision welding, metal works & custom fabrication.</p>
+        <button class="expand-btn">Expand →</button>
+      </div>
     </div>
 
-    <!-- ========== CURVED PRODUCT SLIDER START ========== -->
-    <div class="slider-zone relative mx-auto max-w-[950px] h-[500px]">
-
-      <!-- Hover Areas -->
-      <div class="hover-left absolute top-0 left-0 w-[40%] h-full z-10"></div>
-      <div class="hover-right absolute top-0 right-0 w-[40%] h-full z-10"></div>
-
-      <div class="slider relative w-full h-[480px] flex justify-center items-center">
-
-        <!-- Products (replace your images here) -->
-        <div class="product">
-          <img src="home-product-images/balcony shed.jpg">
-          <div class="name">Balcony Shed</div>
-          <div class="price">Premium Tensile</div>
-        </div>
-
-        <div class="product">
-          <img src="home-product-images/industrial shed.jpg">
-          <div class="name">Industrial Shed</div>
-          <div class="price">Heavy Duty</div>
-        </div>
-
-        <div class="product">
-          <img src="home-product-images/car parking.jpg">
-          <div class="name">Car Parking Shed</div>
-          <div class="price">UV Resistant</div>
-        </div>
-
-        <div class="product">
-          <img src="home-product-images/tensile structure.jpg">
-          <div class="name">Tensile Structure</div>
-          <div class="price">All Weather</div>
-        </div>
-
-        <div class="product">
-          <img src="home-product-images/fabrication.jpg">
-          <div class="name">Fabrication</div>
-          <div class="price">Custom Design</div>
-        </div>
-
-        <div class="product">
-          <img src="home-product-images/prefabricated.jpg">
-          <div class="name">Prefabricated Units</div>
-          <div class="price">Prebuilt</div>
-        </div>
-
-        <div class="product">
-          <img src="home-product-images/car parking awning.jpg">
-          <div class="name">Car Parking Awning</div>
-          <div class="price">Durable</div>
-        </div>
-
-      </div> <!-- slider end -->
+    <!-- CIVIL WORK -->
+    <div class="video-card" data-url="civil-work.html">
+      <img src="category-images/civil work.jpg" class="card-img">
+      <div class="card-overlay">
+        <h3>Civil Work</h3>
+        <p>Reliable construction, RCC, flooring & structural work.</p>
+        <button class="expand-btn">Expand →</button>
+      </div>
     </div>
-    <!-- ========== CURVED PRODUCT SLIDER END ========== -->
 
-  </div><script>
-let index = 2;
-const items = document.querySelectorAll(".product");
+    <!-- INTERIORS -->
+    <div class="video-card" data-url="interior.html">
+      <img src="category-images/interiors.jpg" class="card-img">
+      <div class="card-overlay">
+        <h3>Interiors</h3>
+        <p>Modern interior design for homes, offices & showrooms.</p>
+        <button class="expand-btn">Expand →</button>
+      </div>
+    </div>
 
-function updateSlider() {
-  items.forEach(item => item.className = "product");
+    <!-- EXTERIORS -->
+    <div class="video-card" data-url="exterior.html">
+      <img src="category-images/exteriors.jpg" class="card-img">
+      <div class="card-overlay">
+        <h3>Exteriors</h3>
+        <p>Outdoor tensile, façade & exterior structure solutions.</p>
+        <button class="expand-btn">Expand →</button>
+      </div>
+    </div>
 
-  items[index].classList.add("active");
+    <!-- OTHER SERVICES -->
+    <div class="video-card" data-url="other-services.html">
+      <img src="category-images/other services.jpg" class="card-img">
+      <div class="card-overlay">
+        <h3>Other Services</h3>
+        <p>Retractable roofs, scaffolding & custom project services.</p>
+        <button class="expand-btn">Expand →</button>
+      </div>
+    </div>
 
-  if (items[index - 1]) items[index - 1].classList.add("left1");
-  if (items[index - 2]) items[index - 2].classList.add("left2");
-
-  if (items[index + 1]) items[index + 1].classList.add("right1");
-  if (items[index + 2]) items[index + 2].classList.add("right2");
-}
-
-updateSlider();
-
-/* Hover-based Auto Scroll */
-let scrollInterval;
-
-document.querySelector(".hover-right").addEventListener("mouseenter", () => {
-  scrollInterval = setInterval(() => {
-    index = (index + 1) % items.length;
-    updateSlider();
-  }, 700);
-});
-
-document.querySelector(".hover-left").addEventListener("mouseenter", () => {
-  scrollInterval = setInterval(() => {
-    index = (index - 1 + items.length) % items.length;
-    updateSlider();
-  }, 700);
-});
-
-document.querySelector(".hover-left").addEventListener("mouseleave", () => clearInterval(scrollInterval));
-document.querySelector(".hover-right").addEventListener("mouseleave", () => clearInterval(scrollInterval));
-</script>
-
+  </div>
 </section>
+
+<script>
+document.querySelectorAll(".video-card").forEach(card => {
+  
+  card.addEventListener("mousemove", e => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;  
+    const y = e.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateX = ((y - centerY) / centerY) * 8;  // tilt amount
+    const rotateY = ((x - centerX) / centerX) * -8;
+
+    card.style.transform = `
+      perspective(900px)
+      rotateX(${rotateX}deg)
+      rotateY(${rotateY}deg)
+      scale(1.08)
+    `;
+  });
+
+  card.addEventListener("mouseleave", () => {
+    card.style.transform = `
+      perspective(900px)
+      rotateX(0deg)
+      rotateY(0deg)
+      scale(1)
+    `;
+  });
+
+});
+</script>
 <section id="mission-vision" class="py-24 px-6">
   <div class="max-w-6xl mx-auto rounded-3xl overflow-hidden relative min-h-[500px]">
 
@@ -988,24 +1072,7 @@ gsap.from("#cta-images img", {
     feather.replace();
 
 
-    // HERO CAROUSEL
-    const images = document.querySelectorAll(".carousel-image");
-    const previews = document.querySelectorAll(".preview-img img");
-    const animationLine = document.getElementById("progress-line");
-    let current = 0;
-    const total = images.length;
-    const interval = 3000;
-
-    function showSlide(n) {
-      images.forEach((img, i) => img.style.opacity = i === n ? 1 : 0);
-      previews.forEach((p, i) => p.src = images[(n + i + 1) % total].src);
-      animationLine.style.width = "0%";
-      setTimeout(() => animationLine.style.width = "100%", 50);
-    }
-    setInterval(() => showSlide(current = (current + 1) % total), interval);
-    showSlide(0);
-
-    </script>
+   </script>
 
   <!-- AOS STYLES (PASTE IN <head> OR HERE) -->
   <style>
