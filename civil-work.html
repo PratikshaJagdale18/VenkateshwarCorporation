@@ -24,72 +24,369 @@
       background: rgba(245, 158, 11, 0.85);
       transform: scale(1.08);
     }
-  </style>
+  .slider-track {
+    animation: slide-up 14s linear infinite;
+}
+:root{
+  --navy: #071433;      /* change this to match your logo's navy */
+  --edge-white: #ffffff;
+}
+
+/* NAV BACKGROUND: dark center fading to white both sides */
+.nav-gradient {
+  position: relative;
+  /* The gradient centers a dark band and fades to white at the edges.
+     Tweak the stop percentages to widen / narrow the dark band. */
+  background: linear-gradient(
+    to right,
+    var(--edge-white) 0%,
+    var(--edge-white) 18%,
+    rgba(255,255,255,0.9) 28%,
+    var(--navy) 50%,
+    rgba(255,255,255,0.9) 72%,
+    var(--edge-white) 82%,
+    var(--edge-white) 100%
+  );
+  box-shadow: 0 2px 10px rgba(10,10,10,0.06);
+  z-index: 100;
+}
+
+/* Make sure nav content sits above the gradient band */
+.site-nav > .max-w-7xl { position: relative; }
+
+/* Links style (dark by default so they are visible on white edges) */
+.nav-link {
+  color: var(--navy);
+  text-decoration: none;
+  transition: color .18s ease, transform .12s ease;
+}
+.nav-link:hover { color: #1f3f66; transform: translateY(-1px); }
+
+/* Logo sizing */
+.logo-wrap .logo-img {
+  height: 64px;        /* increase if you want bigger logo */
+  width: auto;
+  display: block;
+  pointer-events: none;
+  /* add subtle border / background to sit clearly on dark band if needed */
+  /* background: rgba(255,255,255,0.03); padding: 6px; border-radius: 10px; */
+}
+
+/* Optional: give dark band slightly taller area vertically
+   so the logo sits perfectly and the fade feels natural. */
+.site-nav {
+  padding-top: 1rem;   /* increases navbar height */
+  padding-bottom: 1rem;
+}
+
+/* RESPONSIVE: on small screens, reduce gradient complexity */
+@media (max-width: 768px) {
+  .nav-gradient {
+    background: linear-gradient(
+      to right,
+      var(--edge-white) 0%,
+      var(--edge-white) 22%,
+      var(--navy) 50%,
+      var(--edge-white) 78%,
+      var(--edge-white) 100%
+    );
+  }
+
+  .logo-wrap .logo-img { height: 52px; }
+  .nav-left, .nav-right { gap: 10px; font-size: 14px; }
+}
+
+/* If you have transparent navbar on scroll, use this to keep readability */
+.site-nav.scrolled {
+  backdrop-filter: blur(6px);
+}
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.scroll-text {
+  display: inline-flex;
+  white-space: nowrap;
+  will-change: transform;
+}
+.civil-btn {
+  padding: 12px 30px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.12);
+  color: white;
+  font-weight: 600;
+  font-size: 1.15rem;
+  border: 0.5px solid rgba(255,255,255,0.25);
+  transition: 0.3s ease;
+}
+
+.civil-btn:hover {
+  background: rgba(255,255,255,0.25);
+  transform: translateY(-2px);
+}
+
+.civil-btn.active {
+  background: var(--gold);
+  color: black;
+  box-shadow: 0 8px 25px rgba(245,158,11,0.5);
+}
+
+/* Subcategories */
+.civil-subcat { display: none; }
+.civil-subcat.active { display: block; }
+
+.civil-sub-btn {
+  background: white;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.civil-sub-btn:hover {
+  background: var(--gold);
+  color: black;
+}
+
+</style>
+
+
+</style>
 </head>
-<body class="bg-gradient-to-b from-slate-900 to-slate-800 text-white overflow-x-hidden">
+<body class="bg-white text-white">
 
-  <!-- FLOATING LOGO + NAVBAR WRAPPER -->
-<div class="relative w-full flex justify-center z-[9999]">
-    <img src="logo1.png" class="absolute -top-1 w-60 drop-shadow-xl" alt="Logo">
+  
+
+  
+
+<!-- TOP CONTACT BAR -->
+<div class="w-full bg-white text-black text-sm py-2 border-b overflow-hidden relative">
+
+  <div class="scroll-text whitespace-nowrap flex items-center"
+       style="animation: scroll-left 18s linear infinite;">
+    
+    <span class="mx-6">
+      venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424
+    </span>
+
+    <span class="mx-6">
+      venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424
+    </span>
+
+    <span class="mx-6">
+      venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424
+    </span>
+
+    <!-- duplicate more for smoother infinite loop -->
+    <span class="mx-6">
+      venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424
+    </span>
+
+  </div>
+
 </div>
 
-<!-- WHITE CURVED NAVBAR -->
-<nav class="relative z-[999] mx-auto mt-36 w-[75%] bg-white bg-opacity-95 backdrop-blur-xl
-            rounded-full py-2 px-10 shadow-xl flex items-center justify-between">
 
-    <ul class="flex gap-20 ml-16  font-bold text-gray-700">
+<!-- MAIN NAVBAR -->
+<nav class="w-full bg-white shadow z-50">
 
- <li class="text-black border-b-4 border-yellow-400 pb-1 text-lg cursor-pointer">
-  <a href="index.html" class="block w-full h-full">Home</a>
-</li>
-         <li class="text-black border-b-4 border-yellow-400 pb-1 text-lg cursor-pointer">
-  <a href="about.html" class="block w-full h-full">About</a>
+  <!-- GRID: LEFT (logo + name) | RIGHT (top menu + categories) -->
+  <div class="max-w-7xl mx-auto px-6 
+              grid grid-cols-[auto_1fr] grid-rows-2 items-center">
 
-</li> <li class="relative group text-black border-b-4 border-yellow-400 pb-1 text-lg cursor-pointer">
+    <!-- 🌟 LEFT SIDE: LOGO + COMPANY NAME -->
+    <div class="row-span-2 flex items-center space-x-4">
 
-  <a href="products.html" class="block w-full h-full">Product ▾</a>
+      <img src="logo.jpg" class="h-20 w-auto" alt="Logo">
 
-  <!-- DROPDOWN -->
-  <ul class="absolute left-0 top-full mt-2 w-52 bg-white shadow-xl rounded-xl 
-             opacity-0 invisible group-hover:opacity-100 group-hover:visible 
-             transition-all duration-300">
+      <div class="flex flex-col leading-tight">
+        <span class="text-2xl font-bold text-gray-900">Venkateshwara</span>
+        <span class="text-lg font-semibold text-gray-700">Corporation</span>
+      </div>
 
-    <li><a href="fabrication.html" class="block px-4 py-2 hover:bg-yellow-100">Fabrication</a></li>
-    <li><a href="civil-work.html" class="block px-4 py-2 hover:bg-yellow-100">Civil Work</a></li>
-    <li><a href="interior.html" class="block px-4 py-2 hover:bg-yellow-100">Interiors</a></li>
-    <li><a href="exterior.html" class="block px-4 py-2 hover:bg-yellow-100">Exteriors</a></li>
-    <li><a href="other-services.html" class="block px-4 py-2 hover:bg-yellow-100">Other Services</a></li>
+    </div>
 
-  </ul>
+    <!-- ⭐ ROW 1: RIGHT TOP MENU -->
+    <div class="flex justify-end items-center space-x-8 
+                text-gray-800 font-medium text-base py-3">
 
-</li>
+      <a href="index.html" class="hover:text-yellow-500">Home</a>
+      <a href="about.html" class="hover:text-yellow-500">About Us</a>
+      <a href="products.html" class="hover:text-yellow-500">Products</a>
+      <a href="contact.html" class="hover:text-yellow-500">Contact Us</a>
 
+      <i data-feather="facebook" class="w-5 h-5 cursor-pointer"></i>
+      <i data-feather="linkedin" class="w-5 h-5 cursor-pointer"></i>
+      <i data-feather="instagram" class="w-5 h-5 cursor-pointer"></i>
 
-         <li class="text-black border-b-4 border-yellow-400 text-lg pb-1 cursor-pointer">
-  <a href="contact.html" class="block w-full h-full">Contact</a>
+    </div>
 
+    <!-- ⭐ ROW 2: CENTERED CATEGORIES -->
+    <div class="flex justify-center items-center space-x-12 
+                text-gray-900 font-semibold text-[15px] py-2">
 
+      <!-- Same dropdowns here -->
+      <!-- FABRICATION -->
+      <div class="relative group">
+        <button class="hover:text-yellow-500">Fabrication ▾</button>
+        <div class="absolute top-full left-1/2 -translate-x-1/2 
+                    hidden group-hover:flex flex-col bg-white shadow-lg 
+                    rounded-lg p-4 w-56 z-50">
+          <ul class="space-y-2 text-sm">
+            <li>Awnings</li>
+            <li>Car Parking</li>
+            <li>Tensile Structures</li>
+            <li>Sheds</li>
+            <li>Residential Fabrication</li>
+          </ul>
+        </div>
+      </div>
+      <!-- INTERIORS -->
+      <div class="relative group">
+        <button class="hover:text-yellow-500">Interiors ▾</button>
 
-    </ul>
+        <div class="absolute top-full left-1/2 -translate-x-1/2 
+                    hidden group-hover:flex flex-col bg-white 
+                    shadow-lg rounded-lg p-4 w-56 z-50">
+          <ul class="space-y-2 text-sm">
+            <li>Furniture Work</li>
+            <li>Plumbing</li>
+            <li>Electrical Work</li>
+            <li>Tile Work</li>
+            <li>Painting</li>
+            <li>Internal Modification</li>
+            <li>POP</li>
+            <li>Sliding Windows</li>
+            <li>French Doors</li>
+          </ul>
+        </div>
+      </div>
 
-    <div class="relative flex items-center mr-12">
-  <input
-    type="text"
-    placeholder="Search..."
-    class="px-4 py-2 w-60 md:w-64  rounded-full border border-gray-300
-           focus:outline-none focus:ring-2 focus:ring-yellow-500 text-gray-700"
-  >
+      <!-- CIVIL WORK -->
+      <div class="relative group">
+        <button class="hover:text-yellow-500">Civil Work ▾</button>
 
-  <button class="absolute right-2 text-yellow-500 hover:text-yellow-600">
-    <svg xmlns="http://www.w3.org/2000/svg"
-         class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1011 18.5a7.5 7.5 0 005.65-2.85z" />
-    </svg>
-  </button>
-</div>
+        <div class="absolute top-full left-1/2 -translate-x-1/2 
+                    hidden group-hover:flex flex-col bg-white 
+                    shadow-lg rounded-lg p-4 w-56 z-50">
+          <ul class="space-y-2 text-sm">
+            <li>Construction</li>
+            <li>Renovation</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- EXTERIORS -->
+      <div class="relative group">
+        <button class="hover:text-yellow-500">Exteriors ▾</button>
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2 
+                    hidden group-hover:flex flex-col bg-white 
+                    shadow-lg rounded-lg p-4 w-56 z-50">
+          <ul class="space-y-2 text-sm">
+            <li>Society Painting</li>
+            <li>Bungalow Painting</li>
+            <li>Cleaning</li>
+            <li>Main Gate Work</li>
+            <li>Exterior Renovation</li>
+            <li>Compound Wall</li>
+            <li>Maintenance</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- OTHER SERVICES -->
+      <div class="relative group">
+        <button class="hover:text-yellow-500">Other Services ▾</button>
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2 
+                    hidden group-hover:flex flex-col bg-white 
+                    shadow-lg rounded-lg p-4 w-56 z-50">
+          <ul class="space-y-2 text-sm">
+            <li>Waterproofing</li>
+            <li>Housekeeping</li>
+            <li>Society AMC</li>
+            <li>Pest Control</li>
+            <li>Gardening</li>
+            <li>Anti-Bird Netting</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
 
 </nav>
+
+<script>feather.replace();</script><!-- CIVIL WORK CATEGORY TABS -->
+<div class="w-full flex flex-wrap justify-center gap-6 
+            py-10 mt-10 
+            bg-gradient-to-r from-[#020617] via-[#0f172a] to-[#1e293b]
+            rounded-xl shadow-xl">
+
+  <button class="civil-btn active" data-target="construction">Construction</button>
+  <button class="civil-btn" data-target="renovation">Renovation</button>
+
+</div>
+
+<!-- ================= SUBCATEGORIES AREA ================= -->
+<div id="civil-subcat-wrapper" class="mt-8 text-center">
+
+  <!-- CONSTRUCTION -->
+  <div class="civil-subcat active" id="construction">
+    <h3 class="text-2xl font-bold text-yellow-400 mb-4">Construction</h3>
+
+    <div class="flex flex-wrap justify-center gap-4 text-lg text-gray-800">
+
+      <span class="civil-sub-btn">New Bungalow Construction</span>
+      <span class="civil-sub-btn">New Building Construction</span>
+      <span class="civil-sub-btn">Bathroom Construction</span>
+      <span class="civil-sub-btn">Kitchen Construction</span>
+
+    </div>
+  </div>
+
+  <!-- RENOVATION -->
+  <div class="civil-subcat hidden" id="renovation">
+    <h3 class="text-2xl font-bold text-yellow-400 mb-4">Renovation</h3>
+
+    <div class="flex flex-wrap justify-center gap-4 text-lg text-gray-800">
+
+      <span class="civil-sub-btn">Building Renovation</span>
+      <span class="civil-sub-btn">Flooring & Tile Work</span>
+      <span class="civil-sub-btn">Wall Demolition</span>
+      <span class="civil-sub-btn">Bathroom Renovation</span>
+      <span class="civil-sub-btn">Kitchen Renovation</span>
+
+    </div>
+  </div>
+
+</div>
+<script>
+const civilBtns = document.querySelectorAll(".civil-btn");
+const civilSubcats = document.querySelectorAll(".civil-subcat");
+
+civilBtns.forEach(btn => {
+  btn.addEventListener("click", () => {
+
+    civilBtns.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    const target = btn.getAttribute("data-target");
+
+    civilSubcats.forEach(sc => {
+      sc.classList.add("hidden");
+      sc.classList.remove("active");
+    });
+
+    document.getElementById(target).classList.remove("hidden");
+    document.getElementById(target).classList.add("active");
+  });
+});
+</script>
 
 <!-- TITLE -->
 <section class="py-24 bg-white mt-10">

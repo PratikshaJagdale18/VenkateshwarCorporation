@@ -369,15 +369,45 @@ footer [data-aos] {
 
 
 /* Testimonial Card */
+
+/* Testimonial Card */
 .testimonial-card {
     background: white;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    padding: 1.8rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
     width: 100%;
-    max-width: 550px;
+    max-width: 700px;   /* wider cards like image */
     margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
 }
+
+/* Left text block */
+.testimonial-left {
+    max-width: 80%;
+}
+
+/* Right star rating */
+.testimonial-stars {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    color: #facc15; /* yellow-400 */
+}
+
+/* Smooth infinite scroll */
+.slider-track {
+    animation: scrollUp 14s linear infinite;
+}
+
+@keyframes scrollUp {
+    0%   { transform: translateY(0); }
+    100% { transform: translateY(-100%); }
+}
+
 
 /* Infinite Vertical Scroll Keyframe */
 @keyframes slide-up {
@@ -514,73 +544,142 @@ footer [data-aos] {
 </div>
 
 
-<!-- MAIN NAVBAR -->
-<nav class="site-nav nav-gradient relative py-4">
-  <div class="max-w-7xl mx-auto px-6 flex items-center justify-between relative">
+<nav class="w-full bg-white shadow z-50">
 
-    <!-- LEFT MENU -->
-<div class="nav-left flex space-x-8 font-semibold text-lg z-10">
+  <!-- GRID: LEFT (logo + name) | RIGHT (top menu + categories) -->
+  <div class="max-w-7xl mx-auto px-6 
+              grid grid-cols-[auto_1fr] grid-rows-2 items-center">
 
-  <!-- INTERIORS DROPDOWN -->
-  <div class="relative group">
-    <a href="#" class="nav-link">Interiors ▾</a>
+    <!-- 🌟 LEFT SIDE: LOGO + COMPANY NAME -->
+    <div class="row-span-2 flex items-center space-x-4">
 
-    <!-- Dropdown Menu -->
-    <div class="absolute hidden group-hover:block bg-white text-black shadow-xl rounded-lg py-4 px-6 w-64">
-      <h4 class="font-bold mb-2 text-gray-700">Interiors</h4>
-      <ul class="space-y-2 text-sm">
-        <li>Furniture Work</li>
-        <li>Plumbing Work</li>
-        <li>Electrical Work</li>
-        <li>Tile Work</li>
-        <li>Painting</li>
-        <li>Internal Modification</li>
-        <li>Internal Home Changes</li>
-        <li>POP House</li>
-        <li>Sliding Windows</li>
-        <li>French Doors</li>
-      </ul>
+      <img src="logo.jpg" class="h-20 w-auto" alt="Logo">
+
+      <div class="flex flex-col leading-tight">
+        <span class="text-2xl font-bold text-gray-900">Venkateshwara</span>
+        <span class="text-lg font-semibold text-gray-700">Corporation</span>
+      </div>
+
     </div>
+
+    <!-- ⭐ ROW 1: RIGHT TOP MENU -->
+    <div class="flex justify-end items-center space-x-8 
+                text-gray-800 font-medium text-base py-3">
+
+      <a href="index.html" class="hover:text-yellow-500">Home</a>
+      <a href="about.html" class="hover:text-yellow-500">About Us</a>
+      <a href="products.html" class="hover:text-yellow-500">Products</a>
+      <a href="contact.html" class="hover:text-yellow-500">Contact Us</a>
+
+      <i data-feather="facebook" class="w-5 h-5 cursor-pointer"></i>
+      <i data-feather="linkedin" class="w-5 h-5 cursor-pointer"></i>
+      <i data-feather="instagram" class="w-5 h-5 cursor-pointer"></i>
+
+    </div>
+
+    <!-- ⭐ ROW 2: CENTERED CATEGORIES -->
+    <div class="flex justify-center items-center space-x-12 
+                text-gray-900 font-semibold text-[15px] py-2">
+
+      <!-- Same dropdowns here -->
+      <!-- FABRICATION -->
+      <div class="relative group">
+        <button class="hover:text-yellow-500">Fabrication ▾</button>
+        <div class="absolute top-full left-1/2 -translate-x-1/2 
+                    hidden group-hover:flex flex-col bg-white shadow-lg 
+                    rounded-lg p-4 w-56 z-50">
+          <ul class="space-y-2 text-sm">
+            <li>Awnings</li>
+            <li>Car Parking</li>
+            <li>Tensile Structures</li>
+            <li>Sheds</li>
+            <li>Residential Fabrication</li>
+          </ul>
+        </div>
+      </div>
+      <!-- INTERIORS -->
+      <div class="relative group">
+        <button class="hover:text-yellow-500">Interiors ▾</button>
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2 
+                    hidden group-hover:flex flex-col bg-white 
+                    shadow-lg rounded-lg p-4 w-56 z-50">
+          <ul class="space-y-2 text-sm">
+            <li>Furniture Work</li>
+            <li>Plumbing</li>
+            <li>Electrical Work</li>
+            <li>Tile Work</li>
+            <li>Painting</li>
+            <li>Internal Modification</li>
+            <li>POP</li>
+            <li>Sliding Windows</li>
+            <li>French Doors</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- CIVIL WORK -->
+      <div class="relative group">
+        <button class="hover:text-yellow-500">Civil Work ▾</button>
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2 
+                    hidden group-hover:flex flex-col bg-white 
+                    shadow-lg rounded-lg p-4 w-56 z-50">
+          <ul class="space-y-2 text-sm">
+            <li>Construction</li>
+            <li>Renovation</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- EXTERIORS -->
+      <div class="relative group">
+        <button class="hover:text-yellow-500">Exteriors ▾</button>
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2 
+                    hidden group-hover:flex flex-col bg-white 
+                    shadow-lg rounded-lg p-4 w-56 z-50">
+          <ul class="space-y-2 text-sm">
+            <li>Society Painting</li>
+            <li>Bungalow Painting</li>
+            <li>Cleaning</li>
+            <li>Main Gate Work</li>
+            <li>Exterior Renovation</li>
+            <li>Compound Wall</li>
+            <li>Maintenance</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- OTHER SERVICES -->
+      <div class="relative group">
+        <button class="hover:text-yellow-500">Other Services ▾</button>
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2 
+                    hidden group-hover:flex flex-col bg-white 
+                    shadow-lg rounded-lg p-4 w-56 z-50">
+          <ul class="space-y-2 text-sm">
+            <li>Waterproofing</li>
+            <li>Housekeeping</li>
+            <li>Society AMC</li>
+            <li>Pest Control</li>
+            <li>Gardening</li>
+            <li>Anti-Bird Netting</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
   </div>
 
-  <!-- SERVICES DROPDOWN -->
-  <div class="relative group">
-    <a href="#" class="nav-link"> Other Services ▾</a>
-
-    <!-- Dropdown Menu -->
-    <div class="absolute hidden group-hover:block bg-white text-black shadow-xl rounded-lg py-4 px-6 w-64">
-      
-
-      <h4 class="font-bold mt-4 mb-2 text-gray-700">Other Services</h4>
-      <ul class="space-y-2 text-sm">
-        <li>Waterproofing</li>
-        <li>Housekeeping</li>
-        <li>Society Maintenance AMC</li>
-        <li>Pest Control</li>
-        <li>Gardening</li>
-        <li>Anti-Bird Netting</li>
-      </ul>
-    </div>
-  </div>
-
-</div>
-
-
-    <!-- CENTER LOGO (on top of the dark band) -->
-    <div class="logo-wrap absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none">
-      <img src="logo.jpg" alt="logo" class="logo-img" />
-    </div>
-
-    <!-- RIGHT MENU -->
-    <div class="nav-right flex space-x-8 font-semibold text-lg z-10">
-      <a href="index.html" class="nav-link">Home</a>
-      <a href="about.html" class="nav-link">About</a>
-      <a href="products.html" class="nav-link">Product</a>
-      <a href="contact.html" class="nav-link">Contact</a>
-    </div>
-
-  </div>
 </nav>
+
+<script>feather.replace();</script>
+
+
+
+
 
 
 
@@ -759,7 +858,7 @@ startSlider();
     <div class="sticky-bg absolute inset-0 bg-cover bg-center"></div>
 
     <!-- DARK TRANSPARENT OVERLAY (MAKE BG DIM) -->
-    <div class="absolute inset-0 bg-black/40"></div>
+    <div class="absolute inset-0 bg-black/80"></div>
 
     <!-- CONTENT DIRECTLY ON IMAGE -->
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
@@ -784,6 +883,13 @@ startSlider();
             Led by <strong>Mr. Nilesh Ashok Konde (CEO)</strong>, our company has successfully 
             completed <strong>500+ installations</strong> with a strong team of 50+ craftsmen.
         </p>
+<a href="about.html" 
+   class="inline-block mt-6 px-8 py-3 
+          bg-yellow-500 hover:bg-yellow-600 
+          text-black font-semibold text-lg 
+          rounded-full shadow-lg transition">
+    Learn More
+</a>
 
     </div>
 
@@ -941,7 +1047,7 @@ document.querySelectorAll(".video-card").forEach(card => {
             <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
                 What Our Customers Say
             </h2>
-            <p class="text-gray-500 text-base max-w-md">
+            <p class="text-gray-500 text-base max-w-md leading-relaxed">
                 Relation so in confined smallest children unpacked delicate.
                 Why sir end believe uncivil respect.
                 Always get adieus nature day course for common.
@@ -949,84 +1055,82 @@ document.querySelectorAll(".video-card").forEach(card => {
         </div>
 
         <!-- RIGHT — TESTIMONIAL SLIDER -->
-        <div class="relative h-[450px] overflow-hidden">
+        <div class="relative h-[480px] overflow-hidden">
 
-            <!-- SLIDER TRACK (INFINITE) -->
+            <!-- SLIDER TRACK -->
             <div class="slider-track flex flex-col gap-6">
 
                 <!-- CARD 1 -->
                 <div class="testimonial-card">
-                    <p class="text-gray-700 text-sm">
-                        Their engineering solutions helped us reduce downtime significantly.
-                        The precision and reliability of their products are unmatched.
-                    </p>
-                    <h4 class="font-semibold mt-3">Anita Sharma</h4>
-                    <p class="text-gray-500 text-xs mb-3">
-                        Operations Head, Global Gears Pvt. Ltd.
-                    </p>
-                    <div class="text-yellow-400 text-lg">
-                        ★★★★★
+                    <div class="testimonial-left">
+                        <p class="text-gray-700 text-sm leading-relaxed">
+                            Their engineering solutions helped us reduce downtime significantly.
+                            The precision and reliability of their products are unmatched.
+                        </p>
+                        <h4 class="font-semibold mt-3 text-gray-900">Anita Sharma</h4>
+                        <p class="text-gray-500 text-xs">
+                            Operations Head, Global Gears Pvt. Ltd.
+                        </p>
                     </div>
+                    <div class="testimonial-stars">★★★★★</div>
                 </div>
 
                 <!-- CARD 2 -->
                 <div class="testimonial-card">
-                    <p class="text-gray-700 text-sm">
-                        From design to final delivery, everything was handled smoothly.
-                        Their team is professional and easy to work with.
-                    </p>
-                    <h4 class="font-semibold mt-3">Vikram Desai</h4>
-                    <p class="text-gray-500 text-xs mb-3">
-                        Procurement Officer, Precision Tools Co.
-                    </p>
-                    <div class="text-yellow-400 text-lg">
-                        ★★★★★
+                    <div class="testimonial-left">
+                        <p class="text-gray-700 text-sm leading-relaxed">
+                            From design to final delivery, everything was handled smoothly.
+                            Their team is professional and very easy to work with.
+                        </p>
+                        <h4 class="font-semibold mt-3 text-gray-900">Vikram Desai</h4>
+                        <p class="text-gray-500 text-xs">
+                            Procurement Officer, Precision Tools Co.
+                        </p>
                     </div>
+                    <div class="testimonial-stars">★★★★★</div>
                 </div>
 
                 <!-- CARD 3 -->
                 <div class="testimonial-card">
-                    <p class="text-gray-700 text-sm">
-                        They are our trusted partner for spare parts manufacturing.
-                        Consistency and quality in every order keep us coming back.
-                    </p>
-                    <h4 class="font-semibold mt-3">Suresh Nair</h4>
-                    <p class="text-gray-500 text-xs mb-3">
-                        Director, Nova Engineering Works
-                    </p>
-                    <div class="text-yellow-400 text-lg">
-                        ★★★★★
+                    <div class="testimonial-left">
+                        <p class="text-gray-700 text-sm leading-relaxed">
+                            They are our trusted partner for spare parts manufacturing.
+                            Consistency and quality in every order keep us coming back.
+                        </p>
+                        <h4 class="font-semibold mt-3 text-gray-900">Suresh Nair</h4>
+                        <p class="text-gray-500 text-xs">
+                            Director, Nova Engineering Works
+                        </p>
                     </div>
+                    <div class="testimonial-stars">★★★★★</div>
                 </div>
 
                 <!-- CARD 4 -->
                 <div class="testimonial-card">
-                    <p class="text-gray-700 text-sm">
-                        Professional team with deep technical knowledge.
-                        Their components are durable and perfectly matched to our requirements.
-                    </p>
-                    <h4 class="font-semibold mt-3">Priya Kulkarni</h4>
-                    <p class="text-gray-500 text-xs mb-3">
-                        Project Engineer, Advance Constructions Ltd.
-                    </p>
-                    <div class="text-yellow-400 text-lg">
-                        ★★★★★
+                    <div class="testimonial-left">
+                        <p class="text-gray-700 text-sm leading-relaxed">
+                            Professional team with deep technical knowledge.
+                            Their components are durable and perfectly matched to our requirements.
+                        </p>
+                        <h4 class="font-semibold mt-3 text-gray-900">Priya Kulkarni</h4>
+                        <p class="text-gray-500 text-xs">
+                            Project Engineer, Advance Constructions Ltd.
+                        </p>
                     </div>
+                    <div class="testimonial-stars">★★★★★</div>
                 </div>
 
             </div>
         </div>
-
     </div>
 </section>
+
 
 
  <section class="relative w-full py-20 px-6 h-[60vh] md:px-16 bg-white overflow-hidden" id="cta-section">
 
   <!-- 🔥 VIDEO BACKGROUND -->
-  <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0">
-    <source src="images/cta.mp4" type="video/mp4">
-  </video>
+  <a href="https://www.vecteezy.com/free-videos/simple-white-background">Simple White Background Stock Videos by Vecteezy</a>
 
   <!-- DARK OVERLAY FOR READABILITY -->
   <div class="absolute inset-0 bg-black/40 z-0"></div>
@@ -1034,13 +1138,13 @@ document.querySelectorAll(".video-card").forEach(card => {
   <!-- CONTENT -->
   <div class="relative max-w-3xl mx-auto z-10 text-center text-white flex flex-col justify-center h-full">
 
-    <div id="cta-text" class="relative z-20">
+    <div id="cta-text" class="relative z-20 text-white">
 
       <h2 class="text-3xl md:text-5xl font-bold leading-tight mb-4">
-        Contact Us to<br>Learn More!
+        Contact Us to Learn More!
       </h2>
 
-      <p class="text-lg md:text-xl leading-relaxed mb-6">
+      <p class="text-lg  md:text-xl leading-relaxed mb-6">
         Partner with Venkateshwara Corporation to bring premium tensile solutions
         to your space. Let us help your organization thrive with modern designs,
         durable materials, and expert engineering.

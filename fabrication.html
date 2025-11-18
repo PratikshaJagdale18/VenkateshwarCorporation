@@ -33,24 +33,46 @@
       color: var(--gold);
       text-shadow: 0 4px 15px rgba(245,158,11,0.4);
     }.fab-btn {
-  padding: 12px 26px;
+  padding: 12px 28px;
   border-radius: 999px;
-  background: #e2e8f0;
-  color: #0f172a;
-  font-weight: 700;
-  transition: .3s;
+  background: rgba(255,255,255,0.12);
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border: 1px solid rgba(255,255,255,0.25);
+  transition: 0.3s ease;
 }
 
 .fab-btn:hover {
-  background: #f59e0b;
-  color: white;
+  background: rgba(255,255,255,0.25);
+  transform: translateY(-2px);
 }
 
 .fab-btn.active {
-  background: #f59e0b;
-  color: white;
-  box-shadow: 0 6px 20px rgba(245,158,11,0.4);
+  background: var(--gold);
+  color: black;
+  box-shadow: 0 6px 20px rgba(245,158,11,0.45);
 }
+
+/* Subcategories */
+.subcategory { display: none; }
+.subcategory.active { display: block; }
+
+.sub-btn {
+  background: white;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.sub-btn:hover {
+  background: var(--gold);
+  color: black;
+}
+
+
 
 .fab-section {
   display: none;
@@ -192,74 +214,143 @@
 
 
 <!-- MAIN NAVBAR -->
-<nav class="site-nav nav-gradient relative py-4">
-  <div class="max-w-7xl mx-auto px-6 flex items-center justify-between relative">
+<nav class="w-full bg-white shadow z-50">
 
-    <!-- LEFT MENU -->
-<div class="nav-left flex space-x-8 font-semibold text-lg z-10">
+  <!-- GRID: LEFT (logo + name) | RIGHT (top menu + categories) -->
+  <div class="max-w-7xl mx-auto px-6 
+              grid grid-cols-[auto_1fr] grid-rows-2 items-center">
 
-  <!-- INTERIORS DROPDOWN -->
-  <div class="relative group">
-    <a href="#" class="nav-link">Interiors ▾</a>
+    <!-- 🌟 LEFT SIDE: LOGO + COMPANY NAME -->
+    <div class="row-span-2 flex items-center space-x-4">
 
-    <!-- Dropdown Menu -->
-    <div class="absolute hidden group-hover:block bg-white text-black shadow-xl rounded-lg py-4 px-6 w-64">
-      <h4 class="font-bold mb-2 text-gray-700">Interiors</h4>
-      <ul class="space-y-2 text-sm">
-        <li>Furniture Work</li>
-        <li>Plumbing Work</li>
-        <li>Electrical Work</li>
-        <li>Tile Work</li>
-        <li>Painting</li>
-        <li>Internal Modification</li>
-        <li>Internal Home Changes</li>
-        <li>POP House</li>
-        <li>Sliding Windows</li>
-        <li>French Doors</li>
-      </ul>
+      <img src="logo.jpg" class="h-20 w-auto" alt="Logo">
+
+      <div class="flex flex-col leading-tight">
+        <span class="text-2xl font-bold text-gray-900">Venkateshwara</span>
+        <span class="text-lg font-semibold text-gray-700">Corporation</span>
+      </div>
+
     </div>
+
+    <!-- ⭐ ROW 1: RIGHT TOP MENU -->
+    <div class="flex justify-end items-center space-x-8 
+                text-gray-800 font-medium text-base py-3">
+
+      <a href="index.html" class="hover:text-yellow-500">Home</a>
+      <a href="about.html" class="hover:text-yellow-500">About Us</a>
+      <a href="products.html" class="hover:text-yellow-500">Products</a>
+      <a href="contact.html" class="hover:text-yellow-500">Contact Us</a>
+
+      <i data-feather="facebook" class="w-5 h-5 cursor-pointer"></i>
+      <i data-feather="linkedin" class="w-5 h-5 cursor-pointer"></i>
+      <i data-feather="instagram" class="w-5 h-5 cursor-pointer"></i>
+
+    </div>
+
+    <!-- ⭐ ROW 2: CENTERED CATEGORIES -->
+    <div class="flex justify-center items-center space-x-12 
+                text-gray-900 font-semibold text-[15px] py-2">
+
+      <!-- Same dropdowns here -->
+      <!-- FABRICATION -->
+      <div class="relative group">
+        <button class="hover:text-yellow-500">Fabrication ▾</button>
+        <div class="absolute top-full left-1/2 -translate-x-1/2 
+                    hidden group-hover:flex flex-col bg-white shadow-lg 
+                    rounded-lg p-4 w-56 z-50">
+          <ul class="space-y-2 text-sm">
+            <li>Awnings</li>
+            <li>Car Parking</li>
+            <li>Tensile Structures</li>
+            <li>Sheds</li>
+            <li>Residential Fabrication</li>
+          </ul>
+        </div>
+      </div>
+      <!-- INTERIORS -->
+      <div class="relative group">
+        <button class="hover:text-yellow-500">Interiors ▾</button>
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2 
+                    hidden group-hover:flex flex-col bg-white 
+                    shadow-lg rounded-lg p-4 w-56 z-50">
+          <ul class="space-y-2 text-sm">
+            <li>Furniture Work</li>
+            <li>Plumbing</li>
+            <li>Electrical Work</li>
+            <li>Tile Work</li>
+            <li>Painting</li>
+            <li>Internal Modification</li>
+            <li>POP</li>
+            <li>Sliding Windows</li>
+            <li>French Doors</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- CIVIL WORK -->
+      <div class="relative group">
+        <button class="hover:text-yellow-500">Civil Work ▾</button>
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2 
+                    hidden group-hover:flex flex-col bg-white 
+                    shadow-lg rounded-lg p-4 w-56 z-50">
+          <ul class="space-y-2 text-sm">
+            <li>Construction</li>
+            <li>Renovation</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- EXTERIORS -->
+      <div class="relative group">
+        <button class="hover:text-yellow-500">Exteriors ▾</button>
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2 
+                    hidden group-hover:flex flex-col bg-white 
+                    shadow-lg rounded-lg p-4 w-56 z-50">
+          <ul class="space-y-2 text-sm">
+            <li>Society Painting</li>
+            <li>Bungalow Painting</li>
+            <li>Cleaning</li>
+            <li>Main Gate Work</li>
+            <li>Exterior Renovation</li>
+            <li>Compound Wall</li>
+            <li>Maintenance</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- OTHER SERVICES -->
+      <div class="relative group">
+        <button class="hover:text-yellow-500">Other Services ▾</button>
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2 
+                    hidden group-hover:flex flex-col bg-white 
+                    shadow-lg rounded-lg p-4 w-56 z-50">
+          <ul class="space-y-2 text-sm">
+            <li>Waterproofing</li>
+            <li>Housekeeping</li>
+            <li>Society AMC</li>
+            <li>Pest Control</li>
+            <li>Gardening</li>
+            <li>Anti-Bird Netting</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
   </div>
 
-  <!-- SERVICES DROPDOWN -->
-  <div class="relative group">
-    <a href="#" class="nav-link"> Other Services ▾</a>
-
-    <!-- Dropdown Menu -->
-    <div class="absolute hidden group-hover:block bg-white text-black shadow-xl rounded-lg py-4 px-6 w-64">
-      
-
-      <h4 class="font-bold mt-4 mb-2 text-gray-700">Other Services</h4>
-      <ul class="space-y-2 text-sm">
-        <li>Waterproofing</li>
-        <li>Housekeeping</li>
-        <li>Society Maintenance AMC</li>
-        <li>Pest Control</li>
-        <li>Gardening</li>
-        <li>Anti-Bird Netting</li>
-      </ul>
-    </div>
-  </div>
-
-</div>
-
-
-    <!-- CENTER LOGO (on top of the dark band) -->
-    <div class="logo-wrap absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none">
-      <img src="logo.jpg" alt="logo" class="logo-img" />
-    </div>
-
-    <!-- RIGHT MENU -->
-    <div class="nav-right flex space-x-8 font-semibold text-lg z-10">
-      <a href="index.html" class="nav-link">Home</a>
-      <a href="about.html" class="nav-link">About</a>
-      <a href="products.html" class="nav-link">Product</a>
-      <a href="contact.html" class="nav-link">Contact</a>
-    </div>
-
-  </div>
 </nav>
+
+<script>feather.replace();</script>
 <!-- FABRICATION CATEGORY TABS -->
-<div class="w-full flex flex-wrap justify-center gap-4 mt-10 bg-black">
+<div class="w-full flex flex-wrap justify-center gap-6 
+            py-10 mt-10 
+            bg-gradient-to-r from-[#020617] via-[#0f172a] to-[#1e293b]
+            rounded-xl shadow-xl">
 
   <button class="fab-btn active" data-target="awnings">Awnings</button>
   <button class="fab-btn" data-target="parking">Car Parking</button>
@@ -268,6 +359,110 @@
   <button class="fab-btn" data-target="residential">Residential Fabrication</button>
 
 </div>
+
+<!-- ================= SUBCATEGORIES AREA ================= -->
+<div id="subcategory-wrapper" class="mt-8 text-center">
+  
+  <!-- AWNINGS -->
+  <div class="subcategory active" id="awnings">
+    <h3 class="text-2xl font-bold text-yellow-400 mb-4">Awnings</h3>
+    <div class="flex flex-wrap justify-center gap-4 text-lg text-gray-800">
+
+      <span class="sub-btn">Retractable Awning</span>
+      <span class="sub-btn">Fixed Frame Awning</span>
+      <span class="sub-btn">Drop Awning</span>
+
+    </div>
+  </div>
+
+  <!-- CAR PARKING -->
+  <div class="subcategory hidden" id="parking">
+    <h3 class="text-2xl font-bold text-yellow-400 mb-4">Car Parking Shades</h3>
+    <div class="flex flex-wrap justify-center gap-4 text-lg text-gray-800">
+
+      <span class="sub-btn">Tensile Car Parking</span>
+      <span class="sub-btn">Car Parking Shed</span>
+      <span class="sub-btn">PVC Coated Fabric Parking</span>
+      <span class="sub-btn">Tin Shed Parking</span>
+
+    </div>
+  </div>
+
+  <!-- TENSILE STRUCTURES -->
+  <div class="subcategory hidden" id="tensile">
+    <h3 class="text-2xl font-bold text-yellow-400 mb-4">Tensile Structures</h3>
+    <div class="flex flex-wrap justify-center gap-4 text-lg text-gray-800">
+
+      <span class="sub-btn">Single Conical T.S</span>
+      <span class="sub-btn">Double Conical T.S</span>
+      <span class="sub-btn">Bending Tensile</span>
+      <span class="sub-btn">Gazebo</span>
+      <span class="sub-btn">Tent</span>
+      <span class="sub-btn">Dome</span>
+
+    </div>
+  </div>
+
+  <!-- SHEDS -->
+  <div class="subcategory hidden" id="sheds">
+    <h3 class="text-2xl font-bold text-yellow-400 mb-4">Sheds</h3>
+    <div class="flex flex-wrap justify-center gap-4 text-lg text-gray-800">
+
+      <span class="sub-btn">Industrial Shed</span>
+      <span class="sub-btn">Commercial Shed</span>
+      <span class="sub-btn">Godown Shed</span>
+      <span class="sub-btn">Shop Shed</span>
+      <span class="sub-btn">Balcony Shed</span>
+      <span class="sub-btn">Terrace Shed</span>
+      <span class="sub-btn">Rooftop Shed</span>
+
+    </div>
+  </div>
+
+  <!-- RESIDENTIAL -->
+  <div class="subcategory hidden" id="residential">
+    <h3 class="text-2xl font-bold text-yellow-400 mb-4">Residential Fabrication</h3>
+    <div class="flex flex-wrap justify-center gap-4 text-lg text-gray-800">
+
+      <span class="sub-btn">Balcony Roofing</span>
+      <span class="sub-btn">Safety Grill</span>
+      <span class="sub-btn">Safety Door</span>
+      <span class="sub-btn">Gate</span>
+      <span class="sub-btn">Zula</span>
+      <span class="sub-btn">Balcony Extension</span>
+      <span class="sub-btn">Mezzanine Floor</span>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+const tabBtns = document.querySelectorAll(".fab-btn");
+const subcats = document.querySelectorAll(".subcategory");
+
+tabBtns.forEach(btn => {
+  btn.addEventListener("click", () => {
+
+    // Remove active from buttons
+    tabBtns.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    // Show subcategory
+    const target = btn.getAttribute("data-target");
+
+    subcats.forEach(sc => {
+      sc.classList.add("hidden");
+      sc.classList.remove("active");
+    });
+
+    document.getElementById(target).classList.remove("hidden");
+    document.getElementById(target).classList.add("active");
+  });
+});
+</script>
+
+
 <script>
 const buttons = document.querySelectorAll(".fab-btn");
 const sections = document.querySelectorAll(".fab-section");
@@ -298,174 +493,79 @@ buttons.forEach(btn => {
       Fabrication <span class="text-gold">Services</span>
     </h2>
 
-   <section class="py-24 bg-white">
-  <div class="container mx-auto px-6">
-    <div class="grid lg:grid-cols-2 gap-16 items-center">
+  
+<!-- RETRACTABLE AWNING DETAILS -->
+<div id="retractable-details" class="mt-10 hidden">
 
-      <!-- LEFT IMAGE -->
-      <div>
-        <img src="images/awnings.jpg" alt="Awnings" class="w-full rounded-2xl shadow-2xl">
-      </div>
+  <div class="flex flex-col md:flex-row items-center md:items-start gap-8 bg-white p-6 rounded-xl shadow-md">
 
-      <!-- RIGHT CONTENT -->
-      <div class="space-y-8">
-        <h2 class="text-4xl md:text-5xl font-bold" style="color:var(--navy)">Awnings</h2>
+    <!-- LEFT : IMAGE -->
+    <div class="w-full md:w-1/2">
+      <img src="Products/retractable awning.jpg" 
+           alt="Retractable Awning" 
+           class="rounded-lg shadow-md w-full object-cover">
+    </div>
 
-        <p class="text-lg text-gray-700 leading-relaxed">
-          High-quality <strong>retractable and fixed awnings</strong> designed for balconies, shops, cafés, and homes.
-          Provides UV protection, rain safety, and long-lasting durability.
-        </p>
+    <!-- RIGHT : INFO -->
+    <div class="w-full md:w-1/2 text-left">
 
-        <ul class="space-y-3 text-lg text-gray-700">
-          <li>• Retractable Awnings</li>
-          <li>• Fixed Frame Awnings</li>
-          <li>• Drop Awnings</li>
-        </ul>
+      <h4 class="text-3xl font-bold text-gray-800 mb-4">Retractable Awning</h4>
 
-        <a href="contact.html" class="gold-btn text-xl inline-block mt-4 px-12">
+      <p class="text-gray-700 leading-relaxed mb-4">
+        A Retractable Awning is a flexible shading solution designed to protect outdoor areas 
+        from sun and rain while offering the convenience of folding back when not in use. 
+        Made with high-quality fabric and durable mechanisms, it enhances balconies, windows, 
+        terraces, and shopfronts with both aesthetics and functionality.
+      </p>
+
+      <p class="text-gray-700 leading-relaxed mb-6">
+        These awnings are available in manual and motorized options, offering excellent UV 
+        protection, weather resistance, and long life span. Ideal for residential and commercial 
+        spaces that require modern, space-saving shade solutions.
+      </p>
+
+      <a href="contact.html?subject=Retractable%20Awning"
+         class="inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-6 py-3 rounded-lg shadow-md transition">
           I'm Interested
-        </a>
-      </div>
+      </a>
 
     </div>
-  </div>
-</section>
-<section class="py-24 bg-gray-50">
-  <div class="container mx-auto px-6">
-    <div class="grid lg:grid-cols-2 gap-16 items-center">
-
-      <!-- LEFT -->
-      <div>
-        <img src="images/carparking.jpg" alt="Car Parking Shades" class="w-full rounded-2xl shadow-2xl">
+  </div><div id="fixed-awning" class="product-details">
+        <div class="grid md:grid-cols-2 gap-10 bg-white p-8 rounded-2xl shadow-xl">
+          <img src="Products/fixed awning.jpg" alt="Fixed Frame Awning" class="rounded-lg shadow-lg w-full object-cover">
+          <div>
+            <h4 class="text-4xl font-bold mb-4">Fixed Frame Awning</h4>
+            <p class="text-gray-600 leading-relaxed mb-6">Permanent shading solution with strong aluminum frame and high-quality fabric. Ideal for shop fronts and windows.</p>
+            <a href="contact.html?subject=Inquiry%20-%20Fixed%20Frame%20Awning" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-8 py-4 rounded-full shadow-lg transition">I'm Interested →</a>
+          </div>
+        </div>
       </div>
 
-      <!-- RIGHT -->
-      <div class="space-y-8">
-        <h2 class="text-4xl md:text-5xl font-bold" style="color:var(--navy)">
-          Car Parking Shades
-        </h2>
-
-        <p class="text-lg text-gray-700 leading-relaxed">
-          Premium <strong>tensile car parking structures</strong> for homes, societies, companies,
-          and commercial buildings. Waterproof and UV-resistant.
-        </p>
-
-        <ul class="space-y-3 text-lg text-gray-700">
-          <li>• Tensile Car Parking</li>
-          <li>• Car Parking Shed</li>
-          <li>• PVC-Coated Fabric Parking</li>
-          <li>• Tin Parking Shed</li>
-        </ul>
-
-        <a href="contact.html" class="gold-btn text-xl inline-block mt-4 px-12">
-          I'm Interested
-        </a>
+      <div id="drop-awning" class="product-details">
+        <div class="grid md:grid-cols-2 gap-10 bg-white p-8 rounded-2xl shadow-xl">
+          <img src="Products/drop awning.jpg" alt="Drop Awning" class="rounded-lg shadow-lg w-full object-cover">
+          <div>
+            <h4 class="text-4xl font-bold mb-4">Drop Awning</h4>
+            <p class="text-gray-600 leading-relaxed mb-6">Vertical drop-down awning offering privacy and sun protection. Commonly used for balconies and pergolas.</p>
+            <a href="contact.html?subject=Inquiry%20-%20Drop%20Awning" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-8 py-4 rounded-full shadow-lg transition">I'm Interested →</a>
+          </div>
+        </div>
       </div>
-
     </div>
-  </div>
-</section>
-<section class="py-24 bg-white">
-  <div class="container mx-auto px-6">
-    <div class="grid lg:grid-cols-2 gap-16 items-center">
 
-      <div>
-        <img src="images/tensile.jpg" alt="Tensile Structures" class="w-full rounded-2xl shadow-2xl">
-      </div>
+</div></section>
+<script>
+  document.querySelectorAll('.sub-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const name = btn.innerText.trim();
+    document.querySelectorAll('#retractable-details').forEach(sec => sec.classList.add('hidden'));
 
-      <div class="space-y-8">
-        <h2 class="text-4xl md:text-5xl font-bold" style="color:var(--navy)">Tensile Structures</h2>
-
-        <p class="text-lg text-gray-700 leading-relaxed">
-          Architectural-grade tensile structures built for durability, aesthetics, and long life.
-          Ideal for commercial, residential, and public spaces.
-        </p>
-
-        <ul class="space-y-3 text-lg text-gray-700">
-          <li>• Single Conical Tensile</li>
-          <li>• Double Conical Tensile</li>
-          <li>• Bending Tensile</li>
-          <li>• Gazebo / Tent / Dome</li>
-        </ul>
-
-        <a href="contact.html" class="gold-btn text-xl inline-block mt-4 px-12">
-          I'm Interested
-        </a>
-      </div>
-
-    </div>
-  </div>
-</section>
-<section class="py-24 bg-gray-50">
-  <div class="container mx-auto px-6">
-    <div class="grid lg:grid-cols-2 gap-16 items-center">
-
-      <div>
-        <img src="images/shed.jpg" alt="Sheds" class="w-full rounded-2xl shadow-2xl">
-      </div>
-
-      <div class="space-y-8">
-        <h2 class="text-4xl md:text-5xl font-bold" style="color:var(--navy)">Sheds</h2>
-
-        <p class="text-lg text-gray-700 leading-relaxed">
-          Heavy-duty sheds for industrial, commercial, and residential use. Built using high-strength steel frames.
-        </p>
-
-        <ul class="space-y-3 text-lg text-gray-700">
-          <li>• Industrial Shed</li>
-          <li>• Godown Shed</li>
-          <li>• Shop Shed</li>
-          <li>• Commercial Shed</li>
-          <li>• Balcony / Terrace Shed</li>
-          <li>• Rooftop Shed</li>
-        </ul>
-
-        <a href="contact.html" class="gold-btn text-xl inline-block mt-4 px-12">
-          I'm Interested
-        </a>
-      </div>
-
-    </div>
-  </div>
-</section>
-<section class="py-24 bg-white">
-  <div class="container mx-auto px-6">
-    <div class="grid lg:grid-cols-2 gap-16 items-center">
-
-      <div>
-        <img src="images/residential.jpg" alt="Residential Fabrication" class="w-full rounded-2xl shadow-2xl">
-      </div>
-
-      <div class="space-y-8">
-        <h2 class="text-4xl md:text-5xl font-bold" style="color:var(--navy)">
-          Residential Fabrication
-        </h2>
-
-        <p class="text-lg text-gray-700 leading-relaxed">
-          Strong, stylish and secure fabrication solutions for homes, balconies and extensions.
-        </p>
-
-        <ul class="space-y-3 text-lg text-gray-700">
-          <li>• Balcony Roofing</li>
-          <li>• Safety Grill</li>
-          <li>• Safety Door</li>
-          <li>• Gate & Zula</li>
-          <li>• Balcony Extension</li>
-          <li>• Mezzanine Floor</li>
-        </ul>
-
-        <a href="contact.html" class="gold-btn text-xl inline-block mt-4 px-12">
-          I'm Interested
-        </a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-</div>
-
-</section>
+    if (name === "Retractable Awning") {
+      document.getElementById('retractable-details').classList.remove('hidden');
+    }
+  });
+});
+</script>
 
 
   <section class="w-full py-20 px-6 md:px-16">
@@ -595,6 +695,29 @@ buttons.forEach(btn => {
   <script src="components/navbar.js"></script>
   <script>
     feather.replace();
+  </script><script>
+    // Main Category Tabs
+    document.querySelectorAll('.fab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.fab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelectorAll('.subcategory').forEach(sc => sc.classList.remove('active'));
+        document.getElementById(btn.dataset.target).classList.add('active');
+      });
+    });
+
+    // Sub-category buttons → Show only one product
+    document.querySelectorAll('.sub-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const parent = btn.closest('.subcategory');
+        parent.querySelectorAll('.sub-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        parent.querySelectorAll('.product-details').forEach(p => p.classList.remove('active'));
+        parent.querySelector('#' + btn.dataset.product).classList.add('active');
+      });
+    });
+
+    feather?.replace();
   </script>
 </body>
 </html>

@@ -196,73 +196,138 @@
 
 
 <!-- MAIN NAVBAR -->
-<nav class="site-nav nav-gradient relative py-4">
-  <div class="max-w-7xl mx-auto px-6 flex items-center justify-between relative">
+<nav class="w-full bg-white shadow z-50">
 
-    <!-- LEFT MENU -->
-<div class="nav-left flex space-x-8 font-semibold text-lg z-10">
+  <!-- GRID: LEFT (logo + name) | RIGHT (top menu + categories) -->
+  <div class="max-w-7xl mx-auto px-6 
+              grid grid-cols-[auto_1fr] grid-rows-2 items-center">
 
-  <!-- INTERIORS DROPDOWN -->
-  <div class="relative group">
-    <a href="#" class="nav-link">Interiors ▾</a>
+    <!-- 🌟 LEFT SIDE: LOGO + COMPANY NAME -->
+    <div class="row-span-2 flex items-center space-x-4">
 
-    <!-- Dropdown Menu -->
-    <div class="absolute hidden group-hover:block bg-white text-black shadow-xl rounded-lg py-4 px-6 w-64">
-      <h4 class="font-bold mb-2 text-gray-700">Interiors</h4>
-      <ul class="space-y-2 text-sm">
-        <li>Furniture Work</li>
-        <li>Plumbing Work</li>
-        <li>Electrical Work</li>
-        <li>Tile Work</li>
-        <li>Painting</li>
-        <li>Internal Modification</li>
-        <li>Internal Home Changes</li>
-        <li>POP House</li>
-        <li>Sliding Windows</li>
-        <li>French Doors</li>
-      </ul>
+      <img src="logo.jpg" class="h-20 w-auto" alt="Logo">
+
+      <div class="flex flex-col leading-tight">
+        <span class="text-2xl font-bold text-gray-900">Venkateshwara</span>
+        <span class="text-lg font-semibold text-gray-700">Corporation</span>
+      </div>
+
     </div>
+
+    <!-- ⭐ ROW 1: RIGHT TOP MENU -->
+    <div class="flex justify-end items-center space-x-8 
+                text-gray-800 font-medium text-base py-3">
+
+      <a href="index.html" class="hover:text-yellow-500">Home</a>
+      <a href="about.html" class="hover:text-yellow-500">About Us</a>
+      <a href="products.html" class="hover:text-yellow-500">Products</a>
+      <a href="contact.html" class="hover:text-yellow-500">Contact Us</a>
+
+      <i data-feather="facebook" class="w-5 h-5 cursor-pointer"></i>
+      <i data-feather="linkedin" class="w-5 h-5 cursor-pointer"></i>
+      <i data-feather="instagram" class="w-5 h-5 cursor-pointer"></i>
+
+    </div>
+
+    <!-- ⭐ ROW 2: CENTERED CATEGORIES -->
+    <div class="flex justify-center items-center space-x-12 
+                text-gray-900 font-semibold text-[15px] py-2">
+
+      <!-- Same dropdowns here -->
+      <!-- FABRICATION -->
+      <div class="relative group">
+        <button class="hover:text-yellow-500">Fabrication ▾</button>
+        <div class="absolute top-full left-1/2 -translate-x-1/2 
+                    hidden group-hover:flex flex-col bg-white shadow-lg 
+                    rounded-lg p-4 w-56 z-50">
+          <ul class="space-y-2 text-sm">
+            <li>Awnings</li>
+            <li>Car Parking</li>
+            <li>Tensile Structures</li>
+            <li>Sheds</li>
+            <li>Residential Fabrication</li>
+          </ul>
+        </div>
+      </div>
+      <!-- INTERIORS -->
+      <div class="relative group">
+        <button class="hover:text-yellow-500">Interiors ▾</button>
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2 
+                    hidden group-hover:flex flex-col bg-white 
+                    shadow-lg rounded-lg p-4 w-56 z-50">
+          <ul class="space-y-2 text-sm">
+            <li>Furniture Work</li>
+            <li>Plumbing</li>
+            <li>Electrical Work</li>
+            <li>Tile Work</li>
+            <li>Painting</li>
+            <li>Internal Modification</li>
+            <li>POP</li>
+            <li>Sliding Windows</li>
+            <li>French Doors</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- CIVIL WORK -->
+      <div class="relative group">
+        <button class="hover:text-yellow-500">Civil Work ▾</button>
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2 
+                    hidden group-hover:flex flex-col bg-white 
+                    shadow-lg rounded-lg p-4 w-56 z-50">
+          <ul class="space-y-2 text-sm">
+            <li>Construction</li>
+            <li>Renovation</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- EXTERIORS -->
+      <div class="relative group">
+        <button class="hover:text-yellow-500">Exteriors ▾</button>
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2 
+                    hidden group-hover:flex flex-col bg-white 
+                    shadow-lg rounded-lg p-4 w-56 z-50">
+          <ul class="space-y-2 text-sm">
+            <li>Society Painting</li>
+            <li>Bungalow Painting</li>
+            <li>Cleaning</li>
+            <li>Main Gate Work</li>
+            <li>Exterior Renovation</li>
+            <li>Compound Wall</li>
+            <li>Maintenance</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- OTHER SERVICES -->
+      <div class="relative group">
+        <button class="hover:text-yellow-500">Other Services ▾</button>
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2 
+                    hidden group-hover:flex flex-col bg-white 
+                    shadow-lg rounded-lg p-4 w-56 z-50">
+          <ul class="space-y-2 text-sm">
+            <li>Waterproofing</li>
+            <li>Housekeeping</li>
+            <li>Society AMC</li>
+            <li>Pest Control</li>
+            <li>Gardening</li>
+            <li>Anti-Bird Netting</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
   </div>
 
-  <!-- SERVICES DROPDOWN -->
-  <div class="relative group">
-    <a href="#" class="nav-link"> Other Services ▾</a>
-
-    <!-- Dropdown Menu -->
-    <div class="absolute hidden group-hover:block bg-white text-black shadow-xl rounded-lg py-4 px-6 w-64">
-      
-
-      <h4 class="font-bold mt-4 mb-2 text-gray-700">Other Services</h4>
-      <ul class="space-y-2 text-sm">
-        <li>Waterproofing</li>
-        <li>Housekeeping</li>
-        <li>Society Maintenance AMC</li>
-        <li>Pest Control</li>
-        <li>Gardening</li>
-        <li>Anti-Bird Netting</li>
-      </ul>
-    </div>
-  </div>
-
-</div>
-
-
-    <!-- CENTER LOGO (on top of the dark band) -->
-    <div class="logo-wrap absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none">
-      <img src="logo.jpg" alt="logo" class="logo-img" />
-    </div>
-
-    <!-- RIGHT MENU -->
-    <div class="nav-right flex space-x-8 font-semibold text-lg z-10">
-      <a href="index.html" class="nav-link">Home</a>
-      <a href="about.html" class="nav-link">About</a>
-      <a href="products.html" class="nav-link">Product</a>
-      <a href="contact.html" class="nav-link">Contact</a>
-    </div>
-
-  </div>
 </nav>
 
+<script>feather.replace();</script>
  <!-- CINEMATIC HERO WITH ZOOM-IN IMAGE + TYPEWRITER -->
 <section class="relative overflow-hidden h-screen ">
 
