@@ -235,90 +235,199 @@
   transform: none !important;
 }
 
-  </style>
-</head>
-<body class="bg-gradient-to-b from-slate-900 to-slate-800 text-white overflow-x-hidden">
 
-<!-- TOP-CENTER TRIGGER BUTTON -->
-<nav class="fixed top-4 left-1/2 -translate-x-1/2 z-[200]">
-  <button id="nav-open"
-    class="w-12 h-12 flex items-center justify-center rounded-full 
-           bg-white text-black text-2xl shadow-md">
-    ☰
-  </button>
-</nav>
-
-<!-- OVERLAY -->
-<div id="nav-overlay"
-     class="fixed inset-0 bg-black/40 backdrop-blur-sm 
-            z-[150] opacity-0 pointer-events-none">
-</div>
-
-<!-- SLIDING NAVBAR (NOW WHITE + CENTERED) -->
-<div id="navbar"
-     class="fixed top-0 left-[50%] -translate-x-1/2 
-            w-[90%] md:w-[70%] lg:w-[60%]
-            bg-white text-black shadow-2xl rounded-2xl z-[300]
-            py-4 px-6 flex items-center justify-between
-            translate-y-[-150%]">
-
-  <!-- LOGO -->
-  <img src="logo.jpg" 
-     alt="VC Designs Logo" 
-     class="h-10 md:h-12 object-contain">
-
-
-  <!-- MENU ITEMS -->
-  <ul class="hidden md:flex space-x-8 text-lg">
-    <li><a href="index.html" class="hover:text-black">Home</a></li>
-    <li><a href="about.html" class="hover:text-black">About</a></li>
-    <li><a href="products.html" class="hover:text-black">Products</a></li>
-    <li><a href="contact.html" class="hover:text-black">Contact</a></li>
-  </ul>
-
-  <!-- CLOSE BUTTON -->
-  <button id="nav-close" class="text-4xl leading-none text-black">&times;</button>
-</div>
-
-<script>
-const openBtn = document.getElementById("nav-open");
-const closeBtn = document.getElementById("nav-close");
-const navbar = document.getElementById("navbar");
-const overlay = document.getElementById("nav-overlay");
-
-// OPEN NAVBAR
-openBtn.addEventListener("click", () => {
-  gsap.to(navbar, {
-    y: 0,
-    duration: 0.9,
-    ease: "bounce.out"
-  });
-
-  gsap.to(overlay, {
-    opacity: 1,
-    pointerEvents: "all",
-    duration: 0.3
-  });
-});
-
-// CLOSE NAVBAR
-function closeNavbar() {
-  gsap.to(navbar, {
-    y: "-150%",
-    duration: 0.5,
-    ease: "power3.inOut"
-  });
-
-  gsap.to(overlay, {
-    opacity: 0,
-    pointerEvents: "none",
-    duration: 0.3
-  });
+.slider-track {
+    animation: slide-up 14s linear infinite;
+}
+:root{
+  --navy: #071433;      /* change this to match your logo's navy */
+  --edge-white: #ffffff;
 }
 
-closeBtn.addEventListener("click", closeNavbar);
-overlay.addEventListener("click", closeNavbar);
-</script>
+/* NAV BACKGROUND: dark center fading to white both sides */
+.nav-gradient {
+  position: relative;
+  /* The gradient centers a dark band and fades to white at the edges.
+     Tweak the stop percentages to widen / narrow the dark band. */
+  background: linear-gradient(
+    to right,
+    var(--edge-white) 0%,
+    var(--edge-white) 18%,
+    rgba(255,255,255,0.9) 28%,
+    var(--navy) 50%,
+    rgba(255,255,255,0.9) 72%,
+    var(--edge-white) 82%,
+    var(--edge-white) 100%
+  );
+  box-shadow: 0 2px 10px rgba(10,10,10,0.06);
+  z-index: 100;
+}
+
+/* Make sure nav content sits above the gradient band */
+.site-nav > .max-w-7xl { position: relative; }
+
+/* Links style (dark by default so they are visible on white edges) */
+.nav-link {
+  color: var(--navy);
+  text-decoration: none;
+  transition: color .18s ease, transform .12s ease;
+}
+.nav-link:hover { color: #1f3f66; transform: translateY(-1px); }
+
+/* Logo sizing */
+.logo-wrap .logo-img {
+  height: 64px;        /* increase if you want bigger logo */
+  width: auto;
+  display: block;
+  pointer-events: none;
+  /* add subtle border / background to sit clearly on dark band if needed */
+  /* background: rgba(255,255,255,0.03); padding: 6px; border-radius: 10px; */
+}
+
+/* Optional: give dark band slightly taller area vertically
+   so the logo sits perfectly and the fade feels natural. */
+.site-nav {
+  padding-top: 1rem;   /* increases navbar height */
+  padding-bottom: 1rem;
+}
+
+/* RESPONSIVE: on small screens, reduce gradient complexity */
+@media (max-width: 768px) {
+  .nav-gradient {
+    background: linear-gradient(
+      to right,
+      var(--edge-white) 0%,
+      var(--edge-white) 22%,
+      var(--navy) 50%,
+      var(--edge-white) 78%,
+      var(--edge-white) 100%
+    );
+  }
+
+  .logo-wrap .logo-img { height: 52px; }
+  .nav-left, .nav-right { gap: 10px; font-size: 14px; }
+}
+
+/* If you have transparent navbar on scroll, use this to keep readability */
+.site-nav.scrolled {
+  backdrop-filter: blur(6px);
+}
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.scroll-text {
+  display: inline-flex;
+  white-space: nowrap;
+  will-change: transform;
+}
+</style>
+
+
+</style>
+</head>
+<body class="bg-white text-white">
+
+  
+
+  
+
+<!-- TOP CONTACT BAR -->
+<div class="w-full bg-white text-black text-sm py-2 border-b overflow-hidden relative">
+
+  <div class="scroll-text whitespace-nowrap flex items-center"
+       style="animation: scroll-left 18s linear infinite;">
+    
+    <span class="mx-6">
+      venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424
+    </span>
+
+    <span class="mx-6">
+      venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424
+    </span>
+
+    <span class="mx-6">
+      venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424
+    </span>
+
+    <!-- duplicate more for smoother infinite loop -->
+    <span class="mx-6">
+      venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424
+    </span>
+
+  </div>
+
+</div>
+
+
+<!-- MAIN NAVBAR -->
+<nav class="site-nav nav-gradient relative py-4">
+  <div class="max-w-7xl mx-auto px-6 flex items-center justify-between relative">
+
+    <!-- LEFT MENU -->
+<div class="nav-left flex space-x-8 font-semibold text-lg z-10">
+
+  <!-- INTERIORS DROPDOWN -->
+  <div class="relative group">
+    <a href="#" class="nav-link">Interiors ▾</a>
+
+    <!-- Dropdown Menu -->
+    <div class="absolute hidden group-hover:block bg-white text-black shadow-xl rounded-lg py-4 px-6 w-64">
+      <h4 class="font-bold mb-2 text-gray-700">Interiors</h4>
+      <ul class="space-y-2 text-sm">
+        <li>Furniture Work</li>
+        <li>Plumbing Work</li>
+        <li>Electrical Work</li>
+        <li>Tile Work</li>
+        <li>Painting</li>
+        <li>Internal Modification</li>
+        <li>Internal Home Changes</li>
+        <li>POP House</li>
+        <li>Sliding Windows</li>
+        <li>French Doors</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SERVICES DROPDOWN -->
+  <div class="relative group">
+    <a href="#" class="nav-link"> Other Services ▾</a>
+
+    <!-- Dropdown Menu -->
+    <div class="absolute hidden group-hover:block bg-white text-black shadow-xl rounded-lg py-4 px-6 w-64">
+      
+
+      <h4 class="font-bold mt-4 mb-2 text-gray-700">Other Services</h4>
+      <ul class="space-y-2 text-sm">
+        <li>Waterproofing</li>
+        <li>Housekeeping</li>
+        <li>Society Maintenance AMC</li>
+        <li>Pest Control</li>
+        <li>Gardening</li>
+        <li>Anti-Bird Netting</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+
+    <!-- CENTER LOGO (on top of the dark band) -->
+    <div class="logo-wrap absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none">
+      <img src="logo.jpg" alt="logo" class="logo-img" />
+    </div>
+
+    <!-- RIGHT MENU -->
+    <div class="nav-right flex space-x-8 font-semibold text-lg z-10">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="products.html" class="nav-link">Product</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </div>
+
+  </div>
+</nav>
 
   <!-- HERO (UNCHANGED) -->
   <section class="relative h-screen mt-auto overflow-hidden">
@@ -341,13 +450,13 @@ overlay.addEventListener("click", closeNavbar);
   </section>
 
   <section class="py-16 bg-white">
-  <div class="container mx-auto  ml-[10px] px-6">
+  <div class="container mx-auto  px-6">
     
-    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-10">
+    <h2 class="text-3xl md:text-4xl ml-[24px] font-bold text-gray-900 mb-10">
       About Venkateshwara Corporation
     </h2>
 
-    <div class="grid lg:grid-cols-2 gap-12 items-center">
+    <div class="grid lg:grid-cols-2 ml-[24px] gap-12 items-center">
 
       <!-- LEFT CONTENT -->
       <div id="aboutTextWrapper" class="space-y-6 opacity-0">
@@ -413,9 +522,9 @@ overlay.addEventListener("click", closeNavbar);
 
     <!-- SECTION TITLE -->
     <div class="text-center mb-16">
-      <h5 class="tracking-widest text-gray-500 mb-2">ABOUT US</h5>
+      <h5 class="tracking-widest text-gray-500 mb-2">About Us</h5>
       <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-        WHAT SETS US APART?
+        What Sets Us Apart?
       </h2>
       <p class="text-gray-500 max-w-2xl mx-auto">
         At Venkateshwara Corporation, we take pride in offering more than just tensile structures — we deliver trust, precision, and long-lasting durability.
@@ -428,7 +537,7 @@ overlay.addEventListener("click", closeNavbar);
       <!-- CARD 1 -->
       <div class="feature-card p-10 bg-white rounded-2xl shadow-lg text-center opacity-0"
            data-fly="left">
-        <div class="text-4xl font-bold text-blue-900 mb-6">01</div>
+        
         <h3 class="text-xl font-semibold text-gray-900 mb-3">
           Quality Assurance
         </h3>
@@ -441,7 +550,7 @@ overlay.addEventListener("click", closeNavbar);
       <!-- CARD 2 (CENTER) -->
       <div class="feature-card p-10 bg-white rounded-2xl shadow-lg text-center opacity-0 scale-105"
            data-fly="center">
-        <div class="text-4xl font-bold text-blue-900 mb-6">02</div>
+        
         <h3 class="text-xl font-semibold text-gray-900 mb-3">
           Exclusive Designs
         </h3>
@@ -454,7 +563,7 @@ overlay.addEventListener("click", closeNavbar);
       <!-- CARD 3 -->
       <div class="feature-card p-10 bg-white rounded-2xl shadow-lg text-center opacity-0"
            data-fly="right">
-        <div class="text-4xl font-bold text-blue-900 mb-6">03</div>
+        
         <h3 class="text-xl font-semibold text-gray-900 mb-3">
           Ease of Maintenance
         </h3>
@@ -493,290 +602,103 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-<!-- TESTIMONIALS SECTION - CINEMATIC 3-CARD CAROUSEL -->
-<section class="py-20 bg-gradient-to-b from-blue-900 to-blue-1100 overflow-hidden">
+<!-- STICKY BACKGROUND IMAGE MISSION–VISION -->
+<section id="mission-vision" class="relative h-[85vh] w-full overflow-hidden z-0">
 
+    <!-- STICKY BACKGROUND (WORKING) -->
+    <div class="sticky top-0 h-[85vh] w-full">
+        <img src="images/mv.jpg"
+             class="absolute inset-0 w-full h-full object-cover scale-125 opacity-90" />
 
-  <h2 class="text-center text-3xl md:text-4xl font-bold text-gray-900 mb-16 tracking-widest drop-shadow-lg">
-   What Our Customers Say
-  </h2>
+        <!-- DARK OVERLAY -->
+        <div class="absolute inset-0 bg-black/40"></div>
+    </div>
 
-  <div class="hh-container relative mx-auto max-w-7xl px-4 md:px-8">
-    <div id="hh-slider" class="hh-slider flex transition-transform duration-700 ease-out">
+    <!-- CONTENT THAT SCROLLS OVER THE BG -->
+    <div class="absolute inset-0 flex items-center px-10 md:px-20 text-white z-10">
 
-      <!-- CARD 1 -->
-      <div class="hh-card">
-        <div class="hh-inner">
-          <div class="quote text-6xl text-gray-800 mb-3 leading-none">“</div>
-          <p class="text-sm md:text-base leading-relaxed text-gray-700">
-            It just arrived and I love my new throw SO MUCH!!!!! Freaking out over how perfect it looks - thank you for being so kind about me changing my mind about the one I originally ordered. This is definitely the right one!!!
-          </p>
-          <h4 class="font-bold text-gray-900 mt-4 text-lg">Christina</h4>
-          <div class="flex justify-center gap-1 mt-2">
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-yellow-500 text-lg">★</span>
-          </div>
+        <div class="w-full">
+
+            <!-- SECTION TITLE -->
+            <div class="text-center mb-10">
+                <h2 class="text-4xl md:text-5xl font-bold tracking-wide">
+                    Our <span class="text-yellow-500">Mission & Vision</span>
+                </h2>
+            </div>
+
+            <!-- GRID CONTENT -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
+
+                <!-- LEFT — MISSION -->
+                <div id="mission-box" class="space-y-4">
+                    <h2 class="text-4xl font-bold tracking-wide">MISSION</h2>
+
+                    <p class="text-lg leading-relaxed text-gray-200">
+                        Ensure the right selection of solutions and ensure the right procedure  
+                        of application as part of a customer-focused approach and quest  
+                        for impeccable quality.
+                    </p>
+
+                    <div class="flex items-center gap-3 mt-6">
+                        <div class="w-4 h-4 bg-orange-500 rounded-full"></div>
+                        <div class="h-[2px] w-32 bg-orange-500"></div>
+                    </div>
+                </div>
+
+                <!-- RIGHT — VISION -->
+                <div id="vision-box" class="space-y-4 md:text-left text-right">
+                    <h2 class="text-4xl font-bold tracking-wide">VISION</h2>
+
+                    <p class="text-lg leading-relaxed text-gray-200">
+                        Be a leading brand in the construction industry and a one-stop solution  
+                        in the usage and application of marbles and stones.
+                    </p>
+
+                    <div class="flex items-center justify-end md:justify-start gap-3 mt-6">
+                        <div class="w-4 h-4 bg-orange-500 rounded-full"></div>
+                        <div class="h-[2px] w-32 bg-orange-500"></div>
+                    </div>
+                </div>
+
+            </div>
         </div>
-      </div>
-
-      <!-- CARD 2 -->
-      <div class="hh-card">
-        <div class="hh-inner">
-          <div class="quote text-6xl text-gray-800 mb-3 leading-none">“</div>
-          <p class="text-sm md:text-base leading-relaxed text-gray-700">
-            Gorgeousness arrived in the mail yesterday! We love, love, love this throw. Just the design and punch of color we needed. Just lovely. Happy habitats! Thank you so much for your kind and thoughtful service and such a beauty to dwell on.
-          </p>
-          <h4 class="font-bold text-gray-900 mt-4 text-lg">Cheryl</h4>
-          <div class="flex justify-center gap-1 mt-2">
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-gray-400 text-lg">★</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- CARD 3 -->
-      <div class="hh-card">
-        <div class="hh-inner">
-          <div class="quote text-6xl text-gray-800 mb-3 leading-none">“</div>
-          <p class="text-sm md:text-base leading-relaxed text-gray-700">
-            This ain’t no skanky Amazon blanket.
-          </p>
-          <h4 class="font-bold text-gray-900 mt-4 text-lg">Antonia</h4>
-          <div class="flex justify-center gap-1 mt-2">
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-yellow-500 text-lg">★</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- CARD 4 -->
-      <div class="hh-card">
-        <div class="hh-inner">
-          <div class="quote text-6xl text-gray-800 mb-3 leading-none">“</div>
-          <p class="text-sm md:text-base leading-relaxed text-gray-700">
-            Super comfy and perfect for my living room!
-          </p>
-          <h4 class="font-bold text-gray-900 mt-4 text-lg">Aarav</h4>
-          <div class="flex justify-center gap-1 mt-2">
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-yellow-500 text-lg">★</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- CARD 5 -->
-      <div class="hh-card">
-        <div class="hh-inner">
-          <div class="quote text-6xl text-gray-800 mb-3 leading-none">“</div>
-          <p class="text-sm md:text-base leading-relaxed text-gray-700">
-            Excellent quality and fast delivery. Highly recommend!
-          </p>
-          <h4 class="font-bold text-gray-900 mt-4 text-lg">Rajesh</h4>
-          <div class="flex justify-center gap-1 mt-2">
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-yellow-500 text-lg">★</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- CARD 6 -->
-      <div class="hh-card">
-        <div class="hh-inner">
-          <div class="quote text-6xl text-gray-800 mb-3 leading-none">“</div>
-          <p class="text-sm md:text-base leading-relaxed text-gray-700">
-            The tensile structure transformed our space beautifully.
-          </p>
-          <h4 class="font-bold text-gray-900 mt-4 text-lg">Priya</h4>
-          <div class="flex justify-center gap-1 mt-2">
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-gray-400 text-lg">★</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- CARD 7 -->
-      <div class="hh-card">
-        <div class="hh-inner">
-          <div class="quote text-6xl text-gray-800 mb-3 leading-none">“</div>
-          <p class="text-sm md:text-base leading-relaxed text-gray-700">
-            Professional team and durable products. Worth every penny.
-          </p>
-          <h4 class="font-bold text-gray-900 mt-4 text-lg">Amit</h4>
-          <div class="flex justify-center gap-1 mt-2">
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-yellow-500 text-lg">★</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- CARD 8 -->
-      <div class="hh-card">
-        <div class="hh-inner">
-          <div class="quote text-6xl text-gray-800 mb-3 leading-none">“</div>
-          <p class="text-sm md:text-base leading-relaxed text-gray-700">
-            Impressed with the design and installation process.
-          </p>
-          <h4 class="font-bold text-gray-900 mt-4 text-lg">Neha</h4>
-          <div class="flex justify-center gap-1 mt-2">
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-yellow-500 text-lg">★</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- CARD 9 -->
-      <div class="hh-card">
-        <div class="hh-inner">
-          <div class="quote text-6xl text-gray-800 mb-3 leading-none">“</div>
-          <p class="text-sm md:text-base leading-relaxed text-gray-700">
-            Top-notch service from start to finish!
-          </p>
-          <h4 class="font-bold text-gray-900 mt-4 text-lg">Vikram</h4>
-          <div class="flex justify-center gap-1 mt-2">
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-yellow-500 text-lg">★</span>
-            <span class="text-yellow-500 text-lg">★</span>
-          </div>
-        </div>
-      </div>
 
     </div>
 
-    <!-- NAVIGATION ARROWS -->
-    <div class="hh-nav hh-prev opacity-0 transition-opacity duration-300 hidden"></div>
-    <div class="hh-nav hh-next opacity-0 transition-opacity duration-300 hidden"></div>
-
-    <!-- DOTS -->
-    <div id="hh-dots" class="flex justify-center gap-3 mt-12"></div>
-  </div>
 </section>
+
+
+
 <script>
-(function () {
+gsap.registerPlugin(ScrollTrigger);
 
-  const slider = document.getElementById("hh-slider");
-  const container = document.querySelector(".hh-container");
-  const cards = [...document.querySelectorAll(".hh-card:not(.clone)")];
-  const dotsContainer = document.getElementById("hh-dots");
-  const prevBtn = document.querySelector(".hh-prev");
-  const nextBtn = document.querySelector(".hh-next");
+// Mission slides from left
+gsap.from("#mission-box", {
+  scrollTrigger: {
+    trigger: "#mission-vision",
+    start: "top 80%",
+  },
+  x: -100,
+  opacity: 0,
+  filter: "blur(10px)",
+  duration: 1.4,
+  ease: "power3.out"
+});
 
-  let index = 1; 
-  let isTransitioning = false;
-
-  // Clone First + Last for infinite loop
-  const firstClone = cards[0].cloneNode(true);
-  const lastClone = cards[cards.length - 1].cloneNode(true);
-
-  firstClone.classList.add("clone");
-  lastClone.classList.add("clone");
-
-  slider.insertBefore(lastClone, slider.firstChild);
-  slider.appendChild(firstClone);
-
-  const allCards = document.querySelectorAll(".hh-card");
-
-  // Set starting position  
-  slider.style.transform = `translateX(-33.333%)`;
-
-  // Create dots
-  cards.forEach((_, i) => {
-    const dot = document.createElement("span");
-    dot.className = "h-3 w-3 bg-gray-400 rounded-full cursor-pointer transition-all";
-    dot.addEventListener("click", () => goTo(i + 1));
-    dotsContainer.appendChild(dot);
-  });
-
-  const dots = dotsContainer.querySelectorAll("span");
-
-  function updateUI() {
-    allCards.forEach((card, i) => {
-      card.classList.toggle("active", i === index);
-    });
-    dots.forEach((dot, i) => {
-      dot.classList.toggle("bg-gray-800", i + 1 === index);
-      dot.classList.toggle("bg-gray-400", i + 1 !== index);
-    });
-  }
-
-  function goTo(i) {
-    index = i;
-    slide();
-  }
-
-  function slide() {
-    if (isTransitioning) return;
-    isTransitioning = true;
-
-    slider.style.transition = "transform 0.7s ease";
-    slider.style.transform = `translateX(-${index * 33.333}%)`;
-  }
-
-  // Infinite Loop Handling
-  slider.addEventListener("transitionend", () => {
-    isTransitioning = false;
-
-    if (allCards[index].classList.contains("clone")) {
-      slider.style.transition = "none";
-      index = index === 0 ? cards.length : 1;
-      slider.style.transform = `translateX(-${index * 33.333}%)`;
-    }
-
-    updateUI();
-  });
-
-  // Next / Prev buttons
-  function next() {
-    if (isTransitioning) return;
-    index++;
-    slide();
-  }
-
-  function prev() {
-    if (isTransitioning) return;
-    index--;
-    slide();
-  }
-
-  prevBtn.addEventListener("click", prev);
-  nextBtn.addEventListener("click", next);
-
-  // Auto Play Infinite
-  let auto = setInterval(next, 2000);
-
-  container.addEventListener("mouseenter", () => clearInterval(auto));
-  container.addEventListener("mouseleave", () => auto = setInterval(next, 2000));
-
-  updateUI();
-
-})();
+// Vision slides from right
+gsap.from("#vision-box", {
+  scrollTrigger: {
+    trigger: "#mission-vision",
+    start: "top 80%",
+  },
+  x: 100,
+  opacity: 0,
+  filter: "blur(10px)",
+  duration: 1.4,
+  ease: "power3.out",
+  delay: 0.2
+});
 </script>
-
 
    <!-- CTA -->
   <section class="w-full py-20 px-6 md:px-16 bg-white">
@@ -898,9 +820,9 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
 
     <!-- COPYRIGHT -->
-    <div class="text-center mt-8 pt-5 border-t border-slate-800 text-xs opacity-70"
+    <div class="text-center mt-8 pt-5 border-t border-slate-800 text-sm opacity-70"
          data-aos="fade-up" data-aos-delay="400">
-      © 2025 Venkateshwara Corporation • Developed by DWInnovations Pvt. Ltd.• Pune
+      © 2025 Venkateshwara Corporation • <a href="https://dwi4u.com/">Developed by DW Innovation Pvt. Ltd. • Pune</a>
     </div>
   </div>
 </footer>

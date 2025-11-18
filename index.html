@@ -368,100 +368,224 @@ footer [data-aos] {
 }
 
 
+/* Testimonial Card */
+.testimonial-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    width: 100%;
+    max-width: 550px;
+    margin: 0 auto;
+}
+
+/* Infinite Vertical Scroll Keyframe */
+@keyframes slide-up {
+    0%   { transform: translateY(0); }
+    25%  { transform: translateY(-120px); }
+    50%  { transform: translateY(-240px); }
+    75%  { transform: translateY(-360px); }
+    100% { transform: translateY(0); }
+}
+
+/* Apply to track */
+.slider-track {
+    animation: slide-up 14s linear infinite;
+}
+:root{
+  --navy: #071433;      /* change this to match your logo's navy */
+  --edge-white: #ffffff;
+}
+
+/* NAV BACKGROUND: dark center fading to white both sides */
+.nav-gradient {
+  position: relative;
+  /* The gradient centers a dark band and fades to white at the edges.
+     Tweak the stop percentages to widen / narrow the dark band. */
+  background: linear-gradient(
+    to right,
+    var(--edge-white) 0%,
+    var(--edge-white) 18%,
+    rgba(255,255,255,0.9) 28%,
+    var(--navy) 50%,
+    rgba(255,255,255,0.9) 72%,
+    var(--edge-white) 82%,
+    var(--edge-white) 100%
+  );
+  box-shadow: 0 2px 10px rgba(10,10,10,0.06);
+  z-index: 100;
+}
+
+/* Make sure nav content sits above the gradient band */
+.site-nav > .max-w-7xl { position: relative; }
+
+/* Links style (dark by default so they are visible on white edges) */
+.nav-link {
+  color: var(--navy);
+  text-decoration: none;
+  transition: color .18s ease, transform .12s ease;
+}
+.nav-link:hover { color: #1f3f66; transform: translateY(-1px); }
+
+/* Logo sizing */
+.logo-wrap .logo-img {
+  height: 64px;        /* increase if you want bigger logo */
+  width: auto;
+  display: block;
+  pointer-events: none;
+  /* add subtle border / background to sit clearly on dark band if needed */
+  /* background: rgba(255,255,255,0.03); padding: 6px; border-radius: 10px; */
+}
+
+/* Optional: give dark band slightly taller area vertically
+   so the logo sits perfectly and the fade feels natural. */
+.site-nav {
+  padding-top: 1rem;   /* increases navbar height */
+  padding-bottom: 1rem;
+}
+
+/* RESPONSIVE: on small screens, reduce gradient complexity */
+@media (max-width: 768px) {
+  .nav-gradient {
+    background: linear-gradient(
+      to right,
+      var(--edge-white) 0%,
+      var(--edge-white) 22%,
+      var(--navy) 50%,
+      var(--edge-white) 78%,
+      var(--edge-white) 100%
+    );
+  }
+
+  .logo-wrap .logo-img { height: 52px; }
+  .nav-left, .nav-right { gap: 10px; font-size: 14px; }
+}
+
+/* If you have transparent navbar on scroll, use this to keep readability */
+.site-nav.scrolled {
+  backdrop-filter: blur(6px);
+}
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.scroll-text {
+  display: inline-flex;
+  white-space: nowrap;
+  will-change: transform;
+}
+</style>
 
 
 </style>
 </head>
-<body class="bg-black text-white">
+<body class="bg-white text-white">
 
   
 
   
 
-<!-- TOP-CENTER TRIGGER BUTTON -->
-<nav class="fixed top-4 left-1/2 -translate-x-1/2 z-[200]">
-  <button id="nav-open"
-    class="w-12 h-12 flex items-center justify-center rounded-full 
-           bg-white text-black text-2xl shadow-md">
-    ☰
-  </button>
+<!-- TOP CONTACT BAR -->
+<div class="w-full bg-white text-black text-sm py-2 border-b overflow-hidden relative">
+
+  <div class="scroll-text whitespace-nowrap flex items-center"
+       style="animation: scroll-left 18s linear infinite;">
+    
+    <span class="mx-6">
+      venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424
+    </span>
+
+    <span class="mx-6">
+      venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424
+    </span>
+
+    <span class="mx-6">
+      venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424
+    </span>
+
+    <!-- duplicate more for smoother infinite loop -->
+    <span class="mx-6">
+      venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424
+    </span>
+
+  </div>
+
+</div>
+
+
+<!-- MAIN NAVBAR -->
+<nav class="site-nav nav-gradient relative py-4">
+  <div class="max-w-7xl mx-auto px-6 flex items-center justify-between relative">
+
+    <!-- LEFT MENU -->
+<div class="nav-left flex space-x-8 font-semibold text-lg z-10">
+
+  <!-- INTERIORS DROPDOWN -->
+  <div class="relative group">
+    <a href="#" class="nav-link">Interiors ▾</a>
+
+    <!-- Dropdown Menu -->
+    <div class="absolute hidden group-hover:block bg-white text-black shadow-xl rounded-lg py-4 px-6 w-64">
+      <h4 class="font-bold mb-2 text-gray-700">Interiors</h4>
+      <ul class="space-y-2 text-sm">
+        <li>Furniture Work</li>
+        <li>Plumbing Work</li>
+        <li>Electrical Work</li>
+        <li>Tile Work</li>
+        <li>Painting</li>
+        <li>Internal Modification</li>
+        <li>Internal Home Changes</li>
+        <li>POP House</li>
+        <li>Sliding Windows</li>
+        <li>French Doors</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SERVICES DROPDOWN -->
+  <div class="relative group">
+    <a href="#" class="nav-link"> Other Services ▾</a>
+
+    <!-- Dropdown Menu -->
+    <div class="absolute hidden group-hover:block bg-white text-black shadow-xl rounded-lg py-4 px-6 w-64">
+      
+
+      <h4 class="font-bold mt-4 mb-2 text-gray-700">Other Services</h4>
+      <ul class="space-y-2 text-sm">
+        <li>Waterproofing</li>
+        <li>Housekeeping</li>
+        <li>Society Maintenance AMC</li>
+        <li>Pest Control</li>
+        <li>Gardening</li>
+        <li>Anti-Bird Netting</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+
+    <!-- CENTER LOGO (on top of the dark band) -->
+    <div class="logo-wrap absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none">
+      <img src="logo.jpg" alt="logo" class="logo-img" />
+    </div>
+
+    <!-- RIGHT MENU -->
+    <div class="nav-right flex space-x-8 font-semibold text-lg z-10">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="products.html" class="nav-link">Blog</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </div>
+
+  </div>
 </nav>
 
-<!-- OVERLAY -->
-<div id="nav-overlay"
-     class="fixed inset-0 bg-black/40 backdrop-blur-sm 
-            z-[150] opacity-0 pointer-events-none">
-</div>
-
-<!-- SLIDING NAVBAR (NOW WHITE + CENTERED) -->
-<div id="navbar"
-     class="fixed top-0 left-[20%] -translate-x-1/2 
-            w-[90%] md:w-[70%] lg:w-[60%]
-            bg-white text-black shadow-2xl rounded-2xl z-[300]
-            py-4 px-6 flex items-center justify-between
-            translate-y-[-150%]">
-
-  <!-- LOGO -->
-  <img src="logo.jpg" 
-     alt="VC Designs Logo" 
-     class="h-10 md:h-12 object-contain">
-
-
-  <!-- MENU ITEMS -->
-  <ul class="hidden md:flex space-x-8 text-lg">
-    <li><a href="index.html" class="hover:text-black">Home</a></li>
-    <li><a href="about.html" class="hover:text-black">About</a></li>
-    <li><a href="products.html" class="hover:text-black">Products</a></li>
-    <li><a href="contact.html" class="hover:text-black">Contact</a></li>
-  </ul>
-
-  <!-- CLOSE BUTTON -->
-  <button id="nav-close" class="text-4xl leading-none text-black">&times;</button>
-</div>
-
-<script>
-const openBtn = document.getElementById("nav-open");
-const closeBtn = document.getElementById("nav-close");
-const navbar = document.getElementById("navbar");
-const overlay = document.getElementById("nav-overlay");
-
-// OPEN NAVBAR
-openBtn.addEventListener("click", () => {
-  gsap.to(navbar, {
-    y: 0,
-    duration: 0.9,
-    ease: "bounce.out"
-  });
-
-  gsap.to(overlay, {
-    opacity: 1,
-    pointerEvents: "all",
-    duration: 0.3
-  });
-});
-
-// CLOSE NAVBAR
-function closeNavbar() {
-  gsap.to(navbar, {
-    y: "-150%",
-    duration: 0.5,
-    ease: "power3.inOut"
-  });
-
-  gsap.to(overlay, {
-    opacity: 0,
-    pointerEvents: "none",
-    duration: 0.3
-  });
-}
-
-closeBtn.addEventListener("click", closeNavbar);
-overlay.addEventListener("click", closeNavbar);
-</script>
 
 
 <!-- ================= HERO SECTION ================= -->
-<section class="relative h-screen w-full overflow-hidden">
+<section class="relative h-[85vh] w-full overflow-hidden">
 
   <!-- SLIDES -->
   <div id="hero-slides" class="absolute inset-0 w-full h-full z-[1]">
@@ -484,13 +608,19 @@ overlay.addEventListener("click", closeNavbar);
 
   </div>
 
-  <!-- TEXT CONTENT -->
-  <div class="absolute inset-0 flex items-center justify-center text-center px-6 z-[20]">
-    <div>
-      <h1 id="hero-title" class="text-5xl md:text-7xl font-bold mb-4"></h1>
-      <p id="hero-sub" class="text-lg md:text-2xl opacity-90"></p>
-    </div>
-  </div>
+  <!-- TEXT CONTENT (MOVED LEFT BOTTOM) -->
+<div class="absolute left-10 bottom-16 z-[20] text-left max-w-xl">
+
+  <h1 id="hero-title" 
+      class="text-4xl md:text-6xl font-bold mb-3 leading-tight">
+  </h1>
+
+  <p id="hero-sub" 
+     class="text-lg md:text-2xl opacity-90 max-w-md">
+  </p>
+
+</div>
+
 
   <!-- THUMBNAILS + PROGRESS -->
   <div class="absolute bottom-6 right-6 flex flex-col items-end space-y-4 z-[50]">
@@ -550,11 +680,20 @@ function updateThumbnails(activeIndex) {
     const tIndex = (activeIndex + i) % slides.length;
 
     const thumb = document.createElement("div");
-    thumb.className = "thumb w-20 h-14 md:w-28 md:h-20 overflow-hidden";
+  thumb.className = "thumb w-40 h-56 md:w-48 md:h-72 overflow-hidden rounded-xl shadow-xl border border-white/20";
+
+
 
     thumb.innerHTML = `
       <img src="${thumbnails[tIndex]}" class="w-full h-full object-cover" />
     `;
+thumb.querySelector("img").style.transition = "0.4s ease";
+thumb.addEventListener("mouseenter", () => {
+    thumb.querySelector("img").style.transform = "scale(1.08)";
+});
+thumb.addEventListener("mouseleave", () => {
+    thumb.querySelector("img").style.transform = "scale(1)";
+});
 
     gsap.fromTo(
       thumb,
@@ -616,29 +755,32 @@ startSlider();
 <!-- STICKY BACKGROUND IMAGE SECTION -->
 <section class="relative h-screen w-full overflow-hidden z-0 about-section">
 
-    <div class="sticky-bg"></div>
+    <!-- BACKGROUND IMAGE -->
+    <div class="sticky-bg absolute inset-0 bg-cover bg-center"></div>
 
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 
-                -translate-y-1/2 w-[90%] md:w-[70%] lg:w-[55%] 
-                bg-white rounded-3xl shadow-2xl p-10 md:p-14 
-                animate-fade-up z-[50] about-card">
+    <!-- DARK TRANSPARENT OVERLAY (MAKE BG DIM) -->
+    <div class="absolute inset-0 bg-black/40"></div>
 
-        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900 text-center about-heading">
+    <!-- CONTENT DIRECTLY ON IMAGE -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+                w-[90%] md:w-[70%] lg:w-[55%] text-white z-[50] about-card text-center">
+
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 about-heading">
             About <span class="text-yellow-500">Venkateshwara</span>
         </h2>
 
-        <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-5 text-center about-para">
+        <p class="text-lg md:text-xl leading-relaxed mb-5 about-para">
             Established in <strong>2022</strong>, Venkateshwara Corporation is Pune’s leading 
             <span class="text-yellow-500 font-semibold">Service Provider</span> of 
             Balcony Shed, Industrial Shed, Tensile Structures and more.
         </p>
 
-        <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-5 text-center about-para">
+        <p class="text-lg md:text-xl leading-relaxed mb-5 about-para">
             We deliver <span class="font-semibold text-yellow-500">German-grade precision</span> 
             with lightning-fast execution across Maharashtra.
         </p>
 
-        <p class="text-lg md:text-xl text-gray-700 leading-relaxed text-center about-para">
+        <p class="text-lg md:text-xl leading-relaxed about-para">
             Led by <strong>Mr. Nilesh Ashok Konde (CEO)</strong>, our company has successfully 
             completed <strong>500+ installations</strong> with a strong team of 50+ craftsmen.
         </p>
@@ -646,6 +788,8 @@ startSlider();
     </div>
 
 </section>
+
+
 
 <script>
 gsap.registerPlugin(ScrollTrigger);
@@ -789,124 +933,132 @@ document.querySelectorAll(".video-card").forEach(card => {
 
 });
 </script>
-<section id="mission-vision" class="py-24 px-6">
-  <div class="max-w-6xl mx-auto rounded-3xl overflow-hidden relative min-h-[500px]">
+<section id="testimonials" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12">
+
+        <!-- LEFT STATIC TEXT -->
+        <div class="flex flex-col justify-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                What Our Customers Say
+            </h2>
+            <p class="text-gray-500 text-base max-w-md">
+                Relation so in confined smallest children unpacked delicate.
+                Why sir end believe uncivil respect.
+                Always get adieus nature day course for common.
+            </p>
+        </div>
+
+        <!-- RIGHT — TESTIMONIAL SLIDER -->
+        <div class="relative h-[450px] overflow-hidden">
+
+            <!-- SLIDER TRACK (INFINITE) -->
+            <div class="slider-track flex flex-col gap-6">
+
+                <!-- CARD 1 -->
+                <div class="testimonial-card">
+                    <p class="text-gray-700 text-sm">
+                        Their engineering solutions helped us reduce downtime significantly.
+                        The precision and reliability of their products are unmatched.
+                    </p>
+                    <h4 class="font-semibold mt-3">Anita Sharma</h4>
+                    <p class="text-gray-500 text-xs mb-3">
+                        Operations Head, Global Gears Pvt. Ltd.
+                    </p>
+                    <div class="text-yellow-400 text-lg">
+                        ★★★★★
+                    </div>
+                </div>
+
+                <!-- CARD 2 -->
+                <div class="testimonial-card">
+                    <p class="text-gray-700 text-sm">
+                        From design to final delivery, everything was handled smoothly.
+                        Their team is professional and easy to work with.
+                    </p>
+                    <h4 class="font-semibold mt-3">Vikram Desai</h4>
+                    <p class="text-gray-500 text-xs mb-3">
+                        Procurement Officer, Precision Tools Co.
+                    </p>
+                    <div class="text-yellow-400 text-lg">
+                        ★★★★★
+                    </div>
+                </div>
+
+                <!-- CARD 3 -->
+                <div class="testimonial-card">
+                    <p class="text-gray-700 text-sm">
+                        They are our trusted partner for spare parts manufacturing.
+                        Consistency and quality in every order keep us coming back.
+                    </p>
+                    <h4 class="font-semibold mt-3">Suresh Nair</h4>
+                    <p class="text-gray-500 text-xs mb-3">
+                        Director, Nova Engineering Works
+                    </p>
+                    <div class="text-yellow-400 text-lg">
+                        ★★★★★
+                    </div>
+                </div>
+
+                <!-- CARD 4 -->
+                <div class="testimonial-card">
+                    <p class="text-gray-700 text-sm">
+                        Professional team with deep technical knowledge.
+                        Their components are durable and perfectly matched to our requirements.
+                    </p>
+                    <h4 class="font-semibold mt-3">Priya Kulkarni</h4>
+                    <p class="text-gray-500 text-xs mb-3">
+                        Project Engineer, Advance Constructions Ltd.
+                    </p>
+                    <div class="text-yellow-400 text-lg">
+                        ★★★★★
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
 
 
-    <!-- Background Image -->
-    <div class="absolute inset-0 ">
-      <img src="images/hero4.jpg" class="absolute inset-0 w-full h-full object-cover scale-150 opacity-90" />
+ <section class="relative w-full py-20 px-6 h-[60vh] md:px-16 bg-white overflow-hidden" id="cta-section">
+
+  <!-- 🔥 VIDEO BACKGROUND -->
+  <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0">
+    <source src="images/cta.mp4" type="video/mp4">
+  </video>
+
+  <!-- DARK OVERLAY FOR READABILITY -->
+  <div class="absolute inset-0 bg-black/40 z-0"></div>
+
+  <!-- CONTENT -->
+  <div class="relative max-w-3xl mx-auto z-10 text-center text-white flex flex-col justify-center h-full">
+
+    <div id="cta-text" class="relative z-20">
+
+      <h2 class="text-3xl md:text-5xl font-bold leading-tight mb-4">
+        Contact Us to<br>Learn More!
+      </h2>
+
+      <p class="text-lg md:text-xl leading-relaxed mb-6">
+        Partner with Venkateshwara Corporation to bring premium tensile solutions
+        to your space. Let us help your organization thrive with modern designs,
+        durable materials, and expert engineering.
+      </p>
+
+      <a href="contact.html"
+         class="inline-flex items-center gap-2 bg-yellow-500 hover:bg-yellow-600
+                text-black font-semibold text-lg px-8 py-3 rounded-full transition">
+        Contact Us
+        <span>➜</span>
+      </a>
 
     </div>
 
-    <!-- Dark Overlay -->
-    <div class="absolute inset-0 bg-black/40"></div>
-
-    <!-- CONTENT -->
-    <div class="relative grid grid-cols-1 md:grid-cols-2 gap-20 text-white px-10 md:px-16 py-20">
-
-      <!-- LEFT — MISSION -->
-      <div id="mission-box" class="space-y-4">
-        <h2 class="text-4xl font-bold tracking-wide">MISSION</h2>
-        <p class="text-lg leading-relaxed text-gray-200">
-          Ensure the right selection of solutions and ensure the right procedure  
-          of application as part of a customer-focused approach and quest  
-          for impeccable quality.
-        </p>
-
-        <!-- Orange dot line -->
-        <div class="flex items-center gap-3 mt-6">
-          <div class="w-4 h-4 bg-orange-500 rounded-full"></div>
-          <div class="h-[2px] w-32 bg-orange-500"></div>
-        </div>
-      </div>
-
-      <!-- RIGHT — VISION -->
-      <div id="vision-box" class="space-y-4 text-right md:text-left">
-        <h2 class="text-4xl font-bold tracking-wide">VISION</h2>
-        <p class="text-lg leading-relaxed text-gray-200">
-          Be a leading brand in the construction industry and a one-stop solution  
-          in the usage and application of marbles and stones.
-        </p>
-
-        <!-- Orange dot line -->
-        <div class="flex items-center justify-end gap-3 mt-6 md:justify-start">
-          <div class="w-4 h-4 bg-orange-500 rounded-full"></div>
-          <div class="h-[2px] w-32 bg-orange-500"></div>
-        </div>
-      </div>
-
-    </div>
   </div>
 </section>
-<script>
-gsap.registerPlugin(ScrollTrigger);
 
-/* MISSION – slide from left */
-gsap.from("#mission-box", {
-  scrollTrigger: {
-    trigger: "#mission-vision",
-    start: "top 80%",
-  },
-  x: -100,
-  opacity: 0,
-  filter: "blur(10px)",
-  duration: 1.4,
-  ease: "power3.out"
-});
 
-/* VISION – slide from right */
-gsap.from("#vision-box", {
-  scrollTrigger: {
-    trigger: "#mission-vision",
-    start: "top 80%",
-  },
-  x: 100,
-  opacity: 0,
-  filter: "blur(10px)",
-  duration: 1.4,
-  ease: "power3.out",
-  delay: 0.2
-});
-</script>
-
-  <section class="w-full py-28 px-6 md:px-16 bg-white" id="cta-section">
-
-  <div class="max-w-7xl mx-auto rounded-3xl overflow-hidden"
-       style="background: linear-gradient(90deg, #f8e1b6 0%, #b57ba6 100%);">
-
-    <div class="grid grid-cols-1 md:grid-cols-2 items-center px-10 md:px-20 py-20 gap-10">
-
-      <div id="cta-text" class="relative z-20 pb-10">
-
-        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">
-          Contact Us to<br>Learn More!
-        </h2>
-
-        <p class="text-gray-800 text-lg leading-relaxed mb-8">
-          Partner with Venkateshwara Corporation to bring premium tensile solutions
-          to your space. Let us help your organization thrive with modern designs,
-          durable materials, and expert engineering.
-        </p>
-
-      <div id ="cta-button">
-          <a href="contact.html"
-           class="inline-flex items-center gap-2 bg-purple-700 hover:bg-purple-800
-                  text-white font-semibold text-lg px-8 py-4 rounded-full transition">
-          Contact Us
-          <span>➜</span>
-        </a>
-      </div>
-      </div>
-
-      <div id="cta-images" class="flex justify-center md:justify-end">
-        <img src="images/about hero4.jpg" class="h-72 md:h-80 object-contain" alt="">
-      </div>
-
-    </div>
-
-  </div>
-</section>
 <script>
 gsap.registerPlugin(ScrollTrigger);
 
@@ -916,7 +1068,7 @@ gsap.registerPlugin(ScrollTrigger);
 gsap.from("#cta-text > *", {
   scrollTrigger: {
     trigger: "#cta-section",
-    start: "top 75%",   // better timing
+    start: "top 75%",
     toggleActions: "play none none reverse"
   },
   y: 40,
@@ -930,7 +1082,7 @@ gsap.from("#cta-text > *", {
 /* =============================
    BUTTON (pop-in)
 ============================= */
-gsap.from("#cta-text a", {     /* ← FIXED SELECTOR */
+gsap.from("#cta-text a", {
   scrollTrigger: {
     trigger: "#cta-section",
     start: "top 75%",
@@ -942,24 +1094,8 @@ gsap.from("#cta-text a", {     /* ← FIXED SELECTOR */
   ease: "back.out(1.8)",
   delay: 0.3
 });
-
-/* =============================
-   IMAGE (slide + 3D tilt + fade)
-============================= */
-gsap.from("#cta-images img", {
-  scrollTrigger: {
-    trigger: "#cta-section",
-    start: "top 80%",  // slightly later
-    toggleActions: "play none none reverse"
-  },
-  x: 120,
-  opacity: 0,
-  rotateY: -12,
-  scale: 0.9,
-  duration: 1.4,
-  ease: "power4.out"
-});
 </script>
+
 
 
 
@@ -1045,9 +1181,9 @@ gsap.from("#cta-images img", {
     </div>
 
     <!-- COPYRIGHT -->
-    <div class="text-center mt-8 pt-5 border-t border-slate-800 text-xs opacity-70"
+    <div class="text-center mt-8 pt-5 border-t border-slate-800 text-sm opacity-70"
          data-aos="fade-up" data-aos-delay="400">
-      © 2025 Venkateshwara Corporation • Developed by DWInnovations Pvt. Ltd. • Pune
+      © 2025 Venkateshwara Corporation • <a href="https://dwi4u.com/">Developed by DW Innovation Pvt. Ltd. • Pune</a>
     </div>
   </div>
 </footer>
