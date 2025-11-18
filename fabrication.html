@@ -32,72 +32,262 @@
       font-weight: 900;
       color: var(--gold);
       text-shadow: 0 4px 15px rgba(245,158,11,0.4);
-    }
-  </style>
+    }.fab-btn {
+  padding: 12px 26px;
+  border-radius: 999px;
+  background: #e2e8f0;
+  color: #0f172a;
+  font-weight: 700;
+  transition: .3s;
+}
+
+.fab-btn:hover {
+  background: #f59e0b;
+  color: white;
+}
+
+.fab-btn.active {
+  background: #f59e0b;
+  color: white;
+  box-shadow: 0 6px 20px rgba(245,158,11,0.4);
+}
+
+.fab-section {
+  display: none;
+}
+
+.fab-section.active {
+  display: block;
+  animation: fade 0.4s ease-in-out;
+}
+
+@keyframes fade {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+ .slider-track {
+    animation: slide-up 14s linear infinite;
+}
+:root{
+  --navy: #071433;      /* change this to match your logo's navy */
+  --edge-white: #ffffff;
+}
+
+/* NAV BACKGROUND: dark center fading to white both sides */
+.nav-gradient {
+  position: relative;
+  /* The gradient centers a dark band and fades to white at the edges.
+     Tweak the stop percentages to widen / narrow the dark band. */
+  background: linear-gradient(
+    to right,
+    var(--edge-white) 0%,
+    var(--edge-white) 18%,
+    rgba(255,255,255,0.9) 28%,
+    var(--navy) 50%,
+    rgba(255,255,255,0.9) 72%,
+    var(--edge-white) 82%,
+    var(--edge-white) 100%
+  );
+  box-shadow: 0 2px 10px rgba(10,10,10,0.06);
+  z-index: 100;
+}
+
+/* Make sure nav content sits above the gradient band */
+.site-nav > .max-w-7xl { position: relative; }
+
+/* Links style (dark by default so they are visible on white edges) */
+.nav-link {
+  color: var(--navy);
+  text-decoration: none;
+  transition: color .18s ease, transform .12s ease;
+}
+.nav-link:hover { color: #1f3f66; transform: translateY(-1px); }
+
+/* Logo sizing */
+.logo-wrap .logo-img {
+  height: 64px;        /* increase if you want bigger logo */
+  width: auto;
+  display: block;
+  pointer-events: none;
+  /* add subtle border / background to sit clearly on dark band if needed */
+  /* background: rgba(255,255,255,0.03); padding: 6px; border-radius: 10px; */
+}
+
+/* Optional: give dark band slightly taller area vertically
+   so the logo sits perfectly and the fade feels natural. */
+.site-nav {
+  padding-top: 1rem;   /* increases navbar height */
+  padding-bottom: 1rem;
+}
+
+/* RESPONSIVE: on small screens, reduce gradient complexity */
+@media (max-width: 768px) {
+  .nav-gradient {
+    background: linear-gradient(
+      to right,
+      var(--edge-white) 0%,
+      var(--edge-white) 22%,
+      var(--navy) 50%,
+      var(--edge-white) 78%,
+      var(--edge-white) 100%
+    );
+  }
+
+  .logo-wrap .logo-img { height: 52px; }
+  .nav-left, .nav-right { gap: 10px; font-size: 14px; }
+}
+
+/* If you have transparent navbar on scroll, use this to keep readability */
+.site-nav.scrolled {
+  backdrop-filter: blur(6px);
+}
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.scroll-text {
+  display: inline-flex;
+  white-space: nowrap;
+  will-change: transform;
+}
+</style>
+
+
+</style>
 </head>
-<body class="bg-gradient-to-b from-slate-900 to-slate-800 text-white overflow-x-hidden">
+<body class="bg-white text-white">
 
-    <!-- FLOATING LOGO + NAVBAR WRAPPER -->
-<div class="relative w-full flex justify-center z-[9999]">
-    <img src="logo1.png" class="absolute -top-1 w-60 drop-shadow-xl" alt="Logo">
+  
+
+  
+
+<!-- TOP CONTACT BAR -->
+<div class="w-full bg-white text-black text-sm py-2 border-b overflow-hidden relative">
+
+  <div class="scroll-text whitespace-nowrap flex items-center"
+       style="animation: scroll-left 18s linear infinite;">
+    
+    <span class="mx-6">
+      venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424
+    </span>
+
+    <span class="mx-6">
+      venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424
+    </span>
+
+    <span class="mx-6">
+      venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424
+    </span>
+
+    <!-- duplicate more for smoother infinite loop -->
+    <span class="mx-6">
+      venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424
+    </span>
+
+  </div>
+
 </div>
 
-<!-- WHITE CURVED NAVBAR -->
-<nav class="relative z-[999] mx-auto mt-36 w-[75%] bg-white bg-opacity-95 backdrop-blur-xl
-            rounded-full py-2 px-10 shadow-xl flex items-center justify-between">
 
-    <ul class="flex gap-20 ml-16  font-bold text-gray-700">
+<!-- MAIN NAVBAR -->
+<nav class="site-nav nav-gradient relative py-4">
+  <div class="max-w-7xl mx-auto px-6 flex items-center justify-between relative">
 
- <li class="text-black border-b-4 border-yellow-400 pb-1 text-lg cursor-pointer">
-  <a href="index.html" class="block w-full h-full">Home</a>
-</li>
-         <li class="text-black border-b-4 border-yellow-400 pb-1 text-lg cursor-pointer">
-  <a href="about.html" class="block w-full h-full">About</a>
+    <!-- LEFT MENU -->
+<div class="nav-left flex space-x-8 font-semibold text-lg z-10">
 
-</li> <li class="relative group text-black border-b-4 border-yellow-400 pb-1 text-lg cursor-pointer">
+  <!-- INTERIORS DROPDOWN -->
+  <div class="relative group">
+    <a href="#" class="nav-link">Interiors ▾</a>
 
-  <a href="products.html" class="block w-full h-full">Product ▾</a>
+    <!-- Dropdown Menu -->
+    <div class="absolute hidden group-hover:block bg-white text-black shadow-xl rounded-lg py-4 px-6 w-64">
+      <h4 class="font-bold mb-2 text-gray-700">Interiors</h4>
+      <ul class="space-y-2 text-sm">
+        <li>Furniture Work</li>
+        <li>Plumbing Work</li>
+        <li>Electrical Work</li>
+        <li>Tile Work</li>
+        <li>Painting</li>
+        <li>Internal Modification</li>
+        <li>Internal Home Changes</li>
+        <li>POP House</li>
+        <li>Sliding Windows</li>
+        <li>French Doors</li>
+      </ul>
+    </div>
+  </div>
 
-  <!-- DROPDOWN -->
-  <ul class="absolute left-0 top-full mt-2 w-52 bg-white shadow-xl rounded-xl 
-             opacity-0 invisible group-hover:opacity-100 group-hover:visible 
-             transition-all duration-300">
+  <!-- SERVICES DROPDOWN -->
+  <div class="relative group">
+    <a href="#" class="nav-link"> Other Services ▾</a>
 
-    <li><a href="fabrication.html" class="block px-4 py-2 hover:bg-yellow-100">Fabrication</a></li>
-    <li><a href="civil-work.html" class="block px-4 py-2 hover:bg-yellow-100">Civil Work</a></li>
-    <li><a href="interior.html" class="block px-4 py-2 hover:bg-yellow-100">Interiors</a></li>
-    <li><a href="exterior.html" class="block px-4 py-2 hover:bg-yellow-100">Exteriors</a></li>
-    <li><a href="other-services.html" class="block px-4 py-2 hover:bg-yellow-100">Other Services</a></li>
+    <!-- Dropdown Menu -->
+    <div class="absolute hidden group-hover:block bg-white text-black shadow-xl rounded-lg py-4 px-6 w-64">
+      
 
-  </ul>
+      <h4 class="font-bold mt-4 mb-2 text-gray-700">Other Services</h4>
+      <ul class="space-y-2 text-sm">
+        <li>Waterproofing</li>
+        <li>Housekeeping</li>
+        <li>Society Maintenance AMC</li>
+        <li>Pest Control</li>
+        <li>Gardening</li>
+        <li>Anti-Bird Netting</li>
+      </ul>
+    </div>
+  </div>
 
-</li>
-
-         <li class="text-black border-b-4 border-yellow-400 text-lg pb-1 cursor-pointer">
-  <a href="contact.html" class="block w-full h-full">Contact</a>
-
-
-
-    </ul>
-
-    <div class="relative flex items-center mr-12">
-  <input
-    type="text"
-    placeholder="Search..."
-    class="px-4 py-2 w-60 md:w-64  rounded-full border border-gray-300
-           focus:outline-none focus:ring-2 focus:ring-yellow-500 text-gray-700"
-  >
-
-  <button class="absolute right-2 text-yellow-500 hover:text-yellow-600">
-    <svg xmlns="http://www.w3.org/2000/svg"
-         class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1011 18.5a7.5 7.5 0 005.65-2.85z" />
-    </svg>
-  </button>
 </div>
 
+
+    <!-- CENTER LOGO (on top of the dark band) -->
+    <div class="logo-wrap absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none">
+      <img src="logo.jpg" alt="logo" class="logo-img" />
+    </div>
+
+    <!-- RIGHT MENU -->
+    <div class="nav-right flex space-x-8 font-semibold text-lg z-10">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="products.html" class="nav-link">Product</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </div>
+
+  </div>
 </nav>
+<!-- FABRICATION CATEGORY TABS -->
+<div class="w-full flex flex-wrap justify-center gap-4 mt-10 bg-black">
+
+  <button class="fab-btn active" data-target="awnings">Awnings</button>
+  <button class="fab-btn" data-target="parking">Car Parking</button>
+  <button class="fab-btn" data-target="tensile">Tensile Structures</button>
+  <button class="fab-btn" data-target="sheds">Sheds</button>
+  <button class="fab-btn" data-target="residential">Residential Fabrication</button>
+
+</div>
+<script>
+const buttons = document.querySelectorAll(".fab-btn");
+const sections = document.querySelectorAll(".fab-section");
+
+buttons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    
+    // REMOVE ACTIVE FROM ALL BUTTONS
+    buttons.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    // HIDE ALL SECTIONS
+    sections.forEach(sec => sec.classList.remove("active"));
+
+    // SHOW TARGET SECTION
+    const target = btn.getAttribute("data-target");
+    document.getElementById(target).classList.add("active");
+  });
+});
+</script>
 
  <!-- ==================== FABRICATION SERVICES CATEGORY ==================== -->
 <section class="py-24 bg-white mt-10">
