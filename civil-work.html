@@ -10,152 +10,108 @@
 
   <style>
     :root { --navy: #0f172a; --gold: #f59e0b; --blue: #1e40af; }
-    body { font-family: 'Inter', sans-serif; background: #f8fafc; }
-    .gold-btn {
-      background: var(--gold);
+    body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #1e293b; }
+    
+    .fab-btn {
+      padding: 14px 32px; border-radius: 999px; background: rgba(255,255,255,0.15);
+      color: white; font-weight: 600; font-size: 1.1rem; border: 1px solid rgba(255,255,255,0.3);
+      transition: all 0.3s ease; backdrop-filter: blur(4px);
+    }
+    .fab-btn:hover { background: rgba(255,255,255,0.3); transform: translateY(-3px); }
+    .fab-btn.active { background: var(--gold); color: black; box-shadow: 0 8px 25px rgba(245,158,11,0.5); }
+    
+    .sub-btn {
+      background: white; padding: 10px 24px; border-radius: 999px; border: 1px solid #e2e8f0;
+      font-weight: 500; transition: all 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .sub-btn:hover { background: #fef3c7; border-color: #f59e0b; }
+    .sub-btn.active { background: var(--gold); color: black; font-weight: 700; border-color: var(--gold); }
+
+    .product-details { display: none; }
+    .product-details.active { display: block; animation: fadeIn 0.6s ease-in-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    .subcategory { display: none; }
+    .subcategory.active { display: block; }
+    
+    :root{
+      --navy: #071433;
+      --edge-white: #ffffff;
+    }
+
+    .nav-gradient {
+      position: relative;
+      background: linear-gradient(
+        to right,
+        var(--edge-white) 0%,
+        var(--edge-white) 18%,
+        rgba(255,255,255,0.9) 28%,
+        var(--navy) 50%,
+        rgba(255,255,255,0.9) 72%,
+        var(--edge-white) 82%,
+        var(--edge-white) 100%
+      );
+      box-shadow: 0 2px 10px rgba(10,10,10,0.06);
+      z-index: 100;
+    }
+
+    .site-nav > .max-w-7xl { position: relative; }
+
+    .nav-link {
       color: var(--navy);
-      font-weight: 700;
-      padding: 1rem 2.5rem;
-      border-radius: 9999px;
-      box-shadow: 0 10px 30px rgba(245,158,11,0.4);
-      transition: all 0.3s;
+      text-decoration: none;
+      transition: color .18s ease, transform .12s ease;
     }
-    .gold-btn:hover {
-      background: rgba(245, 158, 11, 0.85);
-      transform: scale(1.08);
+    .nav-link:hover { color: #1f3f66; transform: translateY(-1px); }
+
+    .logo-wrap .logo-img {
+      height: 64px;
+      width: auto;
+      display: block;
+      pointer-events: none;
     }
-  .slider-track {
-    animation: slide-up 14s linear infinite;
-}
-:root{
-  --navy: #071433;      /* change this to match your logo's navy */
-  --edge-white: #ffffff;
-}
 
-/* NAV BACKGROUND: dark center fading to white both sides */
-.nav-gradient {
-  position: relative;
-  /* The gradient centers a dark band and fades to white at the edges.
-     Tweak the stop percentages to widen / narrow the dark band. */
-  background: linear-gradient(
-    to right,
-    var(--edge-white) 0%,
-    var(--edge-white) 18%,
-    rgba(255,255,255,0.9) 28%,
-    var(--navy) 50%,
-    rgba(255,255,255,0.9) 72%,
-    var(--edge-white) 82%,
-    var(--edge-white) 100%
-  );
-  box-shadow: 0 2px 10px rgba(10,10,10,0.06);
-  z-index: 100;
-}
+    .site-nav {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
 
-/* Make sure nav content sits above the gradient band */
-.site-nav > .max-w-7xl { position: relative; }
+    @media (max-width: 768px) {
+      .nav-gradient {
+        background: linear-gradient(
+          to right,
+          var(--edge-white) 0%,
+          var(--edge-white) 22%,
+          var(--navy) 50%,
+          var(--edge-white) 78%,
+          var(--edge-white) 100%
+        );
+      }
 
-/* Links style (dark by default so they are visible on white edges) */
-.nav-link {
-  color: var(--navy);
-  text-decoration: none;
-  transition: color .18s ease, transform .12s ease;
-}
-.nav-link:hover { color: #1f3f66; transform: translateY(-1px); }
+      .logo-wrap .logo-img { height: 52px; }
+      .nav-left, .nav-right { gap: 10px; font-size: 14px; }
+    }
 
-/* Logo sizing */
-.logo-wrap .logo-img {
-  height: 64px;        /* increase if you want bigger logo */
-  width: auto;
-  display: block;
-  pointer-events: none;
-  /* add subtle border / background to sit clearly on dark band if needed */
-  /* background: rgba(255,255,255,0.03); padding: 6px; border-radius: 10px; */
-}
+    .site-nav.scrolled {
+      backdrop-filter: blur(6px);
+    }
+    @keyframes scroll-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
 
-/* Optional: give dark band slightly taller area vertically
-   so the logo sits perfectly and the fade feels natural. */
-.site-nav {
-  padding-top: 1rem;   /* increases navbar height */
-  padding-bottom: 1rem;
-}
-
-/* RESPONSIVE: on small screens, reduce gradient complexity */
-@media (max-width: 768px) {
-  .nav-gradient {
-    background: linear-gradient(
-      to right,
-      var(--edge-white) 0%,
-      var(--edge-white) 22%,
-      var(--navy) 50%,
-      var(--edge-white) 78%,
-      var(--edge-white) 100%
-    );
-  }
-
-  .logo-wrap .logo-img { height: 52px; }
-  .nav-left, .nav-right { gap: 10px; font-size: 14px; }
-}
-
-/* If you have transparent navbar on scroll, use this to keep readability */
-.site-nav.scrolled {
-  backdrop-filter: blur(6px);
-}
-@keyframes scroll-left {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-.scroll-text {
-  display: inline-flex;
-  white-space: nowrap;
-  will-change: transform;
-}
-.civil-btn {
-  padding: 12px 30px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.12);
-  color: white;
-  font-weight: 600;
-  font-size: 1.15rem;
-  border: 0.5px solid rgba(255,255,255,0.25);
-  transition: 0.3s ease;
-}
-
-.civil-btn:hover {
-  background: rgba(255,255,255,0.25);
-  transform: translateY(-2px);
-}
-
-.civil-btn.active {
-  background: var(--gold);
-  color: black;
-  box-shadow: 0 8px 25px rgba(245,158,11,0.5);
-}
-
-/* Subcategories */
-.civil-subcat { display: none; }
-.civil-subcat.active { display: block; }
-
-.civil-sub-btn {
-  background: white;
-  padding: 10px 22px;
-  border-radius: 999px;
-  border: 1px solid #ddd;
-  cursor: pointer;
-  transition: .3s;
-}
-
-.civil-sub-btn:hover {
-  background: var(--gold);
-  color: black;
-}
+    .scroll-text {
+      display: inline-flex;
+      white-space: nowrap;
+      will-change: transform;
+    }
 
 </style>
 
 
 </style>
 </head>
-<body class="bg-white text-white">
+<body class="bg-white ">
 
   
 
@@ -235,11 +191,11 @@
                     hidden group-hover:flex flex-col bg-white shadow-lg 
                     rounded-lg p-4 w-56 z-50">
           <ul class="space-y-2 text-sm">
-            <li>Awnings</li>
-            <li>Car Parking</li>
-            <li>Tensile Structures</li>
-            <li>Sheds</li>
-            <li>Residential Fabrication</li>
+            <li><a href="fabrication.html" class="text-gray-800 hover:text-yellow-500">Awnings</a></li>
+            <li><a href="fabrication.html" class="text-gray-800 hover:text-yellow-500">Car Parking</a></li>
+            <li><a href="fabrication.html" class="text-gray-800 hover:text-yellow-500">Tensile Structures</a></li>
+            <li><a href="fabrication.html" class="text-gray-800 hover:text-yellow-500">Sheds</a></li>
+            <li><a href="fabrication.html" class="text-gray-800 hover:text-yellow-500">Residential Fabrication</a></li>
           </ul>
         </div>
       </div>
@@ -251,15 +207,15 @@
                     hidden group-hover:flex flex-col bg-white 
                     shadow-lg rounded-lg p-4 w-56 z-50">
           <ul class="space-y-2 text-sm">
-            <li>Furniture Work</li>
-            <li>Plumbing</li>
-            <li>Electrical Work</li>
-            <li>Tile Work</li>
-            <li>Painting</li>
-            <li>Internal Modification</li>
-            <li>POP</li>
-            <li>Sliding Windows</li>
-            <li>French Doors</li>
+            <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Furniture Work</a></li>
+            <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Plumbing</a></li>
+            <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Electrical Work</a></li>
+            <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Tile Work</a></li>
+            <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Painting</a></li>
+            <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Internal Modification</a></li>
+            <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">POP</a></li>
+            <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Sliding Windows</a></li>
+            <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">French Doors</a></li>
           </ul>
         </div>
       </div>
@@ -272,8 +228,8 @@
                     hidden group-hover:flex flex-col bg-white 
                     shadow-lg rounded-lg p-4 w-56 z-50">
           <ul class="space-y-2 text-sm">
-            <li>Construction</li>
-            <li>Renovation</li>
+            <li><a href="civil-work.html" class="text-gray-800 hover:text-yellow-500">Construction</a></li>
+            <li><a href="civil-work.html" class="text-gray-800 hover:text-yellow-500">Renovation</a></li>
           </ul>
         </div>
       </div>
@@ -286,13 +242,10 @@
                     hidden group-hover:flex flex-col bg-white 
                     shadow-lg rounded-lg p-4 w-56 z-50">
           <ul class="space-y-2 text-sm">
-            <li>Society Painting</li>
-            <li>Bungalow Painting</li>
-            <li>Cleaning</li>
-            <li>Main Gate Work</li>
-            <li>Exterior Renovation</li>
-            <li>Compound Wall</li>
-            <li>Maintenance</li>
+            <li><a href="exterior.html" class="text-gray-800 hover:text-yellow-500">Society Painting</a></li>
+            <li><a href="exterior.html" class="text-gray-800 hover:text-yellow-500">Bungalow Painting</a></li>
+            <li><a href="exterior.html" class="text-gray-800 hover:text-yellow-500">Cleaning</a></li>
+            
           </ul>
         </div>
       </div>
@@ -305,12 +258,12 @@
                     hidden group-hover:flex flex-col bg-white 
                     shadow-lg rounded-lg p-4 w-56 z-50">
           <ul class="space-y-2 text-sm">
-            <li>Waterproofing</li>
-            <li>Housekeeping</li>
-            <li>Society AMC</li>
-            <li>Pest Control</li>
-            <li>Gardening</li>
-            <li>Anti-Bird Netting</li>
+            <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Waterproofing</a></li>
+            <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Housekeeping</a></li>
+            <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Society AMC</a></li>
+            <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Pest Control</a></li>
+            <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Gardening</a></li>
+            <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Anti-Bird Netting</a></li>
           </ul>
         </div>
       </div>
@@ -321,181 +274,210 @@
 
 </nav>
 
-<script>feather.replace();</script><!-- CIVIL WORK CATEGORY TABS -->
-<div class="w-full flex flex-wrap justify-center gap-6 
-            py-10 mt-10 
-            bg-gradient-to-r from-[#020617] via-[#0f172a] to-[#1e293b]
-            rounded-xl shadow-xl">
+<script>feather.replace();</script>
 
-  <button class="civil-btn active" data-target="construction">Construction</button>
-  <button class="civil-btn" data-target="renovation">Renovation</button>
-
+<!-- MAIN CIVIL WORK TABS -->
+<div class="w-full flex flex-wrap justify-center gap-6 py-12 mt-10 bg-gradient-to-r from-[#020617] via-[#0f172a] to-[#1e293b] rounded-xl shadow-2xl">
+  <button class="fab-btn active" data-target="construction">Construction</button>
+  <button class="fab-btn" data-target="renovation">Renovation</button>
 </div>
 
-<!-- ================= SUBCATEGORIES AREA ================= -->
-<div id="civil-subcat-wrapper" class="mt-8 text-center">
+<!-- MAIN CONTENT -->
+<div class="container mx-auto px-6 py-12 max-w-7xl">
 
-  <!-- CONSTRUCTION -->
-  <div class="civil-subcat active" id="construction">
-    <h3 class="text-2xl font-bold text-yellow-400 mb-4">Construction</h3>
+  <!-- ========== CONSTRUCTION ========== -->
+  <div id="construction" class="subcategory active">
+    <h3 class="text-5xl font-bold text-center text-yellow-500 mb-10">Construction</h3>
+    <div class="flex flex-wrap justify-center gap-5 mb-12">
+      <button class="sub-btn active" data-product="bungalow-construction">Bungalow Construction</button>
+      <button class="sub-btn" data-product="building-construction">Building Construction</button>
+      <button class="sub-btn" data-product="bathroom-construction">Bathroom Construction</button>
+      <button class="sub-btn" data-product="kitchen-construction">Kitchen Construction</button>
+    </div>
 
-    <div class="flex flex-wrap justify-center gap-4 text-lg text-gray-800">
+    <div id="bungalow-construction" class="product-details active">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="h-64 md:h-80">
+          <img src="Products/bungalow-construction.jpg" alt="Bungalow Construction" class="w-full h-full object-cover rounded-xl">
+        </div>
+        <div class="p-10 flex flex-col justify-center">
+          <h4 class="text-4xl font-bold mb-6">Bungalow Construction</h4>
+          <p class="text-gray-600 mb-8 leading-relaxed">
+            Complete bungalow construction services with RCC structure, foundation work, planning, and finishing handled end-to-end. Our expert team ensures quality craftsmanship, structural integrity, and timely completion. Perfect for residential properties with modern architectural designs and sustainable building practices.
+          </p>
+          <a href="contact.html?subject=Inquiry - Bungalow Construction" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-full shadow-xl transition transform hover:scale-105 w-fit">I'm Interested</a>
+        </div>
+      </div>
+    </div>
 
-      <span class="civil-sub-btn">New Bungalow Construction</span>
-      <span class="civil-sub-btn">New Building Construction</span>
-      <span class="civil-sub-btn">Bathroom Construction</span>
-      <span class="civil-sub-btn">Kitchen Construction</span>
+    <div id="building-construction" class="product-details">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="h-64 md:h-80">
+          <img src="Products/building-construction.jpg" alt="Building Construction" class="w-full h-full object-cover rounded-xl">
+        </div>
+        <div class="p-10 flex flex-col justify-center">
+          <h4 class="text-4xl font-bold mb-6">Building Construction</h4>
+          <p class="text-gray-600 mb-8 leading-relaxed">
+            High-quality construction services for residential and commercial buildings with strict safety and engineering standards. We specialize in multi-story construction with full RCC framework, structural work, waterproofing, and professional finishing. Complies with all building codes and regulations for safety and durability.
+          </p>
+          <a href="contact.html?subject=Inquiry - Building Construction" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-full shadow-xl transition transform hover:scale-105 w-fit">I'm Interested</a>
+        </div>
+      </div>
+    </div>
 
+    <div id="bathroom-construction" class="product-details">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="h-64 md:h-80">
+          <img src="Products/bathroom-construction.jpg" alt="Bathroom Construction" class="w-full h-full object-cover rounded-xl">
+        </div>
+        <div class="p-10 flex flex-col justify-center">
+          <h4 class="text-4xl font-bold mb-6">Bathroom Construction</h4>
+          <p class="text-gray-600 mb-8 leading-relaxed">
+            Professional bathroom construction featuring proper plumbing infrastructure, waterproofing, tiling, and ventilation systems. From layout planning to fixture installation, we handle complete bathroom construction. Includes modern amenities, accessibility features, and premium finishing for functionality and aesthetics.
+          </p>
+          <a href="contact.html?subject=Inquiry - Bathroom Construction" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-full shadow-xl transition transform hover:scale-105 w-fit">I'm Interested</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="kitchen-construction" class="product-details">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="h-64 md:h-80">
+          <img src="Products/kitchen-construction.jpg" alt="Kitchen Construction" class="w-full h-full object-cover rounded-xl">
+        </div>
+        <div class="p-10 flex flex-col justify-center">
+          <h4 class="text-4xl font-bold mb-6">Kitchen Construction</h4>
+          <p class="text-gray-600 mb-8 leading-relaxed">
+            Complete kitchen construction with proper layout design, plumbing connections, electrical work, and ventilation systems. We provide functional and stylish kitchens with durable work surfaces, storage solutions, and modern appliance integration. Perfect for new homes and renovations with expert craftsmanship.
+          </p>
+          <a href="contact.html?subject=Inquiry - Kitchen Construction" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-full shadow-xl transition transform hover:scale-105 w-fit">I'm Interested</a>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- RENOVATION -->
-  <div class="civil-subcat hidden" id="renovation">
-    <h3 class="text-2xl font-bold text-yellow-400 mb-4">Renovation</h3>
+  <!-- ========== RENOVATION ========== -->
+  <div id="renovation" class="subcategory">
+    <h3 class="text-5xl font-bold text-center text-yellow-500 mb-10">Renovation</h3>
+    <div class="flex flex-wrap justify-center gap-5 mb-12">
+      <button class="sub-btn active" data-product="building-renovation">Building Renovation</button>
+      <button class="sub-btn" data-product="flooring-tile">Flooring & Tile Work</button>
+      <button class="sub-btn" data-product="wall-demolition">Wall Demolition</button>
+      <button class="sub-btn" data-product="bathroom-renovation">Bathroom Renovation</button>
+      <button class="sub-btn" data-product="kitchen-renovation">Kitchen Renovation</button>
+    </div>
 
-    <div class="flex flex-wrap justify-center gap-4 text-lg text-gray-800">
+    <div id="building-renovation" class="product-details active">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="h-64 md:h-80">
+          <img src="Products/building-renovation.jpg" alt="Building Renovation" class="w-full h-full object-cover rounded-xl">
+        </div>
+        <div class="p-10 flex flex-col justify-center">
+          <h4 class="text-4xl font-bold mb-6">Building Renovation</h4>
+          <p class="text-gray-600 mb-8 leading-relaxed">
+            Comprehensive building renovation services transforming old structures into modern spaces. We handle structural assessments, repairs, upgrades, and complete makeovers. From exterior facade work to interior redesign, plumbing, electrical, and aesthetic improvements ensure your building looks and functions like new.
+          </p>
+          <a href="contact.html?subject=Inquiry - Building Renovation" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-full shadow-xl transition transform hover:scale-105 w-fit">I'm Interested</a>
+        </div>
+      </div>
+    </div>
 
-      <span class="civil-sub-btn">Building Renovation</span>
-      <span class="civil-sub-btn">Flooring & Tile Work</span>
-      <span class="civil-sub-btn">Wall Demolition</span>
-      <span class="civil-sub-btn">Bathroom Renovation</span>
-      <span class="civil-sub-btn">Kitchen Renovation</span>
+    <div id="flooring-tile" class="product-details">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="h-64 md:h-80">
+          <img src="Products/flooring-tile.jpg" alt="Flooring & Tile Work" class="w-full h-full object-cover rounded-xl">
+        </div>
+        <div class="p-10 flex flex-col justify-center">
+          <h4 class="text-4xl font-bold mb-6">Flooring & Tile Work</h4>
+          <p class="text-gray-600 mb-8 leading-relaxed">
+            Expert flooring and tile installation services with premium material selection. We specialize in ceramic, porcelain, marble, and natural stone tiles. Complete surface preparation, grouting, and finishing ensures durability and aesthetic appeal. Suitable for bathrooms, kitchens, living areas, and commercial spaces.
+          </p>
+          <a href="contact.html?subject=Inquiry - Flooring & Tile Work" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-full shadow-xl transition transform hover:scale-105 w-fit">I'm Interested</a>
+        </div>
+      </div>
+    </div>
 
+    <div id="wall-demolition" class="product-details">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="h-64 md:h-80">
+          <img src="Products/wall-demolition.jpg" alt="Wall Demolition" class="w-full h-full object-cover rounded-xl">
+        </div>
+        <div class="p-10 flex flex-col justify-center">
+          <h4 class="text-4xl font-bold mb-6">Wall Demolition</h4>
+          <p class="text-gray-600 mb-8 leading-relaxed">
+            Safe and efficient wall demolition services for space reconfiguration and renovations. We carefully assess structural integrity before removal, handle debris management, and ensure safety compliance. Perfect for creating open-plan layouts, removing partition walls, or structural modifications while maintaining building integrity.
+          </p>
+          <a href="contact.html?subject=Inquiry - Wall Demolition" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-full shadow-xl transition transform hover:scale-105 w-fit">I'm Interested</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="bathroom-renovation" class="product-details">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="h-64 md:h-80">
+          <img src="Products/bathroom-renovation.jpg" alt="Bathroom Renovation" class="w-full h-full object-cover rounded-xl">
+        </div>
+        <div class="p-10 flex flex-col justify-center">
+          <h4 class="text-4xl font-bold mb-6">Bathroom Renovation</h4>
+          <p class="text-gray-600 mb-8 leading-relaxed">
+            Transform your bathroom with complete renovation services. We handle plumbing upgrades, waterproofing, modern fixtures, designer tiles, and lighting solutions. From budget-friendly makeovers to luxury spa-like bathrooms, we create functional and beautiful spaces. Includes ventilation, storage optimization, and premium finishes.
+          </p>
+          <a href="contact.html?subject=Inquiry - Bathroom Renovation" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-full shadow-xl transition transform hover:scale-105 w-fit">I'm Interested</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="kitchen-renovation" class="product-details">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="h-64 md:h-80">
+          <img src="Products/kitchen-renovation.jpg" alt="Kitchen Renovation" class="w-full h-full object-cover rounded-xl">
+        </div>
+        <div class="p-10 flex flex-col justify-center">
+          <h4 class="text-4xl font-bold mb-6">Kitchen Renovation</h4>
+          <p class="text-gray-600 mb-8 leading-relaxed">
+            Expert kitchen renovation services modernizing old kitchens into contemporary spaces. We upgrade plumbing, electrical systems, install quality countertops, cabinets, and modern appliances. Complete design consultation ensures optimal workflow, storage solutions, and aesthetic beauty. Perfect for improving functionality and property value.
+          </p>
+          <a href="contact.html?subject=Inquiry - Kitchen Renovation" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-full shadow-xl transition transform hover:scale-105 w-fit">I'm Interested</a>
+        </div>
+      </div>
     </div>
   </div>
 
 </div>
+
+<!-- JAVASCRIPT FOR TAB FUNCTIONALITY -->
 <script>
-const civilBtns = document.querySelectorAll(".civil-btn");
-const civilSubcats = document.querySelectorAll(".civil-subcat");
+  // Main Tabs
+  document.querySelectorAll('.fab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.fab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.subcategory').forEach(sc => sc.classList.remove('active'));
+      const target = document.getElementById(btn.dataset.target);
+      target.classList.add('active');
 
-civilBtns.forEach(btn => {
-  btn.addEventListener("click", () => {
-
-    civilBtns.forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-
-    const target = btn.getAttribute("data-target");
-
-    civilSubcats.forEach(sc => {
-      sc.classList.add("hidden");
-      sc.classList.remove("active");
+      // Auto-select first sub-btn and show first product
+      const firstBtn = target.querySelector('.sub-btn');
+      if (firstBtn) {
+        target.querySelectorAll('.sub-btn').forEach(b => b.classList.remove('active'));
+        firstBtn.classList.add('active');
+        target.querySelectorAll('.product-details').forEach(p => p.classList.remove('active'));
+        document.getElementById(firstBtn.dataset.product).classList.add('active');
+      }
     });
-
-    document.getElementById(target).classList.remove("hidden");
-    document.getElementById(target).classList.add("active");
   });
-});
+
+  // Sub Buttons
+  document.querySelectorAll('.sub-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const parent = btn.closest('.subcategory');
+      parent.querySelectorAll('.sub-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      parent.querySelectorAll('.product-details').forEach(p => p.classList.remove('active'));
+      document.getElementById(btn.dataset.product).classList.add('active');
+    });
+  });
 </script>
-
-<!-- TITLE -->
-<section class="py-24 bg-white mt-10">
-  <div class="container mx-auto px-6">
-    <h2 class="text-5xl font-bold text-center mb-16" style="color:var(--navy)">
-      Civil <span class="text-gold">Work</span>
-    </h2>
-
-    <!-- ==================== SECTION 1: BUNGALOW CONSTRUCTION ==================== -->
-    <section class="py-24 bg-white">
-      <div class="container mx-auto px-6">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-
-          <div>
-            <img src="images/bungalow.jpg" alt="Bungalow Construction" class="w-full rounded-2xl shadow-2xl">
-          </div>
-
-          <div class="space-y-8">
-            <h2 class="text-4xl md:text-5xl font-bold" style="color:var(--navy)">Bungalow Construction</h2>
-
-            <p class="text-lg text-gray-700 leading-relaxed">
-              Complete bungalow construction services with RCC structure, foundation work, planning, and finishing handled end-to-end.
-            </p>
-
-            <ul class="space-y-3 text-lg text-gray-700">
-              <li>• RCC Structure</li>
-              <li>• Brick Masonry</li>
-              <li>• Electrical & Plumbing Work</li>
-              <li>• Interior & Exterior Finishing</li>
-            </ul>
-
-            <a href="contact.html" class="gold-btn text-xl inline-block px-12">
-              I'm Interested
-            </a>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== SECTION 2: BUILDING CONSTRUCTION ==================== -->
-    <section class="py-24 bg-gray-50">
-      <div class="container mx-auto px-6">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-
-          <div>
-            <img src="images/building.jpg" alt="Building Construction" class="w-full rounded-2xl shadow-2xl">
-          </div>
-
-          <div class="space-y-8">
-            <h2 class="text-4xl md:text-5xl font-bold" style="color:var(--navy)">Building Construction</h2>
-
-            <p class="text-lg text-gray-700 leading-relaxed">
-              High-quality construction services for residential and commercial buildings with strict safety and engineering standards.
-            </p>
-
-            <ul class="space-y-3 text-lg text-gray-700">
-              <li>• Full RCC Construction</li>
-              <li>• Structural Work</li>
-              <li>• Waterproofing</li>
-              <li>• Painting, Finishing & Safety Works</li>
-            </ul>
-
-            <a href="contact.html" class="gold-btn text-xl inline-block px-12">
-              I'm Interested
-            </a>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== SECTION 3: RENOVATION ==================== -->
-    <section class="py-24 bg-white">
-      <div class="container mx-auto px-6">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-
-          <div>
-            <img src="images/renovation.jpg" alt="Renovation Work" class="w-full rounded-2xl shadow-2xl">
-          </div>
-
-          <div class="space-y-8">
-            <h2 class="text-4xl md:text-5xl font-bold" style="color:var(--navy)">Renovation Work</h2>
-
-            <p class="text-lg text-gray-700 leading-relaxed">
-              Transform your space with expert renovation for bungalows, flats, kitchens, bathrooms, and complete property remodeling.
-            </p>
-
-            <ul class="space-y-3 text-lg text-gray-700">
-              <li>• Bungalow Renovation</li>
-              <li>• Flat Renovation</li>
-              <li>• Bathroom Renovation</li>
-              <li>• Flooring & Tile Replacement</li>
-              <li>• Wall Demolition</li>
-              <li>• Vastu Changes</li>
-              <li>• Kitchen Renovation</li>
-            </ul>
-
-            <a href="contact.html" class="gold-btn text-xl inline-block px-12">
-              I'm Interested
-            </a>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-  </div>
-</section>
 
 <section class="w-full py-20 px-6 md:px-16">
   <div class="max-w-7xl mx-auto rounded-3xl overflow-hidden"
@@ -510,7 +492,7 @@ civilBtns.forEach(btn => {
         </h2>
 
         <p class="text-gray-800 text-lg leading-relaxed mb-8">
-          Partner with Venkateshwara Corporation to bring premium tensile solutions
+          Partner with Venkateshwara Corporation to bring premium civil work solutions
           to your space. Let us help your organization thrive with modern designs,
           durable materials, and expert engineering.
         </p>
@@ -615,10 +597,10 @@ civilBtns.forEach(btn => {
     </div>
 
     <!-- COPYRIGHT -->
-    <div class="text-center mt-8 pt-5 border-t border-slate-800 text-xs opacity-70"
+    <div class="text-center mt-8 pt-5 border-t border-slate-800 text-sm opacity-70"
          data-aos="fade-up" data-aos-delay="400">
-      © 2025 Venkateshwara Corporation • Developed by DWInnovations Pvt. Ltd. • Pune
-    </div>
+      © 2025 Venkateshwara Corporation • <a href="https://dwi4u.com/">Developed by DW Innovation Pvt. Ltd. • Pune</a>
+  </div>
   </div>
 </footer>
 

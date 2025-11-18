@@ -5,11 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Other Services – Venkateshwara Corporation</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root { --navy: #0f172a; --gold: #f59e0b; --blue: #1e40af; }
-    body { font-family: 'Inter', sans-serif; background: #f8fafc; }
+    body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #1e293b; }
+    
+    .fab-btn {
+      padding: 14px 32px; border-radius: 999px; background: rgba(255,255,255,0.15);
+      color: white; font-weight: 600; font-size: 1.1rem; border: 1px solid rgba(255,255,255,0.3);
+      transition: all 0.3s ease; backdrop-filter: blur(4px);
+    }
+    .fab-btn:hover { background: rgba(255,255,255,0.3); transform: translateY(-3px); }
+    .fab-btn.active { background: var(--gold); color: black; box-shadow: 0 8px 25px rgba(245,158,11,0.5); }
+    
+    .sub-btn {
+      background: white; padding: 10px 24px; border-radius: 999px; border: 1px solid #e2e8f0;
+      font-weight: 500; transition: all 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .sub-btn:hover { background: #fef3c7; border-color: #f59e0b; }
+    .sub-btn.active { background: var(--gold); color: black; font-weight: 700; border-color: var(--gold); }
+
+    .product-details { display: none; }
+    .product-details.active { display: block; animation: fadeIn 0.6s ease-in-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    .subcategory { display: none; }
+    .subcategory.active { display: block; }
     .gold-btn {
       background: var(--gold);
       color: var(--navy);
@@ -109,7 +132,7 @@
   </style>
   <script> feather.replace(); </script>
 </head>
-<body class="bg-gradient-to-b from-slate-900 to-slate-800 text-white overflow-x-hidden">
+<body class="bg-white text-gray-900">
 
   <!-- FLOATING LOGO + NAVBAR WRAPPER -->
 <!-- TOP CONTACT BAR -->
@@ -186,11 +209,11 @@
                     hidden group-hover:flex flex-col bg-white shadow-lg 
                     rounded-lg p-4 w-56 z-50">
           <ul class="space-y-2 text-sm">
-            <li>Awnings</li>
-            <li>Car Parking</li>
-            <li>Tensile Structures</li>
-            <li>Sheds</li>
-            <li>Residential Fabrication</li>
+            <li><a href="fabrication.html" class="text-gray-800 hover:text-yellow-500">Awnings</a></li>
+            <li><a href="fabrication.html" class="text-gray-800 hover:text-yellow-500">Car Parking</a></li>
+            <li><a href="fabrication.html" class="text-gray-800 hover:text-yellow-500">Tensile Structures</a></li>
+            <li><a href="fabrication.html" class="text-gray-800 hover:text-yellow-500">Sheds</a></li>
+            <li><a href="fabrication.html" class="text-gray-800 hover:text-yellow-500">Residential Fabrication</a></li>
           </ul>
         </div>
       </div>
@@ -202,15 +225,15 @@
                     hidden group-hover:flex flex-col bg-white 
                     shadow-lg rounded-lg p-4 w-56 z-50">
           <ul class="space-y-2 text-sm">
-            <li>Furniture Work</li>
-            <li>Plumbing</li>
-            <li>Electrical Work</li>
-            <li>Tile Work</li>
-            <li>Painting</li>
-            <li>Internal Modification</li>
-            <li>POP</li>
-            <li>Sliding Windows</li>
-            <li>French Doors</li>
+            <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Furniture Work</a></li>
+            <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Plumbing</a></li>
+            <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Electrical Work</a></li>
+            <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Tile Work</a></li>
+            <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Painting</a></li>
+            <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Internal Modification</a></li>
+            <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">POP</a></li>
+            <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Sliding Windows</a></li>
+            <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">French Doors</a></li>
           </ul>
         </div>
       </div>
@@ -223,8 +246,8 @@
                     hidden group-hover:flex flex-col bg-white 
                     shadow-lg rounded-lg p-4 w-56 z-50">
           <ul class="space-y-2 text-sm">
-            <li>Construction</li>
-            <li>Renovation</li>
+            <li><a href="civil-work.html" class="text-gray-800 hover:text-yellow-500">Construction</a></li>
+            <li><a href="civil-work.html" class="text-gray-800 hover:text-yellow-500">Renovation</a></li>
           </ul>
         </div>
       </div>
@@ -237,13 +260,10 @@
                     hidden group-hover:flex flex-col bg-white 
                     shadow-lg rounded-lg p-4 w-56 z-50">
           <ul class="space-y-2 text-sm">
-            <li>Society Painting</li>
-            <li>Bungalow Painting</li>
-            <li>Cleaning</li>
-            <li>Main Gate Work</li>
-            <li>Exterior Renovation</li>
-            <li>Compound Wall</li>
-            <li>Maintenance</li>
+            <li><a href="exterior.html" class="text-gray-800 hover:text-yellow-500">Society Painting</a></li>
+            <li><a href="exterior.html" class="text-gray-800 hover:text-yellow-500">Bungalow Painting</a></li>
+            <li><a href="exterior.html" class="text-gray-800 hover:text-yellow-500">Cleaning</a></li>
+            
           </ul>
         </div>
       </div>
@@ -256,12 +276,12 @@
                     hidden group-hover:flex flex-col bg-white 
                     shadow-lg rounded-lg p-4 w-56 z-50">
           <ul class="space-y-2 text-sm">
-            <li>Waterproofing</li>
-            <li>Housekeeping</li>
-            <li>Society AMC</li>
-            <li>Pest Control</li>
-            <li>Gardening</li>
-            <li>Anti-Bird Netting</li>
+            <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Waterproofing</a></li>
+            <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Housekeeping</a></li>
+            <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Society AMC</a></li>
+            <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Pest Control</a></li>
+            <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Gardening</a></li>
+            <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Anti-Bird Netting</a></li>
           </ul>
         </div>
       </div>
@@ -274,202 +294,119 @@
 
 <script>feather.replace();</script>
 
-<!-- PAGE TITLE -->
-<section class="py-24 bg-white mt-10">
-  <div class="container mx-auto px-6">
-    <h2 class="text-5xl font-bold text-center mb-16" style="color:var(--navy)">
-      Other <span class="text-gold">Services</span>
-    </h2>
+<!-- MAIN OTHER SERVICES TABS -->
+<div class="w-full flex flex-wrap justify-center gap-6 py-12 mt-10 bg-gradient-to-r from-[#020617] via-[#0f172a] to-[#1e293b] rounded-xl shadow-2xl">
+  <button class="fab-btn active" data-target="protection">Protection Services</button>
+  <button class="fab-btn" data-target="maintenance">Maintenance Services</button>
+  <button class="fab-btn" data-target="property-mgmt">Property Management</button>
+</div>
 
+<!-- MAIN CONTENT -->
+<div class="container mx-auto px-6 py-12 max-w-7xl">
 
-<!-- ==================== 1. WATERPROOFING ==================== -->
-<section class="py-24 bg-white">
-  <div class="container mx-auto px-6">
-    <div class="grid lg:grid-cols-2 gap-16 items-center">
+  <!-- ========== PROTECTION SERVICES ========== -->
+  <div id="protection" class="subcategory active">
+    <h3 class="text-5xl font-bold text-center text-yellow-500 mb-10">Protection Services</h3>
+    <div class="flex flex-wrap justify-center gap-5 mb-12">
+      <button class="sub-btn active" data-product="waterproofing">Waterproofing</button>
+      <button class="sub-btn" data-product="antibird-netting">Anti-Bird Netting</button>
+    </div>
 
-      <div>
-        <img src="images/other-waterproofing.jpg" alt="Waterproofing" class="w-full rounded-2xl shadow-2xl">
+    <div id="waterproofing" class="product-details active">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="h-64 md:h-80"><img src="Products/waterproofing.jpg" alt="Waterproofing" class="w-full h-full object-cover rounded-xl"></div>
+        <div class="p-6 flex flex-col justify-center"><h4 class="text-4xl font-bold mb-6">Waterproofing Services</h4><p class="text-gray-600 mb-8 leading-relaxed">Professional waterproofing for terraces, bathrooms, tanks, walls, and leakage-prone areas using chemical and membrane coatings. We protect your property from moisture damage with durable solutions. Perfect for preventing water ingress and extending building lifespan.</p><a href="contact.html?subject=Inquiry - Waterproofing" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-full shadow-xl transition transform hover:scale-105 w-fit">I'm Interested</a></div>
       </div>
+    </div>
 
-      <div class="space-y-8">
-        <h2 class="text-4xl md:text-5xl font-bold" style="color:var(--navy)">Waterproofing Services</h2>
-
-        <p class="text-lg text-gray-700 leading-relaxed">
-          Professional waterproofing for terraces, bathrooms, tanks, walls, and leakage-prone areas using chemical and membrane coatings.
-        </p>
-
-        <ul class="space-y-3 text-lg text-gray-700">
-          <li>• Terrace Waterproofing</li>
-          <li>• Bathroom Waterproofing</li>
-          <li>• Crack Filling</li>
-          <li>• Chemical Coating</li>
-        </ul>
-
-        <a href="contact.html" class="gold-btn text-xl inline-block px-12">I'm Interested</a>
+    <div id="antibird-netting" class="product-details">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="h-64 md:h-80"><img src="Products/antibird-netting.jpg" alt="Anti-Bird Netting" class="w-full h-full object-cover rounded-xl"></div>
+        <div class="p-6 flex flex-col justify-center"><h4 class="text-4xl font-bold mb-6">Anti-Bird Netting</h4><p class="text-gray-600 mb-8 leading-relaxed">Durable anti-bird nets for balconies, windows, industrial areas, and societies to prevent pigeons and birds. HDPE netting solution that is UV-resistant and long-lasting. Protects your property while maintaining aesthetics and allowing proper ventilation.</p><a href="contact.html?subject=Inquiry - Anti-Bird Netting" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-full shadow-xl transition transform hover:scale-105 w-fit">I'm Interested</a></div>
       </div>
-
     </div>
   </div>
-</section>
 
+  <!-- ========== MAINTENANCE SERVICES ========== -->
+  <div id="maintenance" class="subcategory">
+    <h3 class="text-5xl font-bold text-center text-yellow-500 mb-10">Maintenance Services</h3>
+    <div class="flex flex-wrap justify-center gap-5 mb-12">
+      <button class="sub-btn active" data-product="housekeeping">Housekeeping</button>
+      <button class="sub-btn" data-product="gardening">Gardening</button>
+      <button class="sub-btn" data-product="pest-control">Pest Control</button>
+    </div>
 
-<!-- ==================== 2. HOUSEKEEPING ==================== -->
-<section class="py-24 bg-gray-50">
-  <div class="container mx-auto px-6">
-    <div class="grid lg:grid-cols-2 gap-16 items-center">
-
-      <div>
-        <img src="images/other-housekeeping.jpg" alt="Housekeeping" class="w-full rounded-2xl shadow-2xl">
+    <div id="housekeeping" class="product-details active">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="h-64 md:h-80"><img src="Products/housekeeping.jpg" alt="Housekeeping" class="w-full h-full object-cover rounded-xl"></div>
+        <div class="p-6 flex flex-col justify-center"><h4 class="text-4xl font-bold mb-6">Housekeeping Services</h4><p class="text-gray-600 mb-8 leading-relaxed">Daily, weekly, and deep cleaning services for societies, offices, commercial spaces, and private properties. Professional staff trained in latest cleaning techniques. We maintain hygienic, clean environments with eco-friendly products and attention to detail.</p><a href="contact.html?subject=Inquiry - Housekeeping" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-full shadow-xl transition transform hover:scale-105 w-fit">I'm Interested</a></div>
       </div>
+    </div>
 
-      <div class="space-y-8">
-        <h2 class="text-4xl md:text-5xl font-bold" style="color:var(--navy)">Housekeeping Services</h2>
-
-        <p class="text-lg text-gray-700 leading-relaxed">
-          Daily, weekly, and deep cleaning services for societies, offices, commercial spaces, and private properties.
-        </p>
-
-        <ul class="space-y-3 text-lg text-gray-700">
-          <li>• Daily Cleaning</li>
-          <li>• Deep Cleaning</li>
-          <li>• Parking & Compound Cleaning</li>
-          <li>• Office Cleaning</li>
-        </ul>
-
-        <a href="contact.html" class="gold-btn text-xl inline-block px-12">I'm Interested</a>
+    <div id="gardening" class="product-details">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="h-64 md:h-80"><img src="Products/gardening.jpg" alt="Gardening" class="w-full h-full object-cover rounded-xl"></div>
+        <div class="p-6 flex flex-col justify-center"><h4 class="text-4xl font-bold mb-6">Gardening Services</h4><p class="text-gray-600 mb-8 leading-relaxed">Professional gardening, landscaping, society garden maintenance, plant care, and seasonal trimming services. We create and maintain beautiful green spaces with expertise in various plants and landscaping designs. Includes lawn maintenance, garden cleaning, and landscape work.</p><a href="contact.html?subject=Inquiry - Gardening" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-full shadow-xl transition transform hover:scale-105 w-fit">I'm Interested</a></div>
       </div>
+    </div>
 
+    <div id="pest-control" class="product-details">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="h-64 md:h-80"><img src="Products/pest-control.jpg" alt="Pest Control" class="w-full h-full object-cover rounded-xl"></div>
+        <div class="p-6 flex flex-col justify-center"><h4 class="text-4xl font-bold mb-6">Pest Control</h4><p class="text-gray-600 mb-8 leading-relaxed">Safe and effective pest control treatment for residences, societies, warehouses, and offices. Services include cockroach treatment, termite control, mosquito control, and rodent treatment. Uses certified products and professional techniques for pest-free environments.</p><a href="contact.html?subject=Inquiry - Pest Control" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-full shadow-xl transition transform hover:scale-105 w-fit">I'm Interested</a></div>
+      </div>
     </div>
   </div>
-</section>
 
+  <!-- ========== PROPERTY MANAGEMENT ========== -->
+  <div id="property-mgmt" class="subcategory">
+    <h3 class="text-5xl font-bold text-center text-yellow-500 mb-10">Property Management</h3>
+    <div class="flex flex-wrap justify-center gap-5 mb-12">
+      <button class="sub-btn active" data-product="society-amc">Society AMC</button>
+    </div>
 
-<!-- ==================== 3. SOCIETY AMC ==================== -->
-<section class="py-24 bg-white">
-  <div class="container mx-auto px-6">
-    <div class="grid lg:grid-cols-2 gap-16 items-center">
-      
-      <div>
-        <img src="images/other-amc.jpg" alt="Society AMC" class="w-full rounded-2xl shadow-2xl">
+    <div id="society-amc" class="product-details active">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="h-64 md:h-80"><img src="Products/society-amc.jpg" alt="Society AMC" class="w-full h-full object-cover rounded-xl"></div>
+        <div class="p-6 flex flex-col justify-center"><h4 class="text-4xl font-bold mb-6">Society AMC</h4><p class="text-gray-600 mb-8 leading-relaxed">Annual maintenance contract for societies, including cleaning, repairs, plumbing, electrical work, and general upkeep. Comprehensive facility management ensures all systems run smoothly. Includes preventive maintenance, emergency repairs, waste management, and regular inspections for complete peace of mind.</p><a href="contact.html?subject=Inquiry - Society AMC" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-full shadow-xl transition transform hover:scale-105 w-fit">I'm Interested</a></div>
       </div>
-
-      <div class="space-y-8">
-        <h2 class="text-4xl md:text-5xl font-bold" style="color:var(--navy)">Society AMC</h2>
-
-        <p class="text-lg text-gray-700 leading-relaxed">
-          Annual maintenance contract for societies, including cleaning, repairs, plumbing, electrical work, and general upkeep.
-        </p>
-
-        <ul class="space-y-3 text-lg text-gray-700">
-          <li>• Facility Management</li>
-          <li>• Plumbing & Electrical Checks</li>
-          <li>• Regular Repairs</li>
-          <li>• Waste Management</li>
-        </ul>
-
-        <a href="contact.html" class="gold-btn text-xl inline-block px-12">I'm Interested</a>
-      </div>
-
     </div>
   </div>
-</section>
-
-
-<!-- ==================== 4. PEST CONTROL ==================== -->
-<section class="py-24 bg-gray-50">
-  <div class="container mx-auto px-6">
-    <div class="grid lg:grid-cols-2 gap-16 items-center">
-
-      <div>
-        <img src="images/other-pestcontrol.jpg" alt="Pest Control" class="w-full rounded-2xl shadow-2xl">
-      </div>
-
-      <div class="space-y-8">
-        <h2 class="text-4xl md:text-5xl font-bold" style="color:var(--navy)">Pest Control</h2>
-
-        <p class="text-lg text-gray-700 leading-relaxed">
-          Safe and effective pest control treatment for residences, societies, warehouses, and offices.
-        </p>
-
-        <ul class="space-y-3 text-lg text-gray-700">
-          <li>• Cockroach Treatment</li>
-          <li>• Termite Control</li>
-          <li>• Mosquito Control</li>
-          <li>• Rodent Treatment</li>
-        </ul>
-
-        <a href="contact.html" class="gold-btn text-xl inline-block px-12">I'm Interested</a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ==================== 5. GARDENING SERVICES ==================== -->
-<section class="py-24 bg-white">
-  <div class="container mx-auto px-6">
-    <div class="grid lg:grid-cols-2 gap-16 items-center">
-      
-      <div>
-        <img src="images/other-gardening.jpg" alt="Gardening Services" class="w-full rounded-2xl shadow-2xl">
-      </div>
-
-      <div class="space-y-8">
-        <h2 class="text-4xl md:text-5xl font-bold" style="color:var(--navy)">Gardening Services</h2>
-
-        <p class="text-lg text-gray-700 leading-relaxed">
-          Professional gardening, landscaping, society garden maintenance, plant care and seasonal trimming.
-        </p>
-
-        <ul class="space-y-3 text-lg text-gray-700">
-          <li>• Lawn Maintenance</li>
-          <li>• Plant Trimming</li>
-          <li>• Garden Cleaning</li>
-          <li>• Landscape Work</li>
-        </ul>
-
-        <a href="contact.html" class="gold-btn text-xl inline-block px-12">I'm Interested</a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ==================== 6. ANTI-BIRD NETTING ==================== -->
-<section class="py-24 bg-gray-50">
-  <div class="container mx-auto px-6">
-    <div class="grid lg:grid-cols-2 gap-16 items-center">
-      
-      <div>
-        <img src="images/other-birdnet.jpg" alt="Anti Bird Netting" class="w-full rounded-2xl shadow-2xl">
-      </div>
-
-      <div class="space-y-8">
-        <h2 class="text-4xl md:text-5xl font-bold" style="color:var(--navy)">Anti Bird Netting</h2>
-
-        <p class="text-lg text-gray-700 leading-relaxed">
-          Durable anti-bird nets for balconies, windows, industrial areas and societies to prevent pigeons.
-        </p>
-
-        <ul class="space-y-3 text-lg text-gray-700">
-          <li>• HDPE Bird Nets</li>
-          <li>• Balcony Nets</li>
-          <li>• Window Nets</li>
-          <li>• Industrial Bird Nets</li>
-        </ul>
-
-        <a href="contact.html" class="gold-btn text-xl inline-block px-12">I'm Interested</a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
 
 </div>
-</section>
+
+<!-- JAVASCRIPT FOR TAB FUNCTIONALITY -->
+<script>
+  // Main Tabs
+  document.querySelectorAll('.fab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.fab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.subcategory').forEach(sc => sc.classList.remove('active'));
+      const target = document.getElementById(btn.dataset.target);
+      target.classList.add('active');
+
+      const firstBtn = target.querySelector('.sub-btn');
+      if (firstBtn) {
+        target.querySelectorAll('.sub-btn').forEach(b => b.classList.remove('active'));
+        firstBtn.classList.add('active');
+        target.querySelectorAll('.product-details').forEach(p => p.classList.remove('active'));
+        document.getElementById(firstBtn.dataset.product).classList.add('active');
+      }
+    });
+  });
+
+  // Sub Buttons
+  document.querySelectorAll('.sub-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const parent = btn.closest('.subcategory');
+      parent.querySelectorAll('.sub-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      parent.querySelectorAll('.product-details').forEach(p => p.classList.remove('active'));
+      document.getElementById(btn.dataset.product).classList.add('active');
+    });
+  });
+</script>
 
 <section class="w-full py-20 px-6 md:px-16">
   <div class="max-w-7xl mx-auto rounded-3xl overflow-hidden"
@@ -588,10 +525,10 @@
     </div>
 
     <!-- COPYRIGHT -->
-    <div class="text-center mt-8 pt-5 border-t border-slate-800 text-xs opacity-70"
+    <div class="text-center mt-8 pt-5 border-t border-slate-800 text-sm opacity-70"
          data-aos="fade-up" data-aos-delay="400">
-      © 2025 Venkateshwara Corporation • Developed by DWInnovations Pvt. Ltd. • Pune
-    </div>
+      © 2025 Venkateshwara Corporation • <a href="https://dwi4u.com/">Developed by DW Innovation Pvt. Ltd. • Pune</a>
+  </div>
   </div>
 </footer>
 
