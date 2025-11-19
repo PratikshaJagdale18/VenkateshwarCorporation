@@ -508,6 +508,41 @@
     document.querySelector('.interior-btn.active')?.click();
   });
 </script>
+<section class="relative w-full py-20 px-6 h-[60vh] md:px-16 overflow-hidden" id="cta-section">
+
+  <!-- 🔥 VIDEO BACKGROUND -->
+  <video autoplay loop muted playsinline preload="auto"
+         class="absolute inset-0 w-full h-full object-cover z-0">
+    <source src="images/cta.mp4" type="video/mp4">
+  </video>
+
+  <!-- DARK OVERLAY -->
+  <div class="absolute inset-0 bg-black/50 z-10"></div>
+
+  <!-- CONTENT -->
+  <div class="relative max-w-3xl mx-auto text-center text-white flex flex-col justify-center h-full z-20">
+    <div id="cta-text">
+      
+      <h2 class="text-3xl md:text-5xl font-bold leading-tight mb-4">
+        Contact Us to Learn More!
+      </h2>
+
+      <p class="text-lg md:text-xl leading-relaxed mb-6">
+        Partner with Venkateshwara Corporation to bring premium tensile solutions
+        to your space. Let us help your organization thrive with modern designs,
+        durable materials, and expert engineering.
+      </p>
+
+      <!-- ⭐ NEW BUTTON -->
+      <a href="contact.html"
+         class="inline-block bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-bold text-lg px-10 py-3 rounded-full shadow-xl hover:scale-105 transition-transform duration-300">
+        Reach Out Now →
+      </a>
+
+    </div>
+  </div>
+
+</section>
 
 <!-- FOOTER -->
   <footer class="bg-slate-900 text-white relative overflow-hidden">

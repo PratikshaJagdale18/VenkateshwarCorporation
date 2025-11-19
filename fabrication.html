@@ -19,142 +19,39 @@
     }
     .fab-btn:hover { background: rgba(255,255,255,0.3); transform: translateY(-3px); }
     .fab-btn.active { background: var(--gold); color: black; box-shadow: 0 8px 25px rgba(245,158,11,0.5); }
-/* Smooth infinite scroll */
-.slider-track {
-    animation: scrollUp 14s linear infinite;
-}
-  .sub-btn {
+
+    .sub-btn {
       background: white; padding: 10px 24px; border-radius: 999px; border: 1px solid #e2e8f0;
       font-weight: 500; transition: all 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
     .sub-btn:hover { background: #fef3c7; border-color: #f59e0b; }
     .sub-btn.active { background: var(--gold); color: black; font-weight: 700; border-color: var(--gold); }
 
-    .product-details { display: none; }
-    .product-details.active { display: block; animation: fadeIn 0.6s ease-in-out; }
+    .subcategory, .product-details { display: none; }
+    .subcategory.active, .product-details.active { display: block; }
+    .product-details.active { animation: fadeIn 0.6s ease-in-out; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-    .subcategory { display: none; }
-    .subcategory.active { display: block;
-     }/* Apply to track */
-.slider-track {
-    animation: slide-up 14s linear infinite;
-}
-:root{
-  --navy: #071433;      /* change this to match your logo's navy */
-  --edge-white: #ffffff;
-}
-
-/* NAV BACKGROUND: dark center fading to white both sides */
-.nav-gradient {
-  position: relative;
-  /* The gradient centers a dark band and fades to white at the edges.
-     Tweak the stop percentages to widen / narrow the dark band. */
-  background: linear-gradient(
-    to right,
-    var(--edge-white) 0%,
-    var(--edge-white) 18%,
-    rgba(255,255,255,0.9) 28%,
-    var(--navy) 50%,
-    rgba(255,255,255,0.9) 72%,
-    var(--edge-white) 82%,
-    var(--edge-white) 100%
-  );
-  box-shadow: 0 2px 10px rgba(10,10,10,0.06);
-  z-index: 100;
-}
-
-/* Make sure nav content sits above the gradient band */
-.site-nav > .max-w-7xl { position: relative; }
-
-/* Links style (dark by default so they are visible on white edges) */
-.nav-link {
-  color: var(--navy);
-  text-decoration: none;
-  transition: color .18s ease, transform .12s ease;
-}
-.nav-link:hover { color: #1f3f66; transform: translateY(-1px); }
-
-/* Logo sizing */
-.logo-wrap .logo-img {
-  height: 64px;        /* increase if you want bigger logo */
-  width: auto;
-  display: block;
-  pointer-events: none;
-  /* add subtle border / background to sit clearly on dark band if needed */
-  /* background: rgba(255,255,255,0.03); padding: 6px; border-radius: 10px; */
-}
-
-/* Optional: give dark band slightly taller area vertically
-   so the logo sits perfectly and the fade feels natural. */
-.site-nav {
-  padding-top: 1rem;   /* increases navbar height */
-  padding-bottom: 1rem;
-}
-
-/* RESPONSIVE: on small screens, reduce gradient complexity */
-@media (max-width: 768px) {
-  .nav-gradient {
-    background: linear-gradient(
-      to right,
-      var(--edge-white) 0%,
-      var(--edge-white) 22%,
-      var(--navy) 50%,
-      var(--edge-white) 78%,
-      var(--edge-white) 100%
-    );
-  }
-
-  .logo-wrap .logo-img { height: 52px; }
-  .nav-left, .nav-right { gap: 10px; font-size: 14px; }
-}
-
-/* If you have transparent navbar on scroll, use this to keep readability */
-.site-nav.scrolled {
-  backdrop-filter: blur(6px);
-}
-@keyframes scroll-left {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-.scroll-text {
-  display: inline-flex;
-  white-space: nowrap;
-  will-change: transform;
-}
+    @keyframes scroll-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .scroll-text { display: inline-flex; white-space: nowrap; animation: scroll-left 18s linear infinite; }
   </style>
 </head>
 <body class="bg-gray-50">
 
-  <div class="w-full bg-white text-black text-sm py-2 border-b overflow-hidden relative">
-
-  <div class="scroll-text whitespace-nowrap flex items-center"
-       style="animation: scroll-left 18s linear infinite;">
-    
-    <span class="mx-6">
-      venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424
-    </span>
-
-    <span class="mx-6">
-      venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424
-    </span>
-
-    <span class="mx-6">
-      venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424
-    </span>
-
-    <!-- duplicate more for smoother infinite loop -->
-    <span class="mx-6">
-      venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424
-    </span>
-
+  <!-- Top Scrolling Bar -->
+  <div class="w-full bg-white text-black text-sm py-2 border-b overflow-hidden">
+    <div class="scroll-text flex items-center">
+      <span class="mx-6">venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424</span>
+      <span class="mx-6">venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424</span>
+      <span class="mx-6">venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424</span>
+      <span class="mx-6">venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424</span>
+    </div>
   </div>
 
-</div>
-
-
-<nav class="w-full bg-white shadow z-50">
+  <!-- Navigation (unchanged) --><nav class="w-full bg-white shadow z-50">
 
   <!-- GRID: LEFT (logo + name) | RIGHT (top menu + categories) -->
   <div class="max-w-7xl mx-auto px-6 
@@ -283,15 +180,16 @@
 </nav>
 
 <script>feather.replace();</script>
-  <!-- MAIN FABRICATION TABS -->
-  <!-- MAIN FABRICATION TABS -->
-<div class="w-full flex flex-wrap justify-center gap-6 py-12 mt-10 bg-gradient-to-r from-[#020617] via-[#0f172a] to-[#1e293b] rounded-xl shadow-2xl">
-  <button class="fab-btn active" data-target="awnings">Awnings</button>
-  <button class="fab-btn" data-target="tensile-carparking">Car Parking</button>   <!-- Fixed here -->
-  <button class="fab-btn" data-target="tensile">Tensile Structures</button>
-  <button class="fab-btn" data-target="sheds">Sheds</button>
-  <button class="fab-btn" data-target="residential">Residential Fabrication</button>
-</div>
+  <!-- ... your existing navbar code ... -->
+
+  <!-- MAIN FABRICATION TABS (NEW “Car Parking” button added) -->
+  <div class="w-full flex flex-wrap justify-center gap-6 py-12 mt-10 bg-gradient-to-r from-[#020617] via-[#0f172a] to-[#1e293b] rounded-xl shadow-2xl">
+    <button class="fab-btn active" data-target="awnings">Awnings</button>
+    <button class="fab-btn" data-target="car-parking">Car Parking</button>          <!-- NEW -->
+    <button class="fab-btn" data-target="tensile">Tensile Structures</button>
+    <button class="fab-btn" data-target="sheds">Sheds</button>
+    <button class="fab-btn" data-target="residential">Residential Fabrication</button>
+  </div>
 
   <!-- MAIN CONTENT -->
   <div class="container mx-auto px-6 py-12 max-w-7xl">
@@ -310,7 +208,18 @@
 
 
           <div class="h-64 md:h-80"><img src="Products/retractable awning.jpg" alt="Retractable Awning" class="w-full h-full object-cover"></div>
-          <div class="p-10 flex flex-col justify-center"><h4 class="text-4xl font-bold mb-6">Retractable Awning</h4><p class="text-gray-600 mb-8 leading-relaxed">Motorized or manual awning that extends and retracts smoothly. Ideal for balconies, windows, terraces & cafes.</p><a href="contact.html?subject=Inquiry - Retractable Awning" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-full shadow-xl transition transform hover:scale-105 w-fit">I'm Interested</a></div>
+          <div class="p-10 flex flex-col justify-center"><h4 class="text-4xl font-bold mb-6">Retractable Awning</h4>
+            <p class="text-gray-600 mb-8 leading-relaxed">Motorized or manual awning that extends and retracts smoothly, providing instant
+    shade whenever needed. Ideal for balconies, windows, terraces, cafés, outdoor seating 
+    areas, and shop fronts. Designed to block harsh sunlight, UV rays, heat, and light rain 
+    while enhancing aesthetics and comfort.
+    <br><br>
+    Made using high-quality fabric with strong aluminum arms, the retractable awning 
+    operates effortlessly and saves space when folded. Available in multiple colors, 
+    patterns, and fabric options—plus motorized remote-control systems for premium convenience.
+    Perfect for both residential and commercial properties looking for a stylish and 
+    adjustable shading solution.</p>
+            <a href="contact.html?subject=Inquiry - Retractable Awning" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-full shadow-xl transition transform hover:scale-105 w-fit">I'm Interested</a></div>
         </div>
       </div>
       <div id="fixed-awning" class="product-details">
@@ -370,120 +279,155 @@
 
   </div>
 </div>
-
-
-   
-
-  <!-- ========== TENSILE CAR PARKING ========== -->
-  <div id="tensile-carparking" class="subcategory ">
-    <h3 class="text-5xl font-bold text-center text-yellow-500 mb-10">Car Parking Shades</h3>
-
-  <div class="flex flex-wrap justify-center gap-5 mb-12">
-    <button class="sub-btn active" data-product="tensile-parking">Tensile Car Parking</button>
-    <button class="sub-btn" data-product="shed-parking">Car Parking Shed</button>
-    <button class="sub-btn" data-product="pvc-parking">PVC Coated Fabric</button>
-    <button class="sub-btn" data-product="tin-parking">Tin Shed Parking</button>
-  </div>
-    <div class="grid md:grid-cols-2 gap-12 items-center">
-
-      <div class="h-64 md:h-80">
-        <img src="Products/tensile car parking.jpg" alt="Tensile Car Parking"
-             class="w-full h-full object-cover rounded-xl">
-      </div>
-
-      <div class="p-6 flex flex-col justify-center">
-        <h4 class="text-4xl font-bold mb-6">Tensile Car Parking</h4>
-        <p class="text-gray-600 mb-8 leading-relaxed">
-          Modern tensile shade structure designed to protect vehicles from heat, UV rays, and rain.
-          Ideal for residential societies, commercial complexes, hotels, and private parking areas.
-          Strong steel columns paired with premium tensile fabric ensure long life and minimal maintenance.
-        </p>
-        <a href="contact.html?subject=Inquiry - Tensile Car Parking"
-           class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-full shadow-lg transition transform hover:scale-105 w-fit">
-          I'm Interested
-        </a>
-      </div>
-
     </div>
-  </div>
 
-  <!-- ========== CAR PARKING SHED ========== -->
-  <div id="shed-parking" class="product-details">
-    <div class="grid md:grid-cols-2 gap-12 items-center">
+    <!-- ========== CAR PARKING (NEW CATEGORY) ========== -->
+    <div id="car-parking" class="subcategory">
+      <h3 class="text-5xl font-bold text-center text-yellow-500 mb-10">Car Parking Shades</h3>
 
-      <div class="h-64 md:h-80">
-        <img src="Products/car parking shed.webp" alt="Car Parking Shed"
-             class="w-full h-full object-cover rounded-xl">
+      <div class="flex flex-wrap justify-center gap-5 mb-12">
+        <button class="sub-btn active" data-product="tensile-parking">Tensile Car Parking</button>
+        <button class="sub-btn" data-product="shed-parking">Car Parking Shed</button>
+        <button class="sub-btn" data-product="pvc-parking">PVC Coated Fabric</button>
+        <button class="sub-btn" data-product="tin-parking">Tin Shed Parking</button>
       </div>
 
-      <div class="p-6 flex flex-col justify-center">
-        <h4 class="text-4xl font-bold mb-6">Car Parking Shed</h4>
-        <p class="text-gray-600 mb-8 leading-relaxed">
-          Durable MS/Steel parking shed designed for long-term vehicle protection.
-          Suitable for apartments, offices, industries, and commercial spaces.
-          Resistant to rain, sunlight, and dust—ensuring complete safety of cars and two-wheelers.
-        </p>
-        <a href="contact.html?subject=Inquiry - Car Parking Shed"
-           class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-full shadow-lg transition transform hover:scale-105 w-fit">
-          I'm Interested
-        </a>
-      </div>
-
+      <!-- Tensile Car Parking -->
+      <div id="tensile-parking" class="product-details active">
+  <div class="grid md:grid-cols-2 gap-12 items-center">
+    
+    <div class="h-64 md:h-80">
+      <img src="Products/tensile car parking.jpg" alt="Tensile Car Parking" 
+           class="w-full h-full object-cover rounded-xl">
     </div>
-  </div>
 
-  <!-- ========== PVC COATED FABRIC PARKING ========== -->
-  <div id="pvc-parking" class="product-details">
-    <div class="grid md:grid-cols-2 gap-12 items-center">
+    <div class="p-10 flex flex-col justify-center">
+      <h4 class="text-4xl font-bold mb-6">Tensile Car Parking</h4>
 
-      <div class="h-64 md:h-80">
-        <img src="Products/pvc.jpg" alt="PVC Parking Shade"
-             class="w-full h-full object-cover rounded-xl">
-      </div>
+      <p class="text-gray-600 mb-8 leading-relaxed">
+        Modern tensile shade structure designed to protect vehicles from heat, UV rays, and rain.
+        Built using high-strength steel columns and premium-grade tensile membrane, it offers long-lasting
+        durability with minimal maintenance. Tensile parking sheds reduce heat buildup inside cars,
+        extend vehicle paint life, and provide excellent weather resistance throughout the year.
+        <br><br>
+        Suitable for residential societies, commercial buildings, hotels, office complexes,
+        malls, private bungalows, and industrial spaces. The sleek architectural design enhances the
+        aesthetics of the area while delivering functional protection. Available in multiple fabric colors,
+        shapes, and customized sizes to match client requirements.
+      </p>
 
-      <div class="p-6 flex flex-col justify-center">
-        <h4 class="text-4xl font-bold mb-6">PVC Coated Fabric Parking</h4>
-        <p class="text-gray-600 mb-8 leading-relaxed">
-          PVC-coated fabric shades provide excellent UV resistance and heat reduction.
-          Designed for large parking zones such as malls, factories, and corporate parks.
-          Strong, waterproof, and long-lasting material with premium finish.
-        </p>
-        <a href="contact.html?subject=Inquiry - PVC Coated Fabric Parking"
-           class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-full shadow-lg transition transform hover:scale-105 w-fit">
-          I'm Interested
-        </a>
-      </div>
-
+      <a href="contact.html?subject=Inquiry - Tensile Car Parking"
+         class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 
+                rounded-full shadow-xl transition transform hover:scale-105 w-fit">
+        I'm Interested
+      </a>
     </div>
+
   </div>
-
-  <!-- ========== TIN SHED PARKING ========== -->
-  <div id="tin-parking" class="product-details">
-    <div class="grid md:grid-cols-2 gap-12 items-center">
-
-      <div class="h-64 md:h-80">
-        <img src="Products/tin.jpg" alt="Tin Shed Parking"
-             class="w-full h-full object-cover rounded-xl">
-      </div>
-
-      <div class="p-6 flex flex-col justify-center">
-        <h4 class="text-4xl font-bold mb-6">Tin Shed Parking</h4>
-        <p class="text-gray-600 mb-8 leading-relaxed">
-          Traditional and budget-friendly car parking shed made with high-quality tin roofing.
-          Provides strong protection from rain, sunlight, and bird droppings.
-          Ideal for homes, workshops, small businesses, and industrial parking areas.
-        </p>
-        <a href="contact.html?subject=Inquiry - Tin Shed Parking"
-           class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-full shadow-lg transition transform hover:scale-105 w-fit">
-          I'm Interested
-        </a>
-      </div>
-
-    </div>
-  </div>
-
 </div>
 
+     <!-- Car Parking Shed -->
+<div id="shed-parking" class="product-details">
+  <div class="grid md:grid-cols-2 gap-12 items-center">
+
+    <div class="h-64 md:h-80">
+      <img src="Products/car parking shed.webp" alt="Car Parking Shed"
+           class="w-full h-full object-cover rounded-xl">
+    </div>
+
+    <div class="p-10 flex flex-col justify-center">
+      <h4 class="text-4xl font-bold mb-6">Car Parking Shed</h4>
+
+      <p class="text-gray-600 mb-8 leading-relaxed">
+        Durable MS/Steel parking shed designed for long-term vehicle protection.  
+        Built with rust-resistant steel frames and premium roofing sheets, it ensures
+        maximum safety against sun, rain, dust, and bird droppings.
+        <br><br>
+        Ideal for apartments, commercial complexes, industrial zones, offices,
+        workshops, and residential properties. The structure offers excellent strength,
+        easy installation, and minimal maintenance while maintaining a clean and organized 
+        parking area. Available in multiple roofing options including galvanized sheets, 
+        polycarbonate sheets, and coated metal panels.
+      </p>
+
+      <a href="contact.html?subject=Inquiry - Car Parking Shed"
+         class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 
+                rounded-full shadow-xl transition transform hover:scale-105 w-fit">
+        I'm Interested
+      </a>
+    </div>
+
+  </div>
+</div>
+
+      <!-- PVC Coated Fabric -->
+<div id="pvc-parking" class="product-details">
+  <div class="grid md:grid-cols-2 gap-12 items-center">
+
+    <div class="h-64 md:h-80">
+      <img src="Products/pvc.jpg" alt="PVC Parking Shade"
+           class="w-full h-full object-cover rounded-xl">
+    </div>
+
+    <div class="p-10 flex flex-col justify-center">
+      <h4 class="text-4xl font-bold mb-6">PVC Coated Fabric Parking</h4>
+
+      <p class="text-gray-600 mb-8 leading-relaxed">
+        PVC-coated fabric shades provide excellent UV resistance and heat reduction,
+        making them ideal for large parking zones. The fabric is waterproof, tear-resistant,
+        and designed to withstand harsh outdoor conditions for years.
+        <br><br>
+        Widely used in malls, industrial parks, IT campuses, commercial buildings, 
+        gated communities, and hotels. The smooth finish and high-tensile strength 
+        fabric ensure both performance and aesthetics. Customizable in color, shape,
+        and frame design based on your parking layout and capacity needs.
+      </p>
+
+      <a href="contact.html?subject=Inquiry - PVC Coated Fabric Parking"
+         class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 
+                rounded-full shadow-xl transition transform hover:scale-105 w-fit">
+        I'm Interested
+      </a>
+    </div>
+
+  </div>
+</div>
+
+
+      <!-- Tin Shed Parking -->
+      <div id="tin-parking" class="product-details">
+  <div class="grid md:grid-cols-2 gap-12 items-center">
+
+    <div class="h-64 md:h-80">
+      <img src="Products/tin.jpg" alt="Tin Shed Parking"
+           class="w-full h-full object-cover rounded-xl">
+    </div>
+
+    <div class="p-10 flex flex-col justify-center">
+      <h4 class="text-4xl font-bold mb-6">Tin Shed Parking</h4>
+
+      <p class="text-gray-600 mb-8 leading-relaxed">
+        Traditional and budget-friendly car parking shed made with high-quality tin roofing.
+        Designed to provide reliable protection from rain, sunlight, dust, and bird droppings,
+        tin sheds are ideal for customers seeking a strong yet affordable solution.
+        <br><br>
+        Commonly used in homes, workshops, small businesses, industrial areas, and open parking lots.
+        Tin roofing offers quick installation, easy repairs, and long service life when maintained properly.
+        Available in multiple sheet thickness options and supported by sturdy steel framing for stability 
+        and long-term durability.
+      </p>
+
+      <a href="contact.html?subject=Inquiry - Tin Shed Parking"
+         class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 
+                rounded-full shadow-xl transition transform hover:scale-105 w-fit">
+        I'm Interested
+      </a>
+    </div>
+
+  </div>
+</div>
+
+    </div>
 
     <!-- ========== TENSILE STRUCTURES ========== -->
     <div id="tensile" class="subcategory">
@@ -493,14 +437,14 @@
         <button class="sub-btn" data-product="double-conical">Double Conical</button>
         <button class="sub-btn" data-product="bending-tensile">Bending Tensile</button>
         <button class="sub-btn" data-product="gazebo">Gazebo</button>
-        <button class="sub-btn" data-product="tent">Tent</button>
+        
         <button class="sub-btn" data-product="dome">Dome</button>
       </div>
 
       <div id="single-conical" class="product-details active">
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <div class="h-64 md:h-80">
-            <img src="Products/single-conical.jpg" alt="Single Conical Tensile Structure" class="w-full h-full object-cover rounded-xl">
+            <img src="Products/single conical.jpg" alt="Single Conical Tensile Structure" class="w-full h-full object-cover rounded-xl">
           </div>
           <div class="p-10 flex flex-col justify-center">
             <h4 class="text-4xl font-bold mb-6">Single Conical Tensile Structure</h4>
@@ -515,7 +459,7 @@
       <div id="double-conical" class="product-details">
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <div class="h-64 md:h-80">
-            <img src="Products/double-conical.jpg" alt="Double Conical Tensile Structure" class="w-full h-full object-cover rounded-xl">
+            <img src="Products/double conical.jpg" alt="Double Conical Tensile Structure" class="w-full h-full object-cover rounded-xl">
           </div>
           <div class="p-10 flex flex-col justify-center">
             <h4 class="text-4xl font-bold mb-6">Double Conical Tensile Structure</h4>
@@ -530,7 +474,7 @@
       <div id="bending-tensile" class="product-details">
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <div class="h-64 md:h-80">
-            <img src="Products/bending-tensile.jpg" alt="Bending Tensile Structure" class="w-full h-full object-cover rounded-xl">
+            <img src="Products/bending.jpg" alt="Bending Tensile Structure" class="w-full h-full object-cover rounded-xl">
           </div>
           <div class="p-10 flex flex-col justify-center">
             <h4 class="text-4xl font-bold mb-6">Bending Tensile Structure</h4>
@@ -560,7 +504,7 @@
       <div id="tent" class="product-details">
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <div class="h-64 md:h-80">
-            <img src="Products/tent.jpg" alt="Tensile Tent" class="w-full h-full object-cover rounded-xl">
+            <img src="Products/" alt="Tensile Tent" class="w-full h-full object-cover rounded-xl">
           </div>
           <div class="p-10 flex flex-col justify-center">
             <h4 class="text-4xl font-bold mb-6">Tensile Tent</h4>
@@ -604,7 +548,7 @@
       <div id="industrial-shed" class="product-details active">
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <div class="h-64 md:h-80">
-            <img src="Products/industrial-shed.jpg" alt="Industrial Shed" class="w-full h-full object-cover rounded-xl">
+            <img src="Products/industrial shed.jpg" alt="Industrial Shed" class="w-full h-full object-cover rounded-xl">
           </div>
           <div class="p-10 flex flex-col justify-center">
             <h4 class="text-4xl font-bold mb-6">Industrial Shed</h4>
@@ -619,7 +563,7 @@
       <div id="commercial-shed" class="product-details">
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <div class="h-64 md:h-80">
-            <img src="Products/commercial-shed.jpg" alt="Commercial Shed" class="w-full h-full object-cover rounded-xl">
+            <img src="Products/commercial.jpg" alt="Commercial Shed" class="w-full h-full object-cover rounded-xl">
           </div>
           <div class="p-10 flex flex-col justify-center">
             <h4 class="text-4xl font-bold mb-6">Commercial Shed</h4>
@@ -634,7 +578,7 @@
       <div id="godown-shed" class="product-details">
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <div class="h-64 md:h-80">
-            <img src="Products/godown-shed.jpg" alt="Godown Shed" class="w-full h-full object-cover rounded-xl">
+            <img src="Products/godown.jpg" alt="Godown Shed" class="w-full h-full object-cover rounded-xl">
           </div>
           <div class="p-10 flex flex-col justify-center">
             <h4 class="text-4xl font-bold mb-6">Godown Shed</h4>
@@ -649,7 +593,7 @@
       <div id="shop-shed" class="product-details">
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <div class="h-64 md:h-80">
-            <img src="Products/shop-shed.jpg" alt="Shop Shed" class="w-full h-full object-cover rounded-xl">
+            <img src="Products/" alt="Shop Shed" class="w-full h-full object-cover rounded-xl">
           </div>
           <div class="p-10 flex flex-col justify-center">
             <h4 class="text-4xl font-bold mb-6">Shop Shed</h4>
@@ -828,41 +772,40 @@
 
   </div>
 
-  <section class="w-full py-20 px-6 md:px-16">
-  <div class="max-w-7xl mx-auto rounded-3xl overflow-hidden"
-       style="background: linear-gradient(90deg, #f8e1b6 0%, #b57ba6 100%);">
+  <section class="relative w-full py-20 px-6 h-[60vh] md:px-16 overflow-hidden" id="cta-section">
 
-    <div class="grid grid-cols-1 md:grid-cols-2 items-center px-10 md:px-20 py-16 gap-10">
+  <!-- 🔥 VIDEO BACKGROUND -->
+  <video autoplay loop muted playsinline preload="auto"
+         class="absolute inset-0 w-full h-full object-cover z-0">
+    <source src="images/cta.mp4" type="video/mp4">
+  </video>
 
-      <!-- LEFT TEXT -->
-      <div>
-        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">
-          Contact Us to<br>Learn More!
-        </h2>
+  <!-- DARK OVERLAY -->
+  <div class="absolute inset-0 bg-black/50 z-10"></div>
 
-        <p class="text-gray-800 text-lg leading-relaxed mb-8">
-          Partner with Venkateshwara Corporation to bring premium tensile solutions
-          to your space. Let us help your organization thrive with modern designs,
-          durable materials, and expert engineering.
-        </p>
+  <!-- CONTENT -->
+  <div class="relative max-w-3xl mx-auto text-center text-white flex flex-col justify-center h-full z-20">
+    <div id="cta-text">
+      
+      <h2 class="text-3xl md:text-5xl font-bold leading-tight mb-4">
+        Contact Us to Learn More!
+      </h2>
 
-        <a href="contact.html"
-           class="inline-flex items-center gap-2 bg-purple-700 hover:bg-purple-800
-                  text-white font-semibold text-lg px-8 py-4 rounded-full transition">
-          Contact Us
-          <span>➜</span>
-        </a>
-      </div>
+      <p class="text-lg md:text-xl leading-relaxed mb-6">
+        Partner with Venkateshwara Corporation to bring premium tensile solutions
+        to your space. Let us help your organization thrive with modern designs,
+        durable materials, and expert engineering.
+      </p>
 
-      <!-- RIGHT IMAGE SECTION -->
-      <div class="flex justify-center md:justify-end">
-        <img src="" class="h-80 md:h-96 object-contain -mr-6" alt="">
-        <img src="images/about hero4.jpg" class="h-80 md:h-96 object-contain" alt="">
-      </div>
+      <!-- ⭐ NEW BUTTON -->
+      <a href="contact.html"
+         class="inline-block bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-bold text-lg px-10 py-3 rounded-full shadow-xl hover:scale-105 transition-transform duration-300">
+        Reach Out Now →
+      </a>
 
     </div>
-
   </div>
+
 </section>
 
   <!-- FOOTER -->
@@ -951,30 +894,31 @@
   </div>
   </div>
 </footer>
-
-  <!-- FINAL JAVASCRIPT -->
   <script>
-    // Main Tabs
+    // Main category tabs
     document.querySelectorAll('.fab-btn').forEach(btn => {
       btn.addEventListener('click', () => {
+        // Activate clicked main button
         document.querySelectorAll('.fab-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        document.querySelectorAll('.subcategory').forEach(sc => sc.classList.remove('active'));
-        const target = document.getElementById(btn.dataset.target);
-        target.classList.add('active');
 
-        // Auto-select first sub-btn and show first product
-        const firstBtn = target.querySelector('.sub-btn');
-        if (firstBtn) {
-          target.querySelectorAll('.sub-btn').forEach(b => b.classList.remove('active'));
-          firstBtn.classList.add('active');
-          target.querySelectorAll('.product-details').forEach(p => p.classList.remove('active'));
-          document.getElementById(firstBtn.dataset.product).classList.add('active');
+        // Show corresponding subcategory
+        document.querySelectorAll('.subcategory').forEach(sc => sc.classList.remove('active'));
+        document.getElementById(btn.dataset.target).classList.add('active');
+
+        // Auto-activate first sub-button & first product in that category
+        const section = document.getElementById(btn.dataset.target);
+        const firstSubBtn = section.querySelector('.sub-btn');
+        if (firstSubBtn) {
+          section.querySelectorAll('.sub-btn').forEach(b => b.classList.remove('active'));
+          firstSubBtn.classList.add('active');
+          section.querySelectorAll('.product-details').forEach(p => p.classList.remove('active'));
+          document.getElementById(firstSubBtn.dataset.product).classList.add('active');
         }
       });
     });
 
-    // Sub Buttons
+    // Sub-category buttons
     document.querySelectorAll('.sub-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const parent = btn.closest('.subcategory');
@@ -985,7 +929,8 @@
       });
     });
 
-    feather.replace();
+    // Feather icons
+    if (typeof feather !== 'undefined') feather.replace();
   </script>
 </body>
 </html>
