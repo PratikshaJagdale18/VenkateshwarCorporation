@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery – Venkateshwara Corporation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script src="components/navbar.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500;600;700&family=Saira:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* Same font rules as your site */
+    nav, nav a, nav button { font-family: 'Arimo', sans-serif !important; }
+    body, h1, h2, h3, h4, h5, h6, p, span, li, button, a { font-family: 'Saira', sans-serif !important; }
+
+    :root { --navy: #071433; --gold: #f59e0b; --edge-white: #ffffff; }
+
+    /* Gallery Styles */
+    .gallery-grid {
+      column-count: 2;
+      column-gap: 1.5rem;
+    }
+    @media (min-width: 640px) { .gallery-grid { column-count: 3; } }
+    @media (min-width: 1024px) { .gallery-grid { column-count: 4; } }
+    @media (min-width: 1280px) { .gallery-grid { column-count: 5; } }
+
+    .gallery-item {
+      break-inside: avoid;
+      margin-bottom: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      transition: all 0.4s ease;
+    }
+    .gallery-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 30px rgba(0,0,0,0.25);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    /* Lightbox Overlay */
+    .lightbox {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s ease;
+      z-index: 9999;
+      padding: 2rem;
+    }
+    .lightbox.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .lightbox img {
+      max-width: 95%;
+      max-height: 95vh;
+      border-radius: 12px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      animation: zoomIn 0.5s ease;
+    }
+    .close-lightbox {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      font-size: 3rem;
+      color: white;
+      cursor: pointer;
+      background: rgba(255,255,255,0.15);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.7); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    /* ==========================================================
+   FOOTER — RESPONSIVE FIXES (MOBILE + TABLET)
+   Desktop layout remains EXACTLY the same
+========================================================== */
+
+/* -------- Small Screens (mobile: below 768px) -------- */
+@media (max-width: 768px) {
+
+  /* Footer grid becomes 1 column */
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    justify-items: start !important;
+    text-align: left !important;
+  }
+
+  /* Logo size reduced slightly */
+  footer img {
+    height: 80px !important;
+  }
+
+  /* Reduce heading sizes */
+  .footer-grid h3 {
+    font-size: 1.2rem !important;
+  }
+
+  /* Reduce paragraph + list size */
+  .footer-grid p,
+  .footer-grid li a {
+    font-size: 0.95rem !important;
+    line-height: 1.4rem !important;
+  }
+
+  /* Social icons spacing */
+  .footer-grid .flex {
+    justify-content: flex-start !important;
+  }
+
+  /* Spacing adjustments */
+  .footer-grid > div {
+    padding-left: 0 !important;
+  }
+}
+
+/* -------- Extra Small Screens (below 480px) -------- */
+@media (max-width: 480px) {
+
+  .footer-grid h3 {
+    font-size: 1.1rem !important;
+  }
+
+  .footer-grid p,
+  .footer-grid li a {
+    font-size: 0.9rem !important;
+  }
+
+  footer img {
+    height: 70px !important;
+  }
+}
+
+/* -------- Tablet Fix (769px–1024px) -------- */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 2rem !important;
+  }
+
+  .footer-grid p,
+  .footer-grid li a {
+    font-size: 1rem !important;
+  }
+}
+/* ==========================================================
+   NAVBAR RESPONSIVE FIXES (NO CHANGE TO DESKTOP LAYOUT)
+========================================================== */
+
+/* Hide desktop menus on screens below md */
+@media (max-width: 768px) {
+
+  .desktop-menu {
+    display: none !important;
+  }
+
+  nav .grid {
+    grid-template-columns: 1fr auto !important;
+    grid-template-rows: 1fr !important;
+  }
+
+  nav .row-span-2 {
+    grid-row: auto !important;
+  }
+
+  /* Align logo and hamburger neatly */
+  #hamburger-btn {
+    display: flex !important;
+  }
+
+  /* Logo smaller */
+  nav img {
+    height: 60px !important;
+  }
+}
+
+/* -------- TABLET LAYOUT FIX (769px – 1024px) -------- */
+@media (min-width: 769px) and (max-width: 1024px) {
+
+  nav .grid {
+    grid-template-columns: auto 1fr !important;
+    grid-template-rows: auto auto !important;
+  }
+
+  nav img {
+    height: 70px !important;
+  }
+
+  nav a {
+    font-size: 0.95rem !important;
+  }
+
+  /* Reduce spacing to prevent wrapping */
+  .desktop-menu {
+    margin-left: 0.6rem;
+    margin-right: 0.6rem;
+  }
+}
+
+/* -------- MOBILE MENU STYLES -------- */
+#mobile-menu {
+  transition: all 0.3s ease-in-out;
+  transform-origin: top;
+}
+
+#mobile-menu.show {
+  display: block !important;
+  transform: scaleY(1);
+}
+
+#mobile-menu.hide {
+  transform: scaleY(0);
+  opacity: 0;
+}
+/* Ensure navbar stays above hero section text */
+nav {
+  position: relative;
+  z-index: 100 !important;
+}
+
+/* Ensure hamburger button is always above everything */
+#hamburger-btn {
+  position: relative;
+  z-index: 200 !important;
+}
+/* ==========================================================
+   FOOTER — RESPONSIVE FIXES (MOBILE + TABLET)
+   Desktop layout remains EXACTLY the same
+========================================================== */
+
+/* -------- Small Screens (mobile: below 768px) -------- */
+@media (max-width: 768px) {
+
+  /* Footer grid becomes 1 column */
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    justify-items: start !important;
+    text-align: left !important;
+  }
+
+  /* Logo size reduced slightly */
+  footer img {
+    height: 80px !important;
+  }
+
+  /* Reduce heading sizes */
+  .footer-grid h3 {
+    font-size: 1.2rem !important;
+  }
+
+  /* Reduce paragraph + list size */
+  .footer-grid p,
+  .footer-grid li a {
+    font-size: 0.95rem !important;
+    line-height: 1.4rem !important;
+  }
+
+  /* Social icons spacing */
+  .footer-grid .flex {
+    justify-content: flex-start !important;
+  }
+
+  /* Spacing adjustments */
+  .footer-grid > div {
+    padding-left: 0 !important;
+  }
+}
+
+/* -------- Extra Small Screens (below 480px) -------- */
+@media (max-width: 480px) {
+
+  .footer-grid h3 {
+    font-size: 1.1rem !important;
+  }
+
+  .footer-grid p,
+  .footer-grid li a {
+    font-size: 0.9rem !important;
+  }
+
+  footer img {
+    height: 70px !important;
+  }
+}
+
+/* -------- Tablet Fix (769px–1024px) -------- */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 2rem !important;
+  }
+
+  .footer-grid p,
+  .footer-grid li a {
+    font-size: 1rem !important;
+  }
+}
+
+  </style>
+</head>
+<body class="bg-gray-50">
+
+  <!-- TOP CONTACT BAR (same as your site) -->
+  <div class="w-full bg-white text-black text-sm py-2 border-b overflow-hidden relative">
+
+  <div class="scroll-text whitespace-nowrap flex items-center"
+       style="animation: scroll-left 18s linear infinite;">
+    
+    <span class="mx-6">
+      info@venkateshwaracorp.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 83172 24455
+    </span>
+
+    <span class="mx-6">
+      info@venkateshwaracorp.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 83172 24455
+    </span>
+
+    <span class="mx-6">
+      info@venkateshwaracorp.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 83172 24455
+    </span>
+
+    <!-- duplicate more for smoother infinite loop -->
+    <span class="mx-6">
+      info@venkateshwaracorp.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 83172 24455
+    </span>
+
+  </div>
+
+</div>
+
+  <!-- MAIN NAVBAR (exactly same as your other pages) -->
+  <nav class="w-full bg-white shadow z-50">
+
+  <!-- GRID: LEFT (logo + name) | RIGHT (top menu + categories) -->
+  <div class="max-w-7xl mx-auto px-6 
+              grid grid-cols-[auto_1fr] grid-rows-2 items-center">
+
+    <!-- 🌟 LEFT SIDE: LOGO + COMPANY NAME -->
+    <div class="row-span-2 flex items-center space-x-3 sm:space-x-4">
+
+  <img src="logo.jpg" 
+       class="h-14 w-auto sm:h-20 transition-all duration-300" 
+       alt="Logo">
+
+  <div class="flex flex-col leading-tight">
+    <span class="text-xl sm:text-2xl font-bold text-gray-900">Venkateshwara</span>
+    <span class="text-sm sm:text-lg font-semibold text-gray-700">Corporation</span>
+  </div>
+
+</div>
+
+
+    <!-- ⭐ ROW 1: RIGHT TOP MENU -->
+    <div class="flex justify-end items-center space-x-8
+                text-gray-800 font-medium text-base py-3">
+
+      <a href="index.html" class="hover:text-yellow-500 desktop-menu">Home</a>
+      <a href="about.html" class="hover:text-yellow-500 desktop-menu">About Us</a>
+      <a href="products.html" class="hover:text-yellow-500 desktop-menu">Products</a>
+      <a href="gallery.html" class="hover:text-yellow-500 desktop-menu">Gallery</a>
+      <a href="contact.html" class="hover:text-yellow-500 desktop-menu">Contact Us</a>
+
+      <i data-feather="facebook" class="w-5 h-5 cursor-pointer desktop-menu"></i>
+      <i data-feather="linkedin" class="w-5 h-5 cursor-pointer desktop-menu"></i>
+      <i data-feather="instagram" class="w-5 h-5 cursor-pointer desktop-menu"></i>
+
+      <!-- HAMBURGER MENU BUTTON -->
+      <button id="hamburger-btn" class="md:hidden w-8 h-8 flex flex-col justify-center items-center space-y-1 bg-transparent border-none cursor-pointer">
+        <span class="w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+        <span class="w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+        <span class="w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+      </button>
+
+    </div>
+
+    <!-- ⭐ ROW 2: CENTERED CATEGORIES -->
+    <div class="flex justify-center items-center space-x-12
+                text-gray-900 font-semibold text-[15px] py-2 desktop-menu">
+
+      <!-- Same dropdowns here -->
+      <!-- FABRICATION -->
+      <div class="relative group">
+        <a href="fabrication.html" class="hover:text-yellow-500">Fabrication ▾</a>
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white shadow-lg
+                    rounded-lg p-4 w-56 z-50">
+          <ul class="space-y-2 text-sm">
+            <li><a href="fabrication.html" class="text-gray-800 hover:text-yellow-500">Awnings</a></li>
+            <li><a href="fabrication.html" class="text-gray-800 hover:text-yellow-500">Car Parking</a></li>
+            <li><a href="fabrication.html" class="text-gray-800 hover:text-yellow-500">Tensile Structures</a></li>
+            <li><a href="fabrication.html" class="text-gray-800 hover:text-yellow-500">Sheds</a></li>
+            <li><a href="fabrication.html" class="text-gray-800 hover:text-yellow-500">Residential Fabrication</a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- INTERIORS -->
+      <div class="relative group">
+        <a href="interior.html" class="hover:text-yellow-500">Interiors ▾</a>
+
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white
+                    shadow-lg rounded-lg p-4 w-56 z-50">
+          <ul class="space-y-2 text-sm">
+            <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Furniture Work</a></li>
+            <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Plumbing</a></li>
+            <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Electrical Work</a></li>
+            <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Tile Work</a></li>
+            <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Painting</a></li>
+            <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Internal Modification</a></li>
+            <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">POP</a></li>
+            <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Sliding Windows</a></li>
+            <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">French Doors</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- CIVIL WORK -->
+      <div class="relative group">
+        <a href="civil-work.html" class="hover:text-yellow-500">Civil Work▾</a>
+
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white
+                    shadow-lg rounded-lg p-4 w-56 z-50">
+          <ul class="space-y-2 text-sm">
+            <li><a href="civil-work.html" class="text-gray-800 hover:text-yellow-500">Construction</a></li>
+            <li><a href="civil-work.html" class="text-gray-800 hover:text-yellow-500">Renovation</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- EXTERIORS -->
+      <div class="relative group">
+       <a href="exterior.html" class="hover:text-yellow-500">Exteriors ▾</a>
+
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white
+                    shadow-lg rounded-lg p-4 w-56 z-50">
+          <ul class="space-y-2 text-sm">
+            <li><a href="exterior.html" class="text-gray-800 hover:text-yellow-500">Society Painting</a></li>
+            <li><a href="exterior.html" class="text-gray-800 hover:text-yellow-500">Bungalow Painting</a></li>
+            <li><a href="exterior.html" class="text-gray-800 hover:text-yellow-500">Cleaning</a></li>
+
+          </ul>
+        </div>
+      </div>
+
+      <!-- OTHER SERVICES -->
+      <div class="relative group">
+        <a href="other-services.html" class="hover:text-yellow-500">Other Services ▾</a>
+
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white
+                    shadow-lg rounded-lg p-4 w-56 z-50">
+          <ul class="space-y-2 text-sm">
+            <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Waterproofing</a></li>
+            <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Housekeeping</a></li>
+            <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Society AMC</a></li>
+            <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Pest Control</a></li>
+            <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Gardening</a></li>
+            <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Anti-Bird Netting</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- MOBILE MENU (hidden by default) -->
+    <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 right-0 bg-white shadow-lg z-50 border-t border-gray-200">
+      <div class="flex flex-col py-4 px-6 space-y-4">
+        <!-- Main Navigation -->
+        <a href="index.html" class="text-gray-800 hover:text-yellow-500 font-medium py-2 border-b border-gray-100">Home</a>
+        <a href="about.html" class="text-gray-800 hover:text-yellow-500 font-medium py-2 border-b border-gray-100">About Us</a>
+        <a href="products.html" class="text-gray-800 hover:text-yellow-500 font-medium py-2 border-b border-gray-100">Products</a>
+        <a href="gallery.html" class="text-gray-800 hover:text-yellow-500 font-medium py-2 border-b border-gray-100">Gallery</a>
+        <a href="contact.html" class="text-gray-800 hover:text-yellow-500 font-medium py-2">Contact Us</a>
+
+        <!-- Categories -->
+        <div class="pt-4 border-t border-gray-200">
+          <h3 class="text-gray-900 font-semibold mb-3">Services</h3>
+          <div class="space-y-2">
+            <a href="fabrication.html" class="block text-gray-700 hover:text-yellow-500">Fabrication</a>
+            <a href="interior.html" class="block text-gray-700 hover:text-yellow-500">Interiors</a>
+            <a href="civil-work.html" class="block text-gray-700 hover:text-yellow-500">Civil Work</a>
+            <a href="exterior.html" class="block text-gray-700 hover:text-yellow-500">Exteriors</a>
+            <a href="other-services.html" class="block text-gray-700 hover:text-yellow-500">Other Services</a>
+          </div>
+        </div>
+
+        <!-- Social Icons -->
+        <div class="flex space-x-4 pt-4 border-t border-gray-200">
+          <i data-feather="facebook" class="w-5 h-5 cursor-pointer text-gray-600 hover:text-yellow-500"></i>
+          <i data-feather="linkedin" class="w-5 h-5 cursor-pointer text-gray-600 hover:text-yellow-500"></i>
+          <i data-feather="instagram" class="w-5 h-5 cursor-pointer text-gray-600 hover:text-yellow-500"></i>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</nav><script>
+const hamburger = document.getElementById("hamburger-btn");
+const mobileMenu = document.getElementById("mobile-menu");
+
+hamburger.addEventListener("click", () => {
+  // toggle open
+  if (mobileMenu.classList.contains("show")) {
+    mobileMenu.classList.remove("show");
+    mobileMenu.classList.add("hide");
+  } else {
+    mobileMenu.classList.remove("hide");
+    mobileMenu.classList.add("show");
+  }
+
+  // Animate hamburger icon
+  hamburger.classList.toggle("open");
+});
+</script>
+
+
+  <script>feather.replace();</script>
+
+  <!-- HERO TITLE -->
+  <div class="bg-gradient-to-r from-[#020617] via-[#0f172a] to-[#1e293b] py-20 text-center">
+    <h1 class="text-5xl md:text-8xl font-medium text-yellow-500">Our Gallery</h1>
+    <p class="text-xl text-gray-300 mt-4">Explore our completed projects across Pune</p>
+  </div>
+
+  <!-- GALLERY SECTION -->
+  <div class="container mx-auto px-6 py-16 max-w-7xl">
+    <div class="gallery-grid">
+      <!-- Replace these with your actual project photos -->
+      <div class="gallery-item cursor-pointer"><img src="New_Imags/14.jpeg" alt="Bungalow Construction"></div>
+      <div class="gallery-item cursor-pointer"><img src="New_Imags/15.jpeg" alt="Building Construction"></div>
+      <div class="gallery-item cursor-pointer"><img src="New_Imags/16.jpeg" alt="Bathroom Construction"></div>
+      <div class="gallery-item cursor-pointer"><img src="New_Imags/17.jpeg" alt="Kitchen Construction"></div>
+      <div class="gallery-item cursor-pointer"><img src="New_Imags/18.jpeg" alt="Building Renovation"></div>
+      <div class="gallery-item cursor-pointer"><img src="New_Imags/19.jpeg" alt="Flooring Work"></div>
+      <div class="gallery-item cursor-pointer"><img src="New_Imags/20.jpeg" alt="Wall Demolition"></div>
+      
+      <!-- Replace these with your actual project photos -->
+      <div class="gallery-item cursor-pointer"><img src="New_Imags/21.jpeg" alt="Bungalow Construction"></div>
+      <div class="gallery-item cursor-pointer"><img src="New_Imags/22.jpeg" alt="Building Construction"></div>
+      <div class="gallery-item cursor-pointer"><img src="New_Imags/23.jpeg" alt="Bathroom Construction"></div>
+      <div class="gallery-item cursor-pointer"><img src="New_Imags/24.jpeg" alt="Kitchen Construction"></div>
+      <div class="gallery-item cursor-pointer"><img src="New_Imags/25.jpeg" alt="Building Renovation"></div>
+      <div class="gallery-item cursor-pointer"><img src="New_Imags/26.jpeg" alt="Flooring Work"></div>
+      <div class="gallery-item cursor-pointer"><img src="New_Imags/27.jpeg" alt="Wall Demolition"></div>
+      <!-- Replace these with your actual project photos -->
+      <div class="gallery-item cursor-pointer"><img src="New_Imags/28.jpeg" alt="Bungalow Construction"></div>
+      <div class="gallery-item cursor-pointer"><img src="New_Imags/29.jpeg" alt="Building Construction"></div>
+      <div class="gallery-item cursor-pointer"><img src="New_Imags/30.jpeg" alt="Bathroom Construction"></div>
+      <div class="gallery-item cursor-pointer"><img src="New_Imags/31.jpeg" alt="Kitchen Construction"></div>
+      <div class="gallery-item cursor-pointer"><img src="New_Imags/32.jpeg" alt="Building Renovation"></div>
+      <div class="gallery-item cursor-pointer"><img src="New_Imags/33.jpeg" alt="Flooring Work"></div>
+      <div class="gallery-item cursor-pointer"><img src="New_Imags/34.jpeg" alt="Wall Demolition"></div>
+      
+    </div>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <span class="close-lightbox" id="closeLightbox">×</span>
+    <img src="" alt="Enlarged" id="lightboxImg">
+  </div>
+
+  <section class="relative w-full py-20 px-6 h-[60vh] md:px-16 overflow-hidden" id="cta-section">
+
+  <!-- 🔥 VIDEO BACKGROUND -->
+  <video autoplay loop muted playsinline preload="auto"
+         class="absolute inset-0 w-full h-full object-cover z-0">
+    <source src="images/cta.mp4" type="video/mp4">
+  </video>
+
+  <!-- DARK OVERLAY -->
+  <div class="absolute inset-0 bg-black/50 z-10"></div>
+
+  <!-- CONTENT -->
+  <div class="relative max-w-3xl mx-auto text-center text-white flex flex-col justify-center h-full z-20">
+    <div id="cta-text">
+      
+      <h2 class="text-3xl md:text-5xl font-bold leading-tight mb-4">
+        Contact Us to Learn More!
+      </h2>
+
+      <p class="text-lg md:text-xl leading-relaxed mb-6">
+        Partner with Venkateshwara Corporation to bring premium tensile solutions
+        to your space. Let us help your organization thrive with modern designs,
+        durable materials, and expert engineering.
+      </p>
+
+      <!-- ⭐ NEW BUTTON -->
+      <a href="contact.html"
+         class="inline-block bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-bold text-lg px-10 py-3 rounded-full shadow-xl hover:scale-105 transition-transform duration-300">
+        Reach Out Now →
+      </a>
+
+    </div>
+  </div>
+
+</section>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+/* =============================
+   TEXT (fade + blur + lift)
+============================= */
+gsap.from("#cta-text > *", {
+  scrollTrigger: {
+    trigger: "#cta-section",
+    start: "top 75%",
+    toggleActions: "play none none reverse"
+  },
+  y: 40,
+  opacity: 0,
+  filter: "blur(10px)",
+  duration: 1.2,
+  ease: "power3.out",
+  stagger: 0.2
+});
+
+/* =============================
+   BUTTON (pop-in)
+============================= */
+gsap.from("#cta-text a", {
+  scrollTrigger: {
+    trigger: "#cta-section",
+    start: "top 75%",
+    toggleActions: "play none none reverse"
+  },
+  scale: 0.6,
+  opacity: 0,
+  duration: 0.9,
+  ease: "back.out(1.8)",
+  delay: 0.3
+});
+</script>
+
+  <!-- FOOTER (exactly same as your site) -->
+  <footer class="bg-slate-900 text-white relative overflow-hidden">
+    <div class="absolute inset-x-0 -top-1 h-24 md:h-28">
+      <svg viewBox="0 0 1440 320" class="w-full h-full" preserveAspectRatio="none">
+        <path fill="#e2e8f0" fill-opacity="0.15">
+          <animate attributeName="d" dur="18s" repeatCount="indefinite"
+            values="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,0L0,0Z;
+                    M0,80L48,96C96,112,192,144,288,144C384,144,480,112,576,96C672,80,768,80,864,96C960,112,1056,144,1152,144C1248,144,1344,112,1392,96L1440,80L1440,0L0,0Z;
+                    M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,0L0,0Z"/>
+        </path>
+      </svg>
+    </div>
+
+    <div class="container mx-auto px-4 pt-12 pb-8 relative z-10">
+     <div class="footer-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10
+                justify-items-start md:justify-items-center
+                max-w-7xl mx-auto">
+
+        <div class="w-full">
+          <img src="logo.jpg" alt="Logo" class="h-24 mb-3 rounded-lg shadow-xl">
+          <p class="text-lg opacity-90 leading-tight">Founded in 2022, <strong class="text-yellow-400">Venkateshwara</strong> – Pune’s trusted construction partner.</p>
+          <div class="flex space-x-3 mt-4">
+            <a href="#" class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center hover:bg-yellow-400"><i data-feather="twitter"></i></a>
+            <a href="#" class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center hover:bg-yellow-400"><i data-feather="facebook"></i></a>
+            <a href="#" class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center hover:bg-yellow-400"><i data-feather="instagram"></i></a>
+            <a href="#" class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center hover:bg-yellow-400"><i data-feather="linkedin"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold mb-3 text-yellow-400">Products</h3>
+          <ul class="space-y-1.5 text-lg">
+            <li><a href="fabrication.html" class="opacity-80 hover:text-yellow-400">Fabrication</a></li>
+            <li><a href="civil-work.html" class="opacity-80 hover:text-yellow-400">Civil Work</a></li>
+            <li><a href="interior.html" class="opacity-80 hover:text-yellow-400">Interiors</a></li>
+            <li><a href="exterior.html" class="opacity-80 hover:text-yellow-400">Exteriors</a></li>
+            <li><a href="other-services.html" class="opacity-80 hover:text-yellow-400">Other Services</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold mb-3 text-yellow-400">Quick Links</h3>
+          <ul class="space-y-1.5 text-lg">
+            <li><a href="index.html" class="opacity-80 hover:text-yellow-400">Home</a></li>
+            <li><a href="about.html" class="opacity-80 hover:text-yellow-400">About</a></li>
+            <li><a href="gallery.html" class="opacity-80 hover:text-yellow-400 font-bold">Gallery</a></li>
+            <li><a href="contact.html" class="opacity-80 hover:text-yellow-400">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold mb-3 text-yellow-400">Visit Us</h3>
+          <div class="text-lg space-y-2">
+            <p class="opacity-80 flex items-center gap-2"><i data-feather="phone" class="w-3.5 h-3.5 text-yellow-400"></i> +91 9767979136</p>
+            <p class="opacity-80 flex items-start gap-2"><i data-feather="map-pin" class="w-3.5 h-3.5 text-yellow-400 mt-0.5"></i> Dehu Alandi Rd,<br>Pune-411062</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-8 pt-5 border-t border-slate-800 text-sm opacity-70">
+        © 2025 Venkateshwara Corporation • <a href="https://dwi4u.com/">Developed by DW Innovation Pvt. Ltd. • Pune</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Call & WhatsApp Buttons -->
+  <div class="fixed bottom-6 right-6 flex flex-col items-center gap-4 z-50">
+     <a href="tel:83172 24455"
+     class="w-14 h-14 bg-blue-600 rounded-full shadow-xl flex items-center justify-center hover:scale-110 transition">
+     <img src="https://cdn-icons-png.flaticon.com/512/597/597177.png" 
+          class="w-7 h-7 invert">
+  </a>
+
+  <!-- WHATSAPP BUTTON -->
+  <a href="https://wa.me/83172 24455?text=Hello%2C%20I%20want%20more%20information"
+     target="_blank"
+     class="w-14 h-14 bg-green-500 rounded-full shadow-xl flex items-center justify-center hover:scale-110 transition">
+     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+          class="w-8 h-8">
+  </a>
+  </div>
+
+  <!-- Lightbox Script -->
+  <script>
+    const items = document.querySelectorAll('.gallery-item');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const closeBtn = document.getElementById('closeLightbox');
+
+    items.forEach(item => {
+      item.addEventListener('click', () => {
+        const src = item.querySelector('img').src;
+        lightboxImg.src = src;
+        lightbox.classList.add('active');
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove('active');
+      }
+    });
+
+    // Close with ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') lightbox.classList.remove('active');
+    });
+
+    feather.replace();
+  </script>
+</body>
+</html>

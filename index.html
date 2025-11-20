@@ -9,8 +9,20 @@
   <script src="https://unpkg.com/feather-icons"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500;600;700&family=Saira:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+
 
   <style>
+    /* NAVBAR FONT */
+nav, nav a, nav button {
+    font-family: 'Arimo', sans-serif !important;
+}
+/* SITE-WIDE FONT */
+body, h1, h2, h3, h4, h5, h6, p, span, li, button, a {
+    font-family: 'Saira', sans-serif !important;
+}
+
   :root {
     --navy: #0f172a;
     --gold: #f59e0b;
@@ -491,6 +503,138 @@ footer [data-aos] {
   .nav-left, .nav-right { gap: 10px; font-size: 14px; }
 }
 
+/* MOBILE NAVIGATION */
+@media (max-width: 768px) {
+  .desktop-menu {
+    display: none !important;
+  }
+
+  #hamburger-btn {
+    display: flex !important;
+  }
+
+  /* Hamburger animation */
+  #hamburger-btn.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  #hamburger-btn.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  #hamburger-btn.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+  }
+
+  /* Mobile menu overlay */
+  #mobile-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border-top: 1px solid #e5e7eb;
+    z-index: 1000;
+  }
+
+  /* Ensure nav stays on top */
+  nav {
+    position: relative;
+    z-index: 1001;
+  }
+
+  /* Top contact bar responsiveness */
+  .scroll-text span {
+    margin: 0 4rem;
+    font-size: 12px;
+  }
+
+  /* Hero section adjustments */
+  .hero-text {
+    left: 5%;
+    bottom: 10%;
+    max-width: 90%;
+  }
+
+  /* Product cards spacing */
+  .video-card {
+    height: 280px;
+    width: 200px;
+  }
+
+  .card-img {
+    height: 280px;
+  }
+
+  /* Footer adjustments */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  /* Floating buttons positioning */
+  .fixed.bottom-6.right-6 {
+    right: 1rem;
+    bottom: 1rem;
+  }
+}
+
+/* TABLET RESPONSIVENESS */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero-text {
+    left: 5%;
+    bottom: 12%;
+    max-width: 80%;
+  }
+
+  .video-card {
+    height: 320px;
+    width: 220px;
+  }
+
+  .card-img {
+    height: 320px;
+  }
+}
+
+/* SMALL MOBILE DEVICES */
+@media (max-width: 480px) {
+  .hero-text {
+    left: 5%;
+    bottom: 8%;
+    max-width: 90%;
+  }
+
+  .video-card {
+    height: 250px;
+    width: 180px;
+  }
+
+  .card-img {
+    height: 250px;
+  }
+
+  .scroll-text span {
+    margin: 0 2rem;
+    font-size: 11px;
+  }
+
+  /* Adjust nav logo size */
+  nav img.h-20 {
+    height: 3rem;
+  }
+
+  nav .text-2xl {
+    font-size: 1.25rem;
+  }
+
+  nav .text-lg {
+    font-size: 1rem;
+  }
+}
+
 /* If you have transparent navbar on scroll, use this to keep readability */
 .site-nav.scrolled {
   backdrop-filter: blur(6px);
@@ -505,8 +649,441 @@ footer [data-aos] {
   white-space: nowrap;
   will-change: transform;
 }
-</style>
+/* ---------- MOBILE FIXES FOR HERO SECTION ---------- */
+@media (max-width: 640px) {
 
+  /* Move text slightly up */
+  .hero-text {
+    bottom: 22%;
+    left: 1rem;
+    right: 1rem;
+    max-width: 90%;
+  }
+
+  /* Thumbnails → centered bottom */
+  #thumbs {
+    justify-content: center;
+  }
+
+  /* Container moves to bottom center */
+  .thumb {
+    width: 85px !important;
+    height: 110px !important;
+  }
+
+  /* Move thumbnail + progress group */
+  .hero-thumbs-group {
+    bottom: 10px !important;
+    right: 50% !important;
+    transform: translateX(50%);
+  }
+}
+
+/* ------------------------------------------
+   MOBILE FIX – MOVE HERO TEXT UP
+------------------------------------------- */
+@media (max-width: 640px) {
+  .mobile-hero-text {
+    bottom: 28% !important;   /* raises the text upwards */
+    left: 1rem !important;
+    right: 1rem !important;
+    max-width: 90% !important;
+  }
+
+  /* smaller text for clean layout */
+  #hero-title {
+    font-size: 1.75rem !important;
+    line-height: 1.3 !important;
+  }
+
+  #hero-sub {
+    font-size: 1rem !important;
+    line-height: 1.35 !important;
+  }
+}
+/* ======================================================
+   HERO SECTION — TABLET RESPONSIVE FIXES (641px–1024px)
+   Desktop & Mobile remain unchanged
+====================================================== */
+@media (min-width: 641px) and (max-width: 1024px) {
+
+  /* Move text slightly upward on tablets */
+  .mobile-hero-text {
+    bottom: 22% !important;
+    max-width: 80% !important;
+  }
+
+  /* Adjust title size on tablets */
+  #hero-title {
+    font-size: 2.6rem !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Adjust subtitle size */
+  #hero-sub {
+    font-size: 1.25rem !important;
+    max-width: 70% !important;
+  }
+
+  /* Move thumbnails down slightly */
+  .hero-thumbs-group {
+    bottom: 20px !important;
+    right: 20px !important;
+  }
+
+  /* Slightly scale down thumbnails */
+  #thumbs .thumb {
+    width: 120px !important;
+    height: 170px !important;
+  }
+}
+
+/* ----------------------------------------------------
+   RESPONSIVE FIXES FOR PRODUCT CARDS (MOBILE + TABLET)
+   Desktop layout remains 100% unchanged
+---------------------------------------------------- */
+
+/* For screens below 1024px (tablets) */
+@media (max-width: 1024px) {
+  .video-card {
+    height: 280px !important;
+    width: 100% !important;
+  }
+
+  .card-img {
+    height: 280px !important;
+  }
+
+  .card-overlay h3 {
+    font-size: 1rem !important;
+  }
+
+  .card-overlay p {
+    font-size: 0.85rem !important;
+  }
+
+  .expand-btn {
+    padding: 6px 12px !important;
+    font-size: 0.85rem !important;
+  }
+}
+
+/* For screens below 768px (large mobiles) */
+@media (max-width: 768px) {
+  .video-card {
+    height: 250px !important;
+  }
+
+  .card-img {
+    height: 250px !important;
+  }
+
+  .card-overlay {
+    padding: 14px !important;
+  }
+
+  .card-overlay h3 {
+    font-size: 0.95rem !important;
+  }
+
+  .card-overlay p {
+    font-size: 0.78rem !important;
+    line-height: 1.25rem !important;
+  }
+
+  .expand-btn {
+    font-size: 0.8rem !important;
+    padding: 6px 10px !important;
+  }
+}
+
+/* For screens below 640px (mobiles) */
+@media (max-width: 640px) {
+
+  /* 1 column clean layout */
+  .grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .video-card {
+    height: 230px !important;
+  }
+
+  .card-img {
+    height: 230px !important;
+  }
+
+  .card-overlay h3 {
+    font-size: 0.9rem !important;
+  }
+
+  .card-overlay p {
+    font-size: 0.75rem !important;
+  }
+
+  .expand-btn {
+    font-size: 0.75rem !important;
+  }
+}
+
+/* For ultra-small screens (below 380px) */
+@media (max-width: 380px) {
+  .video-card {
+    height: 200px !important;
+  }
+
+  .card-img {
+    height: 200px !important;
+  }
+
+  .card-overlay {
+    padding: 12px !important;
+  }
+
+  .card-overlay h3 {
+    font-size: 0.85rem !important;
+  }
+
+  .card-overlay p {
+    font-size: 0.7rem !important;
+  }
+
+  .expand-btn {
+    font-size: 0.7rem !important;
+  }
+}
+/* ============================
+   CTA RESPONSIVE FIXES
+   (Desktop layout untouched)
+============================ */
+
+@media (max-width: 1024px) {
+  #cta-section {
+    height: auto !important;
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+  }
+
+  #cta-section video {
+    object-position: center center !important;
+  }
+}
+
+@media (max-width: 768px) {
+
+  /* Reduce height on tablets & big mobiles */
+  #cta-section {
+    height: auto !important;
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+
+  #cta-text h2 {
+    font-size: 2rem !important;
+    line-height: 1.2 !important;
+  }
+
+  #cta-text p {
+    font-size: 1rem !important;
+    line-height: 1.45 !important;
+    padding: 0 10px;
+  }
+
+  #cta-text a {
+    font-size: 1rem !important;
+    padding: 10px 24px !important;
+  }
+}
+
+@media (max-width: 640px) {
+
+  /* Smooth mobile layout */
+  #cta-section {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+
+  #cta-text h2 {
+    font-size: 1.6rem !important;
+  }
+
+  #cta-text p {
+    font-size: 0.95rem !important;
+  }
+
+  #cta-text a {
+    font-size: 0.95rem !important;
+    padding: 10px 22px !important;
+  }
+}
+
+@media (max-width: 400px) {
+
+  #cta-text h2 {
+    font-size: 1.4rem !important;
+  }
+
+  #cta-text p {
+    font-size: 0.85rem !important;
+  }
+
+  #cta-text a {
+    font-size: 0.85rem !important;
+    padding: 8px 18px !important;
+  }
+}/* ==========================================================
+   NAVBAR RESPONSIVE FIXES (NO CHANGE TO DESKTOP LAYOUT)
+========================================================== */
+
+/* Hide desktop menus on screens below md */
+@media (max-width: 768px) {
+
+  .desktop-menu {
+    display: none !important;
+  }
+
+  nav .grid {
+    grid-template-columns: 1fr auto !important;
+    grid-template-rows: 1fr !important;
+  }
+
+  nav .row-span-2 {
+    grid-row: auto !important;
+  }
+
+  /* Align logo and hamburger neatly */
+  #hamburger-btn {
+    display: flex !important;
+  }
+
+  /* Logo smaller */
+  nav img {
+    height: 60px !important;
+  }
+}
+
+/* -------- TABLET LAYOUT FIX (769px – 1024px) -------- */
+@media (min-width: 769px) and (max-width: 1024px) {
+
+  nav .grid {
+    grid-template-columns: auto 1fr !important;
+    grid-template-rows: auto auto !important;
+  }
+
+  nav img {
+    height: 70px !important;
+  }
+
+  nav a {
+    font-size: 0.95rem !important;
+  }
+
+  /* Reduce spacing to prevent wrapping */
+  .desktop-menu {
+    margin-left: 0.6rem;
+    margin-right: 0.6rem;
+  }
+}
+
+/* -------- MOBILE MENU STYLES -------- */
+#mobile-menu {
+  transition: all 0.3s ease-in-out;
+  transform-origin: top;
+}
+
+#mobile-menu.show {
+  display: block !important;
+  transform: scaleY(1);
+}
+
+#mobile-menu.hide {
+  transform: scaleY(0);
+  opacity: 0;
+}
+
+/* Ensure navbar stays above hero section text */
+nav {
+  position: relative;
+  z-index: 100 !important;
+}
+
+/* Ensure hamburger button is always above everything */
+#hamburger-btn {
+  position: relative;
+  z-index: 200 !important;
+}
+/* ==========================================================
+   FOOTER — RESPONSIVE FIXES (MOBILE + TABLET)
+   Desktop layout remains EXACTLY the same
+========================================================== */
+
+/* -------- Small Screens (mobile: below 768px) -------- */
+@media (max-width: 768px) {
+
+  /* Footer grid becomes 1 column */
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    justify-items: start !important;
+    text-align: left !important;
+  }
+
+  /* Logo size reduced slightly */
+  footer img {
+    height: 80px !important;
+  }
+
+  /* Reduce heading sizes */
+  .footer-grid h3 {
+    font-size: 1.2rem !important;
+  }
+
+  /* Reduce paragraph + list size */
+  .footer-grid p,
+  .footer-grid li a {
+    font-size: 0.95rem !important;
+    line-height: 1.4rem !important;
+  }
+
+  /* Social icons spacing */
+  .footer-grid .flex {
+    justify-content: flex-start !important;
+  }
+
+  /* Spacing adjustments */
+  .footer-grid > div {
+    padding-left: 0 !important;
+  }
+}
+
+/* -------- Extra Small Screens (below 480px) -------- */
+@media (max-width: 480px) {
+
+  .footer-grid h3 {
+    font-size: 1.1rem !important;
+  }
+
+  .footer-grid p,
+  .footer-grid li a {
+    font-size: 0.9rem !important;
+  }
+
+  footer img {
+    height: 70px !important;
+  }
+}
+
+/* -------- Tablet Fix (769px–1024px) -------- */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 2rem !important;
+  }
+
+  .footer-grid p,
+  .footer-grid li a {
+    font-size: 1rem !important;
+  }
+}
 
 </style>
 </head>
@@ -523,20 +1100,20 @@ footer [data-aos] {
        style="animation: scroll-left 18s linear infinite;">
     
     <span class="mx-6">
-      venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424
+      info@venkateshwaracorp.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 83172 24455
     </span>
 
     <span class="mx-6">
-      venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424
+      info@venkateshwaracorp.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 83172 24455
     </span>
 
     <span class="mx-6">
-      venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424
+      info@venkateshwaracorp.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 83172 24455
     </span>
 
     <!-- duplicate more for smoother infinite loop -->
     <span class="mx-6">
-      venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424
+      info@venkateshwaracorp.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 83172 24455
     </span>
 
   </div>
@@ -563,30 +1140,39 @@ footer [data-aos] {
     </div>
 
     <!-- ⭐ ROW 1: RIGHT TOP MENU -->
-    <div class="flex justify-end items-center space-x-8 
+    <div class="flex justify-end items-center space-x-8
                 text-gray-800 font-medium text-base py-3">
 
-      <a href="index.html" class="hover:text-yellow-500">Home</a>
-      <a href="about.html" class="hover:text-yellow-500">About Us</a>
-      <a href="products.html" class="hover:text-yellow-500">Products</a>
-      <a href="contact.html" class="hover:text-yellow-500">Contact Us</a>
+      <a href="index.html" class="hover:text-yellow-500 desktop-menu">Home</a>
+      <a href="about.html" class="hover:text-yellow-500 desktop-menu">About Us</a>
+      <a href="products.html" class="hover:text-yellow-500 desktop-menu">Products</a>
+      <a href="gallery.html" class="hover:text-yellow-500 desktop-menu">Gallery</a>
+      <a href="contact.html" class="hover:text-yellow-500 desktop-menu">Contact Us</a>
 
-      <i data-feather="facebook" class="w-5 h-5 cursor-pointer"></i>
-      <i data-feather="linkedin" class="w-5 h-5 cursor-pointer"></i>
-      <i data-feather="instagram" class="w-5 h-5 cursor-pointer"></i>
+      <i data-feather="facebook" class="w-5 h-5 cursor-pointer desktop-menu"></i>
+      <i data-feather="linkedin" class="w-5 h-5 cursor-pointer desktop-menu"></i>
+      <i data-feather="instagram" class="w-5 h-5 cursor-pointer desktop-menu"></i>
+
+      <!-- HAMBURGER MENU BUTTON -->
+      <button id="hamburger-btn" class="md:hidden w-8 h-8 flex flex-col justify-center items-center space-y-1 bg-transparent border-none cursor-pointer">
+        <span class="w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+        <span class="w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+        <span class="w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+      </button>
 
     </div>
 
     <!-- ⭐ ROW 2: CENTERED CATEGORIES -->
-    <div class="flex justify-center items-center space-x-12 
-                text-gray-900 font-semibold text-[15px] py-2">
+    <div class="flex justify-center items-center space-x-12
+                text-gray-900 font-semibold text-[15px] py-2 desktop-menu">
 
       <!-- Same dropdowns here -->
       <!-- FABRICATION -->
       <div class="relative group">
-        <button class="hover:text-yellow-500">Fabrication ▾</button>
-        <div class="absolute top-full left-1/2 -translate-x-1/2 
-                    hidden group-hover:flex flex-col bg-white shadow-lg 
+        <a href="fabrication.html" class="hover:text-yellow-500">Fabrication ▾</a>
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white shadow-lg
                     rounded-lg p-4 w-56 z-50">
           <ul class="space-y-2 text-sm">
             <li><a href="fabrication.html" class="text-gray-800 hover:text-yellow-500">Awnings</a></li>
@@ -599,10 +1185,11 @@ footer [data-aos] {
       </div>
       <!-- INTERIORS -->
       <div class="relative group">
-        <button class="hover:text-yellow-500">Interiors ▾</button>
+        <a href="interior.html" class="hover:text-yellow-500">Interiors ▾</a>
 
-        <div class="absolute top-full left-1/2 -translate-x-1/2 
-                    hidden group-hover:flex flex-col bg-white 
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white
                     shadow-lg rounded-lg p-4 w-56 z-50">
           <ul class="space-y-2 text-sm">
             <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Furniture Work</a></li>
@@ -620,10 +1207,11 @@ footer [data-aos] {
 
       <!-- CIVIL WORK -->
       <div class="relative group">
-        <button class="hover:text-yellow-500">Civil Work ▾</button>
+        <a href="civil-work.html" class="hover:text-yellow-500">Civil Work▾</a>
 
-        <div class="absolute top-full left-1/2 -translate-x-1/2 
-                    hidden group-hover:flex flex-col bg-white 
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white
                     shadow-lg rounded-lg p-4 w-56 z-50">
           <ul class="space-y-2 text-sm">
             <li><a href="civil-work.html" class="text-gray-800 hover:text-yellow-500">Construction</a></li>
@@ -634,26 +1222,28 @@ footer [data-aos] {
 
       <!-- EXTERIORS -->
       <div class="relative group">
-        <button class="hover:text-yellow-500">Exteriors ▾</button>
+       <a href="exterior.html" class="hover:text-yellow-500">Exteriors ▾</a>
 
-        <div class="absolute top-full left-1/2 -translate-x-1/2 
-                    hidden group-hover:flex flex-col bg-white 
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white
                     shadow-lg rounded-lg p-4 w-56 z-50">
           <ul class="space-y-2 text-sm">
             <li><a href="exterior.html" class="text-gray-800 hover:text-yellow-500">Society Painting</a></li>
             <li><a href="exterior.html" class="text-gray-800 hover:text-yellow-500">Bungalow Painting</a></li>
             <li><a href="exterior.html" class="text-gray-800 hover:text-yellow-500">Cleaning</a></li>
-            
+
           </ul>
         </div>
       </div>
 
       <!-- OTHER SERVICES -->
       <div class="relative group">
-        <button class="hover:text-yellow-500">Other Services ▾</button>
+        <a href="other-services.html" class="hover:text-yellow-500">Other Services ▾</a>
 
-        <div class="absolute top-full left-1/2 -translate-x-1/2 
-                    hidden group-hover:flex flex-col bg-white 
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white
                     shadow-lg rounded-lg p-4 w-56 z-50">
           <ul class="space-y-2 text-sm">
             <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Waterproofing</a></li>
@@ -668,9 +1258,58 @@ footer [data-aos] {
 
     </div>
 
+    <!-- MOBILE MENU (hidden by default) -->
+    <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 right-0 bg-white shadow-lg z-50 border-t border-gray-200">
+      <div class="flex flex-col py-4 px-6 space-y-4">
+        <!-- Main Navigation -->
+        <a href="index.html" class="text-gray-800 hover:text-yellow-500 font-medium py-2 border-b border-gray-100">Home</a>
+        <a href="about.html" class="text-gray-800 hover:text-yellow-500 font-medium py-2 border-b border-gray-100">About Us</a>
+        <a href="products.html" class="text-gray-800 hover:text-yellow-500 font-medium py-2 border-b border-gray-100">Products</a>
+        <a href="gallery.html" class="text-gray-800 hover:text-yellow-500 font-medium py-2 border-b border-gray-100">Gallery</a>
+        <a href="contact.html" class="text-gray-800 hover:text-yellow-500 font-medium py-2">Contact Us</a>
+
+        <!-- Categories -->
+        <div class="pt-4 border-t border-gray-200">
+          <h3 class="text-gray-900 font-semibold mb-3">Services</h3>
+          <div class="space-y-2">
+            <a href="fabrication.html" class="block text-gray-700 hover:text-yellow-500">Fabrication</a>
+            <a href="interior.html" class="block text-gray-700 hover:text-yellow-500">Interiors</a>
+            <a href="civil-work.html" class="block text-gray-700 hover:text-yellow-500">Civil Work</a>
+            <a href="exterior.html" class="block text-gray-700 hover:text-yellow-500">Exteriors</a>
+            <a href="other-services.html" class="block text-gray-700 hover:text-yellow-500">Other Services</a>
+          </div>
+        </div>
+
+        <!-- Social Icons -->
+        <div class="flex space-x-4 pt-4 border-t border-gray-200">
+          <i data-feather="facebook" class="w-5 h-5 cursor-pointer text-gray-600 hover:text-yellow-500"></i>
+          <i data-feather="linkedin" class="w-5 h-5 cursor-pointer text-gray-600 hover:text-yellow-500"></i>
+          <i data-feather="instagram" class="w-5 h-5 cursor-pointer text-gray-600 hover:text-yellow-500"></i>
+        </div>
+      </div>
+    </div>
+
   </div>
 
 </nav>
+<script>
+const hamburger = document.getElementById("hamburger-btn");
+const mobileMenu = document.getElementById("mobile-menu");
+
+hamburger.addEventListener("click", () => {
+  // toggle open
+  if (mobileMenu.classList.contains("show")) {
+    mobileMenu.classList.remove("show");
+    mobileMenu.classList.add("hide");
+  } else {
+    mobileMenu.classList.remove("hide");
+    mobileMenu.classList.add("show");
+  }
+
+  // Animate hamburger icon
+  hamburger.classList.toggle("open");
+});
+</script>
 
 <script>feather.replace();</script>
 
@@ -681,11 +1320,10 @@ footer [data-aos] {
 
 
 <!-- ================= HERO SECTION ================= -->
-<section class="relative h-[85vh] w-full overflow-hidden">
+<section class="relative h-[75vh] md:h-[85vh] w-full overflow-hidden">
 
   <!-- SLIDES -->
   <div id="hero-slides" class="absolute inset-0 w-full h-full z-[1]">
-
     <div class="slide absolute inset-0">
       <img src="images/about hero2.jpg" class="w-full h-full object-cover" />
     </div>
@@ -701,33 +1339,40 @@ footer [data-aos] {
     <div class="slide absolute inset-0">
       <img src="images/hero4.jpg" class="w-full h-full object-cover" />
     </div>
+  </div>
+
+  <!-- TEXT CONTENT -->
+  <div class="hero-text mobile-hero-text absolute 
+           left-5 bottom-10 
+           md:left-10 md:bottom-16 
+           z-[20] text-left max-w-xl
+           px-4 md:px-0">
+
+
+    <h1 id="hero-title"
+      class="text-3xl sm:text-4xl md:text-6xl font-bold mb-3 leading-tight">
+    </h1>
+
+    <p id="hero-sub"
+      class="text-base sm:text-lg md:text-2xl opacity-90 max-w-sm md:max-w-md">
+    </p>
 
   </div>
 
-  <!-- TEXT CONTENT (MOVED LEFT BOTTOM) -->
-<div class="absolute left-10 bottom-16 z-[20] text-left max-w-xl">
+  <!-- THUMBNAILS + PROGRESS (Mobile optimized) -->
+ <div
+    class="hero-thumbs-group absolute bottom-4 sm:bottom-6 right-4 sm:right-6 
+           flex flex-col items-end space-y-3 sm:space-y-4 z-[50]">
 
-  <h1 id="hero-title" 
-      class="text-4xl md:text-6xl font-bold mb-3 leading-tight">
-  </h1>
-
-  <p id="hero-sub" 
-     class="text-lg md:text-2xl opacity-90 max-w-md">
-  </p>
-
-</div>
-
-
-  <!-- THUMBNAILS + PROGRESS -->
-  <div class="absolute bottom-6 right-6 flex flex-col items-end space-y-4 z-[50]">
 
     <!-- Thumbnails -->
-    <div id="thumbs" class="flex space-x-3">
-      <!-- dynamically inserted -->
+    <div id="thumbs"
+      class="flex space-x-2 sm:space-x-3">
+      <!-- injected dynamically -->
     </div>
 
     <!-- Progress bar -->
-    <div class="w-40 h-1 bg-white/20 rounded-full overflow-hidden">
+    <div class="w-28 sm:w-40 h-1 bg-white/20 rounded-full overflow-hidden">
       <div id="progress-bar" class="h-full bg-white w-0"></div>
     </div>
 
@@ -956,7 +1601,8 @@ gsap.from(".about-para", {
       <div class="card-overlay">
         <h3>Fabrication</h3>
         <p>High-precision welding, metal works & custom fabrication.</p>
-        <button class="expand-btn">Expand →</button>
+        <a href="fabrication.html" class="expand-btn">Expand →</a>
+
       </div>
     </div>
 
@@ -966,7 +1612,8 @@ gsap.from(".about-para", {
       <div class="card-overlay">
         <h3>Civil Work</h3>
         <p>Reliable construction, RCC, flooring & structural work.</p>
-        <button class="expand-btn">Expand →</button>
+       <a href="civil-work.html" class="expand-btn">Expand →</a>
+
       </div>
     </div>
 
@@ -976,7 +1623,8 @@ gsap.from(".about-para", {
       <div class="card-overlay">
         <h3>Interiors</h3>
         <p>Modern interior design for homes, offices & showrooms.</p>
-        <button class="expand-btn">Expand →</button>
+        <a href="interior.html" class="expand-btn">Expand →</a>
+
       </div>
     </div>
 
@@ -986,7 +1634,8 @@ gsap.from(".about-para", {
       <div class="card-overlay">
         <h3>Exteriors</h3>
         <p>Outdoor tensile, façade & exterior structure solutions.</p>
-        <button class="expand-btn">Expand →</button>
+       <a href="exterior.html" class="expand-btn">Expand →</a>
+
       </div>
     </div>
 
@@ -996,7 +1645,8 @@ gsap.from(".about-para", {
       <div class="card-overlay">
         <h3>Other Services</h3>
         <p>Retractable roofs, scaffolding & custom project services.</p>
-        <button class="expand-btn">Expand →</button>
+        <a href="other-services.html" class="expand-btn">Expand →</a>
+
       </div>
     </div>
 
@@ -1222,7 +1872,7 @@ gsap.from("#cta-text a", {
 
   <!-- COMPACT CONTENT -->
   <div class="container mx-auto px-4 pt-12 pb-8 relative z-10">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10
+    <div class="footer-grid grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10
                 justify-items-start md:justify-items-center
                 max-w-7xl mx-auto">
 
@@ -1262,6 +1912,7 @@ gsap.from("#cta-text a", {
           <li data-aos="fade-left" data-aos-delay="100"><a href="index.html"   class="opacity-80 hover:text-yellow-400">Home</a></li>
           <li data-aos="fade-left" data-aos-delay="150"><a href="about.html"   class="opacity-80 hover:text-yellow-400">About</a></li>
           <li data-aos="fade-left" data-aos-delay="200"><a href="products.html" class="opacity-80 hover:text-yellow-400">Products</a></li>
+          <li data-aos="fade-left" data-aos-delay="250"><a href="gallery.html" class="opacity-80 hover:text-yellow-400">Gallery</a></li>
           <li data-aos="fade-left" data-aos-delay="250"><a href="contact.html" class="opacity-80 hover:text-yellow-400">Contact</a></li>
         </ul>
       </div>
@@ -1302,6 +1953,8 @@ gsap.from("#cta-text a", {
   const style = document.createElement('style');
   style.innerHTML = `.flex-center{display:flex;align-items:center;justify-content:center}`;
   document.head.appendChild(style);
+
+  
 </script>
 
   <!-- SCRIPTS (unchanged + AOS engine) -->
@@ -1330,6 +1983,25 @@ gsap.from("#cta-text a", {
       opacity: 1 !important;
       transform: translateY(0) translateX(0) scale(1) rotateY(0) !important;
     }
-  </style>  <!-- WHITE NAVBAR COMPONENT – NOW WORKS EVERYWHERE -->
+  </style>  <!-- Floating Buttons -->
+<div class="fixed bottom-6 right-6 flex flex-col items-center gap-4 z-50">
+
+  <!-- CALL BUTTON -->
+  <a href="tel:83172 24455"
+     class="w-14 h-14 bg-blue-600 rounded-full shadow-xl flex items-center justify-center hover:scale-110 transition">
+     <img src="https://cdn-icons-png.flaticon.com/512/597/597177.png" 
+          class="w-7 h-7 invert">
+  </a>
+
+  <!-- WHATSAPP BUTTON -->
+  <a href="https://wa.me/83172 24455?text=Hello%2C%20I%20want%20more%20information"
+     target="_blank"
+     class="w-14 h-14 bg-green-500 rounded-full shadow-xl flex items-center justify-center hover:scale-110 transition">
+     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+          class="w-8 h-8">
+  </a>
+
+</div>
+
   
 </body></html>

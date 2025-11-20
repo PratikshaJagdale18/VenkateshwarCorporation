@@ -6,9 +6,19 @@
   <title>Interior Work – Venkateshwara Corporation</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/feather-icons"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
+ <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500;600;700&family=Saira:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+
   <style>
+    /* NAVBAR FONT */
+nav, nav a, nav button {
+    font-family: 'Arimo', sans-serif !important;
+}
+/* SITE-WIDE FONT */
+body, h1, h2, h3, h4, h5, h6, p, span, li, button, a {
+    font-family: 'Saira', sans-serif !important;
+}
     :root { --navy: #0f172a; --gold: #f59e0b; --blue: #1e40af; }
     body { font-family: 'Inter', sans-serif; background: #f8fafc; }
     .gold-btn {
@@ -136,7 +146,169 @@
 
 .interior-section { display: none; }
 .interior-section.active { display: block; }
+/* ==========================================================
+   FOOTER — RESPONSIVE FIXES (MOBILE + TABLET)
+   Desktop layout remains EXACTLY the same
+========================================================== */
 
+/* -------- Small Screens (mobile: below 768px) -------- */
+@media (max-width: 768px) {
+
+  /* Footer grid becomes 1 column */
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    justify-items: start !important;
+    text-align: left !important;
+  }
+
+  /* Logo size reduced slightly */
+  footer img {
+    height: 80px !important;
+  }
+
+  /* Reduce heading sizes */
+  .footer-grid h3 {
+    font-size: 1.2rem !important;
+  }
+
+  /* Reduce paragraph + list size */
+  .footer-grid p,
+  .footer-grid li a {
+    font-size: 0.95rem !important;
+    line-height: 1.4rem !important;
+  }
+
+  /* Social icons spacing */
+  .footer-grid .flex {
+    justify-content: flex-start !important;
+  }
+
+  /* Spacing adjustments */
+  .footer-grid > div {
+    padding-left: 0 !important;
+  }
+}
+
+/* -------- Extra Small Screens (below 480px) -------- */
+@media (max-width: 480px) {
+
+  .footer-grid h3 {
+    font-size: 1.1rem !important;
+  }
+
+  .footer-grid p,
+  .footer-grid li a {
+    font-size: 0.9rem !important;
+  }
+
+  footer img {
+    height: 70px !important;
+  }
+}
+
+/* -------- Tablet Fix (769px–1024px) -------- */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 2rem !important;
+  }
+
+  .footer-grid p,
+  .footer-grid li a {
+    font-size: 1rem !important;
+  }
+}
+/* Ensure navbar stays above hero section text */
+nav {
+  position: relative;
+  z-index: 100 !important;
+}
+
+/* Ensure hamburger button is always above everything */
+#hamburger-btn {
+  position: relative;
+  z-index: 200 !important;
+}
+/* ==========================================================
+   NAVBAR RESPONSIVE FIXES (NO CHANGE TO DESKTOP LAYOUT)
+========================================================== */
+
+/* Hide desktop menus on screens below md */
+@media (max-width: 768px) {
+
+  .desktop-menu {
+    display: none !important;
+  }
+
+  nav .grid {
+    grid-template-columns: 1fr auto !important;
+    grid-template-rows: 1fr !important;
+  }
+
+  nav .row-span-2 {
+    grid-row: auto !important;
+  }
+
+  /* Align logo and hamburger neatly */
+  #hamburger-btn {
+    display: flex !important;
+  }
+
+  /* Logo smaller */
+  nav img {
+    height: 60px !important;
+  }
+}
+
+/* -------- TABLET LAYOUT FIX (769px – 1024px) -------- */
+@media (min-width: 769px) and (max-width: 1024px) {
+
+  nav .grid {
+    grid-template-columns: auto 1fr !important;
+    grid-template-rows: auto auto !important;
+  }
+
+  nav img {
+    height: 70px !important;
+  }
+
+  nav a {
+    font-size: 0.95rem !important;
+  }
+
+  /* Reduce spacing to prevent wrapping */
+  .desktop-menu {
+    margin-left: 0.6rem;
+    margin-right: 0.6rem;
+  }
+}
+
+/* -------- MOBILE MENU STYLES -------- */
+#mobile-menu {
+  transition: all 0.3s ease-in-out;
+  transform-origin: top;
+}
+
+#mobile-menu.show {
+  display: block !important;
+  transform: scaleY(1);
+}
+
+#mobile-menu.hide {
+  transform: scaleY(0);
+  opacity: 0;
+}
+/* Footer fix */
+  footer .flex.space-x-3 {
+    justify-content: flex-start !important;
+  }
+
+  /* Fix icon background alignment */
+  footer .flex.space-x-3 a {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
 </style>
 
 
@@ -155,20 +327,20 @@
        style="animation: scroll-left 18s linear infinite;">
     
     <span class="mx-6">
-      venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424
+      info@venkateshwaracorp.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 83172 24455
     </span>
 
     <span class="mx-6">
-      venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424
+      info@venkateshwaracorp.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 83172 24455
     </span>
 
     <span class="mx-6">
-      venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424
+      info@venkateshwaracorp.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 83172 24455
     </span>
 
     <!-- duplicate more for smoother infinite loop -->
     <span class="mx-6">
-      venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424
+      info@venkateshwaracorp.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 83172 24455
     </span>
 
   </div>
@@ -184,42 +356,54 @@
               grid grid-cols-[auto_1fr] grid-rows-2 items-center">
 
     <!-- 🌟 LEFT SIDE: LOGO + COMPANY NAME -->
-    <div class="row-span-2 flex items-center space-x-4">
+    <div class="row-span-2 flex items-center space-x-3 sm:space-x-4">
 
-      <img src="logo.jpg" class="h-20 w-auto" alt="Logo">
+  <img src="logo.jpg" 
+       class="h-14 w-auto sm:h-20 transition-all duration-300" 
+       alt="Logo">
 
-      <div class="flex flex-col leading-tight">
-        <span class="text-2xl font-bold text-gray-900">Venkateshwara</span>
-        <span class="text-lg font-semibold text-gray-700">Corporation</span>
-      </div>
+  <div class="flex flex-col leading-tight">
+    <span class="text-xl sm:text-2xl font-bold text-gray-900">Venkateshwara</span>
+    <span class="text-sm sm:text-lg font-semibold text-gray-700">Corporation</span>
+  </div>
 
-    </div>
+</div>
+
 
     <!-- ⭐ ROW 1: RIGHT TOP MENU -->
-    <div class="flex justify-end items-center space-x-8 
+    <div class="flex justify-end items-center space-x-8
                 text-gray-800 font-medium text-base py-3">
 
-      <a href="index.html" class="hover:text-yellow-500">Home</a>
-      <a href="about.html" class="hover:text-yellow-500">About Us</a>
-      <a href="products.html" class="hover:text-yellow-500">Products</a>
-      <a href="contact.html" class="hover:text-yellow-500">Contact Us</a>
+      <a href="index.html" class="hover:text-yellow-500 desktop-menu">Home</a>
+      <a href="about.html" class="hover:text-yellow-500 desktop-menu">About Us</a>
+      <a href="products.html" class="hover:text-yellow-500 desktop-menu">Products</a>
+      <a href="gallery.html" class="hover:text-yellow-500 desktop-menu">Gallery</a>
+      <a href="contact.html" class="hover:text-yellow-500 desktop-menu">Contact Us</a>
 
-      <i data-feather="facebook" class="w-5 h-5 cursor-pointer"></i>
-      <i data-feather="linkedin" class="w-5 h-5 cursor-pointer"></i>
-      <i data-feather="instagram" class="w-5 h-5 cursor-pointer"></i>
+      <i data-feather="facebook" class="w-5 h-5 cursor-pointer desktop-menu"></i>
+      <i data-feather="linkedin" class="w-5 h-5 cursor-pointer desktop-menu"></i>
+      <i data-feather="instagram" class="w-5 h-5 cursor-pointer desktop-menu"></i>
+
+      <!-- HAMBURGER MENU BUTTON -->
+      <button id="hamburger-btn" class="md:hidden w-8 h-8 flex flex-col justify-center items-center space-y-1 bg-transparent border-none cursor-pointer">
+        <span class="w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+        <span class="w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+        <span class="w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+      </button>
 
     </div>
 
     <!-- ⭐ ROW 2: CENTERED CATEGORIES -->
-    <div class="flex justify-center items-center space-x-12 
-                text-gray-900 font-semibold text-[15px] py-2">
+    <div class="flex justify-center items-center space-x-12
+                text-gray-900 font-semibold text-[15px] py-2 desktop-menu">
 
       <!-- Same dropdowns here -->
       <!-- FABRICATION -->
       <div class="relative group">
-        <button class="hover:text-yellow-500">Fabrication ▾</button>
-        <div class="absolute top-full left-1/2 -translate-x-1/2 
-                    hidden group-hover:flex flex-col bg-white shadow-lg 
+        <a href="fabrication.html" class="hover:text-yellow-500">Fabrication ▾</a>
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white shadow-lg
                     rounded-lg p-4 w-56 z-50">
           <ul class="space-y-2 text-sm">
             <li><a href="fabrication.html" class="text-gray-800 hover:text-yellow-500">Awnings</a></li>
@@ -232,10 +416,11 @@
       </div>
       <!-- INTERIORS -->
       <div class="relative group">
-        <button class="hover:text-yellow-500">Interiors ▾</button>
+        <a href="interior.html" class="hover:text-yellow-500">Interiors ▾</a>
 
-        <div class="absolute top-full left-1/2 -translate-x-1/2 
-                    hidden group-hover:flex flex-col bg-white 
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white
                     shadow-lg rounded-lg p-4 w-56 z-50">
           <ul class="space-y-2 text-sm">
             <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Furniture Work</a></li>
@@ -253,10 +438,11 @@
 
       <!-- CIVIL WORK -->
       <div class="relative group">
-        <button class="hover:text-yellow-500">Civil Work ▾</button>
+        <a href="civil-work.html" class="hover:text-yellow-500">Civil Work▾</a>
 
-        <div class="absolute top-full left-1/2 -translate-x-1/2 
-                    hidden group-hover:flex flex-col bg-white 
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white
                     shadow-lg rounded-lg p-4 w-56 z-50">
           <ul class="space-y-2 text-sm">
             <li><a href="civil-work.html" class="text-gray-800 hover:text-yellow-500">Construction</a></li>
@@ -267,26 +453,28 @@
 
       <!-- EXTERIORS -->
       <div class="relative group">
-        <button class="hover:text-yellow-500">Exteriors ▾</button>
+       <a href="exterior.html" class="hover:text-yellow-500">Exteriors ▾</a>
 
-        <div class="absolute top-full left-1/2 -translate-x-1/2 
-                    hidden group-hover:flex flex-col bg-white 
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white
                     shadow-lg rounded-lg p-4 w-56 z-50">
           <ul class="space-y-2 text-sm">
             <li><a href="exterior.html" class="text-gray-800 hover:text-yellow-500">Society Painting</a></li>
             <li><a href="exterior.html" class="text-gray-800 hover:text-yellow-500">Bungalow Painting</a></li>
             <li><a href="exterior.html" class="text-gray-800 hover:text-yellow-500">Cleaning</a></li>
-            
+
           </ul>
         </div>
       </div>
 
       <!-- OTHER SERVICES -->
       <div class="relative group">
-        <button class="hover:text-yellow-500">Other Services ▾</button>
+        <a href="other-services.html" class="hover:text-yellow-500">Other Services ▾</a>
 
-        <div class="absolute top-full left-1/2 -translate-x-1/2 
-                    hidden group-hover:flex flex-col bg-white 
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white
                     shadow-lg rounded-lg p-4 w-56 z-50">
           <ul class="space-y-2 text-sm">
             <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Waterproofing</a></li>
@@ -301,9 +489,58 @@
 
     </div>
 
+    <!-- MOBILE MENU (hidden by default) -->
+    <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 right-0 bg-white shadow-lg z-50 border-t border-gray-200">
+      <div class="flex flex-col py-4 px-6 space-y-4">
+        <!-- Main Navigation -->
+        <a href="index.html" class="text-gray-800 hover:text-yellow-500 font-medium py-2 border-b border-gray-100">Home</a>
+        <a href="about.html" class="text-gray-800 hover:text-yellow-500 font-medium py-2 border-b border-gray-100">About Us</a>
+        <a href="products.html" class="text-gray-800 hover:text-yellow-500 font-medium py-2 border-b border-gray-100">Products</a>
+        <a href="gallery.html" class="text-gray-800 hover:text-yellow-500 font-medium py-2 border-b border-gray-100">Gallery</a>
+        <a href="contact.html" class="text-gray-800 hover:text-yellow-500 font-medium py-2">Contact Us</a>
+
+        <!-- Categories -->
+        <div class="pt-4 border-t border-gray-200">
+          <h3 class="text-gray-900 font-semibold mb-3">Services</h3>
+          <div class="space-y-2">
+            <a href="fabrication.html" class="block text-gray-700 hover:text-yellow-500">Fabrication</a>
+            <a href="interior.html" class="block text-gray-700 hover:text-yellow-500">Interiors</a>
+            <a href="civil-work.html" class="block text-gray-700 hover:text-yellow-500">Civil Work</a>
+            <a href="exterior.html" class="block text-gray-700 hover:text-yellow-500">Exteriors</a>
+            <a href="other-services.html" class="block text-gray-700 hover:text-yellow-500">Other Services</a>
+          </div>
+        </div>
+
+        <!-- Social Icons -->
+        <div class="flex space-x-4 pt-4 border-t border-gray-200">
+          <i data-feather="facebook" class="w-5 h-5 cursor-pointer text-gray-600 hover:text-yellow-500"></i>
+          <i data-feather="linkedin" class="w-5 h-5 cursor-pointer text-gray-600 hover:text-yellow-500"></i>
+          <i data-feather="instagram" class="w-5 h-5 cursor-pointer text-gray-600 hover:text-yellow-500"></i>
+        </div>
+      </div>
+    </div>
+
   </div>
 
 </nav>
+<script>
+const hamburger = document.getElementById("hamburger-btn");
+const mobileMenu = document.getElementById("mobile-menu");
+
+hamburger.addEventListener("click", () => {
+  // toggle open
+  if (mobileMenu.classList.contains("show")) {
+    mobileMenu.classList.remove("show");
+    mobileMenu.classList.add("hide");
+  } else {
+    mobileMenu.classList.remove("hide");
+    mobileMenu.classList.add("show");
+  }
+
+  // Animate hamburger icon
+  hamburger.classList.toggle("open");
+});
+</script>
 
 <script>feather.replace();</script>
 
@@ -327,7 +564,7 @@
   <!-- 1. FURNITURE WORK -->
   <section id="furniture" class="interior-section active">
     <div class="grid lg:grid-cols-2 gap-16 items-center py-12">
-      <img src="images/interior-furniture.jpg" alt="Furniture Work" class="w-full rounded-2xl shadow-2xl">
+      <img src="Products/furniture.jpg" alt="Furniture Work" class="w-full rounded-2xl shadow-2xl">
       <div class="space-y-8">
         <h2 class="text-4xl md:text-5xl font-bold" style="color:var(--navy)">Custom Furniture Work</h2>
         <p class="text-lg text-gray-700 leading-relaxed">Modular and custom furniture: wardrobes, kitchens, TV units, study tables and storage. Premium finishing and space-efficient designs.</p>
@@ -345,7 +582,7 @@
   <!-- 2. PLUMBING -->
   <section id="plumbing" class="interior-section">
     <div class="grid lg:grid-cols-2 gap-16 items-center py-12 bg-gray-50 rounded-3xl -mx-6 px-6">
-      <img src="images/interior-plumbing.jpg" alt="Plumbing" class="w-full rounded-2xl shadow-2xl">
+      <img src="Products/plumbing.jpg" alt="Plumbing" class="w-full rounded-2xl shadow-2xl">
       <div class="space-y-8">
         <h2 class="text-4xl md:text-5xl font-bold" style="color:var(--navy)">Plumbing Work</h2>
         <p class="text-lg text-gray-700 leading-relaxed">Complete plumbing solutions for bathrooms, kitchens and home renovation projects.</p>
@@ -363,7 +600,7 @@
   <!-- 3. ELECTRICAL WORK -->
   <section id="electrical" class="interior-section">
     <div class="grid lg:grid-cols-2 gap-16 items-center py-12">
-      <img src="images/interior-electrical.jpg" alt="Electrical Work" class="w-full rounded-2xl shadow-2xl">
+      <img src="Products/electric.jpg" alt="Electrical Work" class="w-full rounded-2xl shadow-2xl">
       <div class="space-y-8">
         <h2 class="text-4xl md:text-5xl font-bold" style="color:var(--navy)">Electrical Work</h2>
         <p class="text-lg text-gray-700 leading-relaxed">Safe wiring, rewiring, LED lighting, switchboard installation.</p>
@@ -381,7 +618,7 @@
   <!-- 4. TILE WORK -->
   <section id="tile" class="interior-section">
     <div class="grid lg:grid-cols-2 gap-16 items-center py-12 bg-gray-50 rounded-3xl -mx-6 px-6">
-      <img src="images/interior-tiles.jpg" alt="Tile Work" class="w-full rounded-2xl shadow-2xl">
+      <img src="Products/tile work.jpg" alt="Tile Work" class="w-full rounded-2xl shadow-2xl">
       <div class="space-y-8">
         <h2 class="text-4xl md:text-5xl font-bold" style="color:var(--navy)">Tile Work</h2>
         <p class="text-lg text-gray-700 leading-relaxed">Professional tile installation for bathrooms, kitchens and floors with premium finishing.</p>
@@ -399,7 +636,7 @@
   <!-- 5. PAINTING -->
   <section id="painting" class="interior-section">
     <div class="grid lg:grid-cols-2 gap-16 items-center py-12">
-      <img src="images/interior-painting.jpg" alt="Interior Painting" class="w-full rounded-2xl shadow-2xl">
+      <img src="Products/painting.jpg" alt="Interior Painting" class="w-full rounded-2xl shadow-2xl">
       <div class="space-y-8">
         <h2 class="text-4xl md:text-5xl font-bold" style="color:var(--navy)">Interior Painting</h2>
         <p class="text-lg text-gray-700 leading-relaxed">Premium interior painting with texture, waterproofing and modern finishes.</p>
@@ -417,7 +654,7 @@
   <!-- 6. INTERNAL MODIFICATION -->
   <section id="modification" class="interior-section">
     <div class="grid lg:grid-cols-2 gap-16 items-center py-12 bg-gray-50 rounded-3xl -mx-6 px-6">
-      <img src="images/interior-modification.jpg" alt="Internal Modification" class="w-full rounded-2xl shadow-2xl">
+      <img src="Products/internal modification.jpg" alt="Internal Modification" class="w-full rounded-2xl shadow-2xl">
       <div class="space-y-8">
         <h2 class="text-4xl md:text-5xl font-bold" style="color:var(--navy)">Internal Modification</h2>
         <p class="text-lg text-gray-700 leading-relaxed">Structural changes, wall removal/addition, layout redesign for better space utilization.</p>
@@ -435,7 +672,7 @@
   <!-- 7. POP & FALSE CEILING -->
   <section id="pop" class="interior-section">
     <div class="grid lg:grid-cols-2 gap-16 items-center py-12">
-      <img src="images/interior-pop.jpg" alt="POP False Ceiling" class="w-full rounded-2xl shadow-2xl">
+      <img src="Products/pop.jpg" alt="POP False Ceiling" class="w-full rounded-2xl shadow-2xl">
       <div class="space-y-8">
         <h2 class="text-4xl md:text-5xl font-bold" style="color:var(--navy)">POP & False Ceiling</h2>
         <p class="text-lg text-gray-700 leading-relaxed">Designer false ceilings with lighting, patterns and premium POP work.</p>
@@ -453,7 +690,7 @@
   <!-- 8. SLIDING WINDOWS -->
   <section id="sliding" class="interior-section">
     <div class="grid lg:grid-cols-2 gap-16 items-center py-12 bg-gray-50 rounded-3xl -mx-6 px-6">
-      <img src="images/interior-sliding-windows.jpg" alt="Sliding Windows" class="w-full rounded-2xl shadow-2xl">
+      <img src="Products/sliding widow.jpg" alt="Sliding Windows" class="w-full rounded-2xl shadow-2xl">
       <div class="space-y-8">
         <h2 class="text-4xl md:text-5xl font-bold" style="color:var(--navy)">Sliding Windows</h2>
         <p class="text-lg text-gray-700 leading-relaxed">High-quality aluminium/uPVC sliding windows with mosquito mesh and soundproofing.</p>
@@ -471,7 +708,7 @@
   <!-- 9. FRENCH DOORS -->
   <section id="french" class="interior-section">
     <div class="grid lg:grid-cols-2 gap-16 items-center py-12">
-      <img src="images/interior-french-doors.jpg" alt="French Doors" class="w-full rounded-2xl shadow-2xl">
+      <img src="Products/french door.jpg" alt="French Doors" class="w-full rounded-2xl shadow-2xl">
       <div class="space-y-8">
         <h2 class="text-4xl md:text-5xl font-bold" style="color:var(--navy)">French Doors</h2>
         <p class="text-lg text-gray-700 leading-relaxed">Elegant French doors with glass panels for living rooms, balconies and terraces.</p>
@@ -566,7 +803,7 @@
 
   <!-- COMPACT CONTENT -->
   <div class="container mx-auto px-4 pt-12 pb-8 relative z-10">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10
+   <div class="footer-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10
                 justify-items-start md:justify-items-center
                 max-w-7xl mx-auto">
 
@@ -606,6 +843,7 @@
           <li data-aos="fade-left" data-aos-delay="100"><a href="index.html"   class="opacity-80 hover:text-yellow-400">Home</a></li>
           <li data-aos="fade-left" data-aos-delay="150"><a href="about.html"   class="opacity-80 hover:text-yellow-400">About</a></li>
           <li data-aos="fade-left" data-aos-delay="200"><a href="products.html" class="opacity-80 hover:text-yellow-400">Products</a></li>
+          <li data-aos="fade-left" data-aos-delay="250"><a href="gallery.html" class="opacity-80 hover:text-yellow-400">Gallery</a></li>
           <li data-aos="fade-left" data-aos-delay="250"><a href="contact.html" class="opacity-80 hover:text-yellow-400">Contact</a></li>
         </ul>
       </div>
@@ -634,7 +872,26 @@
 </footer>
 
 <script src="components/navbar.js"></script>
-<script> feather.replace(); </script>
+<script> feather.replace(); </script><!-- Floating Buttons -->
+<div class="fixed bottom-6 right-6 flex flex-col items-center gap-4 z-50">
+
+  <!-- CALL BUTTON -->
+   <a href="tel:83172 24455"
+     class="w-14 h-14 bg-blue-600 rounded-full shadow-xl flex items-center justify-center hover:scale-110 transition">
+     <img src="https://cdn-icons-png.flaticon.com/512/597/597177.png" 
+          class="w-7 h-7 invert">
+  </a>
+
+  <!-- WHATSAPP BUTTON -->
+  <a href="https://wa.me/83172 24455?text=Hello%2C%20I%20want%20more%20information"
+     target="_blank"
+     class="w-14 h-14 bg-green-500 rounded-full shadow-xl flex items-center justify-center hover:scale-110 transition">
+     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+          class="w-8 h-8">
+  </a>
+
+</div>
+
 
 </body>
 </html>

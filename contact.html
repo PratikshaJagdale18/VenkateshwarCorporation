@@ -11,8 +11,19 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500;600;700&family=Saira:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+
 
   <style>
+    /* NAVBAR FONT */
+nav, nav a, nav button {
+    font-family: 'Arimo', sans-serif !important;
+}
+/* SITE-WIDE FONT */
+body, h1, h2, h3, h4, h5, h6, p, span, li, button, a {
+    font-family: 'Saira', sans-serif !important;
+}
     :root {
       --navy: #0f172a;
       --gold: #f59e0b;
@@ -156,7 +167,240 @@
   white-space: nowrap;
   will-change: transform;
 }
-</style>
+/* ==========================================================
+   FOOTER — RESPONSIVE FIXES (MOBILE + TABLET)
+   Desktop layout remains EXACTLY the same
+========================================================== */
+
+/* -------- Small Screens (mobile: below 768px) -------- */
+@media (max-width: 768px) {
+
+  /* Footer grid becomes 1 column */
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    justify-items: start !important;
+    text-align: left !important;
+  }
+
+  /* Logo size reduced slightly */
+  footer img {
+    height: 80px !important;
+  }
+
+  /* Reduce heading sizes */
+  .footer-grid h3 {
+    font-size: 1.2rem !important;
+  }
+
+  /* Reduce paragraph + list size */
+  .footer-grid p,
+  .footer-grid li a {
+    font-size: 0.95rem !important;
+    line-height: 1.4rem !important;
+  }
+
+  /* Social icons spacing */
+  .footer-grid .flex {
+    justify-content: flex-start !important;
+  }
+
+  /* Spacing adjustments */
+  .footer-grid > div {
+    padding-left: 0 !important;
+  }
+}
+
+/* -------- Extra Small Screens (below 480px) -------- */
+@media (max-width: 480px) {
+
+  .footer-grid h3 {
+    font-size: 1.1rem !important;
+  }
+
+  .footer-grid p,
+  .footer-grid li a {
+    font-size: 0.9rem !important;
+  }
+
+  footer img {
+    height: 70px !important;
+  }
+}
+
+/* -------- Tablet Fix (769px–1024px) -------- */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 2rem !important;
+  }
+
+  .footer-grid p,
+  .footer-grid li a {
+    font-size: 1rem !important;
+  }
+}
+
+/* Ensure navbar stays above hero section text */
+nav {
+  position: relative;
+  z-index: 100 !important;
+}
+
+/* Ensure hamburger button is always above everything */
+#hamburger-btn {
+  position: relative;
+  z-index: 200 !important;
+}
+/* ==========================================================
+   NAVBAR RESPONSIVE FIXES (NO CHANGE TO DESKTOP LAYOUT)
+========================================================== */
+
+/* Hide desktop menus on screens below md */
+@media (max-width: 768px) {
+
+  .desktop-menu {
+    display: none !important;
+  }
+
+  nav .grid {
+    grid-template-columns: 1fr auto !important;
+    grid-template-rows: 1fr !important;
+  }
+
+  nav .row-span-2 {
+    grid-row: auto !important;
+  }
+
+  /* Align logo and hamburger neatly */
+  #hamburger-btn {
+    display: flex !important;
+  }
+
+  /* Logo smaller */
+  nav img {
+    height: 60px !important;
+  }
+}
+
+/* -------- TABLET LAYOUT FIX (769px – 1024px) -------- */
+@media (min-width: 769px) and (max-width: 1024px) {
+
+  nav .grid {
+    grid-template-columns: auto 1fr !important;
+    grid-template-rows: auto auto !important;
+  }
+
+  nav img {
+    height: 70px !important;
+  }
+
+  nav a {
+    font-size: 0.95rem !important;
+  }
+
+  /* Reduce spacing to prevent wrapping */
+  .desktop-menu {
+    margin-left: 0.6rem;
+    margin-right: 0.6rem;
+  }
+}
+
+/* -------- MOBILE MENU STYLES -------- */
+#mobile-menu {
+  transition: all 0.3s ease-in-out;
+  transform-origin: top;
+}
+
+#mobile-menu.show {
+  display: block !important;
+  transform: scaleY(1);
+}
+
+#mobile-menu.hide {
+  transform: scaleY(0);
+  opacity: 0;
+}@media (max-width: 480px) {
+  .fixed.bottom-6.right-6 {
+    right: 1rem !important;
+    bottom: 1rem !important;
+  }
+}
+/* FIX horizontal scroll on contact page */
+body, html {
+  overflow-x: hidden !important;
+}
+
+/* Fix any element causing overflow */
+* {
+  max-width: 100% !important;
+}
+
+/* Fix hero section overflow */
+section.relative.overflow-hidden {
+  overflow-x: hidden !important;
+}
+
+/* Media fix for floating buttons */
+@media (max-width: 480px) {
+  .fixed.bottom-6.right-6 {
+    right: 0.75rem !important;
+    bottom: 0.75rem !important;
+    transform: translateX(0) !important;
+  }
+}
+/* HERO SECTION FIXES */
+.hero-contact {
+  height: 100vh;
+}
+
+/* Mobile height fix */
+@media (max-width: 768px) {
+  .hero-contact {
+    height: 85vh;
+  }
+
+  .hero-contact h1 {
+    font-size: 2.4rem !important;
+    line-height: 2.8rem !important;
+  }
+
+  .hero-contact h1 span:last-child {
+    font-size: 2.8rem !important;
+  }
+
+  .hero-contact p {
+    font-size: 1.2rem !important;
+    height: auto !important;
+    margin-top: 1rem;
+  }
+
+  /* prevent overflow */
+  .hero-contact .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Make image fit mobile screens better */
+  .hero-contact img {
+    object-position: center !important;
+  }
+}
+
+/* Extra small screens (below 480px) */
+@media (max-width: 480px) {
+  .hero-contact {
+    height: 80vh;
+  }
+
+  .hero-contact h1 {
+    font-size: 2rem !important;
+    line-height: 2.3rem !important;
+  }
+
+  .hero-contact p {
+    font-size: 1rem !important;
+  }
+}
 
 
 </style>
@@ -174,26 +418,25 @@
        style="animation: scroll-left 18s linear infinite;">
     
     <span class="mx-6">
-      venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424
+      info@venkateshwaracorp.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 83172 24455
     </span>
 
     <span class="mx-6">
-      venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424
+      info@venkateshwaracorp.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 83172 24455
     </span>
 
     <span class="mx-6">
-      venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424
+      info@venkateshwaracorp.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 83172 24455
     </span>
 
     <!-- duplicate more for smoother infinite loop -->
     <span class="mx-6">
-      venkateshwaracorporation@gmail.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 8830439424
+      info@venkateshwaracorp.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 83172 24455
     </span>
 
   </div>
 
 </div>
-
 
 <!-- MAIN NAVBAR -->
 <nav class="w-full bg-white shadow z-50">
@@ -203,42 +446,54 @@
               grid grid-cols-[auto_1fr] grid-rows-2 items-center">
 
     <!-- 🌟 LEFT SIDE: LOGO + COMPANY NAME -->
-    <div class="row-span-2 flex items-center space-x-4">
+    <div class="row-span-2 flex items-center space-x-3 sm:space-x-4">
 
-      <img src="logo.jpg" class="h-20 w-auto" alt="Logo">
+  <img src="logo.jpg" 
+       class="h-14 w-auto sm:h-20 transition-all duration-300" 
+       alt="Logo">
 
-      <div class="flex flex-col leading-tight">
-        <span class="text-2xl font-bold text-gray-900">Venkateshwara</span>
-        <span class="text-lg font-semibold text-gray-700">Corporation</span>
-      </div>
+  <div class="flex flex-col leading-tight">
+    <span class="text-xl sm:text-2xl font-bold text-gray-900">Venkateshwara</span>
+    <span class="text-sm sm:text-lg font-semibold text-gray-700">Corporation</span>
+  </div>
 
-    </div>
+</div>
+
 
     <!-- ⭐ ROW 1: RIGHT TOP MENU -->
-    <div class="flex justify-end items-center space-x-8 
+    <div class="flex justify-end items-center space-x-8
                 text-gray-800 font-medium text-base py-3">
 
-      <a href="index.html" class="hover:text-yellow-500">Home</a>
-      <a href="about.html" class="hover:text-yellow-500">About Us</a>
-      <a href="products.html" class="hover:text-yellow-500">Products</a>
-      <a href="contact.html" class="hover:text-yellow-500">Contact Us</a>
+      <a href="index.html" class="hover:text-yellow-500 desktop-menu">Home</a>
+      <a href="about.html" class="hover:text-yellow-500 desktop-menu">About Us</a>
+      <a href="products.html" class="hover:text-yellow-500 desktop-menu">Products</a>
+      <a href="gallery.html" class="hover:text-yellow-500 desktop-menu">Gallery</a>
+      <a href="contact.html" class="hover:text-yellow-500 desktop-menu">Contact Us</a>
 
-      <i data-feather="facebook" class="w-5 h-5 cursor-pointer"></i>
-      <i data-feather="linkedin" class="w-5 h-5 cursor-pointer"></i>
-      <i data-feather="instagram" class="w-5 h-5 cursor-pointer"></i>
+      <i data-feather="facebook" class="w-5 h-5 cursor-pointer desktop-menu"></i>
+      <i data-feather="linkedin" class="w-5 h-5 cursor-pointer desktop-menu"></i>
+      <i data-feather="instagram" class="w-5 h-5 cursor-pointer desktop-menu"></i>
+
+      <!-- HAMBURGER MENU BUTTON -->
+      <button id="hamburger-btn" class="md:hidden w-8 h-8 flex flex-col justify-center items-center space-y-1 bg-transparent border-none cursor-pointer">
+        <span class="w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+        <span class="w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+        <span class="w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+      </button>
 
     </div>
 
     <!-- ⭐ ROW 2: CENTERED CATEGORIES -->
-    <div class="flex justify-center items-center space-x-12 
-                text-gray-900 font-semibold text-[15px] py-2">
+    <div class="flex justify-center items-center space-x-12
+                text-gray-900 font-semibold text-[15px] py-2 desktop-menu">
 
       <!-- Same dropdowns here -->
       <!-- FABRICATION -->
       <div class="relative group">
-        <button class="hover:text-yellow-500">Fabrication ▾</button>
-        <div class="absolute top-full left-1/2 -translate-x-1/2 
-                    hidden group-hover:flex flex-col bg-white shadow-lg 
+        <a href="fabrication.html" class="hover:text-yellow-500">Fabrication ▾</a>
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white shadow-lg
                     rounded-lg p-4 w-56 z-50">
           <ul class="space-y-2 text-sm">
             <li><a href="fabrication.html" class="text-gray-800 hover:text-yellow-500">Awnings</a></li>
@@ -251,10 +506,11 @@
       </div>
       <!-- INTERIORS -->
       <div class="relative group">
-        <button class="hover:text-yellow-500">Interiors ▾</button>
+        <a href="interior.html" class="hover:text-yellow-500">Interiors ▾</a>
 
-        <div class="absolute top-full left-1/2 -translate-x-1/2 
-                    hidden group-hover:flex flex-col bg-white 
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white
                     shadow-lg rounded-lg p-4 w-56 z-50">
           <ul class="space-y-2 text-sm">
             <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Furniture Work</a></li>
@@ -272,10 +528,11 @@
 
       <!-- CIVIL WORK -->
       <div class="relative group">
-        <button class="hover:text-yellow-500">Civil Work ▾</button>
+        <a href="civil-work.html" class="hover:text-yellow-500">Civil Work▾</a>
 
-        <div class="absolute top-full left-1/2 -translate-x-1/2 
-                    hidden group-hover:flex flex-col bg-white 
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white
                     shadow-lg rounded-lg p-4 w-56 z-50">
           <ul class="space-y-2 text-sm">
             <li><a href="civil-work.html" class="text-gray-800 hover:text-yellow-500">Construction</a></li>
@@ -286,26 +543,28 @@
 
       <!-- EXTERIORS -->
       <div class="relative group">
-        <button class="hover:text-yellow-500">Exteriors ▾</button>
+       <a href="exterior.html" class="hover:text-yellow-500">Exteriors ▾</a>
 
-        <div class="absolute top-full left-1/2 -translate-x-1/2 
-                    hidden group-hover:flex flex-col bg-white 
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white
                     shadow-lg rounded-lg p-4 w-56 z-50">
           <ul class="space-y-2 text-sm">
             <li><a href="exterior.html" class="text-gray-800 hover:text-yellow-500">Society Painting</a></li>
             <li><a href="exterior.html" class="text-gray-800 hover:text-yellow-500">Bungalow Painting</a></li>
             <li><a href="exterior.html" class="text-gray-800 hover:text-yellow-500">Cleaning</a></li>
-            
+
           </ul>
         </div>
       </div>
 
       <!-- OTHER SERVICES -->
       <div class="relative group">
-        <button class="hover:text-yellow-500">Other Services ▾</button>
+        <a href="other-services.html" class="hover:text-yellow-500">Other Services ▾</a>
 
-        <div class="absolute top-full left-1/2 -translate-x-1/2 
-                    hidden group-hover:flex flex-col bg-white 
+
+        <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white
                     shadow-lg rounded-lg p-4 w-56 z-50">
           <ul class="space-y-2 text-sm">
             <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Waterproofing</a></li>
@@ -320,69 +579,93 @@
 
     </div>
 
+    <!-- MOBILE MENU (hidden by default) -->
+    <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 right-0 bg-white shadow-lg z-50 border-t border-gray-200">
+      <div class="flex flex-col py-4 px-6 space-y-4">
+        <!-- Main Navigation -->
+        <a href="index.html" class="text-gray-800 hover:text-yellow-500 font-medium py-2 border-b border-gray-100">Home</a>
+        <a href="about.html" class="text-gray-800 hover:text-yellow-500 font-medium py-2 border-b border-gray-100">About Us</a>
+        <a href="products.html" class="text-gray-800 hover:text-yellow-500 font-medium py-2 border-b border-gray-100">Products</a>
+        <a href="gallery.html" class="text-gray-800 hover:text-yellow-500 font-medium py-2 border-b border-gray-100">Gallery</a>
+        <a href="contact.html" class="text-gray-800 hover:text-yellow-500 font-medium py-2">Contact Us</a>
+
+        <!-- Categories -->
+        <div class="pt-4 border-t border-gray-200">
+          <h3 class="text-gray-900 font-semibold mb-3">Services</h3>
+          <div class="space-y-2">
+            <a href="fabrication.html" class="block text-gray-700 hover:text-yellow-500">Fabrication</a>
+            <a href="interior.html" class="block text-gray-700 hover:text-yellow-500">Interiors</a>
+            <a href="civil-work.html" class="block text-gray-700 hover:text-yellow-500">Civil Work</a>
+            <a href="exterior.html" class="block text-gray-700 hover:text-yellow-500">Exteriors</a>
+            <a href="other-services.html" class="block text-gray-700 hover:text-yellow-500">Other Services</a>
+          </div>
+        </div>
+
+        <!-- Social Icons -->
+        <div class="flex space-x-4 pt-4 border-t border-gray-200">
+          <i data-feather="facebook" class="w-5 h-5 cursor-pointer text-gray-600 hover:text-yellow-500"></i>
+          <i data-feather="linkedin" class="w-5 h-5 cursor-pointer text-gray-600 hover:text-yellow-500"></i>
+          <i data-feather="instagram" class="w-5 h-5 cursor-pointer text-gray-600 hover:text-yellow-500"></i>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-</nav>
+</nav><script>
+const hamburger = document.getElementById("hamburger-btn");
+const mobileMenu = document.getElementById("mobile-menu");
+
+hamburger.addEventListener("click", () => {
+  // toggle open
+  if (mobileMenu.classList.contains("show")) {
+    mobileMenu.classList.remove("show");
+    mobileMenu.classList.add("hide");
+  } else {
+    mobileMenu.classList.remove("hide");
+    mobileMenu.classList.add("show");
+  }
+
+  // Animate hamburger icon
+  hamburger.classList.toggle("open");
+});
+</script>
 
 <script>feather.replace();</script>
  <!-- CINEMATIC HERO WITH ZOOM-IN IMAGE + TYPEWRITER -->
-<section class="relative overflow-hidden h-screen ">
+<section class="hero-contact relative overflow-hidden h-screen">
 
-  <!-- ZOOM-IN BACKGROUND IMAGE -->
+  <!-- Background Image -->
   <div class="absolute inset-0 -z-10">
-    <img src="images/contact hero.jpg" 
-         alt="Tensile Roof Installation" 
+    <img src="images/contact hero.jpg"
+         alt="Tensile Roof Installation"
          class="w-full h-full object-cover zoom-in">
   </div>
 
-  <!-- DARK OVERLAY + GOLD GRADIENT -->
+  <!-- Overlay -->
   <div class="absolute inset-0 bg-black/60"></div>
-  <!-- <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div> -->
 
-  <!-- HERO CONTENT -->
+  <!-- Content -->
   <div class="container mx-auto px-6 h-full flex flex-col justify-center items-center text-center relative z-10">
     
-    <!-- MAIN TITLE – GOLD STROKE + GLOW -->
     <h1 class="text-5xl md:text-8xl font-medium text-white mb-6 leading-tight">
       <span class="block relative">
         Contact
         <span class="absolute -inset-1 blur-2xl opacity-50 animate-pulse" style="background: var(--gold);"></span>
       </span>
-      <span class="block text-white mt-2" 
-            style="text-shadow: 0 0 40px var(--gold);">
+      <span class="block text-white mt-2" style="text-shadow: 0 0 40px var(--gold);">
         Venkateshwara
-
       </span>
     </h1>
 
-    <!-- TYPEWRITER SUBTITLE -->
     <p class="text-3xl md:text-3xl text-gray-200 font-light mb-8 h-16">
       <span class="typewriter" style="color: var(--gold);"></span>
       <span class="blink" style="color: var(--gold);">|</span>
     </p>
 
-    <!-- BREADCRUMB -->
-    <!-- <div class="flex items-center gap-4 font-medium text-lg" style="color: var(--gold);">
-      <a href="index.html" class="hover:underline">Home</a>
-      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"/>
-      </svg>
-      <span>Contact</span>
-    </div> -->
-
-    <!-- GOLD CTA BUTTON -->
-    <!-- <a href="#contact-form" 
-       class="mt-12 inline-block px-12 py-5 text-black font-bold text-xl rounded-full 
-              shadow-2xl transform hover:scale-110 
-              transition-all duration-500 relative overflow-hidden group" style="background: var(--gold); box-shadow: 0 16px 40px rgba(245, 158, 11, 0.5);">
-      <span class="relative z-10">Get Your Free Quote</span>
-      <div class="shimmer"></div>
-    </a> -->
   </div>
-
-  <!-- SCROLL DOWN ARROW -->
- 
 </section>
+
 <script>
   // TYPEWRITER PHRASES
   const phrases = [
@@ -464,37 +747,80 @@
         </div>
 
         <!-- RIGHT SIDE: FORM -->
-       <!-- RIGHT SIDE -->
+ 
+
 <div id="contact-right" class="bg-white p-10 rounded-3xl shadow-xl">
 
-          <h3 class="text-3xl font-bold mb-8 text-[var(--navy)]">Get in <span class="text-[var(--gold)]">Touch</span></h3>
-         <form action="https://formspree.io/f/your-form-id" method="POST" class="space-y-6">
+  <h3 class="text-3xl font-bold mb-8 text-[var(--navy)]">
+    Get in <span class="text-[var(--gold)]">Touch</span>
+  </h3>
 
-  <input type="text" name="name" placeholder="Your Name" required
-         class="w-full px-5 py-4 border border-gray-300 rounded-xl focus:ring-4 focus:ring-yellow-200 outline-none text-base">
+  <!-- EMAIL FORM -->
+  <form id="contactForm" action="https://formsubmit.co/mail-info@venkateshwaracorp.com" method="POST" class="space-y-6">
 
-  <input type="email" name="email" placeholder="Your Email" required
-         class="w-full px-5 py-4 border border-gray-300 rounded-xl focus:ring-4 focus:ring-yellow-200 outline-none text-base">
+    <!-- REQUIRED Hidden Fields -->
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" id="realSubject" name="_subject">
 
-  <!-- ✅ NEW CONTACT FIELD -->
-  <input type="tel" name="contact" placeholder="Your Contact Number" required
-         class="w-full px-5 py-4 border border-gray-300 rounded-xl focus:ring-4 focus:ring-yellow-200 outline-none text-base">
+    <input type="text" name="name" placeholder="Your Name" required
+      class="w-full px-5 py-4 border border-gray-300 rounded-xl focus:ring-4 focus:ring-yellow-200 outline-none text-base">
 
-  <input type="text" name="subject" placeholder="Subject"
-         class="w-full px-5 py-4 border border-gray-300 rounded-xl focus:ring-4 focus:ring-yellow-200 outline-none text-base">
+    <input type="email" name="email" placeholder="Your Email" required
+      class="w-full px-5 py-4 border border-gray-300 rounded-xl focus:ring-4 focus:ring-yellow-200 outline-none text-base">
 
-  <textarea name="message" rows="5" placeholder="Your Message" required
-            class="w-full px-5 py-4 border border-gray-300 rounded-xl focus:ring-4 focus:ring-yellow-200 outline-none text-base resize-none"></textarea>
+    <input type="tel" name="contact" placeholder="Your Contact Number" required
+      class="w-full px-5 py-4 border border-gray-300 rounded-xl focus:ring-4 focus:ring-yellow-200 outline-none text-base">
 
-  <button type="submit"
-          class="w-full py-4 text-lg font-semibold bg-[var(--gold)] text-[var(--navy)] rounded-xl shadow-md hover:bg-yellow-600 transition transform hover:scale-[1.02]">
-    Send Message
-  </button>
+    <input type="text" id="subjectField" name="subject" placeholder="Subject"
+      class="w-full px-5 py-4 border border-gray-300 rounded-xl focus:ring-4 focus:ring-yellow-200  outline-none text-base text-black
+">
 
-</form>
+    <textarea name="message" rows="5" placeholder="Your Message" required
+      class="w-full px-5 py-4 border border-gray-300 rounded-xl focus:ring-4 focus:ring-yellow-200 outline-none text-base resize-none"></textarea>
+
+    <button type="submit"
+      class="w-full py-4 text-lg font-semibold bg-[var(--gold)] text-[var(--navy)] rounded-xl shadow-md hover:bg-yellow-600 transition transform hover:scale-[1.02]">
+      Send Message
+    </button>
+  </form>
+
+  <p id="formMessage" class="mt-3 text-green-600"></p>
 
 
-        </div>
+<script>
+  // Set subject dynamically on form submit
+  document.getElementById("contactForm").addEventListener("submit", function () {
+    const subjectValue = document.getElementById("subjectField").value.trim();
+    document.getElementById("realSubject").value = subjectValue || "New Website Inquiry";
+  });
+
+  // Auto-fill subject from ?subject=
+  window.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+
+    // Read the subject sent from product buttons
+    const productSubject = params.get("subject");
+
+    if (productSubject) {
+      const subjectField = document.getElementById("subjectField");
+      subjectField.value = decodeURIComponent(productSubject);
+    }
+  });
+
+  // Optional success text
+  const form = document.getElementById("contactForm");
+  form.addEventListener("submit", function () {
+    let msg = document.getElementById("formMessage");
+    if (msg) {
+      msg.textContent = "Sending...";
+      setTimeout(() => {
+        msg.textContent = "Your message has been sent successfully!";
+      }, 1500);
+    }
+  });
+</script>
+
       </div>
     </div>
   </section>
@@ -565,9 +891,10 @@ gsap.from("#contact-right", {
 
   <!-- COMPACT CONTENT -->
   <div class="container mx-auto px-4 pt-12 pb-8 relative z-10">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10
+    <div class="footer-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10
                 justify-items-start md:justify-items-center
                 max-w-7xl mx-auto">
+
 
       <!-- 1. LOGO -->
       <div data-aos="fade-up" class="w-full">
@@ -605,6 +932,7 @@ gsap.from("#contact-right", {
           <li data-aos="fade-left" data-aos-delay="100"><a href="index.html"   class="opacity-80 hover:text-yellow-400">Home</a></li>
           <li data-aos="fade-left" data-aos-delay="150"><a href="about.html"   class="opacity-80 hover:text-yellow-400">About</a></li>
           <li data-aos="fade-left" data-aos-delay="200"><a href="products.html" class="opacity-80 hover:text-yellow-400">Products</a></li>
+          <li data-aos="fade-left" data-aos-delay="250"><a href="gallery.html" class="opacity-80 hover:text-yellow-400">Gallery</a></li>
           <li data-aos="fade-left" data-aos-delay="250"><a href="contact.html" class="opacity-80 hover:text-yellow-400">Contact</a></li>
         </ul>
       </div>
@@ -631,234 +959,34 @@ gsap.from("#contact-right", {
     </div>
   </div>
 </footer>
-
-  <script>
-    class CustomNavbar extends HTMLElement {
-      connectedCallback() {
-        this.attachShadow({ mode: 'open' });
-        this.shadowRoot.innerHTML = `
-          <style>
-            :host {
-              display: block;
-              position: fixed;
-              top: 0; left: 0; right: 0;
-              z-index: 9999;
-              padding: 1.5rem 0;
-              background: rgba(255,255,255,0.95);
-              backdrop-filter: blur(12px);
-              transition: all 0.4s ease;
-              font-family: 'Inter', sans-serif;
-            }
-            :host(.scrolled) {
-              padding: 0.75rem 0;
-              background: rgba(255,255,255,0.95);
-              box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-            }
-            .nav-container {
-              max-width: 1400px;
-              margin: 0 auto;
-              padding: 0 1.5rem;
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-            }
-            .logo {
-              display: flex;
-              align-items: center;
-              gap: 0.75rem;
-              color: #111;
-              text-decoration: none;
-              font-weight: 500;
-              font-size: 1.5rem;
-            }
-            .logo img { height: 64px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2)); }
-            .logo span { color: #f59e0b; }
-            .nav-links { display: flex; gap: 2.5rem; }
-            .nav-link {
-              color: #222;
-              text-decoration: none;
-              font-weight: 600;
-              position: relative;
-              transition: color 0.3s;
-              cursor: pointer;
-            }
-            .nav-link:hover { color: #f59e0b; }
-            .nav-link::after {
-              content: '';
-              position: absolute;
-              width: 0; height: 3px;
-              bottom: -8px; left: 0;
-              background: #f59e0b;
-              transition: width 0.4s ease;
-            }
-            .nav-link:hover::after { width: 100%; }
-
-            /* Dropdown Styles */
-            .dropdown {
-              position: relative;
-            }
-            .dropdown-content {
-              display: none;
-              position: absolute;
-              top: 100%;
-              left: 50%;
-              background: rgba(255,255,255,0.98);
-              backdrop-filter: blur(15px);
-              min-width: 800px;
-              box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-              border-radius: 0.75rem;
-              z-index: 10000;
-              padding: 1rem;
-              margin-top: 0.75rem;
-              border: 1px solid rgba(245, 158, 11, 0.1);
-              opacity: 0;
-              transform: translateX(-50%) translateY(-10px);
-              transition: all 0.3s ease;
-              display: flex;
-              flex-direction: row;
-              gap: 1.5rem;
-            }
-            .dropdown:hover .dropdown-content {
-              display: flex;
-              opacity: 1;
-              transform: translateX(-50%) translateY(0);
-            }
-            .dropdown-section {
-              display: flex;
-              flex-direction: column;
-              min-width: 180px;
-            }
-            .dropdown-item {
-              display: block;
-              padding: 0.5rem 1rem;
-              color: #222;
-              text-decoration: none;
-              font-weight: 500;
-              transition: all 0.3s ease;
-              border-left: 3px solid transparent;
-              font-size: 0.9rem;
-            }
-            .dropdown-item:hover {
-              background: rgba(245, 158, 11, 0.1);
-              color: #f59e0b;
-              border-left-color: #f59e0b;
-              padding-left: 1.25rem;
-            }
-            .dropdown-category {
-              padding: 0.5rem 1rem 0.25rem;
-              font-weight: 700;
-              color: #f59e0b;
-              font-size: 0.875rem;
-              text-transform: uppercase;
-              letter-spacing: 0.05em;
-              border-bottom: 1px solid rgba(245, 158, 11, 0.2);
-              margin-bottom: 0.5rem;
-            }
-            .call-button {
-              background: #f59e0b;
-              color: #111;
-              padding: 0.75rem 1.5rem;
-              border-radius: 0.5rem;
-              text-decoration: none;
-              font-weight: 500;
-              transition: all 0.3s;
-            }
-            .call-button:hover {
-              background: #d97706;
-              transform: scale(1.05);
-            }
-            @media (max-width: 768px) {
-              .nav-links, .call-button { display: none; }
-              .logo { font-size: 1.3rem; }
-              .dropdown-content {
-                position: static;
-                display: none;
-                box-shadow: none;
-                background: rgba(255,255,255,0.9);
-                margin-top: 0;
-                border-radius: 0;
-                padding: 0.5rem 0;
-                flex-direction: column;
-                min-width: auto;
-                gap: 0;
-              }
-              .dropdown:hover .dropdown-content {
-                display: flex;
-              }
-              .dropdown-section {
-                min-width: auto;
-              }
-              .dropdown-item {
-                padding: 0.5rem 1rem;
-              }
-              .dropdown-item:hover {
-                padding-left: 1.5rem;
-              }
-            }
-          </style>
-
-          <div class="nav-container">
-            <a href="index.html" class="logo">
-              <img src="logo.jpg" alt="Logo">
-
-            </a>
-            <div class="nav-links">
-              <a href="index.html" class="nav-link">Home</a>
-              <a href="about.html" class="nav-link">About</a>
-              <div class="dropdown">
-                <a href="products.html" class="nav-link">Products ▼</a>
-                <div class="dropdown-content">
-                  <div class="dropdown-section">
-                    <div class="dropdown-category">Residential</div>
-                    <a href="balcony-shed.html" class="dropdown-item">Balcony Shed</a>
-                    <a href="tensile-structure.html" class="dropdown-item">Tensile Structure</a>
-                    <a href="terrace-shed.html" class="dropdown-item">Terrace Shed</a>
-                    <a href="retractable-awning.html" class="dropdown-item">Retractable Awning</a>
-                    <a href="entrance-canopy.html" class="dropdown-item">Entrance Canopy</a>
-                  </div>
-
-                  <div class="dropdown-section">
-                    <div class="dropdown-category">Industrial</div>
-                    <a href="industrial-shed.html" class="dropdown-item">Industrial Shed</a>
-                    <a href="fabrication-services.html" class="dropdown-item">Fabrication Services</a>
-                    <a href="civil-work.html" class="dropdown-item">Civil Work</a>
-                    <a href="roofing-structure.html" class="dropdown-item">Roofing Structure</a>
-                    <a href="cold-storage.html" class="dropdown-item">Cold Storage</a>
-                  </div>
-
-                  <div class="dropdown-section">
-                    <div class="dropdown-category">Car Parking</div>
-                    <a href="tensile-car-parking.html" class="dropdown-item">Tensile Car Parking</a>
-                    <a href="car-parking-awning.html" class="dropdown-item">Car Parking Awning</a>
-                    <a href="prefabricated-shed.html" class="dropdown-item">Prefabricated Shed</a>
-                    <a href="car-parking-shed.html" class="dropdown-item">Car Parking Shed</a>
-                    <a href="valet-parking.html" class="dropdown-item">Valet Parking</a>
-                  </div>
-
-                  <div class="dropdown-section">
-                    <div class="dropdown-category">Commercial</div>
-                    <a href="fabrication-shed.html" class="dropdown-item">Fabrication Shed</a>
-                    <a href="balcony-grill.html" class="dropdown-item">Balcony Grill</a>
-                    <a href="terrace-awning.html" class="dropdown-item">Terrace Awning</a>
-                    <a href="shade-awning.html" class="dropdown-item">Shade Awning</a>
-                    <a href="tile-flooring.html" class="dropdown-item">Tile Flooring</a>
-                  </div>
-                </div>
-              </div>
-              <a href="contact.html" class="nav-link">Contact</a>
-            </div>
-            <a href="tel:+918047693560" class="call-button">Call Now</a>
-          </div>
-        `;
-
-        window.addEventListener('scroll', () => {
-          this.shadowRoot.host.classList.toggle('scrolled', window.scrollY > 100);
-        });
-      }
-    }
-    customElements.define('custom-navbar', CustomNavbar);
-  </script>
-  <script src="https://unpkg.com/feather-icons"></script>
   <script>feather.replace();</script>
+ <script src="https://unpkg.com/feather-icons"></script>
+ 
+   
+ 
+
+  <!-- Floating Buttons -->
+<div class="fixed bottom-6 right-6 flex flex-col items-center gap-4 z-50">
+
+  <!-- CALL BUTTON -->
+   <a href="tel:83172 24455"
+     class="w-14 h-14 bg-blue-600 rounded-full shadow-xl flex items-center justify-center hover:scale-110 transition">
+     <img src="https://cdn-icons-png.flaticon.com/512/597/597177.png" 
+          class="w-7 h-7 invert">
+  </a>
+
+  <!-- WHATSAPP BUTTON -->
+  <a href="https://wa.me/83172 24455?text=Hello%2C%20I%20want%20more%20information"
+     target="_blank"
+     class="w-14 h-14 bg-green-500 rounded-full shadow-xl flex items-center justify-center hover:scale-110 transition">
+     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+          class="w-8 h-8">
+  </a>
+
+</div>
+<script>
+  feather.replace();
+</script>
+
 </body>
 </html>
